@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config = {
+  mode: "jit",
   darkMode: ["class"],
   content: [
     "./pages/**/*.{ts,tsx}",
@@ -29,10 +30,6 @@ const config = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-        },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
@@ -58,10 +55,19 @@ const config = {
           foreground: "hsl(var(--card-foreground))",
         },
         "title-foreground": "#171618",
-        "primary-background": "#506CF0",
+        primary: "#506CF0",
         "gradient-start": "#A990FF",
         "gradient-via": "#57CFEF",
         "gradient-end": "#7FEA96",
+        "primary-background": "#F5F5F5",
+        "subtitle-foreground": "#898989",
+        "secondery-foreground": "#383838",
+        "secondary-foreground-2": "#606060",
+        "stroke-gray": "#D8D8D8",
+        "light-red": "#D1373F",
+        "semilight-red": "#A72C32",
+        "icon-fill":"#92929D",
+        "roadmap-backline":"#ACB5B7",
       },
       borderRadius: {
         lg: "var(--radius)",
