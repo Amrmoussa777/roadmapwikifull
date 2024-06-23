@@ -58,6 +58,9 @@ const config = {
 					ultramarineBlue: "#506CF0",
 					dark: "#383838",
 				},
+				button: {
+					subscribe: "#D1373F",
+				},
 				grey: {
 					primary: "#F6F6F6",
 					secondary: "#606060",

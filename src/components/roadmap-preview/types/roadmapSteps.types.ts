@@ -10,6 +10,7 @@ export type RoadmapStepType = {
 export type RoadmapStepTagType = {
 	id: string;
 	title: string;
+	color: string;
 };
 
 export type RoadmapStepAttachmentsType = {

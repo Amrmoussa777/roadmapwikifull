@@ -93,16 +93,16 @@
 
 	.dotted-bg {
 		background-image: radial-gradient(
-			circle at 15px 15px,
-			#e3e3e3 2.5px,
+			circle at 10px 10px,
+			#e3e3e3 2px,
 			transparent 0
 		);
-		background-size: 40px 40px;
+		background-size: 25px 25px;
 		background-color: #f6f6f6;
 	}
 
 	.line-dashed {
-		width: 4px;
+		width: 2px;
 		background-image: linear-gradient(#acb5b7 33%, rgba(255, 255, 255, 0) 0%);
 		background-position: center;
 		background-size: 2px 16px;
