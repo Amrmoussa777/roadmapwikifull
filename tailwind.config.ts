@@ -1,101 +1,96 @@
 import type { Config } from "tailwindcss";
 
 const config = {
-  mode: "jit",
-  darkMode: ["class"],
-  content: [
-    "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
-  ],
-  prefix: "",
-  theme: {
-    container: {
-      center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
-    },
-    extend: {
-      fontFamily: {
-        poppins: ["Poppins"],
-        inter: ["Inter"],
-        outfit: ["Outfit"],
-      },
-      colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
-        },
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
-        },
-        "title-foreground": "#171618",
-        primary: "#506CF0",
-        "gradient-start": "#A990FF",
-        "gradient-via": "#57CFEF",
-        "gradient-end": "#7FEA96",
-        "primary-background": "#F5F5F5",
-        "subtitle-foreground": "#898989",
-        "secondery-foreground": "#383838",
-        "secondary-foreground-2": "#606060",
-        "stroke-gray": "#D8D8D8",
-        "light-red": "#D1373F",
-        "semilight-red": "#A72C32",
-        "icon-fill":"#92929D",
-        "roadmap-backline":"#ACB5B7",
-      },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
-      },
-      keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
-        },
-        slide: {
-          "0%": { transform: "translateY(100%)" },
-          "100%": { transform: "translateY(-100%)" },
-        },
-      },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-        slide: "slide 2s ease-in-out",
-      },
-    },
-  },
-  plugins: [require("tailwindcss-animate")],
+	mode: "jit",
+	darkMode: ["class"],
+	content: [
+		"./pages/**/*.{ts,tsx}",
+		"./components/**/*.{ts,tsx}",
+		"./app/**/*.{ts,tsx}",
+		"./src/**/*.{ts,tsx}",
+	],
+	prefix: "",
+	theme: {
+		container: {
+			center: true,
+			padding: "2rem",
+			screens: {
+				"2xl": "1400px",
+			},
+		},
+		extend: {
+			fontFamily: {
+				poppins: ["Poppins"],
+				inter: ["Inter"],
+				outfit: ["Outfit"],
+			},
+			colors: {
+				border: "hsl(var(--border))",
+				input: "hsl(var(--input))",
+				ring: "hsl(var(--ring))",
+				background: "hsl(var(--background))",
+				foreground: "hsl(var(--foreground))",
+				secondary: {
+					DEFAULT: "hsl(var(--secondary))",
+					foreground: "hsl(var(--secondary-foreground))",
+				},
+				destructive: {
+					DEFAULT: "hsl(var(--destructive))",
+					foreground: "hsl(var(--destructive-foreground))",
+				},
+				muted: {
+					DEFAULT: "hsl(var(--muted))",
+					foreground: "hsl(var(--muted-foreground))",
+				},
+				accent: {
+					DEFAULT: "hsl(var(--accent))",
+					foreground: "hsl(var(--accent-foreground))",
+				},
+				popover: {
+					DEFAULT: "hsl(var(--popover))",
+					foreground: "hsl(var(--popover-foreground))",
+				},
+				card: {
+					DEFAULT: "hsl(var(--card))",
+					foreground: "hsl(var(--card-foreground))",
+				},
+				primary: {
+					ultramarineBlue: "#506CF0",
+					dark: "#383838",
+				},
+				grey: {
+					primary: "#F6F6F6",
+					secondary: "#606060",
+					iconBorder: "##D8D8D8",
+				},
+			},
+			borderRadius: {
+				lg: "var(--radius)",
+				md: "calc(var(--radius) - 2px)",
+				sm: "calc(var(--radius) - 4px)",
+			},
+			keyframes: {
+				"accordion-down": {
+					from: { height: "0" },
+					to: { height: "var(--radix-accordion-content-height)" },
+				},
+				"accordion-up": {
+					from: { height: "var(--radix-accordion-content-height)" },
+					to: { height: "0" },
+				},
+				slide: {
+					"0%": { transform: "translateY(100%)" },
+					"100%": { transform: "translateY(-100%)" },
+				},
+			},
+			animation: {
+				"accordion-down": "accordion-down 0.2s ease-out",
+				"accordion-up": "accordion-up 0.2s ease-out",
+				slide: "slide 2s ease-in-out",
+			},
+		},
+	},
+	plugins: [require("tailwindcss-animate")],
 } satisfies Config;
 
 export default config;
