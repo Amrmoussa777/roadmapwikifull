@@ -1,4 +1,5 @@
 import RoadmapDetails from "@/components/roadmap-preview/components/roadmap-details/RoadmapDetails";
+import RoadmapDiscussion from "@/components/roadmap-preview/components/roadmap-discussion/RoadmapDiscussion";
 import RoadmapHeader from "@/components/roadmap-preview/components/roadmap-header/RoadmapHeader";
 import RoadmapPreviewProfile from "@/components/roadmap-preview/components/roadmap-profile/RoadmapPreviewProfile";
 import RoadmapPreviewSteps from "@/components/roadmap-preview/components/roadmap-steps/RoadmapPreviewSteps";
@@ -13,7 +14,10 @@ const RoadmapPreview = () => {
 				<RoadmapHeader />
 
 				<div className="relative w-full flex flex-col-reverse lg:flex-row justify-center gap-2 py-2">
-					<RoadmapPreviewSteps />
+					<div className="w-full">
+						<RoadmapPreviewSteps />
+						<RoadmapDiscussion />
+					</div>
 					<RoadmapDetails />
 				</div>
 			</div>

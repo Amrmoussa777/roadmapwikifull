@@ -66,6 +66,7 @@ const config = {
 					secondary: "#606060",
 					iconBorder: "##D8D8D8",
 					icon: "#ACB5B7",
+					replayText: "#ADAEB5",
 				},
 			},
 			borderRadius: {
