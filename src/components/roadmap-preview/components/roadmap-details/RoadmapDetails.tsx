@@ -1,9 +1,12 @@
+"use client";
+
 import React from "react";
 import { DURATION_ICON } from "../../../../../public/icons/roadmapSteps";
 import {
 	STEPS_ICON,
 	USERS_ICON,
 } from "../../../../../public/icons/roadmapPreview";
+import useToggle from "@/hooks/useToggle";
 
 const roadmapTags = [
 	{
@@ -33,8 +36,11 @@ const roadmapTags = [
 ];
 
 const RoadmapDetails = () => {
+	const { currentState: isMoreContent, toggle: toggleMoreContent } =
+		useToggle(false);
+
 	return (
-		<div className="bg-white w-[500px] h-fit hidden lg:flex flex-col gap-4 p-4 py-3 rounded-md sticky top-2">
+		<div className="bg-white w-full lg:w-[500px] h-fit flex flex-col gap-4 p-4 py-3 rounded-md lg:sticky top-2">
 			<div>
 				<h3>Description</h3>
 				<p className="text-grey-secondary">
@@ -67,22 +73,28 @@ const RoadmapDetails = () => {
 					<p>12</p>
 				</li>
 
-				<li>
-					<div>
-						<h3>Steps</h3>
-					</div>
+				{isMoreContent ? (
+					<li>
+						<div>
+							<h3>Steps</h3>
+						</div>
 
-					<div className="w-full flex gap-2 flex-wrap mt-1">
-						{roadmapTags.map(tag => (
-							<span
-								key={tag.id}
-								className="h-[26px] flex-jc-c text-sm px-4 border border-grey-iconBorder rounded-full"
-							>
-								{tag.title}
-							</span>
-						))}
-					</div>
-				</li>
+						<div className="w-full flex gap-2 flex-wrap mt-1">
+							{roadmapTags.map(tag => (
+								<span
+									key={tag.id}
+									className="h-[26px] flex-jc-c text-sm px-4 border border-grey-iconBorder rounded-full"
+								>
+									{tag.title}
+								</span>
+							))}
+						</div>
+					</li>
+				) : null}
+
+				<button onClick={toggleMoreContent} className="text-start">
+					{isMoreContent ? "See less" : "See more..."}
+				</button>
 			</ul>
 		</div>
 	);

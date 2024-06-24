@@ -12,7 +12,7 @@ const RoadmapPreview = () => {
 			<div className="w-full md:w-[calc(100%-258px)] lg:w-[calc(100%-330px)] ml-auto hidden-scrollbar">
 				<RoadmapHeader />
 
-				<div className="relative w-full flex justify-center gap-2 py-2">
+				<div className="relative w-full flex flex-col-reverse lg:flex-row justify-center gap-2 py-2">
 					<RoadmapPreviewSteps />
 					<RoadmapDetails />
 				</div>
