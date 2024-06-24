@@ -5,7 +5,7 @@ import RoadmapPreviewProfileInfo from "@/components/roadmap-preview/components/r
 
 const RoadmapPreviewProfile = () => {
 	return (
-		<div className="w-[330px] py-8 px-4 bg-white rounded-md flex-jc-c flex-col gap-6">
+		<div className="md:fixed w-full md:w-[250px] lg:w-[320px] py-8 px-4 bg-white rounded-md flex-jc-c flex-col gap-6">
 			{/* Profile Image */}
 			<div className="flex-jc-c">
 				<div className="w-[130px] h-[130px] rounded-full border-4 border-[#506CF0]">

@@ -18,3 +18,10 @@ export type RoadmapStepAttachmentsType = {
 	videos: number;
 	files: number;
 };
+
+export type RoadmapStepItemProps = {
+	step: RoadmapStepType;
+	isFirstStep: boolean;
+	lastStep: boolean;
+	handlePreviewStep: (step: RoadmapStepType) => void;
+};

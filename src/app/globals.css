@@ -59,15 +59,18 @@
 	body {
 		@apply bg-background text-foreground;
 	}
+	p {
+		@apply text-sm font-normal;
+	}
 }
 
 @layer utilities {
 	/* Chrome, Safari and Opera */
-	.no-scrollbar::-webkit-scrollbar {
+	.hidden-scrollbar::-webkit-scrollbar {
 		display: none;
 	}
 
-	.no-scrollbar {
+	.hidden-scrollbar {
 		-ms-overflow-style: none; /* IE and Edge */
 		scrollbar-width: none; /* Firefox */
 	}
@@ -121,4 +124,28 @@
 	.flex-ic-c {
 		@apply flex items-center;
 	}
+}
+
+/* Editor */
+.quill {
+	padding: 10px;
+}
+
+.ql-toolbar.ql-snow {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 0 !important;
+	background-color: #f6f6f6 !important;
+	padding: 5px !important;
+}
+
+.ql-container.ql-snow {
+	border: 0 !important;
+	height: 200px !important;
+}
+
+.ql-editor::-webkit-scrollbar {
+	width: 0;
+	background: transparent;
 }

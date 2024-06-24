@@ -15,14 +15,14 @@ const RoadmapHeader = () => {
 				className="w-full h-2/4 object-cover rounded-t-md"
 			/>
 
-			<div className="w-full h-2/4 bg-white rounded-b-md flex-jb-c px-4 lg:px-6">
-				<h2 className="text-lg lg:text-3xl font-semibold text-primary-dark">
+			<div className="w-full h-2/4 bg-white rounded-b-md flex-jb-c px-2 md:px-4 lg:px-6">
+				<h2 className="text-sm md:text-lg lg:text-3xl font-semibold text-primary-dark">
 					Frontend Developer Roadmap
 				</h2>
 
 				<div className="flex-jc-c gap-2">
 					<SubscribeButton price={10} callback={() => {}} />
-					<button className="w-[40px] h-[40px] flex-jc-c border border-grey-iconBorder rounded-full">
+					<button className="w-[35px] h-[35px] md:w-[40px] md:h-[40px] flex-jc-c border border-grey-iconBorder rounded-full">
 						{SHARE_ICON}
 					</button>
 				</div>

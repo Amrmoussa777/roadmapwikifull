@@ -65,6 +65,7 @@ const config = {
 					primary: "#F6F6F6",
 					secondary: "#606060",
 					iconBorder: "##D8D8D8",
+					icon: "#ACB5B7",
 				},
 			},
 			borderRadius: {
