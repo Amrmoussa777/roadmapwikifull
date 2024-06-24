@@ -8,6 +8,8 @@ import {
 } from "../../../../../public/icons/roadmapPreview";
 import { MENU_ICON } from "../../../../../public/icons/roadmapSteps";
 import RoadmapDiscussionPostReplies from "@/components/roadmap-preview/components/roadmap-discussion/RoadmapDiscussionPostReplies";
+import useToggle from "@/hooks/useToggle";
+import { useOnClickOutside } from "@/hooks/useOnClickOutside";
 
 const RoadmapDiscussionPost = ({
 	id,
@@ -18,9 +20,14 @@ const RoadmapDiscussionPost = ({
 	roadmapId,
 	votes,
 }: RoadmapPostType) => {
+	const { currentState: isPostMenuOpen, toggle: togglePostMenu } =
+		useToggle(false);
+
+	const deletePostButtonRef = useOnClickOutside(() => togglePostMenu());
+
 	return (
 		<>
-			<div className="flex justify-between items-start gap-2 border border-[#E0E0E0] p-4 rounded-md">
+			<div className="relative flex justify-between items-start gap-2 border border-[#E0E0E0] p-4 rounded-md">
 				<Image
 					src={AuthorImage}
 					width={100}
@@ -45,7 +52,21 @@ const RoadmapDiscussionPost = ({
 					</div>
 				</div>
 
-				<button className="rotate-90 text-grey-secondary">{MENU_ICON}</button>
+				<button
+					className="rotate-90 text-grey-secondary"
+					onClick={togglePostMenu}
+				>
+					{MENU_ICON}
+				</button>
+
+				{isPostMenuOpen ? (
+					<button
+						ref={deletePostButtonRef}
+						className="absolute right-12 border border-red-400 bg-red-200 rounded-md px-4"
+					>
+						Delete post
+					</button>
+				) : null}
 			</div>
 
 			<RoadmapDiscussionPostReplies replies={replies} />

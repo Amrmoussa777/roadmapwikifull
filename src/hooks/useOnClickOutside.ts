@@ -1,10 +1,10 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, RefObject } from "react";
 
 export const useOnClickOutside = (
 	callback: Function,
 	screenSize: boolean = true
 ) => {
-	const ref = useRef<HTMLElement>();
+	const ref: any = useRef<HTMLElement>(null);
 
 	useEffect(() => {
 		const handleClick = (event: any) => {
