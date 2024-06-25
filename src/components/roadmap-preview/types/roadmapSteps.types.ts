@@ -6,6 +6,7 @@ export type RoadmapStepType = {
 	attachments: RoadmapStepAttachmentType[];
 	verifications: any[];
 	tags: RoadmapStepTagType[];
+	completed: boolean;
 };
 
 export type RoadmapStepAttachmentType = {

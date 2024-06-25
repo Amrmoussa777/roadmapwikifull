@@ -39,7 +39,7 @@ const roadmapPreviewSlice = createSlice({
 		});
 		builder.addCase(fetchRoadmapById.rejected, (state, action) => {
 			state.isLoading = false;
-			state.error = action.payload;
+			state.error = new Error("server error");
 			state.roadmap = null;
 		});
 	},

@@ -70,15 +70,9 @@ const RoadmapStepItem = ({
 							</div>
 
 							<div className="flex gap-2 [&>div]:flex-jc-c [&>div]:gap-1 [&>div>svg]:w-[12px] text-grey-secondary text-sm">
-								<div>
-									{FILE_ICON} {attachments.files}
-								</div>
-								<div>
-									{VIDEO_ICON} {attachments.videos}
-								</div>
-								<div>
-									{IMAGE_ICON} {attachments.images}
-								</div>
+								<div>{FILE_ICON} 0</div>
+								<div>{VIDEO_ICON} 2</div>
+								<div>{IMAGE_ICON} 4</div>
 							</div>
 						</div>
 					</div>
