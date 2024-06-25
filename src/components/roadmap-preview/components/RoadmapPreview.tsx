@@ -6,7 +6,7 @@ import RoadmapHeader from "@/components/roadmap-preview/components/roadmap-heade
 import RoadmapPreviewProfile from "@/components/roadmap-preview/components/roadmap-profile/RoadmapPreviewProfile";
 import RoadmapPreviewSteps from "@/components/roadmap-preview/components/roadmap-steps/RoadmapPreviewSteps";
 import PathnameHelper from "@/helpers/pathname.helper";
-import { fetchRoadmapById } from "@/redux/slices/roadmapPreviewAsyncThunks";
+import { fetchRoadmapById } from "@/redux/slices/thunks/roadmapPreviewAsyncThunks";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { usePathname } from "next/navigation";
 import React, { useEffect } from "react";

@@ -1,3 +1,4 @@
+import roadmapPreviewPostsSlice from "@/redux/slices/roadmaps/roadmapPreviewPostsSlice";
 import roadmapPreviewSlice from "@/redux/slices/roadmaps/roadmapPreviewSlice";
 import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
@@ -5,6 +6,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 export const store = configureStore({
 	reducer: {
 		roadmapPreview: roadmapPreviewSlice,
+		roadmapPreviewPosts: roadmapPreviewPostsSlice,
 	},
 });
 

@@ -4,7 +4,7 @@ export type RoadmapPostAuthorType = {
 };
 
 export type RoadmapPostReplyType = {
-	id: string;
+	id: number;
 	postId: string;
 	author: RoadmapPostAuthorType;
 	addedDate: string;
@@ -13,7 +13,7 @@ export type RoadmapPostReplyType = {
 };
 
 export type RoadmapPostType = {
-	id: string;
+	id: number;
 	roadmapId: string;
 	author: RoadmapPostAuthorType;
 	addedDate: string;

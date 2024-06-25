@@ -10,6 +10,8 @@ import { MENU_ICON } from "../../../../../public/icons/roadmapSteps";
 import RoadmapDiscussionPostReplies from "@/components/roadmap-preview/components/roadmap-discussion/RoadmapDiscussionPostReplies";
 import useToggle from "@/hooks/useToggle";
 import { useOnClickOutside } from "@/hooks/useOnClickOutside";
+import { useAppDispatch } from "@/redux/store";
+import { deletePost } from "@/redux/slices/roadmaps/roadmapPreviewPostsSlice";
 
 const RoadmapDiscussionPost = ({
 	id,
@@ -22,8 +24,9 @@ const RoadmapDiscussionPost = ({
 }: RoadmapPostType) => {
 	const { currentState: isPostMenuOpen, toggle: togglePostMenu } =
 		useToggle(false);
-
 	const deletePostButtonRef = useOnClickOutside(() => togglePostMenu());
+
+	const dispatch = useAppDispatch();
 
 	return (
 		<>
@@ -61,6 +64,7 @@ const RoadmapDiscussionPost = ({
 
 				{isPostMenuOpen ? (
 					<button
+						onClick={() => dispatch(deletePost(id))}
 						ref={deletePostButtonRef}
 						className="absolute right-12 border border-red-400 bg-red-200 rounded-md px-4"
 					>
