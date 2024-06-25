@@ -5,7 +5,7 @@ export type RoadmapPostAuthorType = {
 
 export type RoadmapPostReplyType = {
 	id: number;
-	postId: string;
+	postId: number;
 	author: RoadmapPostAuthorType;
 	addedDate: string;
 	votes: number;

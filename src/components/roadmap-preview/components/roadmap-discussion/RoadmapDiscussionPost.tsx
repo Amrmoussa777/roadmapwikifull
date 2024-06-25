@@ -11,7 +11,10 @@ import RoadmapDiscussionPostReplies from "@/components/roadmap-preview/component
 import useToggle from "@/hooks/useToggle";
 import { useOnClickOutside } from "@/hooks/useOnClickOutside";
 import { useAppDispatch } from "@/redux/store";
-import { deletePost } from "@/redux/slices/roadmaps/roadmapPreviewPostsSlice";
+import {
+	deletePost,
+	togglePostVote,
+} from "@/redux/slices/roadmaps/roadmapPreviewPostsSlice";
 
 const RoadmapDiscussionPost = ({
 	id,
@@ -24,9 +27,17 @@ const RoadmapDiscussionPost = ({
 }: RoadmapPostType) => {
 	const { currentState: isPostMenuOpen, toggle: togglePostMenu } =
 		useToggle(false);
+	const { currentState: isVoted, toggle: toggleVote } = useToggle(false);
 	const deletePostButtonRef = useOnClickOutside(() => togglePostMenu());
 
 	const dispatch = useAppDispatch();
+
+	const handleToggleVote = () => {
+		toggleVote();
+		dispatch(
+			togglePostVote({ postId: id, type: isVoted ? "decrease" : "increase" })
+		);
+	};
 
 	return (
 		<>
@@ -46,7 +57,12 @@ const RoadmapDiscussionPost = ({
 					</h3>
 					<p className="text-grey-secondary">{content}</p>
 					<div className="flex items-center gap-3 mt-2">
-						<button className="flex-jc-c text-grey-secondary">
+						<button
+							className={`flex-jc-c text-grey-secondary vote-btn ${
+								isVoted ? "voted" : ""
+							}`}
+							onClick={handleToggleVote}
+						>
 							{UP_VOTE_ICON} {votes}
 						</button>
 						<button className="flex-jc-c gap-2 text-grey-secondary">

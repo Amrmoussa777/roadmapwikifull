@@ -1,4 +1,5 @@
 import { RoadmapPreviewPostsSliceType } from "@/redux/slices/roadmaps/types/roadmap-preview-posts-slice-types";
+import RoadmapPreviewPostsUtils from "@/redux/slices/utils/roadmapPreviewPostsSliceUtils";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: RoadmapPreviewPostsSliceType = {
@@ -17,7 +18,7 @@ const initialState: RoadmapPreviewPostsSliceType = {
 			replies: [
 				{
 					id: 1,
-					postId: "post_1",
+					postId: 1,
 					author: {
 						name: "Nadine Ayman",
 						image: "",
@@ -29,7 +30,7 @@ const initialState: RoadmapPreviewPostsSliceType = {
 				},
 				{
 					id: 2,
-					postId: "post_1",
+					postId: 1,
 					author: {
 						name: "Nadine Ayman",
 						image: "",
@@ -55,7 +56,7 @@ const initialState: RoadmapPreviewPostsSliceType = {
 			replies: [
 				{
 					id: 1,
-					postId: "post_2",
+					postId: 2,
 					author: {
 						name: "Nadine Ayman",
 						image: "",
@@ -67,7 +68,7 @@ const initialState: RoadmapPreviewPostsSliceType = {
 				},
 				{
 					id: 2,
-					postId: "post_2",
+					postId: 2,
 					author: {
 						name: "Nadine Ayman",
 						image: "",
@@ -79,7 +80,7 @@ const initialState: RoadmapPreviewPostsSliceType = {
 				},
 				{
 					id: 3,
-					postId: "post_2",
+					postId: 2,
 					author: {
 						name: "Nadine Ayman",
 						image: "",
@@ -91,7 +92,7 @@ const initialState: RoadmapPreviewPostsSliceType = {
 				},
 				{
 					id: 4,
-					postId: "post_2",
+					postId: 2,
 					author: {
 						name: "Nadine Ayman",
 						image: "",
@@ -119,8 +120,63 @@ export const roadmapPreviewPostsSlice = createSlice({
 
 			state.posts = filteredPosts;
 		},
+		deletePostReply: (state, action) => {
+			const { postId, replyId } = action.payload;
+			console.log(postId, replyId);
+
+			state.posts = RoadmapPreviewPostsUtils.deletePostReply(
+				state.posts,
+				postId,
+				replyId
+			);
+		},
+		togglePostVote: (state, action) => {
+			const { postId, type } = action.payload;
+
+			state.posts.map(post => {
+				if (post.id === postId) {
+					return {
+						...post,
+						votes: type === "increase" ? post.votes++ : post.votes--,
+					};
+				}
+
+				return post;
+			});
+		},
+
+		togglePostReplyVote: (state, action) => {
+			const { postId, replyId, type } = action.payload;
+
+			state.posts.map(post => {
+				if (post.id === postId) {
+					const updatePostReplies = post.replies.map(reply => {
+						if (reply.id === replyId) {
+							return {
+								...reply,
+								votes: type === "increase" ? reply.votes++ : reply.votes--,
+							};
+						}
+
+						return reply;
+					});
+
+					return {
+						...post,
+						replies: updatePostReplies,
+					};
+				}
+
+				return post;
+			});
+		},
 	},
 });
 
 export default roadmapPreviewPostsSlice.reducer;
-export const { deletePost } = roadmapPreviewPostsSlice.actions;
+export const {
+	deletePost,
+	deletePostReply,
+	togglePostVote,
+	togglePostReplyVote,
+} = roadmapPreviewPostsSlice.actions;

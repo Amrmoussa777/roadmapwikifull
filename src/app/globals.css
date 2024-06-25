@@ -50,9 +50,7 @@
 		--input: 217.2 32.6% 17.5%;
 		--ring: 224.3 76.3% 48%;
 	}
-}
 
-@layer base {
 	* {
 		@apply border-border;
 	}
@@ -123,6 +121,19 @@
 	}
 	.flex-ic-c {
 		@apply flex items-center;
+	}
+}
+
+@layer components {
+	.vote-btn {
+		&.voted {
+			svg {
+				@apply text-[#F4392B];
+				path {
+					@apply fill-[#F4392B];
+				}
+			}
+		}
 	}
 }
 

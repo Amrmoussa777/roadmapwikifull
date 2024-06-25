@@ -9,6 +9,11 @@ import {
 } from "../../../../../public/icons/roadmapPreview";
 import { MENU_ICON } from "../../../../../public/icons/roadmapSteps";
 import { useOnClickOutside } from "@/hooks/useOnClickOutside";
+import { useAppDispatch } from "@/redux/store";
+import {
+	deletePostReply,
+	togglePostReplyVote,
+} from "@/redux/slices/roadmaps/roadmapPreviewPostsSlice";
 
 const RoadmapDiscussionPostReply = ({
 	id,
@@ -20,8 +25,21 @@ const RoadmapDiscussionPostReply = ({
 }: RoadmapPostReplyType) => {
 	const { currentState: isPostRepliesMenuOpen, toggle: togglePostRepliesMenu } =
 		useToggle(false);
+	const { currentState: isVoted, toggle: toggleVote } = useToggle(false);
 
 	const deleteReplyButtonRef = useOnClickOutside(() => togglePostRepliesMenu());
+	const dispatch = useAppDispatch();
+
+	const handleToggleVote = () => {
+		toggleVote();
+		dispatch(
+			togglePostReplyVote({
+				postId,
+				replyId: id,
+				type: isVoted ? "decrease" : "increase",
+			})
+		);
+	};
 
 	return (
 		<div
@@ -43,7 +61,12 @@ const RoadmapDiscussionPostReply = ({
 				</h3>
 				<p className="text-sm text-grey-secondary">{content}</p>
 				<div className="flex items-center gap-3 mt-2 text-sm">
-					<button className="flex-jc-c text-grey-secondary [&>svg]:w-[20px]">
+					<button
+						onClick={handleToggleVote}
+						className={`flex-jc-c text-grey-secondary [&>svg]:w-[20px] vote-btn ${
+							isVoted ? "voted" : ""
+						}`}
+					>
 						{UP_VOTE_ICON} {votes}
 					</button>
 					<button className="flex-jc-c gap-2 text-grey-secondary [&>svg]:w-[20px]">
@@ -61,6 +84,7 @@ const RoadmapDiscussionPostReply = ({
 
 			{isPostRepliesMenuOpen ? (
 				<button
+					onClick={() => dispatch(deletePostReply({ postId, replyId: id }))}
 					ref={deleteReplyButtonRef}
 					className="absolute right-12 border border-red-400 bg-red-200 rounded-md px-4"
 				>
