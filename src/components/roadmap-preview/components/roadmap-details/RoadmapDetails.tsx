@@ -13,7 +13,8 @@ const RoadmapDetails = () => {
 	const { currentState: isMoreContent, toggle: toggleMoreContent } =
 		useToggle(false);
 	const { roadmap } = useAppSelector(state => state.roadmapPreview);
-	const { description, duration, subscribers, stepsCount, tags } = roadmap;
+	const { description, duration, subscribers, stepsCount, tags } =
+		roadmap || {};
 
 	return (
 		<div className="bg-white w-full lg:w-[500px] h-fit flex flex-col gap-4 p-4 py-3 rounded-md lg:sticky top-2">
@@ -52,7 +53,7 @@ const RoadmapDetails = () => {
 						</div>
 
 						<div className="w-full flex gap-2 flex-wrap mt-1">
-							{tags.map(tag => (
+							{tags?.map(tag => (
 								<span
 									key={tag.id}
 									className="h-[26px] flex-jc-c text-sm px-4 border border-grey-iconBorder rounded-full"

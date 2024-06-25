@@ -8,6 +8,8 @@ import {
 	VIDEO_ICON,
 } from "../../../../../public/icons/roadmapSteps";
 import HorizontalDivider from "@/components/common/divider/components/HorizontalDivider";
+import { useAppDispatch } from "@/redux/store";
+import { toggleStep } from "@/redux/slices/roadmaps/roadmapPreviewSlice";
 
 const RoadmapStepItem = ({
 	step,
@@ -16,6 +18,7 @@ const RoadmapStepItem = ({
 	handlePreviewStep,
 }: RoadmapStepItemProps) => {
 	const { duration, completed, tags, title, attachments } = step;
+	const dispatch = useAppDispatch();
 
 	return (
 		<>
@@ -30,9 +33,9 @@ const RoadmapStepItem = ({
 				>
 					<div className="flex-jb-c gap-2">
 						<div className="flex-jc-c gap-2">
-							<span className="block w-[20px] h-[20px] rounded-sm bg-[#ACB5B7]" />
+							<span className="block w-[20px] h-[20px] rounded-sm bg-[#ACB5B7] line-clamp-1" />
 
-							{title}
+							<p className="text-sm font-medium line-clamp-1">{title}</p>
 						</div>
 
 						<ul className="flex-jc-c gap-2">
@@ -40,9 +43,9 @@ const RoadmapStepItem = ({
 								<li
 									key={tag.id}
 									style={{ backgroundColor: tag.color }}
-									className="rounded-full text-white px-2 text-sm font-normal"
+									className="rounded-full px-2 text-xs font-normal bg-grey-primary"
 								>
-									<p>{tag.title}</p>
+									<p>{tag.name}</p>
 								</li>
 							))}
 						</ul>
@@ -88,6 +91,7 @@ const RoadmapStepItem = ({
 						<button
 							className="w-full text-white py-2 rounded-sm"
 							style={{ backgroundColor: "#506cf0" }}
+							onClick={() => dispatch(toggleStep(step.id))}
 						>
 							{completed ? "Uncheck assignment" : "Complete assignment"}
 						</button>

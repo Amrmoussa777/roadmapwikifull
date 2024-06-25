@@ -1,154 +1,49 @@
+import { fetchRoadmapById } from "@/redux/slices/roadmapPreviewAsyncThunks";
 import { RoadmapPreviewSliceType } from "@/redux/slices/roadmaps/types/index.types";
+import RoadmapPreviewUtils from "@/redux/slices/utils/roadmapPreviewSliceUtils";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: RoadmapPreviewSliceType = {
-	roadmap: {
-		id: "roadmap_1",
-		title: "Frontend Developer Roadmap",
-		subscriptionPrice: 10,
-		cover: "",
-		description:
-			"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummytext ever example text",
-		duration: "12 weeks",
-		subscribers: "2000",
-		stepsCount: 12,
-		tags: [
-			{
-				id: "1",
-				title: "HTML",
-			},
-			{
-				id: "2",
-				title: "CSS",
-			},
-			{
-				id: "3",
-				title: "React",
-			},
-			{
-				id: "4",
-				title: "Next",
-			},
-			{
-				id: "5",
-				title: "Tailwind",
-			},
-			{
-				id: "6",
-				title: "Git",
-			},
-		],
-		steps: [],
-		posts: [
-			{
-				id: "post_1",
-				roadmapId: "roadmap_1",
-				author: {
-					name: "Mohamed Elhossiny",
-					image: "",
-				},
-				addedDate: "1 day ago",
-				votes: 3,
-				content:
-					"Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-				replies: [
-					{
-						id: "reply_1",
-						postId: "post_1",
-						author: {
-							name: "Nadine Ayman",
-							image: "",
-						},
-						addedDate: "1 day ago",
-						votes: 3,
-						content:
-							"Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-					},
-					{
-						id: "reply_2",
-						postId: "post_1",
-						author: {
-							name: "Nadine Ayman",
-							image: "",
-						},
-						addedDate: "1 day ago",
-						votes: 3,
-						content:
-							"Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-					},
-				],
-			},
-			{
-				id: "post_2",
-				roadmapId: "roadmap_1",
-				author: {
-					name: "Mohamed Elhossiny",
-					image: "",
-				},
-				addedDate: "1 day ago",
-				votes: 3,
-				content:
-					"Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-				replies: [
-					{
-						id: "reply_1",
-						postId: "post_2",
-						author: {
-							name: "Nadine Ayman",
-							image: "",
-						},
-						addedDate: "1 day ago",
-						votes: 3,
-						content:
-							"Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-					},
-					{
-						id: "reply_2",
-						postId: "post_2",
-						author: {
-							name: "Nadine Ayman",
-							image: "",
-						},
-						addedDate: "1 day ago",
-						votes: 3,
-						content:
-							"Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-					},
-					{
-						id: "reply_3",
-						postId: "post_2",
-						author: {
-							name: "Nadine Ayman",
-							image: "",
-						},
-						addedDate: "1 day ago",
-						votes: 3,
-						content:
-							"Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-					},
-					{
-						id: "reply_4",
-						postId: "post_2",
-						author: {
-							name: "Nadine Ayman",
-							image: "",
-						},
-						addedDate: "1 day ago",
-						votes: 3,
-						content:
-							"Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-					},
-				],
-			},
-		],
-	},
+	roadmap: null,
+	isLoading: true,
+	error: null,
 };
 
 const roadmapPreviewSlice = createSlice({
 	name: "roadmapPreviewSlice",
 	initialState,
-	reducers: {},
+	reducers: {
+		toggleStep: (state, action) => {
+			if (!state.roadmap) {
+				return;
+			}
+
+			const roadmapSteps = state.roadmap.steps;
+			const stepId = action.payload;
+
+			const updatedRoadmapSteps = RoadmapPreviewUtils.toggleStep(
+				roadmapSteps,
+				stepId
+			);
+
+			state.roadmap.steps = updatedRoadmapSteps;
+		},
+	},
+	extraReducers(builder) {
+		builder.addCase(fetchRoadmapById.fulfilled, (state, action) => {
+			state.isLoading = false;
+			state.roadmap = action.payload;
+		});
+		builder.addCase(fetchRoadmapById.pending, state => {
+			state.isLoading = true;
+		});
+		builder.addCase(fetchRoadmapById.rejected, (state, action) => {
+			state.isLoading = false;
+			state.error = action.payload;
+			state.roadmap = null;
+		});
+	},
 });
 
-export const {} = roadmapPreviewSlice.reducer;
+export const { toggleStep } = roadmapPreviewSlice.actions;
 export default roadmapPreviewSlice.reducer;

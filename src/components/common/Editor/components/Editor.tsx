@@ -17,7 +17,7 @@ var modules = {
 	],
 };
 
-const Editor = ({ value, changeValue }: EditorProps) => {
+const Editor = ({ value, changeValue, disable }: EditorProps) => {
 	return (
 		<div className={styles.editor}>
 			<ReactQuill
@@ -26,6 +26,7 @@ const Editor = ({ value, changeValue }: EditorProps) => {
 				value={value}
 				onChange={changeValue}
 				className={styles.quill}
+				readOnly={disable}
 			/>
 		</div>
 	);

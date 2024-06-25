@@ -1,6 +1,6 @@
 export type SubscribeButtonProps = {
 	offer?: string;
-	price: number;
+	price: number | undefined;
 	details?: string;
 	callback: Function;
 };

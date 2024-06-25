@@ -1,3 +1,5 @@
+import { RoadmapStepType } from "@/components/roadmap-preview/types/roadmapSteps.types";
+
 type Tag = {
 	id: string;
 	title: string;
@@ -8,39 +10,21 @@ type Author = {
 	image: string;
 };
 
-type Reply = {
-	id: string;
-	postId: string;
-	author: Author;
-	addedDate: string;
-	votes: number;
-	content: string;
-};
-
-type Post = {
-	id: string;
-	roadmapId: string;
-	author: Author;
-	addedDate: string;
-	votes: number;
-	content: string;
-	replies: Reply[];
-};
-
 type Roadmap = {
 	id: string;
 	title: string;
-	subscriptionPrice: number;
+	price: number;
 	cover: string;
 	description: string;
 	duration: string;
 	subscribers: string;
 	stepsCount: number;
 	tags: Tag[];
-	steps: any[];
-	posts: Post[];
+	steps: RoadmapStepType[];
 };
 
 export type RoadmapPreviewSliceType = {
-	roadmap: Roadmap;
+	roadmap: Roadmap | null;
+	isLoading: boolean;
+	error: null | Error;
 };

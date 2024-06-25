@@ -9,7 +9,7 @@ import { useAppSelector } from "@/redux/store";
 
 const RoadmapHeader = () => {
 	const { roadmap } = useAppSelector(state => state.roadmapPreview);
-	const { title, cover, subscriptionPrice } = roadmap;
+	const { title, cover, price } = roadmap || {};
 
 	return (
 		<div className="h-[150px]">
@@ -27,7 +27,7 @@ const RoadmapHeader = () => {
 				</h2>
 
 				<div className="flex-jc-c gap-2">
-					<SubscribeButton price={subscriptionPrice} callback={() => {}} />
+					<SubscribeButton price={price} callback={() => {}} />
 					<button className="w-[35px] h-[35px] md:w-[40px] md:h-[40px] flex-jc-c border border-grey-iconBorder rounded-full">
 						{SHARE_ICON}
 					</button>

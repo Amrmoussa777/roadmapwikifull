@@ -1,15 +1,16 @@
 export type RoadmapStepType = {
-	id: string;
+	id: number;
 	title: string;
 	tags: RoadmapStepTagType[];
 	duration: string;
 	completed: boolean;
 	attachments: RoadmapStepAttachmentsType;
+	description: string;
 };
 
 export type RoadmapStepTagType = {
-	id: string;
-	title: string;
+	id: number;
+	name: string;
 	color: string;
 };
 
