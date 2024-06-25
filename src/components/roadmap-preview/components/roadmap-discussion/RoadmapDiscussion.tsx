@@ -10,19 +10,13 @@ import RoadmapDiscussionPosts from "@/components/roadmap-preview/components/road
 import useToggle from "@/hooks/useToggle";
 import useDisableScroll from "@/hooks/useDisableScrolling";
 import { CROSS_ICON } from "../../../../../public/icons/roadmapSteps";
-import FormInput from "@/components/common/input/FormInput";
-import useInput from "@/components/common/input/hooks/useInput";
+import RoadmapDiscussionSearchFrom from "@/components/roadmap-preview/components/roadmap-discussion/RoadmapDiscussionSearchFrom";
 
 const RoadmapDiscussion = () => {
 	const { currentState: isExpandedDiscussion, toggle: toggleDiscussion } =
 		useToggle(false);
 	const { currentState: isSearchOpen, toggle: toggleSearch } = useToggle(false);
 	useDisableScroll(isExpandedDiscussion);
-	const {
-		value: searchValue,
-		changeValue: changeSearchValue,
-		reset: resetSearchValue,
-	} = useInput("");
 
 	return (
 		<div
@@ -35,15 +29,7 @@ const RoadmapDiscussion = () => {
 			<div className="flex-jb-c h-[50px]">
 				{isSearchOpen ? (
 					<div onBlur={toggleSearch}>
-						<FormInput
-							type="text"
-							name="discussionSearch"
-							autoFocus
-							placeholder="Search..."
-							customStyles="mr-6"
-							value={searchValue}
-							handleChangeValue={changeSearchValue}
-						/>
+						<RoadmapDiscussionSearchFrom />
 					</div>
 				) : (
 					<div>

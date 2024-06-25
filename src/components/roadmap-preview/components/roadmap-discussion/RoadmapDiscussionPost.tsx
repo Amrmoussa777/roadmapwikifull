@@ -13,6 +13,7 @@ import { useOnClickOutside } from "@/hooks/useOnClickOutside";
 import { useAppDispatch } from "@/redux/store";
 import {
 	deletePost,
+	fillReplyPostId,
 	togglePostVote,
 } from "@/redux/slices/roadmaps/roadmapPreviewPostsSlice";
 
@@ -65,7 +66,10 @@ const RoadmapDiscussionPost = ({
 						>
 							{UP_VOTE_ICON} {votes}
 						</button>
-						<button className="flex-jc-c gap-2 text-grey-secondary">
+						<button
+							onClick={() => dispatch(fillReplyPostId(id))}
+							className="flex-jc-c gap-2 text-grey-secondary"
+						>
 							{REPLY_ICON} <span>Reply</span>
 						</button>
 					</div>

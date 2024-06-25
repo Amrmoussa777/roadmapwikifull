@@ -1,0 +1,41 @@
+import FormInput from "@/components/common/input/FormInput";
+import useInput from "@/components/common/input/hooks/useInput";
+import { useRoadmapDiscussionReply } from "@/components/roadmap-preview/components/roadmap-discussion/hooks/useRoadmapDiscussionReply";
+import { replyOnPost } from "@/redux/slices/roadmaps/roadmapPreviewPostsSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
+import React, { FormEvent, useEffect, useRef } from "react";
+
+const RoadmapDiscussionReplyForm = () => {
+	const {
+		value: replyContent,
+		changeValue: changeReplyContent,
+		reset: resetReplyValue,
+	} = useInput("");
+
+	const { replyPostId } = useAppSelector(state => state.roadmapPreviewPosts);
+	const inputRef: React.Ref<null | HTMLInputElement> = useRef(null);
+
+	const { handleSubmitReply } = useRoadmapDiscussionReply(
+		inputRef,
+		replyPostId,
+		replyContent,
+		resetReplyValue
+	);
+
+	return (
+		<div className="w-full p-4 bg-white">
+			<form onSubmit={handleSubmitReply}>
+				<FormInput
+					type="text"
+					name="discussionSearch"
+					placeholder="Enter your message"
+					value={replyContent}
+					handleChangeValue={changeReplyContent}
+					inputRef={inputRef}
+				/>
+			</form>
+		</div>
+	);
+};
+
+export default RoadmapDiscussionReplyForm;

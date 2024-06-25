@@ -3,14 +3,14 @@ export type RoadmapStepType = {
 	title: string;
 	description: string;
 	duration: string;
-	attachments: RoadmapStepAttachmentsType[];
+	attachments: RoadmapStepAttachmentType[];
 	verifications: any[];
 	tags: RoadmapStepTagType[];
 };
 
-export type RoadmapStepAttachmentsType = {
+export type RoadmapStepAttachmentType = {
 	id: number;
-	type: "IMAGE";
+	type: "IMAGE" | "VIDEO" | "FILE";
 	url: string;
 	roadmapStepId: number;
 };

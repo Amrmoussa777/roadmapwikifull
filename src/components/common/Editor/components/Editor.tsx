@@ -17,7 +17,7 @@ var modules = {
 	],
 };
 
-const Editor = ({ value, changeValue, disable }: EditorProps) => {
+const Editor = ({ value, changeValue, disable, hideToolbar }: EditorProps) => {
 	return (
 		<div className={styles.editor}>
 			<ReactQuill
@@ -25,7 +25,7 @@ const Editor = ({ value, changeValue, disable }: EditorProps) => {
 				theme="snow"
 				value={value}
 				onChange={changeValue}
-				className={styles.quill}
+				className={`${styles.quill} ${hideToolbar ? "hide-toolbar" : ""}`}
 				readOnly={disable}
 			/>
 		</div>

@@ -4,4 +4,6 @@ export type RoadmapPreviewPostsSliceType = {
 	posts: RoadmapPostType[];
 	isLoading: boolean;
 	error: Error | null;
+	searchResult: RoadmapPostType[];
+	replyPostId: number | null;
 };

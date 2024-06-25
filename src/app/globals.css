@@ -60,6 +60,9 @@
 	p {
 		@apply text-sm font-normal;
 	}
+	::placeholder {
+		@apply text-lg font-normal;
+	}
 }
 
 @layer utilities {
@@ -142,7 +145,7 @@
 	padding: 10px;
 }
 
-.ql-toolbar.ql-snow {
+.ql-toolbar {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -151,7 +154,7 @@
 	padding: 5px !important;
 }
 
-.ql-container.ql-snow {
+.ql-container {
 	border: 0 !important;
 	height: 200px !important;
 }
@@ -159,4 +162,12 @@
 .ql-editor::-webkit-scrollbar {
 	width: 0;
 	background: transparent;
+}
+
+.quill {
+	&.hide-toolbar {
+		.ql-toolbar {
+			display: none !important;
+		}
+	}
 }

@@ -107,32 +107,49 @@ const initialState: RoadmapPreviewPostsSliceType = {
 	],
 	isLoading: false,
 	error: null,
+	searchResult: [],
+	replyPostId: null,
 };
 
 export const roadmapPreviewPostsSlice = createSlice({
 	name: "roadmapPreviewPostsSlice",
 	initialState,
 	reducers: {
+		/**
+		 * Deletes a post by its ID.
+		 * @param {Object} state - The current state of the slice.
+		 * @param {Object} action - The action object.
+		 * @param {number} action.payload - The ID of the post to delete.
+		 */
 		deletePost: (state, action) => {
 			const postId: number = action.payload;
-
 			const filteredPosts = state.posts.filter(post => post.id !== postId);
-
 			state.posts = filteredPosts;
 		},
+		/**
+		 * Deletes a reply to a post.
+		 * @param {Object} state - The current state of the slice.
+		 * @param {Object} action - The action object.
+		 * @param {number} action.payload.postId - The ID of the post.
+		 * @param {number} action.payload.replyId - The ID of the reply to delete.
+		 */
 		deletePostReply: (state, action) => {
 			const { postId, replyId } = action.payload;
-			console.log(postId, replyId);
-
 			state.posts = RoadmapPreviewPostsUtils.deletePostReply(
 				state.posts,
 				postId,
 				replyId
 			);
 		},
+		/**
+		 * Toggles the vote count of a post.
+		 * @param {Object} state - The current state of the slice.
+		 * @param {Object} action - The action object.
+		 * @param {number} action.payload.postId - The ID of the post.
+		 * @param {string} action.payload.type - The type of vote change ("increase" or "decrease").
+		 */
 		togglePostVote: (state, action) => {
 			const { postId, type } = action.payload;
-
 			state.posts.map(post => {
 				if (post.id === postId) {
 					return {
@@ -140,14 +157,19 @@ export const roadmapPreviewPostsSlice = createSlice({
 						votes: type === "increase" ? post.votes++ : post.votes--,
 					};
 				}
-
 				return post;
 			});
 		},
-
+		/**
+		 * Toggles the vote count of a reply to a post.
+		 * @param {Object} state - The current state of the slice.
+		 * @param {Object} action - The action object.
+		 * @param {number} action.payload.postId - The ID of the post.
+		 * @param {number} action.payload.replyId - The ID of the reply.
+		 * @param {string} action.payload.type - The type of vote change ("increase" or "decrease").
+		 */
 		togglePostReplyVote: (state, action) => {
 			const { postId, replyId, type } = action.payload;
-
 			state.posts.map(post => {
 				if (post.id === postId) {
 					const updatePostReplies = post.replies.map(reply => {
@@ -157,18 +179,72 @@ export const roadmapPreviewPostsSlice = createSlice({
 								votes: type === "increase" ? reply.votes++ : reply.votes--,
 							};
 						}
-
 						return reply;
 					});
-
 					return {
 						...post,
 						replies: updatePostReplies,
 					};
 				}
-
 				return post;
 			});
+		},
+		/**
+		 * Searches for posts based on a search value.
+		 * @param {Object} state - The current state of the slice.
+		 * @param {Object} action - The action object.
+		 * @param {string} action.payload - The search value.
+		 */
+		getSearchPosts: (state, action) => {
+			const searchValue = action.payload;
+			// Implementation for searching posts
+		},
+		/**
+		 * Fills the reply post ID.
+		 * @param {Object} state - The current state of the slice.
+		 * @param {Object} action - The action object.
+		 * @param {number} action.payload - The ID of the post to reply to.
+		 */
+		fillReplyPostId: (state, action) => {
+			const replyPostId = action.payload;
+			state.replyPostId = replyPostId;
+		},
+		/**
+		 * Adds a reply to a post.
+		 * @param {Object} state - The current state of the slice.
+		 * @param {Object} action - The action object.
+		 * @param {string} action.payload.replyContent - The content of the reply.
+		 * @param {number} action.payload.postId - The ID of the post to reply to.
+		 */
+		replyOnPost: (state, action) => {
+			const { replyContent, postId } = action.payload;
+			const postLength = state.posts.find(post => post.id === postId)?.replies
+				.length;
+			const alternativeNewReplyId = Math.floor(Math.random() * 1000000);
+			const newReplyId = postLength ? postLength + 1 : alternativeNewReplyId;
+			const newReply = {
+				id: newReplyId,
+				postId,
+				author: {
+					name: "Nadine Ayman",
+					image: "",
+				},
+				addedDate: "1 day ago",
+				votes: 3,
+				content: replyContent,
+			};
+			const updatedPosts = state.posts.map(post => {
+				if (post.id === postId) {
+					return {
+						...post,
+						replies: [...post.replies, newReply],
+					};
+				}
+				return post;
+			});
+
+			state.posts = updatedPosts;
+			state.replyPostId = null;
 		},
 	},
 });
@@ -179,4 +255,6 @@ export const {
 	deletePostReply,
 	togglePostVote,
 	togglePostReplyVote,
+	fillReplyPostId,
+	replyOnPost,
 } = roadmapPreviewPostsSlice.actions;

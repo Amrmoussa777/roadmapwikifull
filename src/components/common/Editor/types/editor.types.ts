@@ -4,4 +4,5 @@ export type EditorProps = {
 	value: string;
 	changeValue?: (e: ITarget | string) => void;
 	disable?: boolean;
+	hideToolbar?: boolean;
 };

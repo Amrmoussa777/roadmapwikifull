@@ -1,3 +1,5 @@
+import { MutableRefObject } from "react";
+
 export interface IFormInput {
 	type: string;
 	placeholder?: string;
@@ -9,6 +11,7 @@ export interface IFormInput {
 	min?: number;
 	value?: string;
 	label?: string;
+	inputRef?: MutableRefObject<null | HTMLInputElement> | undefined;
 }
 export interface ITarget {
 	target: { value: React.SetStateAction<string | number> };

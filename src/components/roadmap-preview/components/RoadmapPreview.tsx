@@ -2,6 +2,7 @@
 
 import RoadmapDetails from "@/components/roadmap-preview/components/roadmap-details/RoadmapDetails";
 import RoadmapDiscussion from "@/components/roadmap-preview/components/roadmap-discussion/RoadmapDiscussion";
+import RoadmapDiscussionReplyForm from "@/components/roadmap-preview/components/roadmap-discussion/RoadmapDiscussionReplyForm";
 import RoadmapHeader from "@/components/roadmap-preview/components/roadmap-header/RoadmapHeader";
 import RoadmapPreviewProfile from "@/components/roadmap-preview/components/roadmap-profile/RoadmapPreviewProfile";
 import RoadmapPreviewSteps from "@/components/roadmap-preview/components/roadmap-steps/RoadmapPreviewSteps";
@@ -30,7 +31,7 @@ const RoadmapPreview = () => {
 		<div className="relative w-full flex flex-col md:flex-row p-2 bg-grey-primary">
 			<RoadmapPreviewProfile />
 
-			<div className="w-full md:w-[calc(100%-258px)] lg:w-[calc(100%-330px)] ml-auto hidden-scrollbar">
+			<div className="w-full md:w-[calc(100%-258px)] lg:w-[calc(100%-330px)] ml-auto hidden-scrollbar mb-12">
 				{isLoading ? (
 					<h2 className="text-primary-ultramarineBlue">Loading...</h2>
 				) : (

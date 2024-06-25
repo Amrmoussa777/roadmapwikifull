@@ -13,6 +13,7 @@ const FormInput = ({
 	autoFocus,
 	handleChangeValue,
 	value,
+	inputRef,
 }: IFormInput) => {
 	return (
 		<div className={`${customStyles}`}>
@@ -29,12 +30,13 @@ const FormInput = ({
 					name={name}
 					autoFocus={autoFocus}
 					placeholder={placeholder}
-					className={`w-full h-[172px] min-h-[172px] border border-[#E0E0E0] mt-1 rounded-md p-4 justify-between gap-2 sm:text-xl bg-white outline-none focus:border-primary-ultramarineBlue resize-none ${customStyles}`}
+					className={`w-full h-[172px] min-h-[172px] border border-[#E0E0E0] mt-1 rounded-md p-4 justify-between gap-2 sm:text-xl font-normal bg-white outline-none focus:border-primary-ultramarineBlue resize-none ${customStyles}`}
 				/>
 			) : (
 				<input
+					ref={inputRef}
 					type={type}
-					className={`w-full h-[50px] mt-1 border border-[#E0E0E0] rounded-md p-4 justify-between gap-2 sm:text-xl bg-white outline-none focus:border-primary-ultramarineBlue ${customStyles}`}
+					className={`w-full h-[50px] mt-1 border border-[#E0E0E0] rounded-md p-4 justify-between gap-2 sm:text-xl font-normal bg-white outline-none focus:border-primary-ultramarineBlue ${customStyles}`}
 					value={value}
 					onChange={handleChangeValue}
 					name={name}

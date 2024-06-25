@@ -46,28 +46,30 @@ const RoadmapDetails = () => {
 					<p>{stepsCount}</p>
 				</li>
 
-				{isMoreContent ? (
-					<li>
-						<div>
-							<h3>Tags</h3>
-						</div>
+				{tags?.length ? (
+					<>
+						<li>
+							<div>
+								<h3>Tags</h3>
+							</div>
 
-						<div className="w-full flex gap-2 flex-wrap mt-1">
-							{tags?.map(tag => (
-								<span
-									key={tag.id}
-									className="h-[26px] flex-jc-c text-sm px-4 border border-grey-iconBorder rounded-full"
-								>
-									{tag.title}
-								</span>
-							))}
-						</div>
-					</li>
+							<div className="w-full flex gap-2 flex-wrap mt-1">
+								{tags?.map(tag => (
+									<span
+										key={tag.id}
+										className="h-[26px] flex-jc-c text-sm px-4 border border-grey-iconBorder rounded-full"
+									>
+										{tag.title}
+									</span>
+								))}
+							</div>
+						</li>
+						) : null
+						<button onClick={toggleMoreContent} className="text-start">
+							{isMoreContent ? "See less" : "See more..."}
+						</button>
+					</>
 				) : null}
-
-				<button onClick={toggleMoreContent} className="text-start">
-					{isMoreContent ? "See less" : "See more..."}
-				</button>
 			</ul>
 		</div>
 	);
