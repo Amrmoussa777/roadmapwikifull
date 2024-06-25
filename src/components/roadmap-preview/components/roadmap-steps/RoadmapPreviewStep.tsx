@@ -8,16 +8,29 @@ import {
 import HorizontalDivider from "@/components/common/divider/components/HorizontalDivider";
 import { RoadmapPreviewStepProps } from "@/components/roadmap-preview/components/roadmap-steps/types/roadmap-preview-step";
 import Attachments from "@/components/common/step/components/Attachments";
+import useToggle from "@/hooks/useToggle";
+import { useOnClickOutside } from "@/hooks/useOnClickOutside";
+import { deleteStep } from "@/redux/slices/roadmaps/roadmapPreviewSlice";
+import { useAppDispatch } from "@/redux/store";
 
 const RoadmapPreviewStep = ({
 	previewStep,
 	togglePreviewStepModal,
 }: RoadmapPreviewStepProps) => {
-	const { title, description, duration, attachments, tags, verifications } =
+	const { id, title, description, duration, attachments, tags, verifications } =
 		previewStep || {};
+	const { currentState: isStepMenuOpen, toggle: toggleStepMenu } =
+		useToggle(false);
+	const deleteStepButtonRef = useOnClickOutside(() => toggleStepMenu());
+	const dispatch = useAppDispatch();
+
+	const handleDeleteStep = () => {
+		dispatch(deleteStep(id));
+		togglePreviewStepModal();
+	};
 
 	return (
-		<div className="w-full p-4 mb-2 bg-white rounded-md">
+		<div className="relative w-full p-4 mb-2 bg-white rounded-md">
 			<div className="flex-jb-c">
 				<div className="flex-jc-c gap-2">
 					<button
@@ -28,9 +41,22 @@ const RoadmapPreviewStep = ({
 					</button>
 					<p>Step information</p>
 				</div>
-				<button className="[&>svg]:w-[24px] text-primary-dark">
+				<button
+					onClick={toggleStepMenu}
+					className="[&>svg]:w-[24px] text-primary-dark"
+				>
 					{MENU_ICON}
 				</button>
+
+				{isStepMenuOpen ? (
+					<button
+						onClick={handleDeleteStep}
+						ref={deleteStepButtonRef}
+						className="absolute right-12 border border-red-400 bg-red-200 rounded-md px-4"
+					>
+						Delete step
+					</button>
+				) : null}
 			</div>
 
 			<HorizontalDivider

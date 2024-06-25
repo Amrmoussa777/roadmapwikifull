@@ -28,6 +28,16 @@ const roadmapPreviewSlice = createSlice({
 
 			state.roadmap.steps = updatedRoadmapSteps;
 		},
+		deleteStep: (state, action) => {
+			const stepId = action.payload;
+
+			if (!state.roadmap) return state;
+
+			const filteredRoadmapSteps = state.roadmap.steps.filter(
+				step => step.id !== stepId
+			);
+			state.roadmap.steps = filteredRoadmapSteps;
+		},
 	},
 	extraReducers(builder) {
 		builder.addCase(fetchRoadmapById.fulfilled, (state, action) => {
@@ -45,5 +55,5 @@ const roadmapPreviewSlice = createSlice({
 	},
 });
 
-export const { toggleStep } = roadmapPreviewSlice.actions;
+export const { toggleStep, deleteStep } = roadmapPreviewSlice.actions;
 export default roadmapPreviewSlice.reducer;
