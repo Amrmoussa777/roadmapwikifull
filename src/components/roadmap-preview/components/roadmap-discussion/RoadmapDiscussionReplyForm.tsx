@@ -1,9 +1,8 @@
 import FormInput from "@/components/common/input/FormInput";
 import useInput from "@/components/common/input/hooks/useInput";
 import { useRoadmapDiscussionReply } from "@/components/roadmap-preview/components/roadmap-discussion/hooks/useRoadmapDiscussionReply";
-import { replyOnPost } from "@/redux/slices/roadmaps/roadmapPreviewPostsSlice";
-import { useAppDispatch, useAppSelector } from "@/redux/store";
-import React, { FormEvent, useEffect, useRef } from "react";
+import { useAppSelector } from "@/redux/store";
+import React, { useRef } from "react";
 
 const RoadmapDiscussionReplyForm = () => {
 	const {
@@ -21,6 +20,8 @@ const RoadmapDiscussionReplyForm = () => {
 		replyContent,
 		resetReplyValue
 	);
+
+	if (!replyPostId) return null;
 
 	return (
 		<div className="w-full p-4 bg-white">
