@@ -10,6 +10,7 @@ import {
 import HorizontalDivider from "@/components/common/divider/components/HorizontalDivider";
 import { useAppDispatch } from "@/redux/store";
 import { toggleStep } from "@/redux/slices/roadmaps/roadmapPreviewSlice";
+import { calcAttachmentsCount } from "@/components/roadmap-preview/helpers/calcAttachmentsCount";
 
 const RoadmapStepItem = ({
 	step,
@@ -19,6 +20,8 @@ const RoadmapStepItem = ({
 }: RoadmapStepItemProps) => {
 	const { duration, completed, tags, title, attachments } = step;
 	const dispatch = useAppDispatch();
+
+	const attachmentsCount = calcAttachmentsCount(attachments);
 
 	return (
 		<>
@@ -70,9 +73,15 @@ const RoadmapStepItem = ({
 							</div>
 
 							<div className="flex gap-2 [&>div]:flex-jc-c [&>div]:gap-1 [&>div>svg]:w-[12px] text-grey-secondary text-sm">
-								<div>{FILE_ICON} 0</div>
-								<div>{VIDEO_ICON} 2</div>
-								<div>{IMAGE_ICON} 4</div>
+								<div>
+									{FILE_ICON} {attachmentsCount.files.count}
+								</div>
+								<div>
+									{VIDEO_ICON} {attachmentsCount.videos.count}
+								</div>
+								<div>
+									{IMAGE_ICON} {attachmentsCount.images.count}
+								</div>
 							</div>
 						</div>
 					</div>
