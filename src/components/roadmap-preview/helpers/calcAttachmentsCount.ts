@@ -1,11 +1,5 @@
 import { RoadmapStepAttachmentType } from "@/components/roadmap-preview/types/roadmapSteps.types";
 
-/**
- * Calculates the count of different types of attachments.
- *
- * @param {RoadmapStepAttachmentType[]} attachments - The list of attachments to count.
- * @returns {Object} An object containing the count of images, videos, and files.
- */
 export const calcAttachmentsCount = (
 	attachments: RoadmapStepAttachmentType[]
 ) => {
@@ -27,5 +21,9 @@ export const calcAttachmentsCount = (
 		}
 	});
 
-	return newOrderedAttachments;
+	const attachmentsList = Object.entries(newOrderedAttachments).map(
+		([type, { count }]) => ({ type, count })
+	);
+
+	return attachmentsList;
 };
