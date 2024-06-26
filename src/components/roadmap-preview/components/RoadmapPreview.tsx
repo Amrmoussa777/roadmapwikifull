@@ -28,7 +28,7 @@ const RoadmapPreview = () => {
 	if (error) return <h2>Error</h2>;
 
 	return (
-		<div className="relative w-full flex flex-col md:flex-row p-2 bg-grey-primary">
+		<main className="relative w-full flex flex-col md:flex-row p-2 bg-grey-primary">
 			<RoadmapPreviewProfile />
 
 			<div className="w-full md:w-[calc(100%-258px)] lg:w-[calc(100%-330px)] ml-auto hidden-scrollbar mb-12">
@@ -48,7 +48,7 @@ const RoadmapPreview = () => {
 					</>
 				)}
 			</div>
-		</div>
+		</main>
 	);
 };
 

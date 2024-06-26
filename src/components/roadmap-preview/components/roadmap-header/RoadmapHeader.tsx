@@ -15,8 +15,9 @@ const RoadmapHeader = () => {
 		<div className="h-[150px]">
 			<Image
 				src={RoadmapCover}
-				width={400}
-				height={400}
+				width={300}
+				height={150}
+				quality={100}
 				alt="roadmap-cover"
 				className="w-full h-2/4 object-cover rounded-t-md"
 			/>

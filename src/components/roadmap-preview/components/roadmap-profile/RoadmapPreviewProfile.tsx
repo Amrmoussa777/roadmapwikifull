@@ -11,8 +11,10 @@ const RoadmapPreviewProfile = () => {
 				<div className="w-[130px] h-[130px] rounded-full border-4 border-[#506CF0]">
 					<Image
 						src={ProfileImage}
-						width={400}
-						height={400}
+						width={130}
+						height={130}
+						quality={80}
+						priority
 						alt="profile-image"
 						className="w-full h-full object-cover rounded-full"
 					/>

@@ -39,8 +39,7 @@ const RoadmapPreviewProfileInfo = () => {
 
 			<p className="font-normal text-grey-secondary text-sm">
 				Lorem Ipsum is simply dummy text of the printing and typesetting
-				industry. Lorem Ipsum has been the industry's standard dummytext ever
-				example text
+				industry.
 			</p>
 
 			<div className="w-full">
