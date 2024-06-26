@@ -23,7 +23,7 @@ const RoadmapHeader = () => {
 			/>
 
 			<div className="w-full h-2/4 bg-white rounded-b-md flex-jb-c px-2 md:px-4 lg:px-6">
-				<h2 className="text-sm md:text-lg lg:text-3xl font-semibold text-primary-dark">
+				<h2 className="text-[16px] md:text-lg lg:text-3xl font-semibold text-primary-dark">
 					{title}
 				</h2>
 

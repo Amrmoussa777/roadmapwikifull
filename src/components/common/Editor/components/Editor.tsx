@@ -17,9 +17,15 @@ var modules = {
 	],
 };
 
-const Editor = ({ value, changeValue, disable, hideToolbar }: EditorProps) => {
+const Editor = ({
+	value,
+	changeValue,
+	disable,
+	hideToolbar,
+	customStyles,
+}: EditorProps) => {
 	return (
-		<div className={styles.editor}>
+		<div className={`${styles.editor} ${customStyles}`}>
 			<ReactQuill
 				modules={modules}
 				theme="snow"

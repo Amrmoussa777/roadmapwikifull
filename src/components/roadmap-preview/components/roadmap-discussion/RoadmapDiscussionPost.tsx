@@ -9,10 +9,8 @@ import {
 import { MENU_ICON } from "../../../../../public/icons/roadmapSteps";
 import RoadmapDiscussionPostReplies from "@/components/roadmap-preview/components/roadmap-discussion/RoadmapDiscussionPostReplies";
 import useToggle from "@/hooks/useToggle";
-import { useOnClickOutside } from "@/hooks/useOnClickOutside";
 import { useAppDispatch } from "@/redux/store";
 import {
-	deletePost,
 	fillReplyPostId,
 	togglePostVote,
 } from "@/redux/slices/roadmaps/roadmapPreviewPostsSlice";
@@ -26,10 +24,7 @@ const RoadmapDiscussionPost = ({
 	roadmapId,
 	votes,
 }: RoadmapPostType) => {
-	const { currentState: isPostMenuOpen, toggle: togglePostMenu } =
-		useToggle(false);
 	const { currentState: isVoted, toggle: toggleVote } = useToggle(false);
-	const deletePostButtonRef = useOnClickOutside(() => togglePostMenu());
 
 	const dispatch = useAppDispatch();
 
@@ -56,10 +51,12 @@ const RoadmapDiscussionPost = ({
 						{author.name}{" "}
 						<span className="text-grey-secondary ml-1">{addedDate}</span>
 					</h3>
-					<p className="text-grey-secondary">{content}</p>
+					<p className="text-grey-secondary font-inter font-light text-[14px]">
+						{content}
+					</p>
 					<div className="flex items-center gap-3 mt-2">
 						<button
-							className={`flex-jc-c text-grey-secondary vote-btn ${
+							className={`flex-jc-c text-[#79828B] vote-btn text-[16px] font-inter font-medium ${
 								isVoted ? "voted" : ""
 							}`}
 							onClick={handleToggleVote}
@@ -67,30 +64,19 @@ const RoadmapDiscussionPost = ({
 							{UP_VOTE_ICON} {votes}
 						</button>
 						<button
-							onClick={() => dispatch(fillReplyPostId(id))}
-							className="flex-jc-c gap-2 text-grey-secondary"
+							onClick={() =>
+								dispatch(
+									fillReplyPostId({ replyPostId: id, replyType: "comment" })
+								)
+							}
+							className="flex-jc-c gap-1 text-[#ADAEB5] text-[14px] font-inter font-medium"
 						>
-							{REPLY_ICON} <span>Reply</span>
+							{REPLY_ICON} <span>Comment</span>
 						</button>
 					</div>
 				</div>
 
-				<button
-					className="rotate-90 text-grey-secondary"
-					onClick={togglePostMenu}
-				>
-					{MENU_ICON}
-				</button>
-
-				{isPostMenuOpen ? (
-					<button
-						onClick={() => dispatch(deletePost(id))}
-						ref={deletePostButtonRef}
-						className="absolute right-12 border border-red-400 bg-red-200 rounded-md px-4"
-					>
-						Delete post
-					</button>
-				) : null}
+				<button className="rotate-90 text-grey-secondary">{MENU_ICON}</button>
 			</div>
 
 			<RoadmapDiscussionPostReplies replies={replies} />

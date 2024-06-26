@@ -11,12 +11,15 @@ const RoadmapDiscussionReplyForm = () => {
 		reset: resetReplyValue,
 	} = useInput("");
 
-	const { replyPostId } = useAppSelector(state => state.roadmapPreviewPosts);
+	const { replyPostId, replyType } = useAppSelector(
+		state => state.roadmapPreviewPosts
+	);
 	const inputRef: React.Ref<null | HTMLInputElement> = useRef(null);
 
 	const { handleSubmitReply } = useRoadmapDiscussionReply(
 		inputRef,
 		replyPostId,
+		replyType,
 		replyContent,
 		resetReplyValue
 	);
@@ -29,7 +32,7 @@ const RoadmapDiscussionReplyForm = () => {
 				<FormInput
 					type="text"
 					name="discussionSearch"
-					placeholder="Enter your message"
+					placeholder={`Enter your ${replyType}`}
 					value={replyContent}
 					handleChangeValue={changeReplyContent}
 					inputRef={inputRef}

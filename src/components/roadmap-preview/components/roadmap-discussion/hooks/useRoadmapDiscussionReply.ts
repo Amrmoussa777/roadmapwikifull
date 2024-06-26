@@ -5,6 +5,7 @@ import { FormEvent, RefObject, useEffect } from "react";
 export const useRoadmapDiscussionReply = (
 	inputRef: RefObject<null | HTMLInputElement>,
 	replyPostId: number | null,
+	replyType: string | null,
 	replyContent: string,
 	resetReplyValue: () => void
 ) => {
@@ -14,7 +15,7 @@ export const useRoadmapDiscussionReply = (
 		if (replyPostId && inputRef.current) {
 			inputRef.current.focus();
 		}
-	}, [replyPostId]);
+	}, [replyPostId, replyType]);
 
 	const handleSubmitReply = (e: FormEvent) => {
 		e.preventDefault();

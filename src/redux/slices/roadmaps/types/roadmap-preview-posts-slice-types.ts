@@ -6,4 +6,5 @@ export type RoadmapPreviewPostsSliceType = {
 	error: Error | null;
 	searchResult: RoadmapPostType[];
 	replyPostId: number | null;
+	replyType: null | "reply" | "comment";
 };

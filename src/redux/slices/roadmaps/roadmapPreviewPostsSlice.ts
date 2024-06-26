@@ -109,6 +109,7 @@ const initialState: RoadmapPreviewPostsSliceType = {
 	error: null,
 	searchResult: [],
 	replyPostId: null,
+	replyType: null,
 };
 
 export const roadmapPreviewPostsSlice = createSlice({
@@ -203,11 +204,14 @@ export const roadmapPreviewPostsSlice = createSlice({
 		 * Fills the reply post ID.
 		 * @param {Object} state - The current state of the slice.
 		 * @param {Object} action - The action object.
-		 * @param {number} action.payload - The ID of the post to reply to.
+		 * @param {number} action.payload.replyPostId - The ID of the post to reply to.
+		 * @param {string} action.payload.replyType - The reply type.
 		 */
 		fillReplyPostId: (state, action) => {
-			const replyPostId = action.payload;
+			const { replyPostId, replyType } = action.payload;
+
 			state.replyPostId = replyPostId;
+			state.replyType = replyType;
 		},
 		/**
 		 * Adds a reply to a post.

@@ -25,7 +25,7 @@ const RoadmapStepItem = ({
 
 	return (
 		<>
-			{!isFirstStep ? <div className="line-dashed h-[40px] mx-auto" /> : null}
+			{!isFirstStep ? <div className="line-dashed h-[24px] mx-auto" /> : null}
 
 			<div className="relative w-full max-w-[400px] block mx-auto p-2 rounded-sm bg-white border border-[#EBECF2] group">
 				<button
@@ -36,9 +36,11 @@ const RoadmapStepItem = ({
 				>
 					<div className="flex-jb-c gap-2">
 						<div className="flex-jc-c gap-2">
-							<span className="block w-[20px] h-[20px] rounded-sm bg-[#ACB5B7] line-clamp-1" />
+							<span className="block min-w-[20px] min-h-[20px] rounded-sm bg-[#ACB5B7] line-clamp-1" />
 
-							<p className="text-sm font-medium line-clamp-1">{title}</p>
+							<p className="text-start text-[14px] font-medium line-clamp-1">
+								{title}
+							</p>
 						</div>
 
 						<ul className="flex-jc-c gap-2">
@@ -46,7 +48,7 @@ const RoadmapStepItem = ({
 								<li
 									key={tag.id}
 									style={{ backgroundColor: tag.color }}
-									className="rounded-full px-2 text-xs font-normal bg-grey-primary"
+									className="rounded-full px-2 text-[12px] font-normal bg-grey-primary"
 								>
 									<p>{tag.name}</p>
 								</li>
@@ -55,13 +57,15 @@ const RoadmapStepItem = ({
 					</div>
 
 					<div className="flex-jb-c mt-2">
-						<div className="flex-jc-c gap-1 [&>svg]:text-primary-ultramarineBlue">
+						<div className="flex-jc-c gap-1 [&>svg]:w-[16px] [&>svg]:text-primary-ultramarineBlue">
 							{DURATION_ICON}{" "}
-							<span className="text-primary-dark">{duration}</span>
+							<span className="text-primary-dark text-[12px] font-normal">
+								{duration}
+							</span>
 						</div>
 
 						<div className="flex-jc-c gap-3">
-							<div className="flex items-center gap-1 text-sm">
+							<div className="flex items-center gap-1 text-[12px] font-medium font-inter leading-[14.4px] text-[#92929D]">
 								<span
 									className={`${
 										completed ? "text-[#00CF7C]" : "text-[#ACB5B7]"
@@ -72,7 +76,7 @@ const RoadmapStepItem = ({
 								{completed ? "Completed" : "In progress"}
 							</div>
 
-							<div className="flex gap-2 [&>div]:flex-jc-c [&>div]:gap-1 [&>div>svg]:w-[12px] text-grey-secondary text-sm">
+							<div className="flex gap-3 [&>div]:flex-jc-c [&>div]:gap-1 [&>div>svg]:w-[12px] text-[12px] font-inter font-medium text-grey-secondary leading-[14.4px]">
 								<div>
 									{FILE_ICON} {attachmentsCount.files.count}
 								</div>

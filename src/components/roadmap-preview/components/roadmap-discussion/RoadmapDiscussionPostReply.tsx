@@ -11,7 +11,6 @@ import { MENU_ICON } from "../../../../../public/icons/roadmapSteps";
 import { useOnClickOutside } from "@/hooks/useOnClickOutside";
 import { useAppDispatch } from "@/redux/store";
 import {
-	deletePostReply,
 	fillReplyPostId,
 	togglePostReplyVote,
 } from "@/redux/slices/roadmaps/roadmapPreviewPostsSlice";
@@ -24,11 +23,8 @@ const RoadmapDiscussionPostReply = ({
 	postId,
 	votes,
 }: RoadmapPostReplyType) => {
-	const { currentState: isPostRepliesMenuOpen, toggle: togglePostRepliesMenu } =
-		useToggle(false);
 	const { currentState: isVoted, toggle: toggleVote } = useToggle(false);
 
-	const deleteReplyButtonRef = useOnClickOutside(() => togglePostRepliesMenu());
 	const dispatch = useAppDispatch();
 
 	const handleToggleVote = () => {
@@ -60,41 +56,34 @@ const RoadmapDiscussionPostReply = ({
 					{author.name}{" "}
 					<span className="text-grey-secondary ml-1">{addedDate}</span>
 				</h3>
-				<p className="text-sm text-grey-secondary">{content}</p>
-				<div className="flex items-center gap-3 mt-2 text-sm">
+				<p className="text-[12px] text-grey-secondary font-inter font-light">
+					{content}
+				</p>
+				<div className="flex items-center gap-3 mt-2 text-sm font-inter font-normal text-[#79828B]">
 					<button
 						onClick={handleToggleVote}
-						className={`flex-jc-c text-grey-secondary [&>svg]:w-[20px] vote-btn ${
+						className={`flex-jc-c text-[#79828B] [&>svg]:w-[20px] vote-btn ${
 							isVoted ? "voted" : ""
 						}`}
 					>
 						{UP_VOTE_ICON} {votes}
 					</button>
 					<button
-						onClick={() => dispatch(fillReplyPostId(postId))}
-						className="flex-jc-c gap-2 text-grey-secondary [&>svg]:w-[20px]"
+						onClick={() =>
+							dispatch(
+								fillReplyPostId({ replyPostId: postId, replyType: "reply" })
+							)
+						}
+						className="flex-jc-c gap-1 [&>svg]:w-[20px] text-[#ADAEB5] text-[12px] font-inter font-normal"
 					>
 						{REPLY_ICON} <span>Reply</span>
 					</button>
 				</div>
 			</div>
 
-			<button
-				className="rotate-90 text-grey-secondary [&>svg]:w-[20px]"
-				onClick={togglePostRepliesMenu}
-			>
+			<button className="rotate-90 text-grey-secondary [&>svg]:w-[20px]">
 				{MENU_ICON}
 			</button>
-
-			{isPostRepliesMenuOpen ? (
-				<button
-					onClick={() => dispatch(deletePostReply({ postId, replyId: id }))}
-					ref={deleteReplyButtonRef}
-					className="absolute right-12 border border-red-400 bg-red-200 rounded-md px-4"
-				>
-					Delete reply
-				</button>
-			) : null}
 		</div>
 	);
 };

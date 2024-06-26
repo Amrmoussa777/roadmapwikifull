@@ -1,17 +1,14 @@
-"use client";
-
-import React from "react";
+import React, { lazy } from "react";
 import { PARK_ICON } from "../../../../../public/icons/roadmapPreview";
 import RoadmapStepItem from "@/components/roadmap-preview/components/roadmap-steps/RoadmapStepItem";
-import Editor from "@/components/common/Editor/components/Editor";
-import HorizontalDivider from "@/components/common/divider/components/HorizontalDivider";
-import {
-	CROSS_ICON,
-	DURATION_ICON,
-} from "../../../../../public/icons/roadmapSteps";
 import { useRoadmapPreviewSteps } from "@/components/roadmap-preview/components/roadmap-steps/hooks/useRoadmapPreviewSteps";
 import { useAppSelector } from "@/redux/store";
-import RoadmapPreviewStep from "@/components/roadmap-preview/components/roadmap-steps/RoadmapPreviewStep";
+const RoadmapPreviewStep = lazy(
+	() =>
+		import(
+			"@/components/roadmap-preview/components/roadmap-steps/RoadmapPreviewStep"
+		)
+);
 
 const RoadmapPreviewSteps = () => {
 	const {
@@ -28,13 +25,13 @@ const RoadmapPreviewSteps = () => {
 		return (
 			<div className="w-full dotted-bg p-6">
 				<div className="flex-jc-c">
-					<h3 className="flex items-center gap-2 text-white bg-primary-ultramarineBlue rounded-full font-medium py-2 px-4">
+					<h3 className="h-[40px] flex items-center gap-2 text-white bg-primary-ultramarineBlue rounded-full font-medium py-2 px-4">
 						<span>{PARK_ICON}</span>
 						FrontEnd 🚀
 					</h3>
 				</div>
 
-				<div className="line-dashed h-[40px] mx-auto" />
+				<div className="line-dashed h-[24px] mx-auto" />
 
 				{steps?.map((step, index) => (
 					<RoadmapStepItem

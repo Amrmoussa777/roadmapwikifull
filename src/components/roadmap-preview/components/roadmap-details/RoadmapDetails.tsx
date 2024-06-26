@@ -19,24 +19,28 @@ const RoadmapDetails = () => {
 	return (
 		<div className="bg-white w-full lg:w-[500px] h-fit flex flex-col gap-4 p-4 py-3 rounded-md lg:sticky top-2">
 			<div>
-				<h3>Description</h3>
-				<p className="text-grey-secondary">{description}</p>
+				<h3 className="font-poppins text-[14px] font-normal !text-[#606060]">
+					Description
+				</h3>
+				<p className="font-inter font-light text-[12px] leading-[140%] min-w-fit text-grey-secondary">
+					{description}
+				</p>
 			</div>
 
-			<ul className="flex flex-col gap-2 [&>li>div]:flex [&>li]:items-center [&>li>div]:gap-1 [&>li>div>span]:my-auto [&>li>p]:text-grey-secondary">
+			<ul className="flex flex-col gap-2 [&>li>div]:flex [&>li]:items-center [&>li>div]:gap-1 [&>li>div>span]:my-auto [&>li>p]:text-grey-secondary [&>li>div>h3]:font-poppins [&>li>div>h3]:text-[14px] [&>li>div>h3]:font-normal [&>li>div>h3]:text-[#606060] [&>li>div>span>svg]:w-[16px]">
 				<li>
 					<div>
 						<span className="text-grey-icon">{DURATION_ICON}</span>
 						<h3>Duration</h3>
 					</div>
-					<p>{duration}</p>
+					<p className="font-inter font-normal text-[12px]">{duration}</p>
 				</li>
 				<li>
 					<div>
 						<span>{USERS_ICON}</span>
 						<h3>Subscribers</h3>
 					</div>
-					<p>{subscribers}</p>
+					<p className="font-inter font-normal text-[12px]">{subscribers}</p>
 				</li>
 				<li>
 					<div>
