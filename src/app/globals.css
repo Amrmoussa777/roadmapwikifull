@@ -6,6 +6,12 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smooth: never;
+}
+
 @layer base {
 	:root {
 		--background: 0 0% 100%;
