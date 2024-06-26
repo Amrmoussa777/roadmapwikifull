@@ -236,6 +236,32 @@ const REPLY_ICON = (
 	</svg>
 );
 
+const CHECK_ATTACHMENT_ICON = (
+	<svg
+		width="24"
+		height="24"
+		viewBox="0 0 24 24"
+		fill="none"
+		xmlns="http://www.w3.org/2000/svg"
+	>
+		<circle
+			cx="12"
+			cy="12"
+			r="11.25"
+			fill="white"
+			stroke="#00CF7C"
+			stroke-width="1.5"
+		/>
+		<path
+			d="M7 12L10 15L16.0106 9"
+			stroke="#00CF7C"
+			stroke-width="2"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+		/>
+	</svg>
+);
+
 export {
 	PARK_ICON,
 	NAVBAR_MENU_ICON,
@@ -248,4 +274,5 @@ export {
 	SEARCH_ICON,
 	UP_VOTE_ICON,
 	REPLY_ICON,
+	CHECK_ATTACHMENT_ICON,
 };
