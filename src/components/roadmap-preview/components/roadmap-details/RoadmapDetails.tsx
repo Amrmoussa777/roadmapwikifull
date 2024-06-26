@@ -53,7 +53,7 @@ const RoadmapDetails = () => {
 
 			{tags?.length ? (
 				<>
-					<li>
+					<div>
 						<div>
 							<h3>Tags</h3>
 						</div>
@@ -68,7 +68,7 @@ const RoadmapDetails = () => {
 								</span>
 							))}
 						</div>
-					</li>
+					</div>
 					) : null
 					<button onClick={toggleMoreContent} className="text-start">
 						{isMoreContent ? "See less" : "See more..."}
