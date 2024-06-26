@@ -21,9 +21,9 @@ export const calcAttachmentsCount = (
 		}
 	});
 
-	const attachmentsList = Object.entries(newOrderedAttachments).map(
-		([type, { count }]) => ({ type, count })
-	);
+	const attachmentsCountList = Object.entries(newOrderedAttachments)
+		.filter(([type, { count }]) => count > 0)
+		.map(([type, { count }]) => ({ type, count }));
 
-	return attachmentsList;
+	return attachmentsCountList;
 };

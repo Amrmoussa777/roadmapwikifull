@@ -3,9 +3,6 @@ import React from "react";
 import {
 	CHECK_ICON,
 	DURATION_ICON,
-	FILE_ICON,
-	IMAGE_ICON,
-	VIDEO_ICON,
 } from "../../../../../public/icons/roadmapSteps";
 import HorizontalDivider from "@/components/common/divider/components/HorizontalDivider";
 import { useAppDispatch } from "@/redux/store";
@@ -22,7 +19,7 @@ const RoadmapStepItem = ({
 	const { duration, completed, tags, title, attachments } = step;
 	const dispatch = useAppDispatch();
 
-	const attachmentsCount = calcAttachmentsCount(attachments);
+	const attachmentsCountList = calcAttachmentsCount(attachments);
 
 	return (
 		<>
@@ -77,7 +74,9 @@ const RoadmapStepItem = ({
 								{completed ? "Completed" : "In progress"}
 							</div>
 
-							<StepAttachmentsCount attachmentsCount={attachmentsCount} />
+							<StepAttachmentsCount
+								attachmentsCountList={attachmentsCountList}
+							/>
 						</div>
 					</div>
 				</button>
