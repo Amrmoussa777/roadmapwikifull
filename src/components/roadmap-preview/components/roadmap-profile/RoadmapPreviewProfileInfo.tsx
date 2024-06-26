@@ -43,21 +43,21 @@ const RoadmapPreviewProfileInfo = () => {
 				example text
 			</p>
 
-			<div className="w-full flex flex-wrap md:flex-col items-center md:items-start gap-4">
-				<div>
+			<ul className="w-full flex flex-wrap md:flex-col items-center md:items-start [&>li]:flex [&>li]:flex-col [&>li]:md:block gap-4">
+				<li>
 					<span className="font-poppins text-[12px] font-normal text-grey-secondary">
 						Followers
 					</span>
-					<p className="font-inter font-[400px] text-[14px]">1299</p>
-				</div>
+					<p className="font-inter font-normal text-[14px]">1299</p>
+				</li>
 
-				<div>
+				<li>
 					<span className="font-poppins text-[12px] font-normal text-grey-secondary block">
 						Roadmaps subscribers
 					</span>
-					<p className="font-inter font-[400px] text-[14px]">2000</p>
-				</div>
-			</div>
+					<p className="font-inter font-normal text-[14px]">2000</p>
+				</li>
+			</ul>
 
 			<div className="w-full">
 				<span className="font-poppins text-[12px] font-normal text-grey-secondary block mb-1">

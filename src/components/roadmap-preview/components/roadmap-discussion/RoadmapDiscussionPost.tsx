@@ -3,6 +3,7 @@ import React from "react";
 import AuthorImage from "../../../../../public/pp.jpeg";
 import Image from "next/image";
 import {
+	COMMENT_ICON,
 	REPLY_ICON,
 	UP_VOTE_ICON,
 } from "../../../../../public/icons/roadmapPreview";
@@ -73,7 +74,7 @@ const RoadmapDiscussionPost = ({
 							}
 							className="flex-jc-c gap-1 text-[#ADAEB5] text-[14px] font-inter font-medium"
 						>
-							{REPLY_ICON} <span>Comment</span>
+							{COMMENT_ICON} <span>Comment</span>
 						</button>
 					</div>
 				</div>

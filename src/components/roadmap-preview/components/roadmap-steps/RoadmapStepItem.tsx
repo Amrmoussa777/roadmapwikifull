@@ -23,7 +23,7 @@ const RoadmapStepItem = ({
 
 	return (
 		<>
-			{!isFirstStep ? <div className="line-dashed h-[24px] mx-auto" /> : null}
+			{!isFirstStep ? <div className="line-dashed h-8 mx-auto" /> : null}
 
 			<div className="relative w-full max-w-[400px] block mx-auto p-2 rounded-sm bg-white border border-[#EBECF2] group">
 				<button
@@ -36,7 +36,7 @@ const RoadmapStepItem = ({
 						<div className="flex-jc-c gap-2">
 							<span className="block min-w-[20px] min-h-[20px] rounded-sm bg-[#ACB5B7] line-clamp-1" />
 
-							<p className="text-start text-[14px] font-medium line-clamp-1">
+							<p className="text-start text-[14px] font-outfit font-normal text-[#181818] line-clamp-1">
 								{title}
 							</p>
 						</div>

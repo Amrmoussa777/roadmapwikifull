@@ -31,7 +31,7 @@ const RoadmapPreviewSteps = () => {
 					</h3>
 				</div>
 
-				<div className="line-dashed h-[24px] mx-auto" />
+				<div className="line-dashed h-8 mx-auto" />
 
 				{steps?.map((step, index) => (
 					<RoadmapStepItem

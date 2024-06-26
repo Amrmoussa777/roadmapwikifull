@@ -33,8 +33,12 @@ const RoadmapDiscussion = () => {
 					</div>
 				) : (
 					<div>
-						<h3>Discussion</h3>
-						<p className="text-grey-secondary">4 new comments</p>
+						<h3 className="font-inter text-[#181818] font-semibold">
+							Discussion
+						</h3>
+						<p className="text-[#979797] font-inter font-normal text-[12px]">
+							4 new comments
+						</p>
 					</div>
 				)}
 
