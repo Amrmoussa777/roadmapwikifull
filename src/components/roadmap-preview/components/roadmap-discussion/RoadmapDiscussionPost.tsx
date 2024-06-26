@@ -47,9 +47,11 @@ const RoadmapDiscussionPost = ({
 				/>
 
 				<div className="w-full grid">
-					<h3>
+					<h3 className="text-[14px] text-[#181818] font-inter font-medium">
 						{author.name}{" "}
-						<span className="text-grey-secondary ml-1">{addedDate}</span>
+						<span className="text-[#9C9DA4] ml-1 text-[14px] font-normal">
+							{addedDate}
+						</span>
 					</h3>
 					<p className="text-grey-secondary font-inter font-light text-[14px]">
 						{content}
