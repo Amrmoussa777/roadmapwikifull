@@ -28,15 +28,13 @@ const RoadmapPreviewStep = ({
 	return (
 		<div className="relative w-full p-4 mb-2 bg-white rounded-md">
 			<div className="flex-jb-c">
-				<div className="flex-jc-c gap-1">
-					<button
-						className="[&>svg]:w-[20px] text-primary-dark"
-						onClick={togglePreviewStepModal}
-					>
-						{CROSS_ICON}
-					</button>
+				<button
+					className="flex-jc-c gap-1 [&>svg]:w-[20px] text-primary-dark"
+					onClick={togglePreviewStepModal}
+				>
+					{CROSS_ICON}
 					<p className="text-[14px]">Step information</p>
-				</div>
+				</button>
 				<button className="[&>svg]:w-[24px] text-primary-dark">
 					{MENU_ICON}
 				</button>
