@@ -27,7 +27,7 @@ const RoadmapDetails = () => {
 				</p>
 			</div>
 
-			<ul className="flex flex-wrap md:flex-col items-center md:items-start gap-2 [&>li>div]:flex [&>li]:items-center [&>li>div]:gap-1 [&>li>div>span]:my-auto [&>li>p]:text-grey-secondary [&>li>div>h3]:font-poppins [&>li>div>h3]:text-[14px] [&>li>div>h3]:font-normal [&>li>div>h3]:text-[#606060] [&>li>div>span>svg]:w-[16px]">
+			<ul className="flex flex-wrap md:flex-col md:items-start gap-2 [&>li>div]:flex [&>li]:items-center [&>li>div]:gap-1 [&>li>div>span]:my-auto [&>li>p]:text-grey-secondary [&>li>div>h3]:font-poppins [&>li>div>h3]:text-[14px] [&>li>div>h3]:font-normal [&>li>div>h3]:text-[#606060] [&>li>div>span>svg]:w-[16px]">
 				<li>
 					<div>
 						<span className="text-grey-icon">{DURATION_ICON}</span>
