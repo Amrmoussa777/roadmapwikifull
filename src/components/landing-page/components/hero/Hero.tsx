@@ -5,7 +5,7 @@ import HERO_ROADMAP from "../../../../../public/hero-roadmap.png";
 
 const Hero = () => {
 	return (
-		<section className="relative px-6 lg:px-[4.5rem] flex-jb-c flex-col lg:flex-row gap-4 z-10">
+		<section className="relative px-6 lg:px-[4.5rem] py-[4.5rem] flex-jb-c flex-col lg:flex-row gap-4 z-10">
 			<div className="max-w-[543px] grid gap-[40px] text-center lg:text-start">
 				<h1 className="text-[24px] sm:text-[48px] font-extrabold text-[#171618]">
 					Your ultimate 🚀
