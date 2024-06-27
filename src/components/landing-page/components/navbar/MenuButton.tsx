@@ -13,7 +13,7 @@ const MenuButton = ({
 			<button
 				aria-label="menu"
 				onClick={() => setIsMenuOpen(!isMenuOpen)}
-				className="w-[40px] min-w-[40px] h-[40px] min-h-[40px] py-[12px] flex flex-col justify-between items-center rounded-full bg-secondaryDark [&>span]:w-[22px] [&>span]:h-[2px] [&>span]:bg-[#515E6B]"
+				className="w-[40px] min-w-[40px] h-[40px] min-h-[40px] py-[12px] flex flex-col justify-between items-center rounded-full bg-secondaryDark [&>span]:w-[22px] [&>span]:h-[2.5px] [&>span]:bg-[#515E6B]"
 			>
 				<span
 					className={`
