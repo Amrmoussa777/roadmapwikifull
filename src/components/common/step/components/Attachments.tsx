@@ -1,4 +1,4 @@
-import { RoadmapStepAttachmentType } from "@/components/roadmap-preview/types/roadmapSteps.types";
+import { RoadmapStepAttachmentType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
 import Image from "next/image";
 import React from "react";
 
