@@ -5,8 +5,8 @@ import DISCORD_ICON from "../../../../../public/socialMedia/discord.svg";
 import LINKEDIN_ICON from "../../../../../public/socialMedia/lnkdin.svg";
 import TWITTER_ICON from "../../../../../public/socialMedia/twitter.svg";
 import YOUTUBE_ICON from "../../../../../public/socialMedia/yy.svg";
+import { useAppSelector } from "@/redux/store";
 
-const experienceList = ["Front end", "UI/UX", "Version control"];
 const socialMediaList = [
 	{ href: "https://x.com", icon: TWITTER_ICON },
 	{ href: "https://youtube.com", icon: YOUTUBE_ICON },
@@ -15,12 +15,16 @@ const socialMediaList = [
 ];
 
 const RoadmapPreviewProfileInfo = () => {
+	const { user } = useAppSelector(state => state.roadmapPreview.roadmap) || {};
+
 	return (
 		<>
-			<div>
+			<div className="w-full">
 				<div className="flex-jc-c gap-1">
-					<h2 className="text-2xl font-semibold">Amr khalil</h2>
-					<p className="font-thin text-[#898989] text-[16px]">@amrkhalill</p>
+					<h2 className="text-2xl font-semibold line-clamp-1">
+						{user?.userName.slice(0, 10)}
+					</h2>
+					<p className="font-thin text-[#898989] text-[16px]">@9abour</p>
 				</div>
 
 				<p className="text-center font-thin font-outfit text-[16px] text-[#898989]">
@@ -48,14 +52,18 @@ const RoadmapPreviewProfileInfo = () => {
 					<span className="font-poppins text-[12px] font-normal text-grey-secondary">
 						Followers
 					</span>
-					<p className="font-inter font-normal text-[14px]">1299</p>
+					<p className="font-inter font-normal text-[14px]">
+						{user?.followers}
+					</p>
 				</li>
 
 				<li>
 					<span className="font-poppins text-[12px] font-normal text-grey-secondary block">
 						Roadmaps subscribers
 					</span>
-					<p className="font-inter font-normal text-[14px]">2000</p>
+					<p className="font-inter font-normal text-[14px]">
+						{user?.roadmapsSubscribers}
+					</p>
 				</li>
 			</ul>
 
@@ -64,16 +72,18 @@ const RoadmapPreviewProfileInfo = () => {
 					Experience
 				</span>
 
-				<div className="w-full flex gap-2 flex-wrap">
-					{experienceList.map(item => (
-						<span
-							key={item}
-							className="h-[30px] flex-jc-c px-4 border border-grey-iconBorder rounded-full text-[12px] font-medium font-inter"
-						>
-							{item}
-						</span>
-					))}
-				</div>
+				{user?.experiences ? (
+					<div className="w-full flex gap-2 flex-wrap">
+						{user.experiences.map(item => (
+							<span
+								key={item.id}
+								className="h-[30px] flex-jc-c px-4 border border-grey-iconBorder rounded-full text-[12px] font-medium font-inter"
+							>
+								{item.title}
+							</span>
+						))}
+					</div>
+				) : null}
 			</div>
 
 			<div className="w-full">

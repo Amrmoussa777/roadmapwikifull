@@ -13,7 +13,7 @@ const RoadmapDetails = () => {
 	const { currentState: isMoreContent, toggle: toggleMoreContent } =
 		useToggle(false);
 	const { roadmap } = useAppSelector(state => state.roadmapPreview);
-	const { description, duration, subscribers, stepsCount, tags } =
+	const { description, duration, subscribersCount, _count, tags } =
 		roadmap || {};
 
 	return (
@@ -40,41 +40,48 @@ const RoadmapDetails = () => {
 						<span>{USERS_ICON}</span>
 						<h3>Subscribers</h3>
 					</div>
-					<p className="font-inter font-normal text-[12px]">{subscribers}</p>
+					<p className="font-inter font-normal text-[12px]">
+						{subscribersCount}
+					</p>
 				</li>
 				<li>
 					<div>
 						<span>{STEPS_ICON}</span>
 						<h3>Steps</h3>
 					</div>
-					<p>{stepsCount}</p>
+					<p>{_count?.steps}</p>
 				</li>
 			</ul>
 
-			{tags?.length ? (
+			{tags?.length && isMoreContent ? (
 				<>
 					<div>
 						<div>
-							<h3>Tags</h3>
+							<h3 className="font-poppins text-[12px] text-grey-secondary">
+								Tags
+							</h3>
 						</div>
 
 						<div className="w-full flex gap-2 flex-wrap mt-1">
-							{tags?.map(tag => (
+							{tags?.map(item => (
 								<span
-									key={tag.id}
-									className="h-[26px] flex-jc-c text-sm px-4 border border-grey-iconBorder rounded-full"
+									key={item.id}
+									style={{ backgroundColor: item.color }}
+									className="h-[26px] flex-jc-c text-sm px-4 text-white rounded-full"
 								>
-									{tag.title}
+									{item.tag}
 								</span>
 							))}
 						</div>
 					</div>
-					) : null
-					<button onClick={toggleMoreContent} className="text-start">
-						{isMoreContent ? "See less" : "See more..."}
-					</button>
 				</>
 			) : null}
+			<button
+				onClick={toggleMoreContent}
+				className="w-fit text-start font-inter text-grey-secondary font-normal text-[14px]"
+			>
+				{isMoreContent ? "See less" : "See more..."}
+			</button>
 		</div>
 	);
 };

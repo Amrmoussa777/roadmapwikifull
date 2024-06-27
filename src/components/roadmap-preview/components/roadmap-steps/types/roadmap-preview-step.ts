@@ -1,4 +1,4 @@
-import { RoadmapStepType } from "@/components/roadmap-preview/types/roadmapSteps.types";
+import { RoadmapStepType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
 
 export type RoadmapPreviewStepProps = {
 	previewStep: RoadmapStepType | null;

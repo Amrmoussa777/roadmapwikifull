@@ -46,7 +46,7 @@ const RoadmapStepItem = ({
 								<li
 									key={tag.id}
 									style={{ backgroundColor: tag.color }}
-									className="rounded-full px-2 text-[12px] font-normal bg-grey-primary"
+									className="rounded-full px-2 text-[12px] font-normal text-white"
 								>
 									<p>{tag.name}</p>
 								</li>

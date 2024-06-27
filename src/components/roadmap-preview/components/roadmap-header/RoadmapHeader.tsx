@@ -15,8 +15,8 @@ const RoadmapHeader = () => {
 		<div className="h-[150px]">
 			<Image
 				src={RoadmapCover}
-				width={300}
-				height={150}
+				width={400}
+				height={200}
 				quality={100}
 				alt="roadmap-cover"
 				className="w-full h-2/4 object-cover rounded-t-md"
@@ -28,7 +28,7 @@ const RoadmapHeader = () => {
 				</h2>
 
 				<div className="flex-jc-c gap-2">
-					<SubscribeButton price={price} callback={() => {}} />
+					<SubscribeButton price={price?.amount} callback={() => {}} />
 					<button className="w-[35px] h-[35px] md:w-[40px] md:h-[40px] flex-jc-c border border-grey-iconBorder rounded-full">
 						{SHARE_ICON}
 					</button>

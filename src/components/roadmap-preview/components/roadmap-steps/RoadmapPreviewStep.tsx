@@ -33,7 +33,7 @@ const RoadmapPreviewStep = ({
 				</button>
 			</div>
 
-			<div className="grid gap-4 my-4">
+			<div className="grid gap-[14px] my-4">
 				<ul className="flex flex-wrap gap-2">
 					{tags?.map(tag => (
 						<li
@@ -49,7 +49,10 @@ const RoadmapPreviewStep = ({
 				<h3 className="text-lg font-normal">{title}</h3>
 
 				<div className="flex flex-js-c gap-1 [&>svg]:text-primary-ultramarineBlue [&>svg]:my-auto">
-					{DURATION_ICON} <span className="text-[#92929D]">{duration}</span>
+					{DURATION_ICON}{" "}
+					<span className="text-[#92929D] text-[14px] font-normal">
+						{duration}
+					</span>
 				</div>
 			</div>
 
@@ -60,9 +63,9 @@ const RoadmapPreviewStep = ({
 				customStyles="[&>div]:!p-0"
 			/>
 
-			<Verification />
+			<Verification verificationsList={verifications} />
 
-			<p>Attachments</p>
+			<p className="text-[#5A5A5A] text-[12px]">Attachments</p>
 			<Attachments attachments={attachments} />
 		</div>
 	);

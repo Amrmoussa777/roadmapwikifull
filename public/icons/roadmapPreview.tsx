@@ -250,14 +250,14 @@ const CHECK_ATTACHMENT_ICON = (
 			r="11.25"
 			fill="white"
 			stroke="#00CF7C"
-			stroke-width="1.5"
+			strokeWidth="1.5"
 		/>
 		<path
 			d="M7 12L10 15L16.0106 9"
 			stroke="#00CF7C"
-			stroke-width="2"
-			stroke-linecap="round"
-			stroke-linejoin="round"
+			strokeWidth="2"
+			strokeLinecap="round"
+			strokeLinejoin="round"
 		/>
 	</svg>
 );
@@ -273,9 +273,9 @@ const COMMENT_ICON = (
 		<path
 			d="M5 7.01523V8.21523M9 7.01523V8.21523M13 7.01523V8.21523M17 1.61523H1V13.6152H4.6V15.6152L8.6 13.6152H17V1.61523Z"
 			stroke="currentColor"
-			stroke-width="1.5"
-			stroke-linecap="round"
-			stroke-linejoin="round"
+			strokeWidth="1.5"
+			strokeLinecap="round"
+			strokeLinejoin="round"
 		/>
 	</svg>
 );
