@@ -10,3 +10,9 @@ export type NavbarMobileLinkItemType = {
 	href: string;
 	icon?: ReactNode;
 };
+
+export interface MenuButtonType {
+	isMenuOpen: boolean;
+	setIsMenuOpen: (isOpen: boolean) => void;
+	customStyles?: string;
+}

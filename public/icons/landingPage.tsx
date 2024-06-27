@@ -37,7 +37,7 @@ const NAVBAR_MENU = (
 				d="M12.4164 22.3087C12.4164 25.4518 9.87528 27.9998 6.74073 27.9998C3.60617 27.9998 1.06506 25.4518 1.06506 22.3087C1.06506 19.1657 3.60617 16.6177 6.74073 16.6177C9.87528 16.6177 12.4164 19.1657 12.4164 22.3087Z"
 				fill="white"
 				stroke="currentColor"
-				stroke-width="2"
+				strokeWidth="2"
 			/>
 			<path
 				d="M29.065 6.44986C29.065 10.012 26.1851 12.8997 22.6326 12.8997C19.0801 12.8997 16.2002 10.012 16.2002 6.44986C16.2002 2.8877 19.0801 0 22.6326 0C26.1851 0 29.065 2.8877 29.065 6.44986Z"
@@ -46,7 +46,7 @@ const NAVBAR_MENU = (
 			<path
 				d="M10.6758 18.2874L19.3028 10.0164"
 				stroke="currentColor"
-				stroke-width="2"
+				strokeWidth="2"
 			/>
 		</g>
 		<path
@@ -119,7 +119,7 @@ const NAVBAR_MOBILE_CROSS = (
 				d="M13.3059 22.3087C13.3059 25.4518 10.7579 27.9998 7.61488 27.9998C4.47183 27.9998 1.92383 25.4518 1.92383 22.3087C1.92383 19.1657 4.47183 16.6177 7.61488 16.6177C10.7579 16.6177 13.3059 19.1657 13.3059 22.3087Z"
 				fill="white"
 				stroke="currentColor"
-				stroke-width="2"
+				strokeWidth="2"
 			/>
 			<path
 				d="M29.9998 6.44986C29.9998 10.012 27.1121 12.8997 23.55 12.8997C19.9878 12.8997 17.1001 10.012 17.1001 6.44986C17.1001 2.8877 19.9878 0 23.55 0C27.1121 0 29.9998 2.8877 29.9998 6.44986Z"
@@ -128,7 +128,7 @@ const NAVBAR_MOBILE_CROSS = (
 			<path
 				d="M11.5605 18.2874L20.211 10.0164"
 				stroke="currentColor"
-				stroke-width="2"
+				strokeWidth="2"
 			/>
 		</g>
 		<path
@@ -146,6 +146,25 @@ const NAVBAR_MOBILE_CROSS = (
 	</svg>
 );
 
+const HERO_PLAY_ICON = (
+	<svg
+		width="18"
+		height="18"
+		viewBox="0 0 18 18"
+		fill="none"
+		xmlns="http://www.w3.org/2000/svg"
+	>
+		<path
+			d="M6.38503 15.2571C5.39395 15.9813 4 15.2735 4 14.046V3.95399C4 2.72649 5.39395 2.01866 6.38502 2.7429L13.2901 7.78891C14.1101 8.38812 14.1101 9.61188 13.2901 10.2111L6.38503 15.2571Z"
+			stroke="currentColor"
+			strokeWidth="2"
+			strokeMiterlimit="10"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+		/>
+	</svg>
+);
+
 export {
 	ROADMAP_LOGO,
 	NAVBAR_MENU,
@@ -153,4 +172,5 @@ export {
 	ROADMAP_ICON,
 	NAVBAR_MOBILE_LINK_ARROW,
 	NAVBAR_MOBILE_CROSS,
+	HERO_PLAY_ICON,
 };

@@ -6,12 +6,11 @@ import RoadmapLogo from "@/components/landing-page/components/navbar/RoadmapLogo
 import React from "react";
 import {
 	HOME_ICON,
-	NAVBAR_MENU,
-	NAVBAR_MOBILE_CROSS,
 	ROADMAP_ICON,
 } from "../../../../../public/icons/landingPage";
 import NavbarMobile from "@/components/landing-page/components/navbar/NavbarMobile";
 import useToggle from "@/hooks/useToggle";
+import MenuButton from "@/components/landing-page/components/navbar/MenuButton";
 
 const navbarLinks = [
 	{ href: "/roadmap", name: "Roadmaps" },
@@ -29,17 +28,12 @@ const Navbar = () => {
 		useToggle(false);
 
 	return (
-		<nav className="relative max-w-[1276.8px] h-[64px] flex-jb-c mx-auto p-6 lg:px-8 bg-white">
+		<nav className="relative max-w-[1440px] h-[64px] flex-jb-c mx-auto p-6 lg:px-8 bg-white">
 			<RoadmapLogo />
 			<NavbarLinks links={navbarLinks} />
 			<NavbarButtons />
 
-			<button
-				className="block md:hidden text-[#171725]"
-				onClick={toggleMobileNavbar}
-			>
-				{isMobile ? NAVBAR_MOBILE_CROSS : NAVBAR_MENU}
-			</button>
+			<MenuButton isMenuOpen={isMobile} setIsMenuOpen={toggleMobileNavbar} />
 
 			{isMobile ? <NavbarMobile links={navbarMobileLinks} /> : null}
 		</nav>
