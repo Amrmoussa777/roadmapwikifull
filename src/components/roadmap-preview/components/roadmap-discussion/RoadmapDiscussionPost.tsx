@@ -10,11 +10,12 @@ import {
 import { MENU_ICON } from "../../../../../public/icons/roadmapSteps";
 import RoadmapDiscussionPostReplies from "@/components/roadmap-preview/components/roadmap-discussion/RoadmapDiscussionPostReplies";
 import useToggle from "@/hooks/useToggle";
-import { useAppDispatch } from "@/redux/store";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
 import {
 	fillReplyPostId,
 	togglePostVote,
 } from "@/redux/slices/roadmaps/roadmapPreviewPostsSlice";
+import RoadmapDiscussionReplyForm from "@/components/roadmap-preview/components/roadmap-discussion/RoadmapDiscussionReplyForm";
 
 const RoadmapDiscussionPost = ({
 	id,
@@ -26,6 +27,9 @@ const RoadmapDiscussionPost = ({
 	votes,
 }: RoadmapPostType) => {
 	const { currentState: isVoted, toggle: toggleVote } = useToggle(false);
+	const { replyPostId, replyType } = useAppSelector(
+		state => state.roadmapPreviewPosts
+	);
 
 	const dispatch = useAppDispatch();
 
@@ -38,7 +42,7 @@ const RoadmapDiscussionPost = ({
 
 	return (
 		<>
-			<div className="relative flex justify-between items-start gap-2 border border-[#E0E0E0] p-4 rounded-md">
+			<div className="relative flex justify-between items-start gap-2 border border-[#E0E0E0] p-2 rounded-md">
 				<Image
 					src={AuthorImage}
 					width={100}
@@ -77,12 +81,22 @@ const RoadmapDiscussionPost = ({
 							{COMMENT_ICON} <span>Comment</span>
 						</button>
 					</div>
+
+					{replyType === "comment" && replyPostId === id ? (
+						<RoadmapDiscussionReplyForm />
+					) : null}
 				</div>
 
 				<button className="rotate-90 text-grey-secondary">{MENU_ICON}</button>
 			</div>
 
 			<RoadmapDiscussionPostReplies replies={replies} />
+
+			{replyType === "reply" && replyPostId === id ? (
+				<div className="px-12 ml-4">
+					<RoadmapDiscussionReplyForm />
+				</div>
+			) : null}
 		</>
 	);
 };

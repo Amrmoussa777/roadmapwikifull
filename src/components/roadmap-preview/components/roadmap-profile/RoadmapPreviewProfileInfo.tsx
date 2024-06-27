@@ -36,7 +36,7 @@ const RoadmapPreviewProfileInfo = () => {
 				<button className="w-full h-full px-6 bg-primary-ultramarineBlue text-white rounded-full">
 					Follow
 				</button>
-				<button className="min-w-[40px] h-full flex-jc-c border-2 border-grey-iconBorder hover:border-grey-secondary rounded-full [&>svg]:fill-grey-secondary">
+				<button className="min-w-[40px] h-full flex-jc-c border-2 border-grey-iconBorder rounded-full [&>svg]:fill-grey-secondary">
 					{DIRECT_MESSAGE}
 				</button>
 			</div>

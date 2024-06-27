@@ -1,14 +1,13 @@
 import { RoadmapPostReplyType } from "@/components/roadmap-preview/components/roadmap-discussion/types/roadmap-discussion-posts";
 import useToggle from "@/hooks/useToggle";
 import Image from "next/image";
-import React, { useRef } from "react";
+import React from "react";
 import AuthorImage from "../../../../../public/pp.jpeg";
 import {
 	REPLY_ICON,
 	UP_VOTE_ICON,
 } from "../../../../../public/icons/roadmapPreview";
 import { MENU_ICON } from "../../../../../public/icons/roadmapSteps";
-import { useOnClickOutside } from "@/hooks/useOnClickOutside";
 import { useAppDispatch } from "@/redux/store";
 import {
 	fillReplyPostId,
@@ -41,7 +40,7 @@ const RoadmapDiscussionPostReply = ({
 	return (
 		<div
 			key={id}
-			className="relative flex justify-between items-start gap-2 p-4 ml-4 rounded-md"
+			className="relative flex justify-between items-start gap-2 p-2 ml-4 rounded-md"
 		>
 			<Image
 				src={AuthorImage}

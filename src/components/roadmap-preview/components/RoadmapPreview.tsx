@@ -22,7 +22,7 @@ const RoadmapPreview = () => {
 		<main className="relative w-full flex flex-col md:flex-row p-2 bg-grey-primary">
 			<RoadmapPreviewProfile />
 
-			<div className="w-full md:w-[calc(100%-258px)] lg:w-[calc(100%-340px)] ml-auto hidden-scrollbar mb-12">
+			<div className="w-full md:w-[calc(70%-12px)] lg:w-[calc(70%-12px)] xl:w-[calc(80%-12px)] ml-auto hidden-scrollbar mb-12">
 				{!isLoading ? (
 					<>
 						<RoadmapHeader />

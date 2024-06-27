@@ -20,7 +20,7 @@ const RoadmapDiscussion = () => {
 
 	return (
 		<div
-			className={`bg-white rounded-md p-4 transition-all duration-300 ${
+			className={`bg-white rounded-md p-2 md:p-4 transition-all duration-300 ${
 				isExpandedDiscussion
 					? "fixed w-screen h-screen left-0 top-0 overflow-y-auto z-10"
 					: "relative"
@@ -55,7 +55,7 @@ const RoadmapDiscussion = () => {
 			<HorizontalDivider
 				height="h-[0.25px]"
 				bgColor="bg-[#E0E0E0]"
-				customStyles="my-6"
+				customStyles="my-4"
 			/>
 
 			<RoadmapDiscussionPosts />

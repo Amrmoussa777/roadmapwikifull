@@ -14,9 +14,10 @@ const FormInput = ({
 	handleChangeValue,
 	value,
 	inputRef,
+	icon,
 }: IFormInput) => {
 	return (
-		<div className={`${customStyles}`}>
+		<div className={`${customStyles} flex-jc-c`}>
 			{label ? (
 				<label htmlFor={name} className="text-[#666666]">{`${label}${
 					required ? "*" : ""
@@ -45,6 +46,8 @@ const FormInput = ({
 					id={name}
 				/>
 			)}
+
+			{icon}
 		</div>
 	);
 };
