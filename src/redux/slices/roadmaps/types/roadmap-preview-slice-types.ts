@@ -10,51 +10,57 @@ export interface RoadmapPriceType {
 }
 
 export interface RoadmapUserType {
-	id: number;
+	id: string;
 	email: string;
-	userName: string;
-	image: string;
-	followers: number;
-	roadmapsSubscribers: number;
 	role: string;
+	image: string;
+	occupation: string;
+	roadmapsSubscribers: number;
+	fullName: string;
+	userName: string;
+	description: string;
 	experiences: RoadmapUserExperienceType[];
 	socialMedia: any[];
+	_count: {
+		followers: number;
+		following: number;
+	};
 }
 
 export interface RoadmapUserExperienceType {
-	id: number;
+	id: string;
 	title: string;
 	description: string;
 }
 
-export interface RoadmapTagsType {
-	id: number;
-	roadmapId: number;
+export interface RoadmapTagType {
+	id: string;
+	roadmapId: string;
 	tag: string;
 	color: string;
 }
 
 export interface RoadmapStepAttachmentType {
-	id: number;
+	id: string;
 	type: string;
 	url: string;
 }
 
 export interface RoadmapStepVerificationType {
-	id: number;
+	id: string;
 	title: string;
 	link: string;
 }
 
 export interface RoadmapStepTagType {
-	id: number;
+	id: string;
 	name: string;
 	color: string;
-	roadmapStepId: number;
+	roadmapStepId: string;
 }
 
 export interface RoadmapStepType {
-	id: number;
+	id: string;
 	title: string;
 	duration: string;
 	description: string;
@@ -65,19 +71,26 @@ export interface RoadmapStepType {
 }
 
 export interface RoadmapType {
-	id: number;
+	id: string;
+	description: string;
+	icon: null | string;
+	createdAt: string;
+	userId: string;
 	title: string;
 	duration: string;
-	description: string;
-	icon: string | null;
-	createdAt: string;
-	userId: number;
-	cover: string | null;
+	flag: string;
+	primaryColor: string;
+	secondaryColor: string;
+	cover: null | string;
 	subscribersCount: number;
-	price: RoadmapPriceType;
+	urlIdentifier: string;
+	price: {
+		currency: string;
+		amount: number;
+	};
 	user: RoadmapUserType;
 	steps: RoadmapStepType[];
-	tags: RoadmapTagsType[];
+	tags: RoadmapTagType[];
 	_count: {
 		steps: number;
 		tags: number;

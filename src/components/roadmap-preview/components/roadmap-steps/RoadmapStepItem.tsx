@@ -15,6 +15,7 @@ const RoadmapStepItem = ({
 	isFirstStep,
 	lastStep,
 	handlePreviewStep,
+	showTags,
 }: RoadmapStepItemProps) => {
 	const { duration, completed, tags, title, attachments } = step;
 	const dispatch = useAppDispatch();
@@ -28,9 +29,7 @@ const RoadmapStepItem = ({
 			<div className="relative w-full max-w-[400px] block mx-auto p-2 rounded-sm bg-white border border-[#EBECF2] group">
 				<button
 					className="w-full h-full block"
-					onClick={() => {
-						handlePreviewStep(step);
-					}}
+					onClick={() => (handlePreviewStep ? handlePreviewStep(step) : null)}
 				>
 					<div className="flex-jb-c gap-2">
 						<div className="flex-jc-c gap-2">
@@ -41,17 +40,19 @@ const RoadmapStepItem = ({
 							</p>
 						</div>
 
-						<ul className="flex-jc-c gap-2">
-							{tags.map(tag => (
-								<li
-									key={tag.id}
-									style={{ backgroundColor: tag.color }}
-									className="rounded-full px-2 text-[12px] font-normal text-white"
-								>
-									<p>{tag.name}</p>
-								</li>
-							))}
-						</ul>
+						{showTags ? (
+							<ul className="flex-jc-c gap-2">
+								{tags.map(tag => (
+									<li
+										key={tag.id}
+										style={{ backgroundColor: tag.color }}
+										className="rounded-full px-2 text-[12px] font-normal text-white"
+									>
+										<p>{tag.name}</p>
+									</li>
+								))}
+							</ul>
+						) : null}
 					</div>
 
 					<div className="flex-jb-c mt-2">

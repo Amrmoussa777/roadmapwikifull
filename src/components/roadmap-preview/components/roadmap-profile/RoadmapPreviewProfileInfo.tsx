@@ -53,7 +53,7 @@ const RoadmapPreviewProfileInfo = () => {
 						Followers
 					</span>
 					<p className="font-inter font-normal text-[14px]">
-						{user?.followers}
+						{user?._count.followers}
 					</p>
 				</li>
 

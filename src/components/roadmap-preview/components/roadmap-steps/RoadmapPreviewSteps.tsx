@@ -40,6 +40,7 @@ const RoadmapPreviewSteps = () => {
 						lastStep={index + 1 === steps.length}
 						isFirstStep={index === 0}
 						handlePreviewStep={handlePreviewStep}
+						showTags={true}
 					/>
 				))}
 			</div>
