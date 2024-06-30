@@ -1,5 +1,5 @@
 import React from "react";
-import { ROADMAP_LOGO } from "../../../../../public/icons/landingPage";
+import { ROADMAP_LOGO } from "@public/icons/landingPage";
 import Link from "next/link";
 
 const RoadmapLogo = () => {

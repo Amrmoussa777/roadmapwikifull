@@ -1,15 +1,12 @@
 "use client";
 
 import React from "react";
-import {
-	EXPAND_ICON,
-	SEARCH_ICON,
-} from "../../../../../public/icons/roadmapPreview";
+import { EXPAND_ICON, SEARCH_ICON } from "@public/icons/roadmapPreview";
 import HorizontalDivider from "@/components/common/divider/components/HorizontalDivider";
 import RoadmapDiscussionPosts from "@/components/roadmap-preview/components/roadmap-discussion/RoadmapDiscussionPosts";
 import useToggle from "@/hooks/useToggle";
 import useDisableScroll from "@/hooks/useDisableScrolling";
-import { CROSS_ICON } from "../../../../../public/icons/roadmapSteps";
+import { CROSS_ICON } from "@public/icons/roadmapSteps";
 import RoadmapDiscussionSearchFrom from "@/components/roadmap-preview/components/roadmap-discussion/RoadmapDiscussionSearchFrom";
 
 const RoadmapDiscussion = () => {

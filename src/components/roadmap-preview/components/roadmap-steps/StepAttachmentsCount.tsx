@@ -1,9 +1,5 @@
 import React from "react";
-import {
-	FILE_ICON,
-	IMAGE_ICON,
-	VIDEO_ICON,
-} from "../../../../../public/icons/roadmapSteps";
+import { FILE_ICON, IMAGE_ICON, VIDEO_ICON } from "@public/icons/roadmapSteps";
 
 const StepAttachmentsCount = ({
 	attachmentsCountList,

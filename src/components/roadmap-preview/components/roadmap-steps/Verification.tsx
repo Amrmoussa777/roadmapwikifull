@@ -1,5 +1,5 @@
 import React from "react";
-import { CHECK_ATTACHMENT_ICON } from "../../../../../public/icons/roadmapPreview";
+import { CHECK_ATTACHMENT_ICON } from "@public/icons/roadmapPreview";
 import { RoadmapStepVerificationType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
 
 const Verification = ({

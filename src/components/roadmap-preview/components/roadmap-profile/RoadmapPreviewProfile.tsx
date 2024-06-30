@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import ProfileImage from "../../../../../public/pp.jpeg";
+import ProfileImage from "@public/pp.jpeg";
 import RoadmapPreviewProfileInfo from "@/components/roadmap-preview/components/roadmap-profile/RoadmapPreviewProfileInfo";
 
 const RoadmapPreviewProfile = () => {

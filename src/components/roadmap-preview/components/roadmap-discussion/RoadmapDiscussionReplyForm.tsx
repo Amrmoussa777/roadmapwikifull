@@ -3,7 +3,7 @@ import useInput from "@/components/common/input/hooks/useInput";
 import { useRoadmapDiscussionReply } from "@/components/roadmap-preview/components/roadmap-discussion/hooks/useRoadmapDiscussionReply";
 import { useAppSelector } from "@/redux/store";
 import React, { useRef } from "react";
-import { DIRECT_MESSAGE } from "../../../../../public/icons/roadmapPreview";
+import { DIRECT_MESSAGE } from "@public/icons/roadmapPreview";
 
 const RoadmapDiscussionReplyForm = () => {
 	const {

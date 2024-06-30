@@ -1,10 +1,10 @@
 import React from "react";
-import { DIRECT_MESSAGE } from "../../../../../public/icons/roadmapPreview";
+import { DIRECT_MESSAGE } from "@public/icons/roadmapPreview";
 import Image from "next/image";
-import DISCORD_ICON from "../../../../../public/socialMedia/discord.svg";
-import LINKEDIN_ICON from "../../../../../public/socialMedia/lnkdin.svg";
-import TWITTER_ICON from "../../../../../public/socialMedia/twitter.svg";
-import YOUTUBE_ICON from "../../../../../public/socialMedia/yy.svg";
+import DISCORD_ICON from "@public/socialMedia/discord.svg";
+import LINKEDIN_ICON from "@public/socialMedia/lnkdin.svg";
+import TWITTER_ICON from "@public/socialMedia/twitter.svg";
+import YOUTUBE_ICON from "@public/socialMedia/yy.svg";
 import { useAppSelector } from "@/redux/store";
 
 const socialMediaList = [

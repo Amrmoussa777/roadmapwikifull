@@ -5,7 +5,7 @@ import {
 	CROSS_ICON,
 	DURATION_ICON,
 	MENU_ICON,
-} from "../../../../../public/icons/roadmapSteps";
+} from "@public/icons/roadmapSteps";
 import { RoadmapPreviewStepProps } from "@/components/roadmap-preview/components/roadmap-steps/types/roadmap-preview-step";
 import Attachments from "@/components/common/step/components/Attachments";
 import Verification from "@/components/roadmap-preview/components/roadmap-steps/Verification";

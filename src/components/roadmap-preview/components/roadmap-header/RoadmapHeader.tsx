@@ -2,9 +2,9 @@
 
 import Image from "next/image";
 import React from "react";
-import RoadmapCover from "../../../../../public/roadmapCover.png";
+import RoadmapCover from "@public/roadmapCover.png";
 import SubscribeButton from "@/components/common/button/SubscribeButton";
-import { SHARE_ICON } from "../../../../../public/icons/roadmapPreview";
+import { SHARE_ICON } from "@public/icons/roadmapPreview";
 import { useAppSelector } from "@/redux/store";
 
 const RoadmapHeader = () => {

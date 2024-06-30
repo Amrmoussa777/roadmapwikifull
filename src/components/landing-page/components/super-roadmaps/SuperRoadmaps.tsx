@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
-import SuperRoadmapsImage from "../../../../../public/super-roadmaps.png";
-import { ARROW_ICON } from "../../../../../public/icons/roadmapSteps";
+import SuperRoadmapsImage from "@public/super-roadmaps.png";
+import { ARROW_ICON } from "@public/icons/roadmapSteps";
 
 const SuperRoadmaps = () => {
 	return (

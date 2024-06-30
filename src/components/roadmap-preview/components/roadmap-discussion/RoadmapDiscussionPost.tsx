@@ -1,13 +1,9 @@
 import { RoadmapPostType } from "@/components/roadmap-preview/components/roadmap-discussion/types/roadmap-discussion-posts";
 import React from "react";
-import AuthorImage from "../../../../../public/pp.jpeg";
+import AuthorImage from "@public/pp.jpeg";
 import Image from "next/image";
-import {
-	COMMENT_ICON,
-	REPLY_ICON,
-	UP_VOTE_ICON,
-} from "../../../../../public/icons/roadmapPreview";
-import { MENU_ICON } from "../../../../../public/icons/roadmapSteps";
+import { COMMENT_ICON, UP_VOTE_ICON } from "@public/icons/roadmapPreview";
+import { MENU_ICON } from "@public/icons/roadmapSteps";
 import RoadmapDiscussionPostReplies from "@/components/roadmap-preview/components/roadmap-discussion/RoadmapDiscussionPostReplies";
 import useToggle from "@/hooks/useToggle";
 import { useAppDispatch, useAppSelector } from "@/redux/store";

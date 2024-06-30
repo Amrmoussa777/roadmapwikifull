@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { HERO_PLAY_ICON } from "../../../../../public/icons/landingPage";
+import { HERO_PLAY_ICON } from "@public/icons/landingPage";
 import Roadmap from "@/components/common/roadmap/Roadmap";
 import { RoadmapType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
 

@@ -1,9 +1,6 @@
 import { RoadmapStepItemProps } from "@/components/roadmap-preview/types/roadmapSteps.types";
 import React from "react";
-import {
-	CHECK_ICON,
-	DURATION_ICON,
-} from "../../../../../public/icons/roadmapSteps";
+import { CHECK_ICON, DURATION_ICON } from "@public/icons/roadmapSteps";
 import HorizontalDivider from "@/components/common/divider/components/HorizontalDivider";
 import { useAppDispatch } from "@/redux/store";
 import { toggleStep } from "@/redux/slices/roadmaps/roadmapPreviewSlice";

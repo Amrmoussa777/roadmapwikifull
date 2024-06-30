@@ -1,11 +1,8 @@
 "use client";
 
 import React from "react";
-import { DURATION_ICON } from "../../../../../public/icons/roadmapSteps";
-import {
-	STEPS_ICON,
-	USERS_ICON,
-} from "../../../../../public/icons/roadmapPreview";
+import { DURATION_ICON } from "@public/icons/roadmapSteps";
+import { STEPS_ICON, USERS_ICON } from "@public/icons/roadmapPreview";
 import useToggle from "@/hooks/useToggle";
 import { useAppSelector } from "@/redux/store";
 

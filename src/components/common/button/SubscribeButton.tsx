@@ -1,5 +1,5 @@
 import React from "react";
-import { ROADMAP_SUBSCRIBE_LOGO } from "../../../../public/icons/roadmapPreview";
+import { ROADMAP_SUBSCRIBE_LOGO } from "@public/icons/roadmapPreview";
 import { SubscribeButtonProps } from "@/components/common/button/types/subscribe-button.types";
 
 const SubscribeButton = ({ price, offer, details }: SubscribeButtonProps) => {

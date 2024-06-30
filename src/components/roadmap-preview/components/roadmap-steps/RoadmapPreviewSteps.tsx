@@ -1,5 +1,5 @@
 import React, { lazy } from "react";
-import { PARK_ICON } from "../../../../../public/icons/roadmapPreview";
+import { PARK_ICON } from "@public/icons/roadmapPreview";
 import RoadmapStepItem from "@/components/roadmap-preview/components/roadmap-steps/RoadmapStepItem";
 import { useRoadmapPreviewSteps } from "@/components/roadmap-preview/components/roadmap-steps/hooks/useRoadmapPreviewSteps";
 import { useAppSelector } from "@/redux/store";

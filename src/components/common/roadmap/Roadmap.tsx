@@ -1,9 +1,9 @@
 import React from "react";
-import { PARK_ICON } from "../../../../public/icons/roadmapPreview";
+import { PARK_ICON } from "@public/icons/roadmapPreview";
 import RoadmapStepItem from "@/components/roadmap-preview/components/roadmap-steps/RoadmapStepItem";
 import { RoadmapType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
-import chairImage from "../../../../public/hero-chair.png";
-import statusImage from "../../../../public/hero-status.png";
+import chairImage from "@public/hero-chair.png";
+import statusImage from "@public/hero-status.png";
 import Image from "next/image";
 
 const Roadmap = ({ roadmap }: { roadmap: RoadmapType }) => {

@@ -2,12 +2,9 @@ import { RoadmapPostReplyType } from "@/components/roadmap-preview/components/ro
 import useToggle from "@/hooks/useToggle";
 import Image from "next/image";
 import React from "react";
-import AuthorImage from "../../../../../public/pp.jpeg";
-import {
-	REPLY_ICON,
-	UP_VOTE_ICON,
-} from "../../../../../public/icons/roadmapPreview";
-import { MENU_ICON } from "../../../../../public/icons/roadmapSteps";
+import AuthorImage from "@public/pp.jpeg";
+import { REPLY_ICON, UP_VOTE_ICON } from "@public/icons/roadmapPreview";
+import { MENU_ICON } from "@public/icons/roadmapSteps";
 import { useAppDispatch } from "@/redux/store";
 import {
 	fillReplyPostId,
