@@ -11,8 +11,8 @@ const Roadmap = ({ roadmap }: { roadmap: RoadmapType }) => {
 
 	return (
 		<>
-			<div className="relative w-10/12 md:w-6/12 lg:w-5/12">
-				<div className="w-full dotted-bg p-6 bg-white rounded-[22px] h-[600px] overflow-y-scroll hidden-scrollbar shadow-2xl">
+			<div className="relative w-10/12 md:w-6/12 lg:w-5/12 mt-[40px] lg:mt-0">
+				<div className="w-full dotted-bg p-6 bg-white rounded-[22px] h-[650px] overflow-y-scroll hidden-scrollbar shadow-2xl pb-32">
 					<div className="flex-jc-c">
 						<h3
 							style={{ backgroundColor: secondaryColor }}
