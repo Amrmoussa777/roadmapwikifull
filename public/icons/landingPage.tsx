@@ -146,7 +146,7 @@ const NAVBAR_MOBILE_CROSS = (
 	</svg>
 );
 
-const HERO_PLAY_ICON = (
+const PLAY_ICON = (
 	<svg
 		width="18"
 		height="18"
@@ -165,6 +165,56 @@ const HERO_PLAY_ICON = (
 	</svg>
 );
 
+const PROGRAMMING_ICON = (
+	<svg
+		width="20"
+		height="21"
+		viewBox="0 0 20 21"
+		fill="none"
+		xmlns="http://www.w3.org/2000/svg"
+	>
+		<path
+			d="M12.6062 12.375L10.9875 13.9938L11.875 14.875L14.375 12.375L11.875 9.875L10.9875 10.7562L12.6062 12.375ZM7.39375 12.375L9.0125 10.7562L8.125 9.875L5.625 12.375L8.125 14.875L9.0125 13.9938L7.39375 12.375Z"
+			fill="currentColor"
+		/>
+		<path
+			d="M5.625 6.125C5.97018 6.125 6.25 5.84518 6.25 5.5C6.25 5.15482 5.97018 4.875 5.625 4.875C5.27982 4.875 5 5.15482 5 5.5C5 5.84518 5.27982 6.125 5.625 6.125Z"
+			fill="currentColor"
+		/>
+		<path
+			d="M3.75 6.125C4.09518 6.125 4.375 5.84518 4.375 5.5C4.375 5.15482 4.09518 4.875 3.75 4.875C3.40482 4.875 3.125 5.15482 3.125 5.5C3.125 5.84518 3.40482 6.125 3.75 6.125Z"
+			fill="currentColor"
+		/>
+		<path
+			d="M17.5 3H2.5C1.81062 3 1.25 3.56125 1.25 4.25V16.75C1.25 17.4394 1.81062 18 2.5 18H17.5C18.1894 18 18.75 17.4394 18.75 16.75V4.25C18.75 3.56125 18.1894 3 17.5 3ZM17.5 4.25V6.75H2.5V4.25H17.5ZM2.5 16.75V8H17.5V16.75H2.5Z"
+			fill="currentColor"
+		/>
+	</svg>
+);
+
+const MOST_VIRAL_ROADMAP_ICON = (
+	<svg
+		width="40"
+		height="42"
+		viewBox="0 0 40 42"
+		fill="none"
+		xmlns="http://www.w3.org/2000/svg"
+	>
+		<rect y="0.794922" width="40" height="41.0256" rx="4" fill="currentColor" />
+		<path
+			d="M17.7561 28.1222C17.7561 30.8162 15.5721 33.0002 12.878 33.0002C10.184 33.0002 8 30.8162 8 28.1222C8 25.4281 10.184 23.2441 12.878 23.2441C15.5721 23.2441 17.7561 25.4281 17.7561 28.1222Z"
+			fill="currentColor"
+			stroke="white"
+			strokeWidth="2"
+		/>
+		<path
+			d="M32.0647 14.5285C32.0647 17.5817 29.5895 20.0569 26.5363 20.0569C23.483 20.0569 21.0078 17.5817 21.0078 14.5285C21.0078 11.4752 23.483 9 26.5363 9C29.5895 9 32.0647 11.4752 32.0647 14.5285Z"
+			fill="white"
+		/>
+		<path d="M16.2598 24.6744L23.6744 17.585" stroke="white" strokeWidth="2" />
+	</svg>
+);
+
 export {
 	ROADMAP_LOGO,
 	NAVBAR_MENU,
@@ -172,5 +222,7 @@ export {
 	ROADMAP_ICON,
 	NAVBAR_MOBILE_LINK_ARROW,
 	NAVBAR_MOBILE_CROSS,
-	HERO_PLAY_ICON,
+	PLAY_ICON,
+	PROGRAMMING_ICON,
+	MOST_VIRAL_ROADMAP_ICON,
 };

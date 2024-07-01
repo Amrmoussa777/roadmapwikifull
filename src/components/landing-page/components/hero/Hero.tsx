@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { HERO_PLAY_ICON } from "@public/icons/landingPage";
+import { PLAY_ICON } from "@public/icons/landingPage";
 import Roadmap from "@/components/common/roadmap/Roadmap";
 import { roadmapList } from "@/components/landing-page/data/roadmapList";
 import { useHero } from "@/components/landing-page/hooks/useHero";
@@ -73,7 +73,7 @@ const Hero = () => {
 						Create Roadmap
 					</button>
 					<button className="w-[148px] md:w-[208px] h-[42px] md:h-[56px] flex-jc-c gap-2 text-[14px] md:text-[16px] p-[16px] text-[#191718] font-inter font-semibold bg-background border-2 border-[#ACB5B7] rounded-[10px]">
-						{HERO_PLAY_ICON} Watch demo
+						{PLAY_ICON} Watch demo
 					</button>
 				</div>
 			</div>

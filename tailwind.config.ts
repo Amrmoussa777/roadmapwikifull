@@ -69,6 +69,10 @@ const config = {
 					replayText: "#ADAEB5",
 				},
 			},
+			boxShadow: {
+				csm: "0 0px 25px -5px rgba(0, 0, 0, 0.1)",
+				clg: "0px 9px 30px rgba(0, 0, 0, 0.1)",
+			},
 			borderRadius: {
 				lg: "var(--radius)",
 				md: "calc(var(--radius) - 2px)",

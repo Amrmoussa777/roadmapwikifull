@@ -136,6 +136,10 @@ body {
 	.flex-ic-c {
 		@apply flex items-center;
 	}
+
+	button:disabled {
+		@apply opacity-20;
+	}
 }
 
 @layer components {
@@ -147,6 +151,16 @@ body {
 					@apply fill-[#F4392B];
 				}
 			}
+		}
+	}
+
+	.heading-section {
+		h2 {
+			@apply text-[40px] font-bold text-center leading-[62px] text-white;
+		}
+
+		p {
+			@apply text-[16px] font-inter font-normal text-center leading-[24px] text-white max-w-[742px] mx-auto;
 		}
 	}
 }

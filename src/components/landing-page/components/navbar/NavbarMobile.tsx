@@ -21,7 +21,7 @@ const NavbarMobile = ({
 
 			<HorizontalDivider height="h-[1px]" bgColor="bg-[#E4E6EC]" />
 
-			<NavbarButtons customStyles="flex flex-col md:hidden w-full px-8" />
+			<NavbarButtons customStyles="flex flex-col md:hidden w-full px-8 text-center" />
 		</ul>
 	);
 };

@@ -6,14 +6,14 @@ import { ARROW_ICON } from "@public/icons/roadmapSteps";
 const SuperRoadmaps = () => {
 	return (
 		<section className="px-6 lg:px-[4.5rem] py-[4.5rem] bg-primary-ultramarineBlue rounded-t-[3rem]">
-			<h2 className="text-[40px] font-bold text-center leading-[62px] text-white">
-				Easily explore most super Roadmaps
-			</h2>
-			<p className="text-[16px] font-inter font-normal text-center leading-[24px] text-white max-w-[742px] mx-auto">
-				Lorem Ipsum is simply dummy text of the printing and typesetting
-				industry. Lorem Ipsum has beenthe industry's standard dummy text ever
-				since the 1500s
-			</p>
+			<div className="heading-section">
+				<h2>Easily explore most super Roadmaps</h2>
+				<p>
+					Lorem Ipsum is simply dummy text of the printing and typesetting
+					industry. Lorem Ipsum has beenthe industry's standard dummy text ever
+					since the 1500s
+				</p>
+			</div>
 
 			<div className="w-full">
 				<Image
