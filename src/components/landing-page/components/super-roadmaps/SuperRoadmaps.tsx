@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import SuperRoadmapsImage from "@public/super-roadmaps.png";
+import SuperRoadmapsImage from "@public/super-roadmaps.svg";
 import { ARROW_ICON } from "@public/icons/roadmapSteps";
 
 const SuperRoadmaps = () => {
@@ -24,10 +24,10 @@ const SuperRoadmaps = () => {
 					className="w-full"
 				/>
 
-				<div className="flex-jc-c gap-3 text-[#171618] [&>button]:bg-white [&>button]:rounded-full [&>button]:w-[40px] [&>button]:h-[40px] [&>button]:flex-jc-c">
+				<div className="relative w-fit mx-auto flex-jc-c gap-3 text-[#171618] [&>button]:bg-white [&>button]:rounded-full [&>button]:w-[40px] [&>button]:h-[40px] [&>button]:flex-jc-c">
 					<button className="-rotate-90">{ARROW_ICON}</button>
 					<button className="rotate-90">{ARROW_ICON}</button>
-					<span className="text-white font-inter font-normal text-[14px]">
+					<span className="absolute right-[-45px] text-white font-inter font-normal text-[14px]">
 						1 of 3
 					</span>
 				</div>

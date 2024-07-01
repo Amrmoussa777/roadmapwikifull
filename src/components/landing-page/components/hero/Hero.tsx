@@ -10,8 +10,8 @@ const Hero = () => {
 	const { activeRoadmapIndex } = useHero();
 
 	return (
-		<section className="relative px-6 lg:px-[4.5rem] py-[4.5rem] flex-jb-c flex-col lg:flex-row gap-4 z-10">
-			<div className="w-full lg:w-7/12 grid text-center lg:text-start">
+		<section className="relative px-6 lg:px-[4.5rem] py-[2rem] flex-jb-c flex-col lg:flex-row z-10">
+			<div className="w-full lg:w-6/12 grid text-center lg:text-start">
 				<div className="relative">
 					<h1 className="relative text-[24px] sm:text-[48px] font-extrabold text-[#171618]">
 						Your ultimate 🚀
@@ -20,15 +20,15 @@ const Hero = () => {
 							style={{
 								filter: `drop-shadow(0 0rem 2.2rem ${roadmapList[activeRoadmapIndex].primaryColor}99)`,
 							}}
-							className="relative lg:absolute lg:left-[63px] lg:bottom-[-50px] w-full lg:w-[90%] h-16 sm:h-28 sm:block"
+							className="relative lg:absolute lg:left-[63px] lg:bottom-[-50px] w-full lg:w-[90%] h-16 sm:h-28 sm:block transition-all delay-400 ease-in-out"
 						>
 							<div className="h-16 sm:h-28 inline-block overflow-hidden transition-opacity ease-in duration-700">
 								<div
 									className={`flex flex-col ${
 										activeRoadmapIndex === 0
 											? ""
-											: "transition-all ease-in-out duration-150"
-									}  `}
+											: "transform transition-transform duration-700 ease-in-out"
+									}`}
 									style={{
 										transform: `translateY(-${activeRoadmapIndex * 25}%)`,
 									}}
@@ -68,7 +68,7 @@ const Hero = () => {
 					since the 1500s
 				</p>
 
-				<div className="flex items-center justify-center lg:justify-start gap-4 md:gap-6 mt-[40px] md:mt-[40px]">
+				<div className="flex items-center justify-center lg:justify-start gap-4 lg:gap-2 xl:gap-6 mt-[40px] md:mt-[40px]">
 					<button className="w-[148px] md:w-[208px] h-[42px] md:h-[56px] flex-jc-c text-[14px] md:text-[16px] p-[16px] text-white font-inter font-semibold bg-primary-ultramarineBlue rounded-[10px]">
 						Create Roadmap
 					</button>
