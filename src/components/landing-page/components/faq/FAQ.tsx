@@ -7,7 +7,7 @@ import FAQItem from "@/components/landing-page/components/faq/FAQItem";
 import { FAQItemType } from "@/components/landing-page/types/faq.types";
 
 const FAQ = () => {
-	const [activeAnswer, setActiveAnswer] = useState("1");
+	const [activeAnswer, setActiveAnswer] = useState("");
 
 	const FAQList: FAQItemType[] = [
 		{

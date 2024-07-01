@@ -1,9 +1,13 @@
+"use client";
+
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import avatar from "@public/landing-page-avatar.png";
 import { ARROW_ICON } from "@public/icons/roadmapSteps";
 
 const Testimonials = () => {
+	const [active, setActive] = useState(1);
+
 	return (
 		<section className="relative px-6 lg:px-[4.5rem] py-[4rem] lg:py-[8rem] mb-[8rem] flex flex-col lg:flex-row justify-center lg:justify-between gap-12">
 			<div className="w-full lg:w-4/12 heading-section [&>*]:!text-[#171618] mt-12">
@@ -15,8 +19,13 @@ const Testimonials = () => {
 				</p>
 			</div>
 
-			<div className="w-[342px] md:w-[450px] lg:w-[580px] relative mx-auto lg:mx-0">
-				<div className="relative w-[180px] md:w-[225px] lg:w-[325px] rounded-[22px] border border-[#E7E8F1] shadow-xl -rotate-6 overflow-hidden bg-white z-0">
+			<div className="w-[290px] md:w-[450px] lg:w-[580px] relative mx-auto lg:mx-0">
+				<div
+					onClick={() => setActive(1)}
+					className={`relative w-[180px] md:w-[225px] lg:w-[325px] rounded-[22px] border border-[#E7E8F1] shadow-xl -rotate-6 overflow-hidden bg-white transition-all ${
+						active === 1 ? "z-10" : "z-0"
+					}`}
+				>
 					<div className="flex-jc-c gap-2 md:gap-6 px-3 md:px-3 lg:px-6 py-6 md:py-6 lg:py-12">
 						<Image
 							src={avatar}
@@ -50,7 +59,12 @@ const Testimonials = () => {
 					<div className="absolute w-[170px] h-[450px] bg-primary-ultramarineBlue top-[-300px] lg:top-[-300px] right-[-80px] md:right-[-70px] lg:right-0 -rotate-45" />
 				</div>
 
-				<div className="absolute w-[225px] lg:w-[325px] top-[50px] lg:top-[100px] right-[-50px] md:right-[20px] lg:left-[250px] z-10">
+				<div
+					onClick={() => setActive(2)}
+					className={`absolute w-[225px] lg:w-[325px] top-[50px] lg:top-[100px] right-[-50px] md:right-[20px] lg:left-[250px] transition-all ${
+						active === 2 ? "z-10" : "z-0"
+					}`}
+				>
 					<div className="relative w-[180px] md:w-[225px] lg:w-[325px] rounded-[22px] shadow-xl rotate-6 overflow-hidden">
 						<div className="flex-jc-c gap-2 md:gap-6 px-3 md:px-3 lg:px-6 py-6 md:py-6 lg:py-12 bg-primary-ultramarineBlue">
 							<Image

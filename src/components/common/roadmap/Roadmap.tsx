@@ -14,6 +14,9 @@ const Roadmap = ({ roadmap }: { roadmap: RoadmapType }) => {
 	const props = useSpring({
 		from: { opacity: 0 },
 		to: { opacity: 1 },
+		config: {
+			mass: 30,
+		},
 	});
 
 	useEffect(() => {
@@ -26,7 +29,7 @@ const Roadmap = ({ roadmap }: { roadmap: RoadmapType }) => {
 	return (
 		<>
 			<div className="relative w-10/12 lg:w-5/12 xl:w-6/12 max-w-[400px] mt-[40px] lg:mt-0">
-				<div className="w-full dotted-bg p-6 bg-white rounded-[22px] h-[650px] overflow-y-scroll hidden-scrollbar shadow-2xl pb-32">
+				<div className="w-full dotted-bg p-6 bg-white rounded-[22px] h-[650px] overflow-y-scroll hidden-scrollbar shadow-2xl pb-[12rem]">
 					<animated.div style={props}>
 						<div className="flex-jc-c">
 							<h3
