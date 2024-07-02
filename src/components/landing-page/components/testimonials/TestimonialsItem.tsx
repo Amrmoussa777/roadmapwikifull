@@ -35,13 +35,13 @@ const TestimonialsItem = ({
 					active === 1 ? "z-10" : "z-0"
 				}`}
 			>
-				<div className="flex-jc-c gap-2 md:gap-6 px-3 md:px-3 lg:px-6 py-6 md:py-6 lg:py-12">
+				<div className="flex justify-start gap-2 lg:gap-6 px-3 md:px-3 lg:px-6 py-6 md:py-6 lg:py-12">
 					<Image
 						src={firstTestimonial.user.image}
 						width={100}
 						height={100}
 						alt="avatar"
-						className="w-[40px] md:w-[60px] h-[40px] md:h-[60px] rounded-full object-cover bg-[#e6e4ff]"
+						className="w-[40px] lg:w-[60px] h-[40px] lg:h-[60px] rounded-full object-cover bg-[#e6e4ff]"
 					/>
 
 					<div>
@@ -73,13 +73,13 @@ const TestimonialsItem = ({
 				}`}
 			>
 				<div className="relative w-[180px] md:w-[225px] lg:w-[325px] rounded-[22px] shadow-xl rotate-6 overflow-hidden">
-					<div className="flex-jc-c gap-2 md:gap-6 px-3 md:px-3 lg:px-6 py-6 md:py-6 lg:py-12 bg-primary-ultramarineBlue">
+					<div className="flex justify-start gap-2 lg:gap-6 px-3 md:px-3 lg:px-6 py-6 md:py-6 lg:py-12 bg-primary-ultramarineBlue">
 						<Image
 							src={secondTestimonial.user.image}
 							width={100}
 							height={100}
 							alt="avatar"
-							className="w-[40px] md:w-[60px] h-[40px] md:h-[60px] rounded-full object-cover bg-[#e6e4ff]"
+							className="w-[40px] lg:w-[60px] h-[40px] lg:h-[60px] rounded-full object-cover bg-[#e6e4ff]"
 						/>
 
 						<div>
