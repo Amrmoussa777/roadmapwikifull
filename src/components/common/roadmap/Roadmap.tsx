@@ -5,7 +5,7 @@ import { RoadmapType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice
 import chairImage from "@public/hero-chair.png";
 import statusImage from "@public/hero-status.svg";
 import Image from "next/image";
-import { animated, easings, useSpring } from "@react-spring/web";
+import { motion } from "framer-motion";
 
 const Roadmap = ({
 	roadmap,
@@ -14,23 +14,20 @@ const Roadmap = ({
 	roadmap: RoadmapType;
 	roadmapRef: MutableRefObject<null | HTMLDivElement>;
 }) => {
-	const { steps, title, secondaryColor } = roadmap;
-	const [prevRoadmap, setPrevRoadmap] = useState<RoadmapType | null>(null);
-
-	const props = useSpring({
-		to: { opacity: 1 },
-		from: { opacity: 0 },
-		config: {
-			duration: 800,
-		},
-	});
+	const [currentRoadmap, setCurrentRoadmap] = useState(roadmap);
+	const { steps, title, secondaryColor } = currentRoadmap;
+	const [isVisible, setIsVisible] = useState(true);
 
 	useEffect(() => {
-		if (prevRoadmap?.id !== roadmap.id) {
-			props.opacity.set(0);
-			setPrevRoadmap(roadmap);
+		if (roadmap.id !== currentRoadmap.id) {
+			setIsVisible(false);
+
+			setTimeout(() => {
+				setIsVisible(true);
+				setCurrentRoadmap(roadmap);
+			}, 300);
 		}
-	}, [roadmap, props]);
+	}, [roadmap]);
 
 	return (
 		<>
@@ -39,7 +36,12 @@ const Roadmap = ({
 				className="relative w-10/12 lg:w-5/12 xl:w-6/12 max-w-[400px] mt-[40px] lg:mt-0"
 			>
 				<div className="w-full dotted-bg p-6 bg-white rounded-[22px] h-[650px] overflow-y-scroll hidden-scrollbar shadow-2xl pb-[12rem]">
-					<animated.div style={props} className="ease-in-out">
+					<motion.div
+						initial={{ opacity: 1 }}
+						animate={{ opacity: isVisible ? 1 : 0 }}
+						transition={{ duration: 0.5 }}
+						className="fade-in"
+					>
 						<div className="flex-jc-c">
 							<h3
 								style={{ backgroundColor: secondaryColor }}
@@ -60,7 +62,7 @@ const Roadmap = ({
 								showTags={false}
 							/>
 						))}
-					</animated.div>
+					</motion.div>
 				</div>
 
 				<Image
