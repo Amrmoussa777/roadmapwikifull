@@ -2,6 +2,8 @@
 
 import CreatorItem from "@/components/landing-page/components/most-viral-creators/CreatorItem";
 import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 
 const MostViralCreators = () => {
 	return (
@@ -15,11 +17,54 @@ const MostViralCreators = () => {
 				</p>
 			</div>
 
-			<div className="flex-jc-c overflow-x-scroll gap-4 mt-16 hidden-scrollbar">
+			<Swiper
+				className="mt-12"
+				slidesPerView={6.2}
+				spaceBetween={30}
+				pagination={{
+					clickable: true,
+				}}
+				breakpoints={{
+					1280: {
+						slidesPerView: 5.2,
+						spaceBetween: 10,
+					},
+					1150: {
+						slidesPerView: 5.2,
+					},
+
+					1024: {
+						slidesPerView: 4.2,
+						spaceBetween: 20,
+					},
+					876: {
+						slidesPerView: 3.2,
+						spaceBetween: 20,
+					},
+					768: {
+						slidesPerView: 3,
+						spaceBetween: 20,
+					},
+					640: {
+						slidesPerView: 2.8,
+						spaceBetween: 20,
+					},
+					400: {
+						slidesPerView: 2,
+						spaceBetween: 20,
+					},
+					100: {
+						slidesPerView: 1.6,
+						spaceBetween: 20,
+					},
+				}}
+			>
 				{Array.from(Array(10)).map((item, index) => (
-					<CreatorItem key={index} />
+					<SwiperSlide key={index}>
+						<CreatorItem />
+					</SwiperSlide>
 				))}
-			</div>
+			</Swiper>
 		</section>
 	);
 };

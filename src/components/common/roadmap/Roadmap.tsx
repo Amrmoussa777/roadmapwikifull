@@ -1,21 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { MutableRefObject, useEffect, useState } from "react";
 import { PARK_ICON } from "@public/icons/roadmapPreview";
 import RoadmapStepItem from "@/components/roadmap-preview/components/roadmap-steps/RoadmapStepItem";
 import { RoadmapType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
 import chairImage from "@public/hero-chair.png";
 import statusImage from "@public/hero-status.svg";
 import Image from "next/image";
-import { animated, useSpring } from "@react-spring/web";
+import { animated, easings, useSpring } from "@react-spring/web";
 
-const Roadmap = ({ roadmap }: { roadmap: RoadmapType }) => {
+const Roadmap = ({
+	roadmap,
+	roadmapRef,
+}: {
+	roadmap: RoadmapType;
+	roadmapRef: MutableRefObject<null | HTMLDivElement>;
+}) => {
 	const { steps, title, secondaryColor } = roadmap;
 	const [prevRoadmap, setPrevRoadmap] = useState<RoadmapType | null>(null);
 
 	const props = useSpring({
-		from: { opacity: 0 },
 		to: { opacity: 1 },
+		from: { opacity: 0 },
 		config: {
-			mass: 30,
+			duration: 800,
 		},
 	});
 
@@ -28,9 +34,12 @@ const Roadmap = ({ roadmap }: { roadmap: RoadmapType }) => {
 
 	return (
 		<>
-			<div className="relative w-10/12 lg:w-5/12 xl:w-6/12 max-w-[400px] mt-[40px] lg:mt-0">
+			<div
+				ref={roadmapRef}
+				className="relative w-10/12 lg:w-5/12 xl:w-6/12 max-w-[400px] mt-[40px] lg:mt-0"
+			>
 				<div className="w-full dotted-bg p-6 bg-white rounded-[22px] h-[650px] overflow-y-scroll hidden-scrollbar shadow-2xl pb-[12rem]">
-					<animated.div style={props}>
+					<animated.div style={props} className="ease-in-out">
 						<div className="flex-jc-c">
 							<h3
 								style={{ backgroundColor: secondaryColor }}
