@@ -1,13 +1,10 @@
 import type { Config } from "tailwindcss";
 
 const config = {
-	mode: "jit",
-	darkMode: ["class"],
 	content: [
-		"./pages/**/*.{html,js,jsx,ts,tsx}",
-		"./components/**/*.{html,js,jsx,ts,tsx}",
-		"./app/**/*.{html,js,jsx,ts,tsx}",
-		"./src/**/*.{html,js,jsx,ts,tsx}",
+		"./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+		"./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+		"./src/app/**/*.{js,ts,jsx,tsx,mdx}",
 	],
 	prefix: "",
 	theme: {
@@ -100,6 +97,6 @@ const config = {
 		},
 	},
 	plugins: [require("tailwindcss-animate")],
-} satisfies Config;
+};
 
 export default config;
