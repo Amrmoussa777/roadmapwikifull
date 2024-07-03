@@ -10,7 +10,7 @@ import { MutableRefObject, useEffect, useState, useRef } from "react";
 
 const useHero = (roadmapRef: MutableRefObject<null | HTMLDivElement>) => {
 	const [activeRoadmapIndex, setActiveRoadmapIndex] = useState(0);
-	const [intervalDuration, setIntervalDuration] = useState(2000);
+	const [intervalDuration, setIntervalDuration] = useState(1500);
 	const [isPaused, setIsPaused] = useState(false);
 	const scrollTimeoutRef = useRef<null | ReturnType<typeof setTimeout>>(null);
 
