@@ -147,17 +147,17 @@
 			}
 		}
 	}
-}
 
-.section-header {
-	padding: 0 8px;
+	.section-header {
+		padding: 0 8px;
 
-	h2 {
-		@apply text-[20px] md:text-[40px] font-bold text-center leading-[62px] text-white;
-	}
+		h2 {
+			@apply text-[20px] md:text-[40px] font-bold text-center leading-[62px] text-white;
+		}
 
-	p {
-		@apply text-[12px] md:text-[16px] font-inter font-normal text-center leading-[24px] text-white max-w-[742px] mx-auto;
+		p {
+			@apply text-[12px] md:text-[16px] font-inter font-normal text-center leading-[24px] text-white max-w-[742px] mx-auto;
+		}
 	}
 }
 
