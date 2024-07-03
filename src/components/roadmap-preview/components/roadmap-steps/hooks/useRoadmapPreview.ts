@@ -12,6 +12,4 @@ export const useRoadmapPreview = () => {
 	useEffect(() => {
 		dispatch(fetchRoadmapById(roadmapId));
 	}, []);
-
-	return;
 };

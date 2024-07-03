@@ -22,7 +22,7 @@ const RoadmapPreviewSteps = () => {
 	} = useRoadmapPreviewSteps();
 
 	const { roadmap, isLoading } = useAppSelector(state => state.roadmapPreview);
-	const { steps } = roadmap || {};
+	const { steps, flag } = roadmap || {};
 
 	if (isLoading) return <LoadingRoadmapPreviewSteps />;
 
@@ -32,7 +32,7 @@ const RoadmapPreviewSteps = () => {
 				<div className="flex-jc-c">
 					<h3 className="h-[40px] flex items-center gap-2 text-white bg-primary-ultramarineBlue rounded-full font-medium py-2 px-4">
 						<span>{PARK_ICON}</span>
-						FrontEnd 🚀
+						{flag} 🚀
 					</h3>
 				</div>
 

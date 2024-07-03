@@ -29,7 +29,7 @@ const RoadmapPreviewProfileInfo = () => {
 	return (
 		<>
 			<div className="w-full">
-				<div className="flex-jc-c gap-1">
+				<div className="flex-jc-c gap-1 flex-wrap">
 					<h2 className="text-2xl font-semibold line-clamp-1">
 						{user?.userName}
 					</h2>
