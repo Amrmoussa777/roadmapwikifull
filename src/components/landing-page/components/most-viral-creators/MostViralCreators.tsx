@@ -18,7 +18,7 @@ const MostViralCreators = () => {
 			</div>
 
 			<Swiper
-				className="mt-12"
+				className="mt-12 !px-4"
 				slidesPerView={6.2}
 				spaceBetween={30}
 				pagination={{
@@ -50,11 +50,11 @@ const MostViralCreators = () => {
 						spaceBetween: 20,
 					},
 					400: {
-						slidesPerView: 2,
+						slidesPerView: 1.6,
 						spaceBetween: 20,
 					},
 					100: {
-						slidesPerView: 1.6,
+						slidesPerView: 1.4,
 						spaceBetween: 20,
 					},
 				}}

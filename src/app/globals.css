@@ -5,12 +5,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	font-smooth: never;
-}
-
 @layer base {
 	:root {
 		--background: 0 0% 100%;
@@ -155,6 +149,8 @@ body {
 	}
 
 	.heading-section {
+		@apply px-2;
+
 		h2 {
 			@apply text-[20px] md:text-[40px] font-bold text-center leading-[62px] text-white;
 		}

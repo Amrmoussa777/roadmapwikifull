@@ -45,7 +45,7 @@ const Roadmap = ({
 						<div className="flex-jc-c">
 							<h3
 								style={{ backgroundColor: secondaryColor }}
-								className="h-[40px] flex items-center gap-2 text-white rounded-full font-medium py-2 px-4"
+								className="text-[14px] sm:text-[16] h-[40px] flex items-center gap-2 text-white rounded-full font-medium py-2 px-4"
 							>
 								<span>{PARK_ICON}</span>
 								{title} 🚀

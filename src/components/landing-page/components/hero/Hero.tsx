@@ -2,7 +2,7 @@
 
 import React, { useRef } from "react";
 import { PLAY_ICON } from "@public/icons/landingPage";
-import Roadmap from "@/components/common/roadmap/Roadmap";
+import Roadmap from "@/components/landing-page/components/hero/Roadmap";
 import { roadmapList } from "@/components/landing-page/data/roadmapList";
 import { useHero } from "@/components/landing-page/hooks/useHero";
 
