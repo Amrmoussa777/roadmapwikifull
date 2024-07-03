@@ -148,8 +148,9 @@
 		}
 	}
 }
+
 .section-header {
-	@apply px-2;
+	padding: 0 8px;
 
 	h2 {
 		@apply text-[20px] md:text-[40px] font-bold text-center leading-[62px] text-white;

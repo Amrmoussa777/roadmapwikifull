@@ -31,7 +31,7 @@ const RoadmapPreviewProfileInfo = () => {
 			<div className="w-full">
 				<div className="flex-jc-c gap-1">
 					<h2 className="text-2xl font-semibold line-clamp-1">
-						{user?.userName.slice(0, 10)}
+						{user?.userName}
 					</h2>
 					<p className="font-thin text-[#898989] text-[16px]">@9abour</p>
 				</div>
