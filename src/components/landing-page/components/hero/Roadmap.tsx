@@ -21,11 +21,12 @@ const Roadmap = ({
 	useEffect(() => {
 		if (roadmap.id !== currentRoadmap.id) {
 			setIsVisible(false);
-
-			setTimeout(() => {
-				setIsVisible(true);
+			const timeout = setTimeout(() => {
 				setCurrentRoadmap(roadmap);
-			}, 300);
+				setIsVisible(true);
+			}, 500);
+
+			return () => clearTimeout(timeout);
 		}
 	}, [roadmap]);
 
@@ -33,11 +34,11 @@ const Roadmap = ({
 		<>
 			<div
 				ref={roadmapRef}
-				className="relative w-10/12 lg:w-5/12 xl:w-6/12 max-w-[400px] mt-[40px] lg:mt-0"
+				className="relative w-full lg:w-5/12 xl:w-6/12 max-w-[400px] mt-[20px] lg:mt-0"
 			>
 				<div className="w-full dotted-bg p-6 bg-white rounded-[22px] h-[650px] overflow-y-scroll hidden-scrollbar shadow-2xl pb-[12rem]">
 					<motion.div
-						initial={{ opacity: 1 }}
+						initial={{ opacity: 0 }}
 						animate={{ opacity: isVisible ? 1 : 0 }}
 						transition={{ duration: 0.5 }}
 						className="fade-in"
@@ -59,7 +60,7 @@ const Roadmap = ({
 								step={step}
 								lastStep={index + 1 === steps.length}
 								isFirstStep={index === 0}
-								showTags={true}
+								showTags={false}
 							/>
 						))}
 					</motion.div>

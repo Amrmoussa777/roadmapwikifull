@@ -1,5 +1,5 @@
 import { roadmapList } from "@/components/landing-page/data/roadmapList";
-import { MutableRefObject, useEffect, useState } from "react";
+import { MutableRefObject, useEffect, useState, useRef } from "react";
 
 /**
  * Custom hook to manage the hero section's roadmap behavior.
@@ -12,25 +12,64 @@ const useHero = (roadmapRef: MutableRefObject<null | HTMLDivElement>) => {
 	const [activeRoadmapIndex, setActiveRoadmapIndex] = useState(0);
 	const [intervalDuration, setIntervalDuration] = useState(2000);
 	const [isPaused, setIsPaused] = useState(false);
+	const scrollTimeoutRef = useRef<null | ReturnType<typeof setTimeout>>(null);
 
-	// Add event listeners to pause/resume the roadmap on mouseover/mouseout
+	// Add event listeners to pause/resume the roadmap on mouseover/mouseout, scroll, mousedown, and mouseup
 	useEffect(() => {
-		roadmapRef.current?.addEventListener("mouseover", () => {
+		const handleMouseOver = () => {
 			setIsPaused(true);
-		});
+		};
 
-		roadmapRef.current?.addEventListener("mouseout", () => {
+		const handleMouseOut = () => {
 			setIsPaused(false);
-		});
+		};
+
+		const handleScroll = () => {
+			// Clear the previous timeout if there's any
+			if (scrollTimeoutRef.current) {
+				clearTimeout(scrollTimeoutRef.current);
+			}
+
+			// Set isPaused to true when scrolling
+			setIsPaused(true);
+
+			// Set a timeout to reset isPaused after scrolling ends
+			scrollTimeoutRef.current = setTimeout(() => {
+				setIsPaused(false);
+			}, 150); // Adjust the timeout duration as needed
+		};
+
+		const handleMouseDown = () => {
+			setIsPaused(true);
+		};
+
+		const handleMouseUp = () => {
+			setIsPaused(false);
+		};
+
+		const roadmapElement = roadmapRef.current;
+		if (roadmapElement) {
+			roadmapElement.addEventListener("mouseover", handleMouseOver);
+			roadmapElement.addEventListener("mouseout", handleMouseOut);
+			roadmapElement.addEventListener("scroll", handleScroll);
+			roadmapElement.addEventListener("mousedown", handleMouseDown);
+			roadmapElement.addEventListener("mouseup", handleMouseUp);
+		}
 
 		// Cleanup event listeners on component unmount
 		return () => {
-			roadmapRef.current?.removeEventListener("mouseover", () => {
-				setIsPaused(true);
-			});
-			roadmapRef.current?.removeEventListener("mouseout", () => {
-				setIsPaused(false);
-			});
+			if (roadmapElement) {
+				roadmapElement.removeEventListener("mouseover", handleMouseOver);
+				roadmapElement.removeEventListener("mouseout", handleMouseOut);
+				roadmapElement.removeEventListener("scroll", handleScroll);
+				roadmapElement.removeEventListener("mousedown", handleMouseDown);
+				roadmapElement.removeEventListener("mouseup", handleMouseUp);
+			}
+
+			// Clear the scroll timeout if component unmounts
+			if (scrollTimeoutRef.current) {
+				clearTimeout(scrollTimeoutRef.current);
+			}
 		};
 	}, [roadmapRef]);
 
@@ -54,9 +93,9 @@ const useHero = (roadmapRef: MutableRefObject<null | HTMLDivElement>) => {
 			activeRoadmapIndex === 0 ||
 			activeRoadmapIndex === roadmapList.length - 1
 		) {
-			setIntervalDuration(1000);
+			setIntervalDuration(1500);
 		} else {
-			setIntervalDuration(2000);
+			setIntervalDuration(3000);
 		}
 	}, [activeRoadmapIndex]);
 
