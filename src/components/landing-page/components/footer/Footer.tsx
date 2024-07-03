@@ -16,7 +16,7 @@ const Footer = () => {
 		<footer className="px-6 lg:px-[4.5rem] pt-[2rem] overflow-hidden">
 			<div className="relative w-full py-[4rem] md:py-[10rem] bg-primary-ultramarineBlue rounded-[32px]">
 				<h3 className="font-extrabold text-[22px] md:text-[32px] lg:text-[52px] text-white text-center">
-					Try Roadmap.io today
+					Start Your Journey Now
 				</h3>
 
 				<div className="flex items-center justify-center gap-4 xl:gap-6 mt-[40px] md:mt-[40px]">

@@ -64,9 +64,8 @@ const Hero = () => {
 					</h1>
 				</div>
 				<p className="text-[#171618] font-inter font-normal text-[14px] sm:text-[18px] leading-[27px] lg:mt-[45px]">
-					Lorem Ipsum is simply dummy text of the printing and typesetting
-					industry. Lorem Ipsum has been the industry's standard dummy text ever
-					since the 1500s
+					Explore a Collection of Expert-Crafted Roadmaps: Each Pathway Designed by Industry Leaders, Loved by a Vast Community of Learners, and carefully curated to meet your unique
+					<span className="font-semibold">  Goals and Ambitions 💪</span>
 				</p>
 
 				<div className="flex items-center justify-center lg:justify-start gap-4 lg:gap-2 xl:gap-6 mt-[40px] md:mt-[40px]">
