@@ -15,7 +15,7 @@ const Roadmap = ({
 	roadmapRef: MutableRefObject<null | HTMLDivElement>;
 }) => {
 	const [currentRoadmap, setCurrentRoadmap] = useState(roadmap);
-	const { steps, title, secondaryColor } = currentRoadmap;
+	const { steps, title, secondaryColor, flag } = currentRoadmap;
 	const [isVisible, setIsVisible] = useState(true);
 
 	useEffect(() => {
@@ -45,10 +45,10 @@ const Roadmap = ({
 						<div className="flex-jc-c">
 							<h3
 								style={{ backgroundColor: secondaryColor }}
-								className="text-[14px] sm:text-[16] h-[40px] flex items-center gap-2 text-white rounded-full font-medium py-2 px-4"
+								className="text-[12px] sm:text-[16px] h-[40px] flex items-center gap-2 text-white rounded-full font-medium py-2 px-4"
 							>
 								<span>{PARK_ICON}</span>
-								{title} 🚀
+								{flag} 🚀
 							</h3>
 						</div>
 						<div className="line-dashed h-8 mx-auto" />
@@ -59,7 +59,7 @@ const Roadmap = ({
 								step={step}
 								lastStep={index + 1 === steps.length}
 								isFirstStep={index === 0}
-								showTags={false}
+								showTags={true}
 							/>
 						))}
 					</motion.div>
