@@ -4,7 +4,7 @@ import React from "react";
 const SuperRoadmaps = () => {
 	return (
 		<section className="py-[4.5rem] bg-primary-ultramarineBlue rounded-t-[3rem]">
-			<div className="heading-section">
+			<div className="section-header">
 				<h2>Easily explore most super Roadmaps</h2>
 				<p>
 					Lorem Ipsum is simply dummy text of the printing and typesetting

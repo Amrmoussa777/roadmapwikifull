@@ -5,7 +5,7 @@ import React from "react";
 const MostViralRoadmaps = () => {
 	return (
 		<section className="bg-[#F8F9FA] px-6 lg:px-[4.5rem] py-[4.5rem]">
-			<div className="heading-section [&>*]:!text-[#171618]">
+			<div className="section-header [&>*]:!text-[#171618]">
 				<h2>Most Viral Roadmaps</h2>
 				<p>
 					Lorem Ipsum is simply dummy text of the printing and typesetting

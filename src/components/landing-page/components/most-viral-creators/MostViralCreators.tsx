@@ -8,7 +8,7 @@ import "swiper/css";
 const MostViralCreators = () => {
 	return (
 		<section className="px-0 py-[4.5rem] bg-white">
-			<div className="heading-section [&>*]:!text-[#171618]">
+			<div className="section-header [&>*]:!text-[#171618]">
 				<h2>With the Most Viral Creators</h2>
 				<p>
 					Lorem Ipsum is simply dummy text of the printing and typesetting

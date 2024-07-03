@@ -147,20 +147,18 @@
 			}
 		}
 	}
+}
+.heading-section {
+	@apply px-2;
 
-	.heading-section {
-		@apply px-2;
+	h2 {
+		@apply text-[20px] md:text-[40px] font-bold text-center leading-[62px] text-white;
+	}
 
-		h2 {
-			@apply text-[20px] md:text-[40px] font-bold text-center leading-[62px] text-white;
-		}
-
-		p {
-			@apply text-[12px] md:text-[16px] font-inter font-normal text-center leading-[24px] text-white max-w-[742px] mx-auto;
-		}
+	p {
+		@apply text-[12px] md:text-[16px] font-inter font-normal text-center leading-[24px] text-white max-w-[742px] mx-auto;
 	}
 }
-
 /* Editor */
 .quill {
 	padding: 10px;
