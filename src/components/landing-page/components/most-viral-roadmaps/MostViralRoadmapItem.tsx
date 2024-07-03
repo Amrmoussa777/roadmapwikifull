@@ -16,16 +16,16 @@ const MostViralRoadmapItem = () => {
 						DevOps Roadmap
 					</h3>
 
-					<div className="flex items-center gap-2 md:gap-3 text-[12px] md:text-[14px] [&>span]:text-[#79828B] [&>span]:flex-jc-c [&>span]:gap-1 [&>span>svg]:text-[#ACB5B7]">
+					<div className="flex flex-wrap justify-between items-center gap-2 md:gap-3 text-[12px] md:text-[14px] [&>span]:text-[#79828B] [&>span]:flex-jc-c [&>span]:gap-1 [&>span>svg]:text-[#ACB5B7]">
 						<span>Amr Mousa</span>
-						<span>{DURATION_ICON} 3 Weeks</span>
-						<span>{STEPS_ICON} 20 Steps</span>
-						<span>{USERS_ICON} 32 Subscribe</span>
+						<span className="min-w-[70px]">{DURATION_ICON} 3 Weeks</span>
+						<span className="min-w-[70px]">{STEPS_ICON} 20 Steps</span>
+						<span className="min-w-[70px]">{USERS_ICON} 32 Subscribe</span>
 					</div>
 				</div>
 			</div>
 
-			<div className="md:ml-auto flex-jc-c gap-2">
+			<div className="md:ml-auto flex-jc-c gap-2 self-end">
 				<h3 className="text-[18px] text-[#979797] font-medium font-inter">
 					Free
 				</h3>

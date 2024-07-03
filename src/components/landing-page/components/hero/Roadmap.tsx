@@ -15,7 +15,7 @@ const Roadmap = ({
 	roadmapRef: MutableRefObject<null | HTMLDivElement>;
 }) => {
 	const [currentRoadmap, setCurrentRoadmap] = useState(roadmap);
-	const { steps, title, secondaryColor, flag } = currentRoadmap;
+	const { steps, title, primaryColor, flag } = currentRoadmap;
 	const [isVisible, setIsVisible] = useState(true);
 
 	useEffect(() => {
@@ -38,14 +38,14 @@ const Roadmap = ({
 			>
 				<div className="w-full dotted-bg p-6 bg-white rounded-[22px] h-[650px] overflow-y-scroll hidden-scrollbar shadow-2xl pb-[12rem]">
 					<motion.div
-						initial={{ opacity: 0 }}
-						animate={{ opacity: isVisible ? 1 : 0 }}
+						initial={{ opacity: 0.5 }}
+						animate={{ opacity: isVisible ? 1 : 0.2 }}
 						transition={{ duration: 0.5 }}
 						className="fade-in"
 					>
 						<div className="flex-jc-c">
 							<h3
-								style={{ backgroundColor: secondaryColor }}
+								style={{ backgroundColor: primaryColor }}
 								className="text-[12px] sm:text-[16px] h-[40px] flex items-center gap-2 text-white rounded-full font-medium py-2 px-4"
 							>
 								<span>{PARK_ICON}</span>
