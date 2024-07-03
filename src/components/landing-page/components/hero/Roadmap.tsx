@@ -38,8 +38,8 @@ const Roadmap = ({
 			>
 				<div className="w-full dotted-bg p-6 bg-white rounded-[22px] h-[650px] overflow-y-scroll hidden-scrollbar shadow-2xl pb-[12rem]">
 					<motion.div
-						initial={{ opacity: 0.5 }}
-						animate={{ opacity: isVisible ? 1 : 0.2 }}
+						initial={{ opacity: 0.7 }}
+						animate={{ opacity: isVisible ? 1 : 0.7 }}
 						transition={{ duration: 0.5 }}
 						className="fade-in"
 					>
