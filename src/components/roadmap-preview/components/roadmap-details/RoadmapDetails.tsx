@@ -5,13 +5,16 @@ import { DURATION_ICON } from "@public/icons/roadmapSteps";
 import { STEPS_ICON, USERS_ICON } from "@public/icons/roadmapPreview";
 import useToggle from "@/hooks/useToggle";
 import { useAppSelector } from "@/redux/store";
+import LoadingRoadmapDetails from "@/components/roadmap-preview/components/loading/LoadingRoadmapDetails";
 
 const RoadmapDetails = () => {
 	const { currentState: isMoreContent, toggle: toggleMoreContent } =
 		useToggle(false);
-	const { roadmap } = useAppSelector(state => state.roadmapPreview);
+	const { roadmap, isLoading } = useAppSelector(state => state.roadmapPreview);
 	const { description, duration, subscribersCount, _count, tags } =
 		roadmap || {};
+
+	if (isLoading) return <LoadingRoadmapDetails />;
 
 	return (
 		<div className="bg-white w-full lg:w-[500px] h-fit flex flex-col gap-4 p-4 py-3 rounded-md lg:sticky top-2">

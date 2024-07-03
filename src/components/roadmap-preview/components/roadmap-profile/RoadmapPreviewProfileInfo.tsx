@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { DIRECT_MESSAGE } from "@public/icons/roadmapPreview";
 import Image from "next/image";
@@ -6,6 +8,8 @@ import LINKEDIN_ICON from "@public/socialMedia/lnkdin.svg";
 import TWITTER_ICON from "@public/socialMedia/twitter.svg";
 import YOUTUBE_ICON from "@public/socialMedia/yy.svg";
 import { useAppSelector } from "@/redux/store";
+import { useRoadmapPreview } from "@/components/roadmap-preview/components/roadmap-steps/hooks/useRoadmapPreview";
+import LoadingRoadmapPreviewProfileInfo from "@/components/roadmap-preview/components/loading/LoadingRoadmapPreviewProfileInfo";
 
 const socialMediaList = [
 	{ href: "https://x.com", icon: TWITTER_ICON },
@@ -15,7 +19,12 @@ const socialMediaList = [
 ];
 
 const RoadmapPreviewProfileInfo = () => {
-	const { user } = useAppSelector(state => state.roadmapPreview.roadmap) || {};
+	useRoadmapPreview();
+
+	const { roadmap, isLoading } = useAppSelector(state => state.roadmapPreview);
+	const { user } = roadmap || {};
+
+	if (isLoading) return <LoadingRoadmapPreviewProfileInfo />;
 
 	return (
 		<>

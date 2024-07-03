@@ -6,10 +6,13 @@ import RoadmapCover from "@public/roadmapCover.png";
 import SubscribeButton from "@/components/common/button/SubscribeButton";
 import { SHARE_ICON } from "@public/icons/roadmapPreview";
 import { useAppSelector } from "@/redux/store";
+import LoadingRoadmapHeader from "@/components/roadmap-preview/components/loading/LoadingRoadmapHeader";
 
-const RoadmapHeader = () => {
-	const { roadmap } = useAppSelector(state => state.roadmapPreview);
+const LoadmapHeader = () => {
+	const { roadmap, isLoading } = useAppSelector(state => state.roadmapPreview);
 	const { title, cover, price } = roadmap || {};
+
+	if (isLoading) return <LoadingRoadmapHeader />;
 
 	return (
 		<div className="h-[150px]">
@@ -38,4 +41,4 @@ const RoadmapHeader = () => {
 	);
 };
 
-export default RoadmapHeader;
+export default LoadmapHeader;
