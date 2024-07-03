@@ -148,7 +148,7 @@
 		}
 	}
 }
-.heading-section {
+.section-header {
 	@apply px-2;
 
 	h2 {
@@ -159,6 +159,7 @@
 		@apply text-[12px] md:text-[16px] font-inter font-normal text-center leading-[24px] text-white max-w-[742px] mx-auto;
 	}
 }
+
 /* Editor */
 .quill {
 	padding: 10px;
