@@ -1,0 +1,41 @@
+"use client";
+
+import styles from "../styles/editor.module.css";
+import "react-quill/dist/quill.snow.css";
+import React from "react";
+import ReactQuill from "react-quill";
+import { EditorProps } from "@/components/common/Editor/types/editor.types";
+
+var modules = {
+	toolbar: [
+		["bold", "italic", "underline", "strike"],
+		[
+			{ align: ["", "center", "right", "justify"] },
+			{ indent: "-1" },
+			{ indent: "+1" },
+		],
+	],
+};
+
+const Editor = ({
+	value,
+	changeValue,
+	disable,
+	hideToolbar,
+	customStyles,
+}: EditorProps) => {
+	return (
+		<div className={`${styles.editor} ${customStyles}`}>
+			<ReactQuill
+				modules={modules}
+				theme="snow"
+				value={value}
+				onChange={changeValue}
+				className={`${styles.quill} ${hideToolbar ? "hide-toolbar" : ""}`}
+				readOnly={disable}
+			/>
+		</div>
+	);
+};
+
+export default Editor;
