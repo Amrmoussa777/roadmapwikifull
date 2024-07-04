@@ -12,6 +12,7 @@ import {
 import Image from "next/image";
 import React from "react";
 import avatar from "@public/pp.jpeg";
+import { PLAY_ICON } from "@public/icons/landingPage";
 
 const RoadmapItem = () => {
 	return (
@@ -60,7 +61,10 @@ const RoadmapItem = () => {
 					</div>
 				</div>
 
-        <div></div>
+				<div className="flex-jc-c [&>button]:flex-jc-c [&>button]:gap-2 gap-1">
+					<button>{PLAY_ICON} Preview</button>
+					<button>Subscribe</button>
+				</div>
 			</div>
 		</li>
 	);
