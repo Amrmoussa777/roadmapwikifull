@@ -13,7 +13,7 @@ import Link from "next/link";
 
 const Footer = () => {
 	return (
-		<footer className="px-6 lg:px-[4.5rem] pt-[2rem] overflow-hidden">
+		<footer className="px-6 lg:px-[4.5rem] pt-[2rem] overflow-hidden bg-white">
 			<div className="relative w-full py-[4rem] md:py-[10rem] bg-primary-ultramarineBlue rounded-[32px]">
 				<h3 className="font-extrabold text-[22px] md:text-[32px] lg:text-[52px] text-white text-center">
 					Start Your Journey Now

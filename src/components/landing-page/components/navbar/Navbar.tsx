@@ -18,7 +18,7 @@ const Navbar = () => {
 		useToggle(false);
 
 	return (
-		<div className="relative">
+		<div className="relative bg-white w-full">
 			<nav className="relative max-w-[1440px] h-[64px] flex-jb-c mx-auto p-6 lg:px-8 bg-white z-50">
 				<RoadmapLogo />
 				<NavbarLinks links={navbarLinks} />

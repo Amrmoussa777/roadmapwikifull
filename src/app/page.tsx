@@ -10,16 +10,18 @@ import Testimonials from "@/components/landing-page/components/testimonials/Test
 
 export default function Home() {
 	return (
-		<div className="relative max-w-[1440px] mx-auto">
+		<>
 			<Navbar />
-			<Hero />
-			{/* <SuperRoadmaps /> */}
-			{/* <MostViralCreators /> */}
-			<MostViralRoadmaps />
-			<Testimonials />
-			<FAQ />
-			<NewEraHere />
-			<Footer />
-		</div>
+			<main className="relative max-w-[1440px] mx-auto">
+				<Hero />
+				{/* <SuperRoadmaps /> */}
+				{/* <MostViralCreators /> */}
+				<MostViralRoadmaps />
+				<Testimonials />
+				<FAQ />
+				<NewEraHere />
+				<Footer />
+			</main>
+		</>
 	);
 }

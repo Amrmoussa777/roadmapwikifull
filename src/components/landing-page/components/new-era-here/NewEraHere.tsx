@@ -8,8 +8,8 @@ import NewAraFeature from "@/components/landing-page/components/new-era-here/New
 
 const NewEraHere = () => {
 	return (
-		<section className="relative py-[8rem]">
-			<div className=" bg-white">
+		<section className="relative py-[8rem] bg-white">
+			<div className="bg-transparent">
 				<Image
 					src={newEraHere}
 					width={400}
