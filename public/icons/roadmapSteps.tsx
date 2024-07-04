@@ -322,6 +322,23 @@ const CHECK_ICON = (
 	</svg>
 );
 
+const BOOKMARK_ICON = (
+	<svg
+		width="24"
+		height="25"
+		viewBox="0 0 24 25"
+		fill="none"
+		xmlns="http://www.w3.org/2000/svg"
+	>
+		<path
+			fill-rule="evenodd"
+			clip-rule="evenodd"
+			d="M17 3.19141H7C5.9 3.19141 5.01 4.09141 5.01 5.19141L5 21.1914L12 18.1914L19 21.1914V5.19141C19 4.09141 18.1 3.19141 17 3.19141ZM17 18.1914L12 16.0114L7 18.1914V5.19141H17V18.1914Z"
+			fill="currentColor"
+		/>
+	</svg>
+);
+
 export {
 	ADD_TAG,
 	DURATION_ICON,
@@ -337,4 +354,5 @@ export {
 	DRAG_ICON,
 	CHECK_ICON,
 	CROSS_ICON,
+	BOOKMARK_ICON,
 };

@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { DIRECT_MESSAGE } from "@public/icons/roadmapPreview";
 import Image from "next/image";
 import DISCORD_ICON from "@public/socialMedia/discord.svg";
 import LINKEDIN_ICON from "@public/socialMedia/lnkdin.svg";
@@ -10,6 +9,9 @@ import YOUTUBE_ICON from "@public/socialMedia/yy.svg";
 import { useAppSelector } from "@/redux/store";
 import { useRoadmapPreview } from "@/components/roadmap-preview/components/roadmap-steps/hooks/useRoadmapPreview";
 import LoadingRoadmapPreviewProfileInfo from "@/components/roadmap-preview/components/loading/LoadingRoadmapPreviewProfileInfo";
+import FollowButton from "@/components/common/profile/FollowButton";
+import DirectMessageButton from "@/components/common/profile/DirectMessageButton";
+import Link from "next/link";
 
 const socialMediaList = [
 	{ href: "https://x.com", icon: TWITTER_ICON },
@@ -30,9 +32,12 @@ const RoadmapPreviewProfileInfo = () => {
 		<>
 			<div className="w-full">
 				<div className="flex-jc-c gap-1 flex-wrap">
-					<h2 className="text-2xl font-semibold line-clamp-1">
+					<Link
+						href={"/user/userId"}
+						className="text-2xl font-semibold line-clamp-1 hover:underline"
+					>
 						{user?.userName}
-					</h2>
+					</Link>
 					<p className="font-thin text-[#898989] text-[16px]">@9abour</p>
 				</div>
 
@@ -42,12 +47,8 @@ const RoadmapPreviewProfileInfo = () => {
 			</div>
 
 			<div className="w-full h-[40px] flex-jc-c gap-2">
-				<button className="w-full h-full px-6 bg-primary-ultramarineBlue text-white rounded-full">
-					Follow
-				</button>
-				<button className="min-w-[40px] h-full flex-jc-c border-2 border-grey-iconBorder rounded-full [&>svg]:fill-grey-secondary">
-					{DIRECT_MESSAGE}
-				</button>
+				<FollowButton />
+				<DirectMessageButton />
 			</div>
 
 			<p className="text-grey-secondary text-[12px] font-light">

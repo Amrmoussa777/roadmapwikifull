@@ -15,7 +15,7 @@ const Roadmap = ({
 	roadmapRef: MutableRefObject<null | HTMLDivElement>;
 }) => {
 	const [currentRoadmap, setCurrentRoadmap] = useState(roadmap);
-	const { steps, title, secondaryColor, flag } = currentRoadmap;
+	const { steps, title, primaryColor, flag } = currentRoadmap;
 	const [isVisible, setIsVisible] = useState(true);
 
 	useEffect(() => {
@@ -44,7 +44,7 @@ const Roadmap = ({
 					>
 						<div className="flex-jc-c">
 							<h3
-								style={{ backgroundColor: secondaryColor }}
+								style={{ backgroundColor: primaryColor }}
 								className="text-[12px] sm:text-[16px] h-[40px] flex items-center gap-2 text-white rounded-full font-medium py-2 px-4"
 							>
 								<span>{PARK_ICON}</span>

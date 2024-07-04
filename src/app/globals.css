@@ -55,7 +55,7 @@
 		@apply border-border;
 	}
 	body {
-		@apply bg-background text-foreground;
+		@apply bg-[#F5F5F5] text-foreground;
 	}
 	p {
 		@apply text-sm font-normal leading-[140%];
@@ -137,25 +137,25 @@
 }
 
 @layer components {
-  .vote-btn.voted svg {
-    @apply text-[#F4392B];
-  }
+	.vote-btn.voted svg {
+		@apply text-[#F4392B];
+	}
 
-  .vote-btn.voted svg path {
-    @apply fill-[#F4392B];
-  }
+	.vote-btn.voted svg path {
+		@apply fill-[#F4392B];
+	}
 
-  .section-header {
-    padding: 0 8px;
-  }
+	.section-header {
+		padding: 0 8px;
+	}
 
-  .section-header h2 {
-    @apply text-[20px] md:text-[40px] font-bold text-center leading-[62px] text-white;
-  }
+	.section-header h2 {
+		@apply text-[20px] md:text-[40px] font-bold text-center leading-[62px] text-white;
+	}
 
-  .section-header p {
-    @apply text-[12px] md:text-[16px] font-inter font-normal text-center leading-[24px] text-white max-w-[742px] mx-auto;
-  }
+	.section-header p {
+		@apply text-[12px] md:text-[16px] font-inter font-normal text-center leading-[24px] text-white max-w-[742px] mx-auto;
+	}
 }
 
 /* Editor */
