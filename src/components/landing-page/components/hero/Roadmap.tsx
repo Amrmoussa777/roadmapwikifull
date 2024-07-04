@@ -73,7 +73,7 @@ const Roadmap = ({
 					className="absolute top-0 left-[-50px] block"
 				/>
 
-				<div className="absolute w-full lg:w-[525px] xl:w-[550px] bottom-4 left-2/4 -translate-x-2/4">
+				<div className="absolute w-full lg:w-[500px] xl:w-[525px] bottom-4 left-2/4 -translate-x-2/4">
 					<Image
 						src={statusImage}
 						width={400}
