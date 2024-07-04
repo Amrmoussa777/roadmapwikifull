@@ -15,18 +15,17 @@ const Roadmap = ({
 	roadmapRef: MutableRefObject<null | HTMLDivElement>;
 }) => {
 	const [currentRoadmap, setCurrentRoadmap] = useState(roadmap);
-	const { steps, title, primaryColor, flag } = currentRoadmap;
+	const { steps, title, secondaryColor, flag } = currentRoadmap;
 	const [isVisible, setIsVisible] = useState(true);
 
 	useEffect(() => {
 		if (roadmap.id !== currentRoadmap.id) {
 			setIsVisible(false);
-			const timeout = setTimeout(() => {
-				setCurrentRoadmap(roadmap);
-				setIsVisible(true);
-			}, 500);
 
-			return () => clearTimeout(timeout);
+			setTimeout(() => {
+				setIsVisible(true);
+				setCurrentRoadmap(roadmap);
+			}, 300);
 		}
 	}, [roadmap]);
 
@@ -34,18 +33,18 @@ const Roadmap = ({
 		<>
 			<div
 				ref={roadmapRef}
-				className="relative w-full lg:w-5/12 xl:w-6/12 max-w-[400px] mt-[20px] lg:mt-0"
+				className="relative w-10/12 lg:w-5/12 xl:w-6/12 max-w-[400px] mt-[40px] lg:mt-0"
 			>
 				<div className="w-full dotted-bg p-6 bg-white rounded-[22px] h-[650px] overflow-y-scroll hidden-scrollbar shadow-2xl pb-[12rem]">
 					<motion.div
-						initial={{ opacity: 0.7 }}
-						animate={{ opacity: isVisible ? 1 : 0.7 }}
+						initial={{ opacity: 1 }}
+						animate={{ opacity: isVisible ? 1 : 0 }}
 						transition={{ duration: 0.5 }}
 						className="fade-in"
 					>
 						<div className="flex-jc-c">
 							<h3
-								style={{ backgroundColor: primaryColor }}
+								style={{ backgroundColor: secondaryColor }}
 								className="text-[12px] sm:text-[16px] h-[40px] flex items-center gap-2 text-white rounded-full font-medium py-2 px-4"
 							>
 								<span>{PARK_ICON}</span>
@@ -60,7 +59,7 @@ const Roadmap = ({
 								step={step}
 								lastStep={index + 1 === steps.length}
 								isFirstStep={index === 0}
-								showTags={false}
+								showTags={true}
 							/>
 						))}
 					</motion.div>
