@@ -79,8 +79,8 @@ const Roadmap = ({
 				width={400}
 				height={100}
 				quality={100}
-				alt="chair"
-				className="absolute w-[550px] lg:w-[525px] xl:w-[550px] bottom-16 left-2/4 lg:left-auto -translate-x-2/4 lg:translate-x-0 lg:right-0"
+				alt="status"
+				className="absolute w-[550px] lg:w-[525px] xl:w-[550px] bottom-16 left-2/4 lg:left-auto -translate-x-2/4 lg:translate-x-0 lg:right-0 "
 			/>
 		</>
 	);

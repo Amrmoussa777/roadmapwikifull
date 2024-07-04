@@ -13,8 +13,8 @@ export default function Home() {
 		<div className="relative max-w-[1440px] mx-auto">
 			<Navbar />
 			<Hero />
-			<SuperRoadmaps />
-			<MostViralCreators />
+			{/* <SuperRoadmaps /> */}
+			{/* <MostViralCreators /> */}
 			<MostViralRoadmaps />
 			<Testimonials />
 			<FAQ />
