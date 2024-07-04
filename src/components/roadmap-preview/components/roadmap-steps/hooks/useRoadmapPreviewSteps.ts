@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
  *
  * @returns {Object} - The state and handlers for roadmap preview steps.
  * @property {RoadmapStepType | null} previewStep - The current preview step.
- * @property {boolean} isPreviewStepModalHidden - The visibility state of the preview step modal.
+ * @property {boolean} isPreviewStepModalVisible - The visibility state of the preview step modal.
  * @property {string} editorContent - The content of the editor.
  * @property {function} changeEditorContent - Function to change the editor content.
  * @property {function} handlePreviewStep - Function to handle the preview step.
@@ -17,7 +17,7 @@ import { useEffect, useState } from "react";
 export const useRoadmapPreviewSteps = () => {
 	const [previewStep, setPreviewStep] = useState<null | RoadmapStepType>(null);
 	const {
-		currentState: isPreviewStepModalHidden,
+		currentState: isPreviewStepModalVisible,
 		toggle: togglePreviewStepModal,
 	} = useToggle(false);
 
@@ -35,14 +35,14 @@ export const useRoadmapPreviewSteps = () => {
 	};
 
 	useEffect(() => {
-		if (!isPreviewStepModalHidden) {
+		if (!isPreviewStepModalVisible) {
 			setPreviewStep(null);
 		}
-	}, [isPreviewStepModalHidden]);
+	}, [isPreviewStepModalVisible]);
 
 	return {
 		previewStep,
-		isPreviewStepModalHidden,
+		isPreviewStepModalVisible,
 		editorContent,
 		changeEditorContent,
 		handlePreviewStep,

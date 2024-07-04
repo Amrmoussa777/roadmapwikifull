@@ -33,7 +33,7 @@ const Roadmap = ({
 		<>
 			<div
 				ref={roadmapRef}
-				className="relative w-full lg:w-5/12 xl:w-6/12 max-w-[400px] mt-[20px] lg:mt-0"
+				className="relative w-11/12 lg:w-5/12 xl:w-6/12 max-w-[400px] mt-[20px] lg:mt-0"
 			>
 				<div className="w-full dotted-bg p-6 bg-white rounded-[22px] h-[650px] overflow-y-scroll hidden-scrollbar shadow-2xl pb-[12rem]">
 					<motion.div
@@ -72,16 +72,18 @@ const Roadmap = ({
 					alt="chair"
 					className="absolute top-0 left-[-50px] block"
 				/>
-			</div>
 
-			<Image
-				src={statusImage}
-				width={400}
-				height={100}
-				quality={100}
-				alt="status"
-				className="absolute w-[550px] lg:w-[525px] xl:w-[550px] bottom-16 left-2/4 lg:left-auto -translate-x-2/4 lg:translate-x-0 lg:right-0 "
-			/>
+				<div className="absolute w-full lg:w-[525px] xl:w-[550px] bottom-4 left-2/4 -translate-x-2/4">
+					<Image
+						src={statusImage}
+						width={400}
+						height={100}
+						quality={100}
+						alt="status"
+						className="w-full"
+					/>
+				</div>
+			</div>
 		</>
 	);
 };

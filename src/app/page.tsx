@@ -14,8 +14,8 @@ export default function Home() {
 			<Navbar />
 			<main className="relative max-w-[1440px] mx-auto">
 				<Hero />
-				{/* <SuperRoadmaps /> */}
-				{/* <MostViralCreators /> */}
+				<SuperRoadmaps />
+				<MostViralCreators />
 				<MostViralRoadmaps />
 				<Testimonials />
 				<FAQ />

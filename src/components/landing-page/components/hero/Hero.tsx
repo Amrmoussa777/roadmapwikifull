@@ -11,7 +11,7 @@ const Hero = () => {
 	const { activeRoadmapIndex } = useHero(roadmapRef);
 
 	return (
-		<section className="relative px-6 lg:px-[4.5rem] py-[2rem] flex-jb-c flex-col lg:flex-row z-10">
+		<section className="relative px-6 lg:px-[4.5rem] py-[2rem] flex-jc-c gap-24 flex-col lg:flex-row z-10">
 			<div className="w-full lg:w-6/12 grid text-center lg:text-start">
 				<div className="relative">
 					<h1 className="relative text-[24px] sm:text-[48px] font-extrabold text-[#171618]">
@@ -64,8 +64,10 @@ const Hero = () => {
 					</h1>
 				</div>
 				<p className="text-[#171618] font-inter font-normal text-[14px] sm:text-[18px] leading-[27px] lg:mt-[45px]">
-					Explore a Collection of Expert-Crafted Roadmaps: Each Pathway Designed by Industry Leaders, Loved by a Vast Community of Learners, and carefully curated to meet your unique
-					<span className="font-semibold">  Goals and Ambitions 💪</span>
+					Explore a Collection of Expert-Crafted Roadmaps: Each Pathway Designed
+					by Industry Leaders, Loved by a Vast Community of Learners, and
+					carefully curated to meet your unique
+					<span className="font-semibold"> Goals and Ambitions 💪</span>
 				</p>
 
 				<div className="flex items-center justify-center lg:justify-start gap-4 lg:gap-2 xl:gap-6 mt-[40px] md:mt-[40px]">

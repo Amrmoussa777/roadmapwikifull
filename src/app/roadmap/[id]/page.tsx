@@ -6,10 +6,10 @@ import RoadmapPreviewSteps from "@/components/roadmap-preview/components/roadmap
 
 export default function page() {
 	return (
-		<main className="relative w-full flex flex-col md:flex-row p-2 bg-grey-primary">
+		<main className="relative max-w-[1440px] mx-auto flex flex-col md:flex-row p-2">
 			<RoadmapPreviewProfile />
 
-			<div className="w-full md:w-[calc(70%-12px)] lg:w-[calc(70%-12px)] xl:w-[calc(80%-12px)] ml-auto hidden-scrollbar mb-12">
+			<div className="w-full md:w-[calc(100%-300px)] ml-auto hidden-scrollbar mb-12">
 				<RoadmapHeader />
 
 				<div className="relative w-full flex flex-col-reverse lg:flex-row justify-center gap-2 py-2">
