@@ -25,7 +25,7 @@ const Roadmap = ({
 			setTimeout(() => {
 				setIsVisible(true);
 				setCurrentRoadmap(roadmap);
-			}, 300);
+			}, 500);
 		}
 	}, [roadmap]);
 
@@ -33,12 +33,12 @@ const Roadmap = ({
 		<>
 			<div
 				ref={roadmapRef}
-				className="relative w-10/12 lg:w-5/12 xl:w-6/12 max-w-[400px] mt-[40px] lg:mt-0"
+				className="relative w-full lg:w-5/12 xl:w-6/12 max-w-[400px] mt-[20px] lg:mt-0"
 			>
 				<div className="w-full dotted-bg p-6 bg-white rounded-[22px] h-[650px] overflow-y-scroll hidden-scrollbar shadow-2xl pb-[12rem]">
 					<motion.div
 						initial={{ opacity: 1 }}
-						animate={{ opacity: isVisible ? 1 : 0 }}
+						animate={{ opacity: isVisible ? 1 : 0.3 }}
 						transition={{ duration: 0.5 }}
 						className="fade-in"
 					>
@@ -59,7 +59,7 @@ const Roadmap = ({
 								step={step}
 								lastStep={index + 1 === steps.length}
 								isFirstStep={index === 0}
-								showTags={true}
+								showTags={false}
 							/>
 						))}
 					</motion.div>
@@ -79,8 +79,8 @@ const Roadmap = ({
 				width={400}
 				height={100}
 				quality={100}
-				alt="chair"
-				className="absolute w-[550px] lg:w-[525px] xl:w-[550px] bottom-16 left-2/4 lg:left-auto -translate-x-2/4 lg:translate-x-0 lg:right-0"
+				alt="status"
+				className="absolute w-[550px] lg:w-[525px] xl:w-[550px] bottom-16 left-2/4 lg:left-auto -translate-x-2/4 lg:translate-x-0 lg:right-0 "
 			/>
 		</>
 	);
