@@ -4,7 +4,7 @@ import React from "react";
 
 const UserRoadmaps = () => {
 	return (
-		<div className="w-full md:w-8/12 mt-4 px-4">
+		<div className="w-full md:w-[calc(100%-296px)] mt-8 md:mt-4 md:pl-4">
 			<div className="w-full flex-jb-c">
 				<h3 className="text-[18px] text-[#202020] font-inter font-semibold">
 					Roadmaps
