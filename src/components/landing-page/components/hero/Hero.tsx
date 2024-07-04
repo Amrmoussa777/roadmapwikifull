@@ -11,7 +11,7 @@ const Hero = () => {
 	const { activeRoadmapIndex } = useHero(roadmapRef);
 
 	return (
-		<section className="relative px-6 lg:px-[4.5rem] py-[2rem] flex-jc-c gap-24 flex-col lg:flex-row z-10">
+		<section className="relative px-6 lg:px-[4.5rem] py-[2rem] flex-jc-c lg:gap-12 xl:gap-24 flex-col lg:flex-row z-10">
 			<div className="w-full lg:w-6/12 grid text-center lg:text-start">
 				<div className="relative">
 					<h1 className="relative text-[24px] sm:text-[48px] font-extrabold text-[#171618]">
