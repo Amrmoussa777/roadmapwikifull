@@ -41,7 +41,7 @@ const SuperRoadmapsSlider = () => {
 						width={600}
 						height={600}
 						alt=""
-						className="w-full"
+						className="md:w-full"
 					/>
 				</SwiperSlide>
 				<SwiperSlide>
@@ -50,7 +50,7 @@ const SuperRoadmapsSlider = () => {
 						width={600}
 						height={600}
 						alt=""
-						className="w-full"
+						className="md:w-full"
 					/>
 				</SwiperSlide>
 			</Swiper>

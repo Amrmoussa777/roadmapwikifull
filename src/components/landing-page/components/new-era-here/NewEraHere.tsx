@@ -19,21 +19,21 @@ const NewEraHere = () => {
 				/>
 			</div>
 
-			<div className="flex-jc-c xl:flex-jb-c flex-wrap gap-2 px-6 lg:px-[4.5rem] mt-[4rem] lg:mt-[8rem]">
+			<div className="flex justify-center xl:justify-between   flex-wrap  gap-2 px-6 lg:px-[4.5rem] mt-[4rem] lg:mt-[8rem] items-start ">
 				<NewAraFeature
 					image={newEraHere_1}
-					title="Most easiest & structured "
-					description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has beenthe industry's standard dummy text ever."
+					title="Most easiest & structured"
+					description="Explore streamlined roadmaps for clear, step-by-step learning journeys, making complex topics accessible and ensuring confident progress."
 				/>
 				<NewAraFeature
 					image={newEraHere_2}
-					title="Demos & best monitor"
-					description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has beenthe industry's standard dummy text ever."
+					title="Mentorship"
+					description="Access personalized mentorship through adaptable roadmaps, receiving expert guidance to overcome challenges, achieve goals, and reach milestones at your pace."
 				/>
 				<NewAraFeature
 					image={newEraHere_3}
-					title="Flexible environment"
-					description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has beenthe industry's standard dummy text ever."
+					title="Community-driven"
+					description="Join vibrant roadmap communities to post questions, discuss steps, and interact with peers. Collaborate, share knowledge, and advance together."
 				/>
 			</div>
 		</section>

@@ -137,28 +137,25 @@
 }
 
 @layer components {
-	.vote-btn {
-		&.voted {
-			svg {
-				@apply text-[#F4392B];
-				path {
-					@apply fill-[#F4392B];
-				}
-			}
-		}
-	}
+  .vote-btn.voted svg {
+    @apply text-[#F4392B];
+  }
 
-	.section-header {
-		padding: 0 8px;
+  .vote-btn.voted svg path {
+    @apply fill-[#F4392B];
+  }
 
-		h2 {
-			@apply text-[20px] md:text-[40px] font-bold text-center leading-[62px] text-white;
-		}
+  .section-header {
+    padding: 0 8px;
+  }
 
-		p {
-			@apply text-[12px] md:text-[16px] font-inter font-normal text-center leading-[24px] text-white max-w-[742px] mx-auto;
-		}
-	}
+  .section-header h2 {
+    @apply text-[20px] md:text-[40px] font-bold text-center leading-[62px] text-white;
+  }
+
+  .section-header p {
+    @apply text-[12px] md:text-[16px] font-inter font-normal text-center leading-[24px] text-white max-w-[742px] mx-auto;
+  }
 }
 
 /* Editor */

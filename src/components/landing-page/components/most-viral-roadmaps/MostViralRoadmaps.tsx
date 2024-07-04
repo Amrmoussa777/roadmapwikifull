@@ -8,9 +8,7 @@ const MostViralRoadmaps = () => {
 			<div className="section-header [&>*]:!text-[#171618]">
 				<h2>Most Viral Roadmaps</h2>
 				<p>
-					Lorem Ipsum is simply dummy text of the printing and typesetting
-					industry. Lorem Ipsum has beenthe industry's standard dummy text ever
-					since the 1500s
+				<span className="font-semibold">Don't Miss Out on Success: </span>  Explore Our Most Viral Roadmaps and subscribe to expert-curated pathways to achieve your goals.
 				</p>
 			</div>
 

@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
 export const useRoadmapPreview = () => {
-	const pathname = usePathname();
+	const pathname = usePathname() as string;
 	const roadmapId = PathnameHelper.getLastPathname(pathname);
 	const dispatch = useAppDispatch();
 
