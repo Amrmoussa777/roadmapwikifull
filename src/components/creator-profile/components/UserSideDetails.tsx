@@ -36,7 +36,7 @@ const UserSideDetails = () => {
 	const { currentState: isReadMore, toggle: toggleReadMore } = useToggle(false);
 
 	return (
-		<div className="relative md:sticky w-full md:w-4/12 md:top-4 mt-4 rounded-[12px] p-[18px] bg-white">
+		<div className="relative md:sticky w-full md:w-4/12 h-fit md:top-4 mt-4 rounded-[12px] p-[18px] bg-white">
 			<h3 className="text-[16px] font-normal text-[#383838]">
 				Additional details
 			</h3>
@@ -54,7 +54,7 @@ const UserSideDetails = () => {
 					<p>Description</p>
 					<span
 						className={`!font-normal leading-[140%] ${
-							isReadMore ? "line-clamp-none" : "line-clamp-3"
+							isReadMore ? "line-clamp-none" : "line-clamp-1 md:line-clamp-3"
 						}`}
 					>
 						Lorem Ipsum is simply dummy text of the printing and typesetting

@@ -26,6 +26,10 @@ const UserRoadmaps = () => {
 				<RoadmapItem />
 				<RoadmapItem />
 				<RoadmapItem />
+				<RoadmapItem />
+				<RoadmapItem />
+				<RoadmapItem />
+				<RoadmapItem />
 			</ul>
 		</div>
 	);
