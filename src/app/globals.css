@@ -51,11 +51,16 @@
 		--ring: 224.3 76.3% 48%;
 	}
 
+	html {
+		scroll-behavior: smooth;
+	}
+
 	* {
 		@apply border-border;
 	}
 	body {
 		@apply bg-[#F8F9FA] text-foreground;
+		scroll-behavior: smooth;
 	}
 	p {
 		@apply text-sm font-normal leading-[140%];
