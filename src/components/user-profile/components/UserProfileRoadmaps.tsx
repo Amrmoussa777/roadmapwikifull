@@ -2,13 +2,18 @@
 
 import UserProfileSaveButton from "@/components/common/button/UserProfileSaveButton";
 import UserProfileRoadmap from "@/components/user-profile/components/UserProfileRoadmap";
+import UserProfileRoadmapsLoader from "@/components/user-profile/components/loading/UserProfileRoadmapsLoader";
 import useToggle from "@/hooks/useToggle";
+import { useAppSelector } from "@/redux/store";
 import { ARROW_ICON } from "@public/icons/roadmapSteps";
 import Link from "next/link";
 import React from "react";
 
 const UserProfileRoadmaps = () => {
 	const { currentState: isEditEnabled, toggle: toggleEdit } = useToggle(false);
+	const { isLoading } = useAppSelector(state => state.userProfile);
+
+	if (isLoading) return <UserProfileRoadmapsLoader />;
 
 	return (
 		<div id="subscribes" className="bg-white sm:rounded-[12px] p-[18px]">

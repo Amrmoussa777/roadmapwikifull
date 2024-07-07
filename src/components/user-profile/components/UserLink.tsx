@@ -19,7 +19,6 @@ const UserLink = ({ link, disabled }: UserLinkProps) => {
 						href={href}
 						target="_blank"
 						contentEditable={disabled}
-						suppressContentEditableWarning={true}
 						className="font-inter font-medium text-primary-ultramarineBlue outline-none"
 					>
 						{href}

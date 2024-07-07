@@ -1,30 +1,9 @@
+import { fetchUserByUsername } from "@/redux/slices/thunks/getUserByUsername";
 import { USER_IG_ICON, X_ICON, YT_ICON } from "@public/icons/userProfile";
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-	personalInfo: [
-		{
-			name: "email",
-			value: "mohamedelhossinyn1@gmail.com",
-		},
-		{
-			name: "phone",
-			value: "00201124784249",
-		},
-		{
-			name: "username",
-			value: "mhmdlogan",
-		},
-		{
-			name: "title",
-			value: "UI UX Product designer",
-		},
-		{
-			name: "description",
-			value:
-				"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-		},
-	],
+const initialState: UserProfileStateTypes = {
+	personalInfo: null,
 	links: [
 		{
 			icon: YT_ICON,
@@ -42,13 +21,33 @@ const initialState = {
 			label: "Instagram Account",
 		},
 	],
-	subscribes: [],
+	user: null,
+	isLoading: true,
 };
 
 const userProfileSlice = createSlice({
 	initialState,
 	name: "userProfileSlice",
 	reducers: {},
+	extraReducers(builder) {
+		builder.addCase(fetchUserByUsername.pending, (state, action) => {
+			state.isLoading = true;
+		});
+
+		builder.addCase(fetchUserByUsername.fulfilled, (state, action) => {
+			state.isLoading = false;
+			state.user = action.payload;
+
+			const { email, description, userName, occupation } = action.payload;
+
+			state.personalInfo = [
+				{ name: "email", value: email },
+				{ name: "description", value: description },
+				{ name: "userName", value: userName },
+				{ name: "occupation", value: occupation },
+			];
+		});
+	},
 });
 
 export const {} = userProfileSlice.actions;

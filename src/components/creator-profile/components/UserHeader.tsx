@@ -1,5 +1,7 @@
+"use client";
+
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 import cover from "@public/roadmapCover.png";
 import UserImage from "@/components/creator-profile/components/UserImage";
 import UserDetails from "@/components/creator-profile/components/UserDetails";
@@ -8,8 +10,22 @@ import DirectMessageButton from "@/components/common/profile/DirectMessageButton
 import { MENU_ICON } from "@public/icons/roadmapSteps";
 import { SHARE_ICON } from "@public/icons/roadmapPreview";
 import { EDIT_ICON } from "@public/icons/userProfile";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
+import { useParams } from "next/navigation";
+import { fetchUserByUsername } from "@/redux/slices/thunks/getUserByUsername";
+import UserHeaderLoader from "@/components/user-profile/components/loading/UserHeaderLoader";
 
 const UserHeader = () => {
+	const dispatch = useAppDispatch();
+	const { username } = useParams();
+	const { isLoading } = useAppSelector(state => state.userProfile);
+
+	useEffect(() => {
+		dispatch(fetchUserByUsername(username));
+	}, []);
+
+	if (isLoading) return <UserHeaderLoader />;
+
 	return (
 		<div className="relative w-full h-[400px] md:h-[300px] bg-white sm:rounded-[16px] overflow-hidden">
 			<Image

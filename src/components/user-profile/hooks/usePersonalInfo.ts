@@ -9,9 +9,11 @@ export const usePersonalInfo = () => {
 	const { formValues, onFormValueChange } = useHandleFormInputChange();
 
 	const resetDefaultPersonalInfo = () => {
-		personalInfo.map(item => {
-			onFormValueChange({ value: item.value, key: item.name });
-		});
+		if (personalInfo) {
+			personalInfo.map(item => {
+				onFormValueChange({ value: item.value, key: item.name });
+			});
+		}
 	};
 
 	useEffect(() => {

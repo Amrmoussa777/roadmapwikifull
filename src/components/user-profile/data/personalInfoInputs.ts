@@ -23,13 +23,13 @@ export const personalInfoInputs = [
 		type: "text",
 		label: "Username",
 		icon: USERNAME_ICON,
-		name: "username",
+		name: "userName",
 	},
 	{
 		type: "text",
 		label: "Title",
 		icon: JOB_ICON,
-		name: "title",
+		name: "occupation",
 	},
 	{
 		type: "textarea",

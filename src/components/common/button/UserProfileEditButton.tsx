@@ -9,7 +9,7 @@ const UserProfileEditButton = ({
 	return (
 		<button
 			onClick={toggleEdit}
-			className={`w-[40px] h-[40px] flex-jc-c text-[#202020] ${
+			className={`w-[40px] h-[40px] flex-jc-c text-[#ADAEB5] ${
 				isEditEnabled ? "opacity-0" : "opacity-100"
 			} transition-all`}
 		>

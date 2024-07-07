@@ -1,3 +1,7 @@
+"use client";
+
+import UserProfilePaymentsLoader from "@/components/user-profile/components/loading/UserProfilePaymentsLoader";
+import { useAppSelector } from "@/redux/store";
 import { ARROW_ICON } from "@public/icons/roadmapSteps";
 import {
 	PAYMENTS_ICON,
@@ -7,6 +11,10 @@ import Link from "next/link";
 import React from "react";
 
 const UserProfilePayments = () => {
+	const { isLoading } = useAppSelector(state => state.userProfile);
+
+	if (isLoading) return <UserProfilePaymentsLoader />;
+
 	return (
 		<div id="payments" className="bg-white sm:rounded-[12px] p-[18px]">
 			<div className="flex-jb-c mb-4">
