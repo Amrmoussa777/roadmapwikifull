@@ -16,9 +16,10 @@ export type UserProfileTabProps = {
 export type PersonalInfoInputProps = {
 	icon: ReactNode;
 	label: string;
-	value: string;
-	changeValue: (e: ITarget | string) => void;
 	disabled: boolean;
 	customStyles?: string;
-	type: "text" | "number" | "email" | "textarea";
+	type: string;
+	name: string;
+	defaultValue: string;
+	onFormValueChange: ({ value, key }: Record<string, string>) => void;
 };

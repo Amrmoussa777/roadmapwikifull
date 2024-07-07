@@ -1,17 +1,31 @@
+import useInput from "@/components/common/input/hooks/useInput";
 import { PersonalInfoInputProps } from "@/components/user-profile/types/user-profile-tab.types";
-import React from "react";
+import React, { useEffect } from "react";
 
 const PersonalInfoInput = ({
 	type,
 	icon,
 	label,
-	value,
 	disabled,
-	changeValue,
+	name,
 	customStyles,
+	defaultValue = "",
+	onFormValueChange,
 }: PersonalInfoInputProps) => {
+	const { value, changeValue } = useInput(defaultValue);
+
+	useEffect(() => {
+		if (defaultValue) {
+			changeValue(defaultValue);
+		}
+	}, [defaultValue]);
+
+	useEffect(() => {
+		onFormValueChange({ value, key: name });
+	}, [value]);
+
 	return (
-		<li
+		<div
 			className={`w-full flex gap-2 [&>svg]:my-[8px] [&>svg]:text-[#79828B] col-span-2 md:col-span-1 ${customStyles}`}
 		>
 			{icon}{" "}
@@ -27,6 +41,7 @@ const PersonalInfoInput = ({
 						value={value}
 						onChange={changeValue}
 						disabled={disabled}
+						name={name}
 					/>
 				) : (
 					<input
@@ -37,10 +52,11 @@ const PersonalInfoInput = ({
 						value={value}
 						onChange={changeValue}
 						disabled={disabled}
+						name={name}
 					/>
 				)}
 			</div>
-		</li>
+		</div>
 	);
 };
 
