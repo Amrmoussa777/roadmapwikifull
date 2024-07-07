@@ -10,8 +10,6 @@ import { SHARE_ICON } from "@public/icons/roadmapPreview";
 import { EDIT_ICON } from "@public/icons/userProfile";
 
 const UserHeader = () => {
-	const isGuest = false;
-
 	return (
 		<div className="relative w-full h-[400px] md:h-[300px] bg-white rounded-[16px] overflow-hidden">
 			<Image
@@ -27,16 +25,14 @@ const UserHeader = () => {
 			<div className="flex flex-col md:flex-row justify-between py-2 lg:px-[8px] mt-[74px] md:mt-4 mx-4 md:mx-0">
 				<UserDetails />
 
-				{isGuest ? (
-					<div className="h-[40px] mr-0 md:mr-4 flex-jc-c gap-2">
-						<FollowButton customStyles="!rounded-[5px]" />
-						<DirectMessageButton customStyles="border-[#D8D8D8]" />
+				<div className="h-[40px] mr-0 md:mr-4 flex-jc-c gap-2">
+					<FollowButton customStyles="!rounded-[5px]" />
+					<DirectMessageButton customStyles="border-[#D8D8D8]" />
 
-						<button className="min-w-[40px] min-h-[40px] flex-jc-c rounded-full border-2 border-[#D8D8D8] text-[#898989]">
-							{MENU_ICON}
-						</button>
-					</div>
-				) : null}
+					<button className="min-w-[40px] min-h-[40px] flex-jc-c rounded-full border-2 border-[#D8D8D8] text-[#898989]">
+						{MENU_ICON}
+					</button>
+				</div>
 			</div>
 
 			<div className="absolute right-4 top-4 flex-jc-c gap-2">

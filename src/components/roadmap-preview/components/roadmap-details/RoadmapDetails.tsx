@@ -53,27 +53,31 @@ const RoadmapDetails = () => {
 				</li>
 			</ul>
 
-			<div
-				className={`${
-					tags?.length && isMoreContent ? "block" : "hidden md:block"
-				}`}
-			>
-				<div>
-					<h3 className="font-poppins text-[12px] text-grey-secondary">Tags</h3>
-				</div>
+			{tags?.length ? (
+				<div
+					className={`${
+						tags?.length && isMoreContent ? "block" : "hidden md:block"
+					}`}
+				>
+					<div>
+						<h3 className="font-poppins text-[12px] text-grey-secondary">
+							Tags
+						</h3>
+					</div>
 
-				<div className="w-full flex gap-2 flex-wrap mt-1">
-					{tags?.map(item => (
-						<span
-							key={item.id}
-							style={{ backgroundColor: item.color }}
-							className="h-[26px] flex-jc-c text-sm px-4 text-white rounded-full"
-						>
-							{item.tag}
-						</span>
-					))}
+					<div className="w-full flex gap-2 flex-wrap mt-1">
+						{tags?.map(item => (
+							<span
+								key={item.id}
+								style={{ backgroundColor: item.color }}
+								className="h-[26px] flex-jc-c text-sm px-4 text-white rounded-full"
+							>
+								{item.tag}
+							</span>
+						))}
+					</div>
 				</div>
-			</div>
+			) : null}
 
 			<button
 				onClick={toggleMoreContent}

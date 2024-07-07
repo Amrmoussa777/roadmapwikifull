@@ -35,7 +35,7 @@ const LoadmapHeader = () => {
 				<div className="flex-jc-c gap-2">
 					<SubscribeButton
 						price={price?.amount}
-						callback={() => push(`/auth/login`)}
+						onClick={() => push(`/auth/login`)}
 					/>
 					<button className="w-[35px] h-[35px] md:w-[40px] md:h-[40px] flex-jc-c border border-grey-iconBorder rounded-full text-[#898989]">
 						{SHARE_ICON}

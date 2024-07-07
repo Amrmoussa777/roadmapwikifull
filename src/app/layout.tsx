@@ -3,6 +3,7 @@ import { Outfit } from "next/font/google";
 import "./globals.css";
 
 import ReduxProvider from "@/redux/Provider";
+import Navbar from "@/components/landing-page/components/navbar/Navbar";
 
 const outfit = Outfit({ subsets: ["latin"] });
 
@@ -33,7 +34,10 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={outfit.className}>
-				<ReduxProvider>{children}</ReduxProvider>
+				<ReduxProvider>
+					<Navbar />
+					{children}
+				</ReduxProvider>
 			</body>
 		</html>
 	);
