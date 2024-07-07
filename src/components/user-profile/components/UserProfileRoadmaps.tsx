@@ -32,7 +32,12 @@ const UserProfileRoadmaps = () => {
 				<UserProfileRoadmap />
 			</ul>
 
-			{isEditEnabled ? <UserProfileSaveButton toggleEdit={toggleEdit} /> : null}
+			{isEditEnabled ? (
+				<UserProfileSaveButton
+					toggleEdit={toggleEdit}
+					handleCancel={toggleEdit}
+				/>
+			) : null}
 		</div>
 	);
 };
