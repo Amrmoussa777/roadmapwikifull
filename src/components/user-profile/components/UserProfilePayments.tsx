@@ -15,11 +15,11 @@ const UserProfilePayments = () => {
 				</h3>
 			</div>
 
-			<ul>
-				<li className="flex-jb-c bg-[#F5F5F5] py-[20px] px-[24px]">
+			<ul className="w-full">
+				<li className="bg-[#F5F5F5] py-[20px] px-[24px]">
 					<Link
 						href={"/user/userId/payments"}
-						className="w-full flex-jc-c gap-2"
+						className="w-full flex-jb-c gap-2"
 					>
 						<div className="flex items-center gap-2">
 							<span className="block text-[#79828B]">
@@ -40,10 +40,10 @@ const UserProfilePayments = () => {
 						<span className="rotate-90 text-[#898989]">{ARROW_ICON}</span>
 					</Link>
 				</li>
-				<li className="flex-jb-c bg-[#F5F5F5] py-[20px] px-[24px]">
+				<li className="bg-[#F5F5F5] py-[20px] px-[24px]">
 					<Link
 						href={"/user/userId/payments"}
-						className="w-full flex-jc-c gap-2"
+						className="w-full flex-jb-c gap-2"
 					>
 						<div className="flex items-center gap-2">
 							<span className="block text-[#79828B]">{PAYMENTS_ICON}</span>
