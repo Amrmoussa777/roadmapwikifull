@@ -7,10 +7,12 @@ import SubscribeButton from "@/components/common/button/SubscribeButton";
 import { SHARE_ICON } from "@public/icons/roadmapPreview";
 import { useAppSelector } from "@/redux/store";
 import LoadingRoadmapHeader from "@/components/roadmap-preview/components/loading/LoadingRoadmapHeader";
+import { useRouter } from "next/navigation";
 
 const LoadmapHeader = () => {
 	const { roadmap, isLoading } = useAppSelector(state => state.roadmapPreview);
 	const { title, cover, price } = roadmap || {};
+	const { push } = useRouter();
 
 	if (isLoading) return <LoadingRoadmapHeader />;
 
@@ -31,7 +33,10 @@ const LoadmapHeader = () => {
 				</h2>
 
 				<div className="flex-jc-c gap-2">
-					<SubscribeButton price={price?.amount} callback={() => {}} />
+					<SubscribeButton
+						price={price?.amount}
+						callback={() => push(`/auth/login`)}
+					/>
 					<button className="w-[35px] h-[35px] md:w-[40px] md:h-[40px] flex-jc-c border border-grey-iconBorder rounded-full text-[#898989]">
 						{SHARE_ICON}
 					</button>
