@@ -34,6 +34,7 @@ const RoadmapPreviewProfileInfo = () => {
 				<div className="flex-jc-c gap-1 flex-wrap">
 					<Link
 						href={"/user/userId"}
+						target="_blank"
 						className="text-2xl font-semibold line-clamp-1 hover:underline"
 					>
 						{user?.userName}

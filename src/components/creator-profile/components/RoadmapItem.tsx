@@ -58,6 +58,7 @@ const RoadmapItem = () => {
 			<div className="flex flex-col sm:flex-row gap-4 justify-between">
 				<Link
 					href={`/user/userId`}
+					target="_blank"
 					className="mt-4 flex items-center gap-2 group"
 				>
 					<Image
