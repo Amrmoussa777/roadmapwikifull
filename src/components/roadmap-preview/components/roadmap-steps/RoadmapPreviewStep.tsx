@@ -81,10 +81,16 @@ const RoadmapPreviewStep = ({
 				customStyles="[&>div]:!p-0 [&>div]:border"
 			/>
 
-			<Verification verificationsList={verifications} />
+			{verifications?.length ? (
+				<Verification verificationsList={verifications} />
+			) : null}
 
-			<p className="text-[#5A5A5A] text-[12px]">Attachments</p>
-			<Attachments attachments={attachments} />
+			{attachments?.length ? (
+				<>
+					<p className="text-[#5A5A5A] text-[12px]">Attachments</p>
+					<Attachments attachments={attachments} />
+				</>
+			) : null}
 		</div>
 	);
 };
