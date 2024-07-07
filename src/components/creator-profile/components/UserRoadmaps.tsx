@@ -4,8 +4,8 @@ import React from "react";
 
 const UserRoadmaps = () => {
 	return (
-		<div className="w-full md:w-[calc(100%-296px)] mt-8 md:mt-4 md:pl-4">
-			<div className="w-full flex-jb-c">
+		<div className="w-full md:w-[calc(100%-296px)] mt-8 md:mt-4 md:pl-4 px-2 sm:px-0">
+			<div className="w-full flex-jb-c px-2 sm:px-0">
 				<h3 className="text-[18px] text-[#202020] font-inter font-semibold">
 					Roadmaps
 					<span className="w-[25px] h-[24px] ml-2 rounded-full inline-flex justify-center items-center text-[14px] text-[#79828B] bg-black/5">

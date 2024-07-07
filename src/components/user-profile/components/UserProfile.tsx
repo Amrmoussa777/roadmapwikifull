@@ -8,7 +8,7 @@ import React from "react";
 
 const UserProfile = () => {
 	return (
-		<div className="relative max-w-[1440px] mx-auto p-4">
+		<div className="relative max-w-[1440px] mx-auto sm:p-4">
 			<UserHeader />
 
 			<div className="flex flex-col md:flex-row">

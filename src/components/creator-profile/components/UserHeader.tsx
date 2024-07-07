@@ -11,7 +11,7 @@ import { EDIT_ICON } from "@public/icons/userProfile";
 
 const UserHeader = () => {
 	return (
-		<div className="relative w-full h-[400px] md:h-[300px] bg-white rounded-[16px] overflow-hidden">
+		<div className="relative w-full h-[400px] md:h-[300px] bg-white sm:rounded-[16px] overflow-hidden">
 			<Image
 				src={cover}
 				width={400}

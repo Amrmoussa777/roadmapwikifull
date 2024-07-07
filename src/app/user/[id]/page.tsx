@@ -5,8 +5,8 @@ import React from "react";
 const page = () => {
 	return (
 		<>
-			<CreatorProfile />
-			{/* <UserProfile /> */}
+			{/* <CreatorProfile /> */}
+			<UserProfile />
 		</>
 	);
 };

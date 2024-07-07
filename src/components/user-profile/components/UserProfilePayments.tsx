@@ -8,7 +8,7 @@ import React from "react";
 
 const UserProfilePayments = () => {
 	return (
-		<div id="payments" className="bg-white rounded-[12px] p-[18px]">
+		<div id="payments" className="bg-white sm:rounded-[12px] p-[18px]">
 			<div className="flex-jb-c mb-4">
 				<h3 className="font-inter font-semibold text-[18px] text-[#202020]">
 					Payments Info

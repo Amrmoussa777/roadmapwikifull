@@ -36,7 +36,7 @@ const UserSideDetails = () => {
 	const { currentState: isReadMore, toggle: toggleReadMore } = useToggle(false);
 
 	return (
-		<div className="relative md:sticky w-full md:max-w-[296px] h-fit md:top-4 mt-4 rounded-[12px] p-[18px] bg-white">
+		<div className="relative md:sticky w-full md:max-w-[296px] h-fit md:top-4 mt-4 sm:rounded-[12px] p-[18px] bg-white">
 			<ul className="flex flex-col gap-4 [&>li>p]:text-[12px] [&>li>p]:text-[#606060] [&>li>span]:font-inter [&>li>span]:text-[14px] [&>li>span]:font-medium [&>li>span]:text-[#383838]">
 				<li>
 					<p>Description</p>

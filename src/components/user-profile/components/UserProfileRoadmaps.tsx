@@ -11,7 +11,7 @@ const UserProfileRoadmaps = () => {
 	const { currentState: isEditEnabled, toggle: toggleEdit } = useToggle(false);
 
 	return (
-		<div id="subscribes" className="bg-white rounded-[12px] p-[18px]">
+		<div id="subscribes" className="bg-white sm:rounded-[12px] p-[18px]">
 			<div className="flex-jb-c mb-4">
 				<h3 className="font-inter font-semibold text-[18px] text-[#202020]">
 					Subscribes
