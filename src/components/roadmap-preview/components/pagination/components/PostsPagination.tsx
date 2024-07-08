@@ -1,34 +1,23 @@
 import { PaginationProps } from "@/components/roadmap-preview/components/pagination/types/pagination.types";
 import { useAppSelector } from "@/redux/store";
-import { ARROW_ICON } from "@public/icons/roadmapSteps";
 import React from "react";
 
-const PostsPagination = ({
-	pageNumber,
-	lastPage,
-	handleLessComments,
-	handleMoreComments,
-}: PaginationProps) => {
-	const { list } = useAppSelector(state => state.roadmapPreviewPosts.posts);
+const PostsPagination = ({ handleMoreComments }: PaginationProps) => {
+	const { list, totalItems } = useAppSelector(
+		state => state.roadmapPreviewPosts.posts
+	);
 
 	return (
-		<div className="flex-jb-c mt-2 text-center">
+		<div
+			className={`mt-2 text-center transition-all ${
+				totalItems < 2 ? "hidden" : ""
+			}`}
+		>
 			<button
-				className="flex-jc-c"
-				onClick={() => handleLessComments()}
-				disabled={pageNumber === 1 || list.length === 1}
-			>
-				<span className="-rotate-90 [&>svg]:w-[20px]">{ARROW_ICON}</span> Less
-				comments
-			</button>
-
-			<button
-				className="flex-jc-c"
+				className="flex-jc-c mx-auto bg-primary-ultramarineBlue text-white px-4 py-2 rounded-sm"
 				onClick={() => handleMoreComments()}
-				disabled={lastPage}
 			>
 				More comments
-				<span className="rotate-90 [&>svg]:w-[20px]">{ARROW_ICON}</span>
 			</button>
 		</div>
 	);

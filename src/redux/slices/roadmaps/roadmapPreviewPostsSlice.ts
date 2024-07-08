@@ -8,43 +8,31 @@ const initialState: RoadmapPreviewPostsSliceType = {
 	error: null,
 	posts: {
 		list: [],
-		lastPage: false,
+		totalItems: 0,
 	},
 };
 
 export const roadmapPreviewPostsSlice = createSlice({
 	name: "roadmapPreviewPostsSlice",
 	initialState,
-	reducers: {
-		seeLessPosts: state => {
-			if (state.posts.list.length > 0) {
-				state.posts.list.pop();
-			}
-			state.posts.lastPage = false;
-		},
-	},
+	reducers: {},
 	extraReducers(builder) {
 		builder.addCase(getRoadmapPosts.pending, state => {
 			state.isLoading = true;
 		});
 
 		builder.addCase(getRoadmapPosts.fulfilled, (state, action) => {
-			const isLastPage = action.payload.length < 1;
+			const newPosts = action.payload.filter(
+				(post: RoadmapPostType) =>
+					!state.posts.list.some(existingPost => existingPost.id === post.id)
+			);
 
-			if (isLastPage) {
-				state.posts.lastPage = true;
-			} else {
-				state.posts.lastPage = false;
+			state.posts.totalItems = action.payload.length;
 
-				const newPosts = action.payload.filter(
-					(post: RoadmapPostType) =>
-						!state.posts.list.some(existingPost => existingPost.id === post.id)
-				);
-				state.posts.list = [...state.posts.list, ...newPosts];
-			}
+			state.posts.list = [...state.posts.list, ...newPosts];
 		});
 	},
 });
 
 export default roadmapPreviewPostsSlice.reducer;
-export const { seeLessPosts } = roadmapPreviewPostsSlice.actions;
+export const {} = roadmapPreviewPostsSlice.actions;

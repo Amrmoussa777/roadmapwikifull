@@ -16,7 +16,6 @@ import React from "react";
 import avatar from "@public/pp.jpeg";
 import { PLAY_ICON } from "@public/icons/landingPage";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 const RoadmapItem = () => {
 	const { push } = useRouter();
@@ -56,11 +55,7 @@ const RoadmapItem = () => {
 			</div>
 
 			<div className="flex flex-col sm:flex-row gap-4 justify-between">
-				<Link
-					href={`/user/userId`}
-					target="_blank"
-					className="mt-4 flex items-center gap-2 group"
-				>
+				<div className="mt-4 flex items-center gap-2">
 					<Image
 						src={avatar}
 						width={100}
@@ -70,12 +65,12 @@ const RoadmapItem = () => {
 					/>
 
 					<div className="flex justify-center flex-col">
-						<h3 className="flex items-center gap-1 text-[14px] text-[#202020] group-hover:underline">
+						<h3 className="flex items-center gap-1 text-[14px] text-[#202020]">
 							Mohamed Elhossiny {VERIFIED_ICON}
 						</h3>
 						<span className="text-[12px] text-[#79828B]">mhmdlogan</span>
 					</div>
-				</Link>
+				</div>
 
 				<div className="flex-jc-c [&>button]:w-full [&>button]:flex-jc-c [&>button]:gap-2 gap-3 [&>button]:py-[6px] [&>button]:px-[12px] [&>button]:rounded-[5px] text-[#383838] text-[14px] font-inter font-semibold">
 					<button

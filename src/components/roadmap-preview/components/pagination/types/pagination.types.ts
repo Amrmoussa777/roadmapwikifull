@@ -1,6 +1,6 @@
 export type PaginationProps = {
-	pageNumber: number;
-	lastPage: boolean;
 	handleMoreComments: () => void;
-	handleLessComments: () => void;
+};
+export type RepliesPaginationProps = {
+	handleMoreReplies: () => void;
 };

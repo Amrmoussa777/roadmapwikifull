@@ -7,6 +7,7 @@ import useToggle from "@/hooks/useToggle";
 import moment from "moment";
 import Link from "next/link";
 import { UNKNOWN_USER_ICON } from "@public/icons/userProfile";
+import RoadmapDiscussionPostReplies from "@/components/roadmap-preview/components/roadmap-discussion/RoadmapDiscussionPostReplies";
 
 const RoadmapDiscussionPost = ({
 	id,
@@ -64,7 +65,7 @@ const RoadmapDiscussionPost = ({
 				<button className="rotate-90 text-grey-secondary">{MENU_ICON}</button>
 			</div>
 
-			{/* <RoadmapDiscussionPostReplies replies={replies} /> */}
+			{/* <RoadmapDiscussionPostReplies /> */}
 		</>
 	);
 };

@@ -15,7 +15,6 @@ const RoadmapDiscussion = () => {
 	const {
 		isExpandedDiscussion,
 		pageNumber,
-		handleLessComments,
 		handleMoreComments,
 		isSearchOpen,
 		toggleSearch,
@@ -68,12 +67,7 @@ const RoadmapDiscussion = () => {
 
 			<RoadmapDiscussionPosts />
 
-			<PostsPagination
-				pageNumber={pageNumber}
-				handleMoreComments={handleMoreComments}
-				handleLessComments={handleLessComments}
-				lastPage={posts.lastPage}
-			/>
+			<PostsPagination handleMoreComments={handleMoreComments} />
 		</div>
 	);
 };

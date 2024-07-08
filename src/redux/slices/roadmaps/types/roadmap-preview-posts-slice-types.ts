@@ -5,7 +5,7 @@ export interface RoadmapPreviewPostsSliceType {
 	error: Error | null;
 	posts: {
 		list: RoadmapPostType[];
-		lastPage: boolean;
+		totalItems: number;
 	};
 }
 

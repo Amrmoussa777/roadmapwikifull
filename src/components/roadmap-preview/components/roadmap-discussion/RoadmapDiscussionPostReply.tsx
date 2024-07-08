@@ -19,10 +19,7 @@ const RoadmapDiscussionPostReply = ({
 	const dispatch = useAppDispatch();
 
 	return (
-		<div
-			key={id}
-			className="relative flex justify-between items-start gap-2 p-2 ml-4 rounded-md"
-		>
+		<div className="relative flex justify-between items-start gap-2 p-2 ml-4 rounded-md">
 			<Image
 				src={AuthorImage}
 				width={100}
