@@ -252,8 +252,8 @@
 <path d="M174.775 214.541C174.775 214.541 174.367 213.477 175.938 213.158L181.771 214.541H174.775Z" fill="#23C1F2"/>
 <path d="M206.347 214.541C206.347 214.541 205.874 213.223 207.207 212.825L212.766 214.541H206.347Z" fill="#23C1F2"/>
 <defs>
-<filter id="filter0_f_242_16706" x="-3.66992" y="-9.66992" width="298" height="298" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-<feFlood floodOpacity="0" result="BackgroundImageFix"/>
+<filter id="filter0_f_242_16706" x="-3.66992" y="-9.66992" width="298" height="298" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
 <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
 <feGaussianBlur stdDeviation="32" result="effect1_foregroundBlur_242_16706"/>
 </filter>

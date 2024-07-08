@@ -1,4 +1,3 @@
-import { RoadmapPostReplyType } from "@/components/roadmap-preview/components/roadmap-discussion/types/roadmap-discussion-posts";
 import useToggle from "@/hooks/useToggle";
 import Image from "next/image";
 import React from "react";
@@ -6,10 +5,6 @@ import AuthorImage from "@public/pp.jpeg";
 import { REPLY_ICON, UP_VOTE_ICON } from "@public/icons/roadmapPreview";
 import { MENU_ICON } from "@public/icons/roadmapSteps";
 import { useAppDispatch } from "@/redux/store";
-import {
-	fillReplyPostId,
-	togglePostReplyVote,
-} from "@/redux/slices/roadmaps/roadmapPreviewPostsSlice";
 
 const RoadmapDiscussionPostReply = ({
 	id,
@@ -18,21 +13,10 @@ const RoadmapDiscussionPostReply = ({
 	addedDate,
 	postId,
 	votes,
-}: RoadmapPostReplyType) => {
+}: any) => {
 	const { currentState: isVoted, toggle: toggleVote } = useToggle(false);
 
 	const dispatch = useAppDispatch();
-
-	const handleToggleVote = () => {
-		toggleVote();
-		dispatch(
-			togglePostReplyVote({
-				postId,
-				replyId: id,
-				type: isVoted ? "decrease" : "increase",
-			})
-		);
-	};
 
 	return (
 		<div
@@ -59,21 +43,13 @@ const RoadmapDiscussionPostReply = ({
 				</p>
 				<div className="flex items-center gap-3 mt-2 text-sm font-inter font-normal text-[#79828B]">
 					<button
-						onClick={handleToggleVote}
 						className={`flex-jc-c text-[#79828B] [&>svg]:w-[20px] vote-btn ${
 							isVoted ? "voted" : ""
 						}`}
 					>
 						{UP_VOTE_ICON} {votes}
 					</button>
-					<button
-						onClick={() =>
-							dispatch(
-								fillReplyPostId({ replyPostId: postId, replyType: "reply" })
-							)
-						}
-						className="flex-jc-c gap-1 [&>svg]:w-[20px] text-[#ADAEB5] text-[12px] font-inter font-normal"
-					>
+					<button className="flex-jc-c gap-1 [&>svg]:w-[20px] text-[#ADAEB5] text-[12px] font-inter font-normal">
 						{REPLY_ICON} <span>Reply</span>
 					</button>
 				</div>

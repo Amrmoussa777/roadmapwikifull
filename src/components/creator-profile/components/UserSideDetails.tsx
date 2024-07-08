@@ -1,39 +1,18 @@
 "use client";
 
+import UserSideDetailsLoader from "@/components/creator-profile/loading/UserSideDetailsLoader";
 import useToggle from "@/hooks/useToggle";
+import { useAppSelector } from "@/redux/store";
 import { ARROW_ICON } from "@public/icons/roadmapSteps";
 import React from "react";
 
 const UserSideDetails = () => {
-	const experiences = [
-		{
-			id: "9999cdb4-7891-48a9-a000-da2eb29c2f39",
-			title: "Frontend Engineering",
-			description: "Experienced frontend engineer",
-		},
-		{
-			id: "ea376639-cad2-4bdc-a9a7-c3af17ec092c",
-			title: "Scrum",
-			description: "Experienced frontend engineer",
-		},
-		{
-			id: "94a0dd29-c6ac-48c7-8c99-6f8dfab21961",
-			title: "GIT",
-			description: "Experienced frontend engineer",
-		},
-		{
-			id: "8fb4bfc3-65d4-47db-b4b5-998e5da85f12",
-			title: "React",
-			description: "Experienced frontend engineer",
-		},
-		{
-			id: "c72b28eb-79bd-45e1-919a-dec2d29c46cc",
-			title: "HTML/CSS",
-			description: "Experienced frontend engineer",
-		},
-	];
-
 	const { currentState: isReadMore, toggle: toggleReadMore } = useToggle(false);
+	const { isLoading, user } = useAppSelector(state => state.userProfile);
+	const { description, _count, email, experiences, roadmapsSubscribers } =
+		user || {};
+
+	if (isLoading) return <UserSideDetailsLoader />;
 
 	return (
 		<div className="relative md:sticky w-full md:max-w-[296px] h-fit md:top-4 mt-4 sm:rounded-[12px] p-[18px] bg-white">
@@ -42,12 +21,10 @@ const UserSideDetails = () => {
 					<p>Description</p>
 					<span
 						className={`!font-normal leading-[140%] ${
-							isReadMore ? "line-clamp-none" : "line-clamp-1 md:line-clamp-3"
+							isReadMore ? "line-clamp-none" : "line-clamp-1 md:line-clamp-2"
 						}`}
 					>
-						Lorem Ipsum is simply dummy text of the printing and typesetting
-						industry. Lorem Ipsum has been the industry's standard dummytext
-						ever example text
+						{description}
 					</span>
 					<button
 						onClick={toggleReadMore}
@@ -61,16 +38,16 @@ const UserSideDetails = () => {
 
 				<li>
 					<p>Followers</p>
-					<span>1200</span>
+					<span>{_count?.followers}</span>
 				</li>
 				<li>
 					<p>Roadmap Subscription</p>
-					<span>4000</span>
+					<span>{roadmapsSubscribers}</span>
 				</li>
 
 				<li>
 					<p>Email</p>
-					<span>mhmdlogan@gmail.com</span>
+					<span>{email}</span>
 				</li>
 				<li>
 					<p>Join date</p>

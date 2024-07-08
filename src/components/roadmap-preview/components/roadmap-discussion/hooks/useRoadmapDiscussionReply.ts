@@ -1,4 +1,3 @@
-import { replyOnPost } from "@/redux/slices/roadmaps/roadmapPreviewPostsSlice";
 import { useAppDispatch } from "@/redux/store";
 import { FormEvent, RefObject, useEffect } from "react";
 
@@ -19,7 +18,6 @@ export const useRoadmapDiscussionReply = (
 
 	const handleSubmitReply = (e: FormEvent) => {
 		e.preventDefault();
-		dispatch(replyOnPost({ replyContent, postId: replyPostId }));
 		resetReplyValue();
 	};
 

@@ -52,9 +52,9 @@ const UserHeader = () => {
 			</div>
 
 			<div className="absolute right-4 top-4 flex-jc-c gap-2">
-				<button className="w-[40px] h-[40px] flex-jc-c rounded-full bg-white/20 text-white border border-white/20">
+				{/* <button className="w-[40px] h-[40px] flex-jc-c rounded-full bg-white/20 text-white border border-white/20">
 					{EDIT_ICON}
-				</button>
+				</button> */}
 				<button className="w-[40px] h-[40px] flex-jc-c rounded-full bg-white text-[#333333]">
 					{SHARE_ICON}
 				</button>

@@ -1,23 +1,28 @@
-export type RoadmapPostAuthorType = {
-	name: string;
+export interface RoadmapPostAuthorType {
+	id: string;
+	email: string;
+	role: string;
 	image: string;
-};
+	cover: string;
+	occupation: string;
+	roadmapsSubscribers: number;
+	fullName: string;
+	userName: string;
+	description: string;
+}
 
-export type RoadmapPostReplyType = {
-	id: number;
-	postId: number;
-	author: RoadmapPostAuthorType;
-	addedDate: string;
+interface Count {
+	comments: number;
 	votes: number;
-	content: string;
-};
+}
 
-export type RoadmapPostType = {
-	id: number;
+export interface RoadmapPostType {
+	id: string;
+	title: string;
+	content: string;
 	roadmapId: string;
+	authorId: string;
+	createdAt: string;
 	author: RoadmapPostAuthorType;
-	addedDate: string;
-	votes: number;
-	content: string;
-	replies: RoadmapPostReplyType[];
-};
+	_count: Count;
+}

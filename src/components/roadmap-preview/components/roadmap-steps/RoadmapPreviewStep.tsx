@@ -69,7 +69,7 @@ const RoadmapPreviewStep = ({
 						>
 							{CHECK_ICON}
 						</span>{" "}
-						{completed ? "Completed" : "In progress"}
+						Not started
 					</div>
 				</div>
 			</div>

@@ -69,7 +69,7 @@ const RoadmapStepItem = ({
 								>
 									{CHECK_ICON}
 								</span>{" "}
-								{completed ? "Completed" : "In progress"}
+								Not started
 							</div>
 
 							<StepAttachmentsCount
@@ -79,7 +79,7 @@ const RoadmapStepItem = ({
 					</div>
 				</button>
 
-				{lastStep ? (
+				{/* {lastStep ? (
 					<>
 						<HorizontalDivider height="h-[1px]" bgColor="bg-[#E0E0E0]" />
 
@@ -91,7 +91,7 @@ const RoadmapStepItem = ({
 							{completed ? "Uncheck assignment" : "Complete assignment"}
 						</button>
 					</>
-				) : null}
+				) : null} */}
 			</div>
 		</>
 	);

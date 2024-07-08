@@ -1,10 +1,22 @@
 import { RoadmapPostType } from "@/components/roadmap-preview/components/roadmap-discussion/types/roadmap-discussion-posts";
 
-export type RoadmapPreviewPostsSliceType = {
-	posts: RoadmapPostType[];
+export interface RoadmapPreviewPostsSliceType {
 	isLoading: boolean;
 	error: Error | null;
-	searchResult: RoadmapPostType[];
-	replyPostId: number | null;
-	replyType: null | "reply" | "comment";
-};
+	posts: {
+		list: RoadmapPostType[];
+		lastPage: boolean;
+	};
+}
+
+export interface getRoadmapPostsThunkArgs {
+	roadmapId: string | string[];
+	pageNumber: number;
+	pageSize: number;
+}
+
+export interface getPostRepliesThunkArgs {
+	postId: string | string[];
+	pageNumber: number;
+	pageSize: number;
+}

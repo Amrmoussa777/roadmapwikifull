@@ -16,7 +16,7 @@ const Verification = ({
 			{verificationsList?.map(item => (
 				<div
 					key={item.id}
-					className="h-[60px] border border-[#E0E0E0] px-4 py-2 rounded-[8px] mt-3 flex-jb-c"
+					className="h-[60px] border border-[#E0E0E0] px-4 py-2 rounded-[8px] mt-3 flex-jb-c gap-2"
 				>
 					<div>
 						<h3 className="text-[#92929D] font-normal text-[12px]">

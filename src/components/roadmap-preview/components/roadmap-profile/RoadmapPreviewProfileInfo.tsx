@@ -1,30 +1,20 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
-import DISCORD_ICON from "@public/socialMedia/discord.svg";
-import LINKEDIN_ICON from "@public/socialMedia/lnkdin.svg";
-import TWITTER_ICON from "@public/socialMedia/twitter.svg";
-import YOUTUBE_ICON from "@public/socialMedia/yy.svg";
 import { useAppSelector } from "@/redux/store";
 import { useRoadmapPreview } from "@/components/roadmap-preview/components/roadmap-steps/hooks/useRoadmapPreview";
 import LoadingRoadmapPreviewProfileInfo from "@/components/roadmap-preview/components/loading/LoadingRoadmapPreviewProfileInfo";
 import FollowButton from "@/components/common/profile/FollowButton";
 import DirectMessageButton from "@/components/common/profile/DirectMessageButton";
 import Link from "next/link";
-
-const socialMediaList = [
-	{ href: "https://x.com", icon: TWITTER_ICON },
-	{ href: "https://youtube.com", icon: YOUTUBE_ICON },
-	{ href: "https://linkedin.com", icon: LINKEDIN_ICON },
-	{ href: "https://discord.com", icon: DISCORD_ICON },
-];
+import { SOCIAL_MEDIA_ICONS } from "@/config/socialMediaIcons";
 
 const RoadmapPreviewProfileInfo = () => {
 	useRoadmapPreview();
 
 	const { roadmap, isLoading } = useAppSelector(state => state.roadmapPreview);
 	const { user } = roadmap || {};
+	const { socialMedia, userName, description, occupation, _count } = user || {};
 
 	if (isLoading) return <LoadingRoadmapPreviewProfileInfo />;
 
@@ -33,17 +23,17 @@ const RoadmapPreviewProfileInfo = () => {
 			<div className="w-full">
 				<div className="flex-jc-c gap-1 flex-wrap">
 					<Link
-						href={"/user/userId"}
+						href={`/user/${user?.userName}`}
 						target="_blank"
 						className="text-2xl font-semibold line-clamp-1 hover:underline"
 					>
 						{user?.userName}
 					</Link>
-					<p className="font-thin text-[#898989] text-[16px]">@9abour</p>
+					<p className="font-thin text-[#898989] text-[16px]">@{userName}</p>
 				</div>
 
 				<p className="text-center font-thin font-outfit text-[16px] text-[#898989]">
-					Software engineer
+					{occupation}
 				</p>
 			</div>
 
@@ -53,9 +43,7 @@ const RoadmapPreviewProfileInfo = () => {
 			</div>
 
 			<p className="text-grey-secondary text-[12px] font-light">
-				Lorem Ipsum is simply dummy text of the printing and typesetting
-				industry. Lorem Ipsum has been the industry's standard dummytext ever
-				example text
+				{description}
 			</p>
 
 			<ul className="w-full flex flex-wrap md:flex-col items-center md:items-start [&>li]:flex [&>li]:flex-col [&>li]:md:block gap-4">
@@ -64,7 +52,7 @@ const RoadmapPreviewProfileInfo = () => {
 						Followers
 					</span>
 					<p className="font-inter font-normal text-[14px]">
-						{user?._count.followers}
+						{_count?.followers}
 					</p>
 				</li>
 
@@ -102,24 +90,20 @@ const RoadmapPreviewProfileInfo = () => {
 					Social Media
 				</span>
 
-				<div className="w-full flex gap-2">
-					{socialMediaList.map(item => (
-						<a
-							key={item.href}
-							target="_blank"
-							href={item.href}
-							className="w-[40px] h-[40px]"
-						>
-							<Image
-								width={100}
-								height={100}
-								src={item.icon}
-								alt={item.href}
-								className="w-full h-full"
-							/>
-						</a>
-					))}
-				</div>
+				{socialMedia?.length ? (
+					<div className="w-full flex gap-2 mt-1">
+						{socialMedia.map(item => (
+							<a
+								key={item.id}
+								target="_blank"
+								href={`https://${item.link}`}
+								className="w-[40px] h-[40px]"
+							>
+								{SOCIAL_MEDIA_ICONS[item.platform]}
+							</a>
+						))}
+					</div>
+				) : null}
 			</div>
 		</>
 	);

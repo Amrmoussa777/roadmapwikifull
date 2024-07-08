@@ -4,16 +4,27 @@ import React from "react";
 import { EXPAND_ICON, SEARCH_ICON } from "@public/icons/roadmapPreview";
 import HorizontalDivider from "@/components/common/divider/components/HorizontalDivider";
 import RoadmapDiscussionPosts from "@/components/roadmap-preview/components/roadmap-discussion/RoadmapDiscussionPosts";
-import useToggle from "@/hooks/useToggle";
 import useDisableScroll from "@/hooks/useDisableScrolling";
 import { CROSS_ICON } from "@public/icons/roadmapSteps";
 import RoadmapDiscussionSearchFrom from "@/components/roadmap-preview/components/roadmap-discussion/RoadmapDiscussionSearchFrom";
+import { useAppSelector } from "@/redux/store";
+import PostsPagination from "@/components/roadmap-preview/components/pagination/components/PostsPagination";
+import { useRoadmapDiscussion } from "@/components/roadmap-preview/components/roadmap-discussion/hooks/useRoadmapDiscussion";
 
 const RoadmapDiscussion = () => {
-	const { currentState: isExpandedDiscussion, toggle: toggleDiscussion } =
-		useToggle(false);
-	const { currentState: isSearchOpen, toggle: toggleSearch } = useToggle(false);
+	const {
+		isExpandedDiscussion,
+		pageNumber,
+		handleLessComments,
+		handleMoreComments,
+		isSearchOpen,
+		toggleSearch,
+		toggleDiscussion,
+	} = useRoadmapDiscussion();
 	useDisableScroll(isExpandedDiscussion);
+	const { posts } = useAppSelector(state => state.roadmapPreviewPosts);
+
+	if (!posts.list.length) return;
 
 	return (
 		<div
@@ -56,6 +67,13 @@ const RoadmapDiscussion = () => {
 			/>
 
 			<RoadmapDiscussionPosts />
+
+			<PostsPagination
+				pageNumber={pageNumber}
+				handleMoreComments={handleMoreComments}
+				handleLessComments={handleLessComments}
+				lastPage={posts.lastPage}
+			/>
 		</div>
 	);
 };

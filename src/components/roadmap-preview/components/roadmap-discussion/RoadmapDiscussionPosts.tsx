@@ -4,10 +4,11 @@ import React from "react";
 
 const RoadmapDiscussionPosts = () => {
 	const { posts } = useAppSelector(state => state.roadmapPreviewPosts);
+	const { list } = posts;
 
 	return (
 		<div className="flex flex-col gap-2">
-			{posts.map(post => (
+			{list.map(post => (
 				<RoadmapDiscussionPost key={post.id} {...post} />
 			))}
 		</div>
