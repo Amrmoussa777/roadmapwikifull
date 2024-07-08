@@ -22,7 +22,7 @@ const Editor = ({
 	changeValue,
 	disable,
 	hideToolbar,
-	customStyles,
+	customStyles = "",
 }: EditorProps) => {
 	return (
 		<div className={`${styles.editor} ${customStyles}`}>

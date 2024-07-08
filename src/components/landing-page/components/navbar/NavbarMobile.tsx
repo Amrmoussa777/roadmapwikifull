@@ -6,7 +6,7 @@ import React from "react";
 
 const NavbarMobile = ({
 	links,
-	customStyles,
+	customStyles = "",
 }: {
 	links: NavbarLinkItemType[];
 	customStyles?: string;

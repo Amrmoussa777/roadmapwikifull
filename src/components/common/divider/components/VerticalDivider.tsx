@@ -4,7 +4,7 @@ import React from "react";
 const VerticalDivider = ({
 	width,
 	bgColor,
-	customStyles,
+	customStyles = "",
 }: VerticalDividerType) => {
 	return (
 		<div className={`min-h-full ${width} ${bgColor} ${customStyles} mx-4`} />

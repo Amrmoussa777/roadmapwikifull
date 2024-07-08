@@ -4,7 +4,11 @@ import { DIRECT_MESSAGE } from "@public/icons/roadmapPreview";
 import { useRouter } from "next/navigation";
 import React from "react";
 
-const DirectMessageButton = ({ customStyles }: { customStyles?: string }) => {
+const DirectMessageButton = ({
+	customStyles = "",
+}: {
+	customStyles: string;
+}) => {
 	const { push } = useRouter();
 
 	return (

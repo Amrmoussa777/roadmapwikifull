@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import React from "react";
 
-const FollowButton = ({ customStyles }: { customStyles?: string }) => {
+const FollowButton = ({ customStyles = "" }: { customStyles?: string }) => {
 	const { push } = useRouter();
 	return (
 		<button

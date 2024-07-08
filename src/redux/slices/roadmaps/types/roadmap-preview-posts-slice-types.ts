@@ -6,6 +6,7 @@ export interface RoadmapPreviewPostsSliceType {
 	posts: {
 		list: RoadmapPostType[];
 		totalItems: number;
+		isLoading: boolean;
 	};
 }
 

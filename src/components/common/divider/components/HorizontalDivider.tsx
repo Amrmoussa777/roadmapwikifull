@@ -4,7 +4,7 @@ import React from "react";
 const HorizontalDivider = ({
 	height,
 	bgColor,
-	customStyles,
+	customStyles = "",
 }: HorizontalDividerType) => {
 	return <div className={`w-full ${height} ${bgColor} ${customStyles} my-2`} />;
 };

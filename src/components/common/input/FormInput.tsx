@@ -7,7 +7,7 @@ const FormInput = ({
 	type,
 	label,
 	placeholder,
-	customStyles,
+	customStyles = "",
 	required,
 	name,
 	autoFocus,

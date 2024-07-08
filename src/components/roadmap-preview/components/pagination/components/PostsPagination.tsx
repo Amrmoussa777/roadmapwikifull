@@ -3,7 +3,7 @@ import { useAppSelector } from "@/redux/store";
 import React from "react";
 
 const PostsPagination = ({ handleMoreComments }: PaginationProps) => {
-	const { list, totalItems } = useAppSelector(
+	const { list, totalItems, isLoading } = useAppSelector(
 		state => state.roadmapPreviewPosts.posts
 	);
 
@@ -14,10 +14,10 @@ const PostsPagination = ({ handleMoreComments }: PaginationProps) => {
 			}`}
 		>
 			<button
-				className="flex-jc-c mx-auto bg-primary-ultramarineBlue text-white px-4 py-2 rounded-sm"
+				className="block text-start bg-background text-primary-dark rounded-sm"
 				onClick={() => handleMoreComments()}
 			>
-				More comments
+				{isLoading ? "Loading..." : "Show more comments..."}
 			</button>
 		</div>
 	);

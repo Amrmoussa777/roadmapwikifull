@@ -9,6 +9,7 @@ const initialState: RoadmapPreviewPostsSliceType = {
 	posts: {
 		list: [],
 		totalItems: 0,
+		isLoading: false,
 	},
 };
 
@@ -19,6 +20,7 @@ export const roadmapPreviewPostsSlice = createSlice({
 	extraReducers(builder) {
 		builder.addCase(getRoadmapPosts.pending, state => {
 			state.isLoading = true;
+			state.posts.isLoading = true;
 		});
 
 		builder.addCase(getRoadmapPosts.fulfilled, (state, action) => {
@@ -30,6 +32,7 @@ export const roadmapPreviewPostsSlice = createSlice({
 			state.posts.totalItems = action.payload.length;
 
 			state.posts.list = [...state.posts.list, ...newPosts];
+			state.posts.isLoading = false;
 		});
 	},
 });
