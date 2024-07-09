@@ -1,4 +1,5 @@
 import roadmapPreviewPostsSlice from "@/redux/slices/roadmaps/roadmapPreviewPostsSlice";
+import roadmapPreviewRepliesSlice from "@/redux/slices/roadmaps/roadmapPreviewRepliesSlice";
 import roadmapPreviewSlice from "@/redux/slices/roadmaps/roadmapPreviewSlice";
 import userProfileSlice from "@/redux/slices/user-profile/userProfileSlice";
 import { configureStore } from "@reduxjs/toolkit";
@@ -9,6 +10,7 @@ export const store = configureStore({
 		roadmapPreview: roadmapPreviewSlice,
 		roadmapPreviewPosts: roadmapPreviewPostsSlice,
 		userProfile: userProfileSlice,
+		roadmapPreviewReplies: roadmapPreviewRepliesSlice,
 	},
 });
 

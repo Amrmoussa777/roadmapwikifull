@@ -1,5 +1,5 @@
 import { RoadmapPostType } from "@/components/roadmap-preview/components/roadmap-discussion/types/roadmap-discussion-posts";
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import { COMMENT_ICON, UP_VOTE_ICON } from "@public/icons/roadmapPreview";
 import { MENU_ICON } from "@public/icons/roadmapSteps";
@@ -8,6 +8,8 @@ import moment from "moment";
 import Link from "next/link";
 import { UNKNOWN_USER_ICON } from "@public/icons/userProfile";
 import RoadmapDiscussionPostReplies from "@/components/roadmap-preview/components/roadmap-discussion/RoadmapDiscussionPostReplies";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
+import { setInitialPostReplies } from "@/redux/slices/roadmaps/roadmapPreviewRepliesSlice";
 
 const RoadmapDiscussionPost = ({
 	id,
@@ -18,6 +20,12 @@ const RoadmapDiscussionPost = ({
 }: RoadmapPostType) => {
 	const { currentState: isVoted, toggle: toggleVote } = useToggle(false);
 	const { fullName, image, userName } = author;
+	const dispatch = useAppDispatch();
+	const { replies } = useAppSelector(state => state.roadmapPreviewReplies);
+
+	useEffect(() => {
+		dispatch(setInitialPostReplies(id));
+	}, []);
 
 	return (
 		<>
@@ -67,7 +75,7 @@ const RoadmapDiscussionPost = ({
 				</div>
 			</div>
 
-			<RoadmapDiscussionPostReplies postId={id} />
+			{replies[id] ? <RoadmapDiscussionPostReplies postId={id} /> : null}
 		</>
 	);
 };
