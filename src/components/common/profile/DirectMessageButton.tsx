@@ -7,7 +7,7 @@ import React from "react";
 const DirectMessageButton = ({
 	customStyles = "",
 }: {
-	customStyles: string;
+	customStyles?: string;
 }) => {
 	const { push } = useRouter();
 

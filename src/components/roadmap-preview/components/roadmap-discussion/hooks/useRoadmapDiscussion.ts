@@ -1,6 +1,6 @@
 import useToggle from "@/hooks/useToggle";
 import { getRoadmapPosts } from "@/redux/slices/thunks/getRoadmapPosts";
-import { useAppDispatch, useAppSelector } from "@/redux/store";
+import { useAppDispatch } from "@/redux/store";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -14,6 +14,8 @@ export const useRoadmapDiscussion = () => {
 
 	useEffect(() => {
 		dispatch(getRoadmapPosts({ roadmapId: id, pageNumber: 1, pageSize: 2 }));
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const handleMoreComments = () => {
