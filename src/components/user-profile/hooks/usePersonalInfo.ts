@@ -18,6 +18,8 @@ export const usePersonalInfo = () => {
 
 	useEffect(() => {
 		resetDefaultPersonalInfo();
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [personalInfo]);
 
 	const handleCancel = () => {

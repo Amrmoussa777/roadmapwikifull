@@ -14,6 +14,8 @@ export const useRoadmapDiscussionReply = (
 		if (replyPostId && inputRef.current) {
 			inputRef.current.focus();
 		}
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [replyPostId, replyType]);
 
 	const handleSubmitReply = (e: FormEvent) => {

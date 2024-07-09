@@ -3,4 +3,6 @@ export type PaginationProps = {
 };
 export type RepliesPaginationProps = {
 	handleMoreReplies: () => void;
+	totalItems: number;
+	isLoading: boolean;
 };

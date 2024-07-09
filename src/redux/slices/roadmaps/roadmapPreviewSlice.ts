@@ -1,5 +1,5 @@
-import { fetchRoadmapById } from "@/redux/slices/thunks/roadmapPreviewAsyncThunks";
 import { RoadmapPreviewSliceType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
+import { fetchRoadmapById } from "@/redux/slices/thunks/roadmapPreviewAsyncThunks";
 import RoadmapPreviewUtils from "@/redux/slices/utils/roadmapPreviewSliceUtils";
 import { createSlice } from "@reduxjs/toolkit";
 
@@ -49,7 +49,7 @@ const roadmapPreviewSlice = createSlice({
 		});
 		builder.addCase(fetchRoadmapById.rejected, (state, action) => {
 			state.isLoading = false;
-			state.error = new Error("server error");
+			state.error = "server error";
 			state.roadmap = null;
 		});
 	},

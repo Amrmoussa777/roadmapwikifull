@@ -4,7 +4,6 @@ import React from "react";
 import AuthorImage from "@public/pp.jpeg";
 import { REPLY_ICON, UP_VOTE_ICON } from "@public/icons/roadmapPreview";
 import { MENU_ICON } from "@public/icons/roadmapSteps";
-import { useAppDispatch } from "@/redux/store";
 
 const RoadmapDiscussionPostReply = ({
 	id,
@@ -15,8 +14,6 @@ const RoadmapDiscussionPostReply = ({
 	votes,
 }: any) => {
 	const { currentState: isVoted, toggle: toggleVote } = useToggle(false);
-
-	const dispatch = useAppDispatch();
 
 	return (
 		<div className="relative flex justify-between items-start gap-2 p-2 ml-4 rounded-md">

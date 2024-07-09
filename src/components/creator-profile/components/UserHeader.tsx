@@ -9,7 +9,6 @@ import FollowButton from "@/components/common/profile/FollowButton";
 import DirectMessageButton from "@/components/common/profile/DirectMessageButton";
 import { MENU_ICON } from "@public/icons/roadmapSteps";
 import { SHARE_ICON } from "@public/icons/roadmapPreview";
-import { EDIT_ICON } from "@public/icons/userProfile";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { useParams } from "next/navigation";
 import { fetchUserByUsername } from "@/redux/slices/thunks/getUserByUsername";
@@ -22,6 +21,7 @@ const UserHeader = () => {
 
 	useEffect(() => {
 		dispatch(fetchUserByUsername(username));
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	if (isLoading) return <UserHeaderLoader />;

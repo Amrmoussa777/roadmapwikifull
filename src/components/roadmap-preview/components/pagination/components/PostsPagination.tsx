@@ -9,12 +9,12 @@ const PostsPagination = ({ handleMoreComments }: PaginationProps) => {
 
 	return (
 		<div
-			className={`mt-2 text-center transition-all ${
+			className={`mt-2 text-center transition-all ml-2 ${
 				totalItems < 2 ? "hidden" : ""
 			}`}
 		>
 			<button
-				className="block text-start bg-background text-primary-dark rounded-sm"
+				className="block text-start bg-background text-grey-secondary rounded-sm"
 				onClick={() => handleMoreComments()}
 			>
 				{isLoading ? "Loading..." : "Show more comments..."}

@@ -16,7 +16,7 @@ export interface getRoadmapPostsThunkArgs {
 	pageSize: number;
 }
 
-export interface getPostRepliesThunkArgs {
+export interface getPostRepliesArgs {
 	postId: string | string[];
 	pageNumber: number;
 	pageSize: number;

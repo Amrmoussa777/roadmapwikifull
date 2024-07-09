@@ -1,7 +1,7 @@
 export type RoadmapPreviewSliceType = {
 	roadmap: null | RoadmapType;
 	isLoading: boolean;
-	error: null | Error;
+	error: null | string;
 };
 
 export interface RoadmapPriceType {

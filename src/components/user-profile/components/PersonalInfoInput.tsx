@@ -18,10 +18,14 @@ const PersonalInfoInput = ({
 		if (defaultValue) {
 			changeValue(defaultValue);
 		}
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [defaultValue]);
 
 	useEffect(() => {
 		onFormValueChange({ value, key: name });
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [value]);
 
 	return (

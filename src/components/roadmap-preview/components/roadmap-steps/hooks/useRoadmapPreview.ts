@@ -11,5 +11,7 @@ export const useRoadmapPreview = () => {
 
 	useEffect(() => {
 		dispatch(fetchRoadmapById(roadmapId));
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 };

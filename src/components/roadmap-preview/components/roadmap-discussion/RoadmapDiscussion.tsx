@@ -29,13 +29,13 @@ const RoadmapDiscussion = () => {
 		<div
 			className={`bg-white rounded-md p-2 md:p-4 transition-all duration-300 ${
 				isExpandedDiscussion
-					? "fixed w-screen h-screen left-0 top-0 overflow-y-auto z-10"
+					? "fixed w-screen h-screen left-0 top-[64px] overflow-y-auto z-10"
 					: "relative"
 			}`}
 		>
 			<div className="flex-jb-c h-[50px]">
 				{isSearchOpen ? (
-					<div onBlur={toggleSearch}>
+					<div>
 						<RoadmapDiscussionSearchFrom />
 					</div>
 				) : (
@@ -43,9 +43,6 @@ const RoadmapDiscussion = () => {
 						<h3 className="font-inter text-[#181818] font-semibold">
 							Discussion
 						</h3>
-						<p className="text-[#979797] font-inter font-normal text-[12px]">
-							4 new comments
-						</p>
 					</div>
 				)}
 
@@ -53,9 +50,7 @@ const RoadmapDiscussion = () => {
 					<button className="w-[40px] h-[40px]" onClick={toggleDiscussion}>
 						{isExpandedDiscussion ? CROSS_ICON : EXPAND_ICON}
 					</button>
-					<button className="w-[40px] h-[40px]" onClick={toggleSearch}>
-						{SEARCH_ICON}
-					</button>
+					{/* <button className="w-[40px] h-[40px]">{SEARCH_ICON}</button> */}
 				</div>
 			</div>
 

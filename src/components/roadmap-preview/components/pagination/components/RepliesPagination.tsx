@@ -1,14 +1,22 @@
 import { RepliesPaginationProps } from "@/components/roadmap-preview/components/pagination/types/pagination.types";
 import React from "react";
 
-const RepliesPagination = ({ handleMoreReplies }: RepliesPaginationProps) => {
+const RepliesPagination = ({
+	handleMoreReplies,
+	totalItems,
+	isLoading,
+}: RepliesPaginationProps) => {
 	return (
-		<div className={`mt-2 text-center transition-all`}>
+		<div
+			className={`text-center transition-all ml-6 ${
+				totalItems < 2 ? "hidden" : ""
+			}`}
+		>
 			<button
-				onClick={handleMoreReplies}
-				className="flex-jc-c text-[14px] mx-auto bg-primary-ultramarineBlue text-white px-4 py-2 rounded-sm"
+				className="block text-start text-[14px] bg-background text-grey-secondary rounded-sm"
+				onClick={() => handleMoreReplies()}
 			>
-				More replies
+				{isLoading ? "Loading..." : "Show more replies..."}
 			</button>
 		</div>
 	);
