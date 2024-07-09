@@ -41,4 +41,5 @@ interface UserProfileStateTypes {
 		href: string;
 		label: string;
 	}[];
+	error: null | string;
 }

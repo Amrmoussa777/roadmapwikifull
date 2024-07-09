@@ -23,6 +23,7 @@ const initialState: UserProfileStateTypes = {
 	],
 	user: null,
 	isLoading: true,
+	error: null,
 };
 
 const userProfileSlice = createSlice({
@@ -46,6 +47,11 @@ const userProfileSlice = createSlice({
 				{ name: "userName", value: userName },
 				{ name: "occupation", value: occupation },
 			];
+		});
+
+		builder.addCase(fetchUserByUsername.rejected, (state, action) => {
+			state.error = "no user found";
+			state.user = null;
 		});
 	},
 });

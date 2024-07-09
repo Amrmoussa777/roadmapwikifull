@@ -10,14 +10,21 @@ import DirectMessageButton from "@/components/common/profile/DirectMessageButton
 import { MENU_ICON } from "@public/icons/roadmapSteps";
 import { SHARE_ICON } from "@public/icons/roadmapPreview";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { fetchUserByUsername } from "@/redux/slices/thunks/getUserByUsername";
 import UserHeaderLoader from "@/components/user-profile/components/loading/UserHeaderLoader";
 
 const UserHeader = () => {
 	const dispatch = useAppDispatch();
 	const { username } = useParams();
-	const { isLoading } = useAppSelector(state => state.userProfile);
+	const { isLoading, user } = useAppSelector(state => state.userProfile);
+	const { push } = useRouter();
+
+	useEffect(() => {
+		if (!user && !isLoading) push("/");
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [user]);
 
 	useEffect(() => {
 		dispatch(fetchUserByUsername(username));
