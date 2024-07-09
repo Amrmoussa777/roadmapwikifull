@@ -35,7 +35,7 @@ export default function RootLayout({
 		<html lang="en">
 			<body className={outfit.className}>
 				<ReduxProvider>
-					<Navbar />
+					{/* <Navbar /> */}
 					{children}
 				</ReduxProvider>
 			</body>

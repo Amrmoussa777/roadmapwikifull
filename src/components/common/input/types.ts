@@ -17,3 +17,11 @@ export interface IFormInput {
 export interface ITarget {
 	target: { value: React.SetStateAction<string | number> };
 }
+
+export interface AuthInputProps {
+	type: string;
+	name: string;
+	icon: ReactNode;
+	placeholder: string;
+	customStyles?: string;
+}
