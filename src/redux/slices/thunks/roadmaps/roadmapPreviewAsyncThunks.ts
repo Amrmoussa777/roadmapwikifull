@@ -1,14 +1,17 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { getCookie } from "cookies-next";
 
 export const fetchRoadmapById = createAsyncThunk(
 	"roadmapPreviewSlice/fetchRoadmapById",
 	async (roadmapId: string) => {
+		const accessToken = getCookie("accessToken");
+
 		const res = await axios({
 			method: "GET",
 			url: `${process.env.NEXT_PUBLIC_BASE_URL}/roadmap/${roadmapId}`,
 			headers: {
-				Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmZDA2ODBlYS1mOTE4LTQ1ZjYtOWIzOC04ZWY0NWExNmRlNjIiLCJ1c2VybmFtZSI6Ik1heGltbWlsbGlhbiBKb25lcyIsImlhdCI6MTcyMDU5NjM4MywiZXhwIjoxNzIwNjgyNzgzfQ.Xd-7qv1Zrf5rvT_f6_tJht7b4YB9I74CreSUWX9gIH0`,
+				Authorization: `Bearer ${accessToken}`,
 			},
 		});
 		const { data } = res;

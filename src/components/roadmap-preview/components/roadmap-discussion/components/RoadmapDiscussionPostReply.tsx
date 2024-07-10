@@ -4,32 +4,40 @@ import React from "react";
 import AuthorImage from "@public/pp.jpeg";
 import { UP_VOTE_ICON } from "@public/icons/roadmapPreview";
 import { MENU_ICON } from "@public/icons/roadmapSteps";
+import { RoadmapPostReplyPostType } from "@/components/roadmap-preview/components/roadmap-discussion/types/roadmap-discussion-post-replies.types";
+import { UNKNOWN_USER_ICON } from "@public/icons/userProfile";
 
 const RoadmapDiscussionPostReply = ({
 	id,
 	content,
 	author,
-	addedDate,
-	votes,
-}: any) => {
+	createdAt,
+	_count,
+}: RoadmapPostReplyPostType) => {
 	const { currentState: isVoted, toggle: toggleVote } = useToggle(false);
+	const { votes } = _count;
+	const { image, fullName } = author;
 
 	return (
 		<>
 			<div className="relative flex justify-between items-start gap-2 p-2 ml-4 rounded-md">
-				<Image
-					src={AuthorImage}
-					width={100}
-					height={100}
-					alt="author-pic"
-					className="w-[32px] h-[32px] object-cover rounded-full"
-				/>
+				{image ? (
+					<Image
+						src={AuthorImage}
+						width={100}
+						height={100}
+						alt="author-pic"
+						className="w-[32px] h-[32px] object-cover rounded-full"
+					/>
+				) : (
+					UNKNOWN_USER_ICON
+				)}
 
 				<div className="w-full grid">
 					<h3 className="text-[13px] text-[#181818] font-inter font-medium">
-						{author.name}{" "}
+						{fullName}{" "}
 						<span className="ml-1 text-[#9C9DA4] text-[13px] font-normal">
-							{addedDate}
+							{createdAt}
 						</span>
 					</h3>
 					<p className="text-[12px] text-grey-secondary font-inter font-light">

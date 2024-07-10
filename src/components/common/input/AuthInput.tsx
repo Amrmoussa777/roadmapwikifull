@@ -13,6 +13,7 @@ const AuthInput = ({
 			<span className="text-[#ADB0CD]">{icon}</span>
 
 			<input
+				name={name}
 				type={type}
 				placeholder={placeholder}
 				className="w-full h-full outline-none bg-transparent pl-4 text-[14px] placeholder:text-[14px] placeholder:font-poppins placeholder:font-medium placeholder:text-[#ADB0CD] text-[#202020]"

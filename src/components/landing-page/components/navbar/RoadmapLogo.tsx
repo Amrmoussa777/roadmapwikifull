@@ -12,7 +12,7 @@ const RoadmapLogo = ({
 	return (
 		<Link
 			href="/"
-			className={`flex items-center gap-3 font-poppins font-semibold text-[24px] text-[#171725] ${customStyles}`}
+			className={`w-fit flex items-center gap-3 font-poppins font-semibold text-[24px] text-[#171725] ${customStyles}`}
 		>
 			{ROADMAP_LOGO}
 			<span>Roadmap{extension ? extension : null}</span>

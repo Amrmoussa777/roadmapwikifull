@@ -8,18 +8,21 @@ import {
 	FACEBOOK_ICON,
 	GOOGLE_ICON,
 	PASSWORD_INPUT_ICON,
-	USER_INPUT_ICON,
 } from "@public/icons/auth";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import AuthLeftImage from "@public/auth-left.svg";
+import { login } from "@/app/auth/login/service/login";
 
 const page = () => {
 	return (
 		<div className="h-screen grid grid-cols-2">
-			<form className="col-span-2 lg:col-span-1 px-8 py-8 bg-white">
-				<div className="w-[400px] h-full mx-auto flex flex-col">
+			<form
+				action={login}
+				className="col-span-2 lg:col-span-1 px-8 py-8 bg-white"
+			>
+				<div className="sm:w-[400px] h-full mx-auto flex flex-col">
 					<div className="my-auto">
 						<RoadmapLogo
 							extension=".io"

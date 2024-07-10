@@ -1,7 +1,7 @@
 export type RoadmapPostReplyAuthorType = {
 	id: string;
 	email: string;
-	role: "USER" | "ADMIN" | "MODERATOR";
+	role: "USER" | "ADMIN";
 	image: string;
 	cover: string;
 	occupation: string;

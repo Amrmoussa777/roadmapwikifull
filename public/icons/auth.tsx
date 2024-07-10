@@ -67,27 +67,27 @@ const PASSWORD_INPUT_ICON = (
 		fill="none"
 		xmlns="http://www.w3.org/2000/svg"
 	>
-		<g clip-path="url(#clip0_431_15118)">
+		<g clipPath="url(#clip0_431_15118)">
 			<path
 				d="M15.3179 12.3637L17.0451 14.091L20.4997 10.6365L18.7724 8.90918"
 				stroke="currentColor"
-				stroke-width="2.30303"
-				stroke-linecap="round"
-				stroke-linejoin="round"
+				strokeWidth="2.30303"
+				strokeLinecap="round"
+				strokeLinejoin="round"
 			/>
 			<path
 				d="M10.3452 12.1546L20.4999 2"
 				stroke="currentColor"
-				stroke-width="2.30303"
-				stroke-linecap="round"
-				stroke-linejoin="round"
+				strokeWidth="2.30303"
+				strokeLinecap="round"
+				strokeLinejoin="round"
 			/>
 			<path
 				d="M6.68182 21.0004C9.54366 21.0004 11.8636 18.6804 11.8636 15.8185C11.8636 12.9567 9.54366 10.6367 6.68182 10.6367C3.81998 10.6367 1.5 12.9567 1.5 15.8185C1.5 18.6804 3.81998 21.0004 6.68182 21.0004Z"
 				stroke="currentColor"
-				stroke-width="2.30303"
-				stroke-linecap="round"
-				stroke-linejoin="round"
+				strokeWidth="2.30303"
+				strokeLinecap="round"
+				strokeLinejoin="round"
 			/>
 		</g>
 		<defs>
