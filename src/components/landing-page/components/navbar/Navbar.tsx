@@ -7,6 +7,7 @@ import React from "react";
 import NavbarMobile from "@/components/landing-page/components/navbar/NavbarMobile";
 import useToggle from "@/hooks/useToggle";
 import MenuButton from "@/components/landing-page/components/navbar/MenuButton";
+import { usePathname } from "next/navigation";
 
 const navbarLinks = [
 	{ href: "/roadmap", name: "Roadmaps" },
@@ -16,6 +17,9 @@ const navbarLinks = [
 const Navbar = () => {
 	const { currentState: isMenuOpen, toggle: toggleMobileNavbar } =
 		useToggle(false);
+	const isAuthRoute = usePathname().includes("auth");
+
+	if (isAuthRoute) return;
 
 	return (
 		<div className="relative bg-white w-full">

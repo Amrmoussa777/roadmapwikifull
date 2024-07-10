@@ -14,7 +14,7 @@ const PostsPagination = ({ handleMoreComments }: PaginationProps) => {
 			}`}
 		>
 			<button
-				className="block text-start bg-background text-grey-secondary rounded-sm"
+				className="block text-start bg-background text-[#ADAEB5] font-semibold rounded-sm"
 				onClick={() => handleMoreComments()}
 				disabled={isLoading}
 			>

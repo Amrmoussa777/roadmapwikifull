@@ -13,7 +13,7 @@ const RepliesPagination = ({
 			}`}
 		>
 			<button
-				className="block text-start text-[14px] bg-background text-grey-secondary rounded-sm"
+				className="block text-start text-[14px] bg-background text-[#ADAEB5] font-semibold rounded-sm"
 				onClick={() => handleMoreReplies()}
 				disabled={isLoading}
 			>

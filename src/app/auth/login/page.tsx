@@ -14,6 +14,7 @@ import Link from "next/link";
 import React from "react";
 import AuthLeftImage from "@public/auth-left.svg";
 import { login } from "@/app/auth/login/service/login";
+import LoginButton from "@/components/auth/login/components/LoginButton";
 
 const page = () => {
 	return (
@@ -69,12 +70,7 @@ const page = () => {
 							/>
 						</div>
 
-						<button
-							type="submit"
-							className="w-full h-[54px] my-5 font-poppins font-semibold text-[15px] text-white rounded-[8px] bg-primary-ultramarineBlue"
-						>
-							Log In
-						</button>
+						<LoginButton />
 
 						<button className="w-full h-[54px] font-poppins font-medium text-[15px] text-black rounded-[8px] border-[1.6px] border-[#E0E2E9]">
 							Create roadmap without login
