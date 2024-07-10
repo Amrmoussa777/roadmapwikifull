@@ -1,6 +1,6 @@
 import { RoadmapPostType } from "@/components/roadmap-preview/components/roadmap-discussion/types/roadmap-discussion-posts";
 import { RoadmapPreviewPostsSliceType } from "@/redux/slices/roadmaps/types/roadmap-preview-posts-slice-types";
-import { getRoadmapPosts } from "@/redux/slices/thunks/getRoadmapPosts";
+import { getRoadmapPosts } from "@/redux/slices/thunks/roadmaps/getRoadmapPosts";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: RoadmapPreviewPostsSliceType = {
@@ -11,12 +11,18 @@ const initialState: RoadmapPreviewPostsSliceType = {
 		totalItems: 0,
 		isLoading: false,
 	},
+	currentPostId: null,
 };
 
 export const roadmapPreviewPostsSlice = createSlice({
 	name: "roadmapPreviewPostsSlice",
 	initialState,
-	reducers: {},
+	reducers: {
+		toggleCommentForm: (state, action) => {
+			const currentPostId = action.payload;
+			state.currentPostId = currentPostId;
+		},
+	},
 	extraReducers(builder) {
 		builder.addCase(getRoadmapPosts.pending, state => {
 			state.isLoading = true;
@@ -38,4 +44,4 @@ export const roadmapPreviewPostsSlice = createSlice({
 });
 
 export default roadmapPreviewPostsSlice.reducer;
-export const {} = roadmapPreviewPostsSlice.actions;
+export const { toggleCommentForm } = roadmapPreviewPostsSlice.actions;

@@ -1,6 +1,9 @@
-import { RoadmapType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
+import {
+	LandingRoadmapType,
+	RoadmapType,
+} from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
 
-export const roadmapList: RoadmapType[] = [
+export const roadmapList: LandingRoadmapType[] = [
 	{
 		id: "28c6c08b-30cd-4717-8fd0-a47baa4c40fa",
 		description:

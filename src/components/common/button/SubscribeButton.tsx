@@ -7,6 +7,7 @@ const SubscribeButton = ({
 	offer,
 	details,
 	onClick,
+	isSubscribed,
 }: SubscribeButtonProps) => {
 	return (
 		<button
@@ -16,7 +17,7 @@ const SubscribeButton = ({
 			{ROADMAP_SUBSCRIBE_LOGO}
 			<div>
 				<h3 className="text-md md:text-lg leading-5 font-semibold">
-					Subscribe
+					{isSubscribed ? "Subscribed" : "Subscribe"}
 				</h3>
 				{details?.length ? (
 					<p className="text-xs font-light">{details}</p>

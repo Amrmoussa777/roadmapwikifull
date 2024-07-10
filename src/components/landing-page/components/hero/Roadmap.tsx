@@ -1,7 +1,10 @@
 import React, { MutableRefObject, useEffect, useState } from "react";
 import { PARK_ICON } from "@public/icons/roadmapPreview";
 import RoadmapStepItem from "@/components/roadmap-preview/components/roadmap-steps/RoadmapStepItem";
-import { RoadmapType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
+import {
+	LandingRoadmapType,
+	RoadmapType,
+} from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
 import chairImage from "@public/hero-chair.png";
 import statusImage from "@public/hero-status.svg";
 import Image from "next/image";
@@ -11,7 +14,7 @@ const Roadmap = ({
 	roadmap,
 	roadmapRef,
 }: {
-	roadmap: RoadmapType;
+	roadmap: RoadmapType | LandingRoadmapType;
 	roadmapRef: MutableRefObject<null | HTMLDivElement>;
 }) => {
 	const [currentRoadmap, setCurrentRoadmap] = useState(roadmap);

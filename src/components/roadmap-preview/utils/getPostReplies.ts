@@ -10,7 +10,7 @@ const getPostReplies = async ({
 		method: "GET",
 		url: `${process.env.NEXT_PUBLIC_BASE_URL}/posts/${postId}/comments?page=${pageNumber}&pageSize=${pageSize}`,
 		headers: {
-			Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiZTY2MDhmMS1lNjM3LTQyOWQtYTU3Ny1mMmEzOGI0ODBkNzYiLCJ1c2VybmFtZSI6Im1vaGFtZWQyLmFiZHNhYm91ckByb2FkbWFwd2lraS5jb20iLCJpYXQiOjE3MjA1MDM3MTEsImV4cCI6MTcyMDU5MDExMX0.4nY5fOZEatNRlkw--usCZPa42RLRbXuJvQc7kJeezfg`,
+			Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmZDA2ODBlYS1mOTE4LTQ1ZjYtOWIzOC04ZWY0NWExNmRlNjIiLCJ1c2VybmFtZSI6Ik1heGltbWlsbGlhbiBKb25lcyIsImlhdCI6MTcyMDU5NjM4MywiZXhwIjoxNzIwNjgyNzgzfQ.Xd-7qv1Zrf5rvT_f6_tJht7b4YB9I74CreSUWX9gIH0`,
 		},
 	});
 	const { data } = res;

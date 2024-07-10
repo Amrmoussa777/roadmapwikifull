@@ -38,4 +38,5 @@ export interface RepliesState {
 
 export interface RoadmapPreviewRepliesSliceType {
 	replies: RepliesState;
+	currentReplyId: null | string;
 }

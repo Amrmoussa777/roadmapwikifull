@@ -1,5 +1,5 @@
 import { RoadmapPreviewSliceType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
-import { fetchRoadmapById } from "@/redux/slices/thunks/roadmapPreviewAsyncThunks";
+import { fetchRoadmapById } from "@/redux/slices/thunks/roadmaps/roadmapPreviewAsyncThunks";
 import RoadmapPreviewUtils from "@/redux/slices/utils/roadmapPreviewSliceUtils";
 import { createSlice } from "@reduxjs/toolkit";
 

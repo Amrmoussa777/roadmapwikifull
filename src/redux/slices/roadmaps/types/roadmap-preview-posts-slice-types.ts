@@ -8,12 +8,24 @@ export interface RoadmapPreviewPostsSliceType {
 		totalItems: number;
 		isLoading: boolean;
 	};
+	currentPostId: string | null;
 }
 
 export interface getRoadmapPostsThunkArgs {
 	roadmapId: string | string[];
 	pageNumber: number;
 	pageSize: number;
+}
+
+export interface addCommentArgs {
+	content: string;
+	postId: string;
+}
+
+export interface addPostArgs {
+	title: string;
+	content: string;
+	roadmapId: string;
 }
 
 export interface getPostRepliesArgs {

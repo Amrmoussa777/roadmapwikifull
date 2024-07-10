@@ -7,24 +7,31 @@ import useToggle from "@/hooks/useToggle";
 import moment from "moment";
 import Link from "next/link";
 import { UNKNOWN_USER_ICON } from "@public/icons/userProfile";
-import RoadmapDiscussionPostReplies from "@/components/roadmap-preview/components/roadmap-discussion/RoadmapDiscussionPostReplies";
+import RoadmapDiscussionPostReplies from "@/components/roadmap-preview/components/roadmap-discussion/components/RoadmapDiscussionPostReplies";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
-import { setInitialPostReplies } from "@/redux/slices/roadmaps/roadmapPreviewRepliesSlice";
+import {
+	setInitialPostReplies,
+	toggleReply,
+} from "@/redux/slices/roadmaps/roadmapPreviewRepliesSlice";
+import { toggleCommentForm } from "@/redux/slices/roadmaps/roadmapPreviewPostsSlice";
+import RoadmapDiscussionReplyForm from "@/components/roadmap-preview/components/roadmap-discussion/components/RoadmapDiscussionReplyForm";
 
 const RoadmapDiscussionPost = ({
 	id,
 	author,
 	createdAt,
 	content,
-	roadmapId,
 }: RoadmapPostType) => {
 	const { currentState: isVoted, toggle: toggleVote } = useToggle(false);
 	const { fullName, image, userName } = author;
 	const dispatch = useAppDispatch();
 	const { replies } = useAppSelector(state => state.roadmapPreviewReplies);
+	const { currentPostId } = useAppSelector(state => state.roadmapPreviewPosts);
 
 	useEffect(() => {
 		dispatch(setInitialPostReplies(id));
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (
@@ -65,7 +72,13 @@ const RoadmapDiscussionPost = ({
 							>
 								{UP_VOTE_ICON} 0
 							</button>
-							<button className="flex-jc-c gap-1 text-[#ADAEB5] text-[14px] font-inter font-medium">
+							<button
+								onClick={() => {
+									dispatch(toggleCommentForm(id));
+									dispatch(toggleReply(null));
+								}}
+								className="flex-jc-c gap-1 text-[#ADAEB5] text-[14px] font-inter font-medium"
+							>
 								{COMMENT_ICON} <span>Comment</span>
 							</button>
 						</div>
@@ -74,6 +87,10 @@ const RoadmapDiscussionPost = ({
 					<button className="rotate-90 text-grey-secondary">{MENU_ICON}</button>
 				</div>
 			</div>
+
+			{currentPostId === id ? (
+				<RoadmapDiscussionReplyForm customStyles="px-2" />
+			) : null}
 
 			{replies[id] ? <RoadmapDiscussionPostReplies postId={id} /> : null}
 		</>

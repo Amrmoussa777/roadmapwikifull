@@ -31,6 +31,7 @@ const AuthPasswordInput = ({
 
 			<button
 				onClick={togglePassword}
+				type="button"
 				className="[&>svg]:w-[22px] text-[#ADB0CD]"
 			>
 				{isVisiblePassword ? HIDDEN_PASSWORD_ICON : VISIBLE_PASSWORD_ICON}

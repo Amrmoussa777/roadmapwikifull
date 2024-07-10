@@ -16,7 +16,7 @@ const RepliesPagination = ({
 				className="block text-start text-[14px] bg-background text-grey-secondary rounded-sm"
 				onClick={() => handleMoreReplies()}
 			>
-				{isLoading ? "Loading..." : "Show more replies..."}
+				{isLoading ? "Loading..." : "Show more comments..."}
 			</button>
 		</div>
 	);

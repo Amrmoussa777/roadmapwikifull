@@ -17,7 +17,7 @@ const PostsPagination = ({ handleMoreComments }: PaginationProps) => {
 				className="block text-start bg-background text-grey-secondary rounded-sm"
 				onClick={() => handleMoreComments()}
 			>
-				{isLoading ? "Loading..." : "Show more comments..."}
+				{isLoading ? "Loading..." : "Show more posts..."}
 			</button>
 		</div>
 	);

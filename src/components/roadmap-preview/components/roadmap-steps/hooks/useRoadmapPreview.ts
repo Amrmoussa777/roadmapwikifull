@@ -1,5 +1,5 @@
 import PathnameHelper from "@/helpers/pathname.helper";
-import { fetchRoadmapById } from "@/redux/slices/thunks/roadmapPreviewAsyncThunks";
+import { fetchRoadmapById } from "@/redux/slices/thunks/roadmaps/roadmapPreviewAsyncThunks";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect } from "react";

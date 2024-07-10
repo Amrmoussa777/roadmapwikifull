@@ -95,4 +95,7 @@ export interface RoadmapType {
 		steps: number;
 		tags: number;
 	};
+	isSubscribed: boolean;
 }
+
+export interface LandingRoadmapType extends Omit<RoadmapType, "isSubscribed"> {}

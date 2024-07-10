@@ -9,9 +9,10 @@ import { useAppSelector } from "@/redux/store";
 import LoadingRoadmapHeader from "@/components/roadmap-preview/components/loading/LoadingRoadmapHeader";
 import { useRouter } from "next/navigation";
 
-const LoadmapHeader = () => {
+const RoadmapHeader = () => {
 	const { roadmap, isLoading } = useAppSelector(state => state.roadmapPreview);
-	const { title, cover, price } = roadmap || {};
+	const { title, price, isSubscribed } = roadmap || {};
+
 	const { push } = useRouter();
 
 	if (isLoading) return <LoadingRoadmapHeader />;
@@ -36,6 +37,7 @@ const LoadmapHeader = () => {
 					<SubscribeButton
 						price={price?.amount}
 						onClick={() => push(`/auth/login`)}
+						isSubscribed={isSubscribed}
 					/>
 					<button className="w-[35px] h-[35px] md:w-[40px] md:h-[40px] flex-jc-c border border-grey-iconBorder rounded-full text-[#898989]">
 						{SHARE_ICON}
@@ -46,4 +48,4 @@ const LoadmapHeader = () => {
 	);
 };
 
-export default LoadmapHeader;
+export default RoadmapHeader;

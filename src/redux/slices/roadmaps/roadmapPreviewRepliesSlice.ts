@@ -2,10 +2,12 @@ import {
 	RoadmapPreviewRepliesSliceType,
 	RoadmapPreviewReplyType,
 } from "@/redux/slices/roadmaps/types/roadmap-preview-replies-slice.types";
+import { addComment } from "@/redux/slices/thunks/roadmaps/addComment";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: RoadmapPreviewRepliesSliceType = {
 	replies: {},
+	currentReplyId: null,
 };
 
 const roadmapPreviewRepliesSlice = createSlice({
@@ -38,9 +40,26 @@ const roadmapPreviewRepliesSlice = createSlice({
 				list: [],
 			};
 		},
+		toggleReply: (state, action) => {
+			const currentReplyId = action.payload;
+			state.currentReplyId = currentReplyId;
+		},
+	},
+
+	extraReducers(builder) {
+		builder.addCase(addComment.fulfilled, (state, action) => {
+			const newComment = action.payload;
+			const { postId } = newComment;
+
+			const oldReplies = state.replies[postId].list;
+
+			const updatedReplies = [...oldReplies, newComment];
+
+			state.replies[postId].list = updatedReplies;
+		});
 	},
 });
 
-export const { pushMoreReplies, setInitialPostReplies } =
+export const { pushMoreReplies, setInitialPostReplies, toggleReply } =
 	roadmapPreviewRepliesSlice.actions;
 export default roadmapPreviewRepliesSlice.reducer;

@@ -1,5 +1,5 @@
 import useToggle from "@/hooks/useToggle";
-import { getRoadmapPosts } from "@/redux/slices/thunks/getRoadmapPosts";
+import { getRoadmapPosts } from "@/redux/slices/thunks/roadmaps/getRoadmapPosts";
 import { useAppDispatch } from "@/redux/store";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -20,6 +20,7 @@ export const useRoadmapDiscussion = () => {
 
 	const handleMoreComments = () => {
 		setPageNumber(prev => prev + 1);
+
 		dispatch(
 			getRoadmapPosts({
 				roadmapId: id,

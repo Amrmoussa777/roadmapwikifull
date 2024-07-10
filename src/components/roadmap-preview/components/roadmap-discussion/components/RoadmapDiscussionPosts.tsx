@@ -1,4 +1,4 @@
-import RoadmapDiscussionPost from "@/components/roadmap-preview/components/roadmap-discussion/RoadmapDiscussionPost";
+import RoadmapDiscussionPost from "@/components/roadmap-preview/components/roadmap-discussion/components/RoadmapDiscussionPost";
 import { useAppSelector } from "@/redux/store";
 import React from "react";
 
