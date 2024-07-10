@@ -13,7 +13,7 @@ export const useRoadmapDiscussion = () => {
 	const { id } = useParams();
 
 	useEffect(() => {
-		dispatch(getRoadmapPosts({ roadmapId: id, pageNumber: 1, pageSize: 2 }));
+		dispatch(getRoadmapPosts({ roadmapId: id, pageNumber: 1, pageSize: 5 }));
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
@@ -25,7 +25,7 @@ export const useRoadmapDiscussion = () => {
 			getRoadmapPosts({
 				roadmapId: id,
 				pageNumber: pageNumber + 1,
-				pageSize: 2,
+				pageSize: 5,
 			})
 		);
 	};

@@ -1,5 +1,6 @@
 import { RoadmapPostType } from "@/components/roadmap-preview/components/roadmap-discussion/types/roadmap-discussion-posts";
 import { RoadmapPreviewPostsSliceType } from "@/redux/slices/roadmaps/types/roadmap-preview-posts-slice-types";
+import { addPost } from "@/redux/slices/thunks/roadmaps/addPost";
 import { getRoadmapPosts } from "@/redux/slices/thunks/roadmaps/getRoadmapPosts";
 import { createSlice } from "@reduxjs/toolkit";
 
@@ -39,6 +40,12 @@ export const roadmapPreviewPostsSlice = createSlice({
 
 			state.posts.list = [...state.posts.list, ...newPosts];
 			state.posts.isLoading = false;
+		});
+
+		builder.addCase(addPost.fulfilled, (state, action) => {
+			const newPost = action.payload;
+
+			state.posts.list.push(newPost);
 		});
 	},
 });
