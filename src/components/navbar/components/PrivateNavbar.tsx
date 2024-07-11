@@ -30,7 +30,7 @@ const PrivateNavbar = () => {
 	}, []);
 
 	return (
-		<div className="relative bg-white w-full border-b border-[#E0E0E0]">
+		<div className="bg-white w-full border-b border-[#E0E0E0]">
 			<nav className="relative max-w-[1440px] h-[74px] flex-jb-c mx-auto p-2 md:p-6 lg:px-8 bg-white z-50">
 				<RoadmapLogo />
 				<PrivateNavbarMenuButton isMenuOpen={isMenuOpen} toggle={toggle} />

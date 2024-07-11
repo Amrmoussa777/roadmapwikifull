@@ -7,13 +7,13 @@ import React from "react";
 const PrivateMobileNavbar = ({ isMenuOpen }: { isMenuOpen: boolean }) => {
 	return (
 		<div
-			className={`absolute w-full h-[calc(100vh-74px)] top-[74px] left-0 bg-white flex flex-col ${
+			className={`absolute w-full h-[calc(100vh-74px)] top-[74px] left-0 bg-white flex flex-col justify-between pb-[20px] overflow-y-scroll hidden-scrollbar ${
 				isMenuOpen ? "block" : "hidden"
 			}`}
 		>
 			<PrivateNavbarLinks />
 
-			<div className="mt-auto px-4 mb-4">
+			<div className="px-4 mb-12">
 				<HorizontalDivider
 					height="h-[1px]"
 					bgColor="bg-[#F0F0F0]"
