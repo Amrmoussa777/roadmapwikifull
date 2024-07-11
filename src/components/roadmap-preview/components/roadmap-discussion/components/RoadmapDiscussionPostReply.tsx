@@ -1,11 +1,13 @@
 import useToggle from "@/hooks/useToggle";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import AuthorImage from "@public/pp.jpeg";
 import { UP_VOTE_ICON } from "@public/icons/roadmapPreview";
 import { MENU_ICON } from "@public/icons/roadmapSteps";
 import { RoadmapPostReplyPostType } from "@/components/roadmap-preview/components/roadmap-discussion/types/roadmap-discussion-post-replies.types";
 import { UNKNOWN_USER_ICON } from "@public/icons/userProfile";
+import { getCookie } from "cookies-next";
+import axios from "axios";
 
 const RoadmapDiscussionPostReply = ({
 	id,
@@ -13,10 +15,29 @@ const RoadmapDiscussionPostReply = ({
 	author,
 	createdAt,
 	_count,
+	isVoted: initialIsVoted,
 }: RoadmapPostReplyPostType) => {
-	const { currentState: isVoted, toggle: toggleVote } = useToggle(false);
-	const { votes } = _count;
+	const { currentState: isVoted, toggle: toggleVoteUI } =
+		useToggle(initialIsVoted);
+	const [votesCount, setVotesCount] = useState(_count.votes);
 	const { image, fullName } = author;
+
+	const handleToggleVote = async () => {
+		const accessToken = getCookie("accessToken");
+
+		await axios({
+			method: "POST",
+			url: `${process.env.NEXT_PUBLIC_BASE_URL}/posts/comments/${id}/${
+				isVoted ? "downvote" : "upvote"
+			}`,
+			headers: {
+				Authorization: `Bearer ${accessToken}`,
+			},
+		});
+
+		setVotesCount(prev => (isVoted ? prev - 1 : prev + 1));
+		toggleVoteUI();
+	};
 
 	return (
 		<>
@@ -45,11 +66,12 @@ const RoadmapDiscussionPostReply = ({
 					</p>
 					<div className="flex items-center gap-3 mt-2 text-sm font-inter font-normal text-[#79828B]">
 						<button
+							onClick={handleToggleVote}
 							className={`flex-jc-c text-[#79828B] [&>svg]:w-[20px] vote-btn ${
 								isVoted ? "voted" : ""
 							}`}
 						>
-							{UP_VOTE_ICON} {votes}
+							{UP_VOTE_ICON} {votesCount}
 						</button>
 						{/* <button
 							onClick={() => {

@@ -25,4 +25,5 @@ export interface RoadmapPostType {
 	createdAt: string;
 	author: RoadmapPostAuthorType;
 	_count: Count;
+	isVoted: boolean;
 }

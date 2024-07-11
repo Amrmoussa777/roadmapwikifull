@@ -25,4 +25,5 @@ export type RoadmapPostReplyPostType = {
 	createdAt: string;
 	author: RoadmapPostReplyAuthorType;
 	_count: RoadmapPostReplyCountType;
+	isVoted: boolean;
 };

@@ -1,5 +1,5 @@
 import { RoadmapPostType } from "@/components/roadmap-preview/components/roadmap-discussion/types/roadmap-discussion-posts";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { COMMENT_ICON, UP_VOTE_ICON } from "@public/icons/roadmapPreview";
 import { MENU_ICON } from "@public/icons/roadmapSteps";
@@ -15,14 +15,20 @@ import {
 } from "@/redux/slices/roadmaps/roadmapPreviewRepliesSlice";
 import { toggleCommentForm } from "@/redux/slices/roadmaps/roadmapPreviewPostsSlice";
 import RoadmapDiscussionReplyForm from "@/components/roadmap-preview/components/roadmap-discussion/components/RoadmapDiscussionReplyForm";
+import { getCookie } from "cookies-next";
+import axios from "axios";
 
 const RoadmapDiscussionPost = ({
 	id,
 	author,
 	createdAt,
 	content,
+	_count,
+	isVoted: initialIsVoted,
 }: RoadmapPostType) => {
-	const { currentState: isVoted, toggle: toggleVote } = useToggle(false);
+	const { currentState: isVoted, toggle: toggleVoteUI } =
+		useToggle(initialIsVoted);
+	const [votesCount, setVotesCount] = useState(_count.votes);
 	const { fullName, image, userName } = author;
 	const dispatch = useAppDispatch();
 	const { replies } = useAppSelector(state => state.roadmapPreviewReplies);
@@ -33,6 +39,23 @@ const RoadmapDiscussionPost = ({
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
+
+	const handleToggleVote = async () => {
+		const accessToken = getCookie("accessToken");
+
+		await axios({
+			method: "POST",
+			url: `${process.env.NEXT_PUBLIC_BASE_URL}/posts/${id}/${
+				isVoted ? "downvote" : "upvote"
+			}`,
+			headers: {
+				Authorization: `Bearer ${accessToken}`,
+			},
+		});
+
+		setVotesCount(prev => (isVoted ? prev - 1 : prev + 1));
+		toggleVoteUI();
+	};
 
 	return (
 		<>
@@ -66,11 +89,12 @@ const RoadmapDiscussionPost = ({
 						</p>
 						<div className="flex items-center gap-3 mt-2">
 							<button
+								onClick={handleToggleVote}
 								className={`flex-jc-c text-[#79828B] vote-btn text-[16px] font-inter font-medium ${
 									isVoted ? "voted" : ""
 								}`}
 							>
-								{UP_VOTE_ICON} 0
+								{UP_VOTE_ICON} {votesCount}
 							</button>
 							<button
 								onClick={() => {
