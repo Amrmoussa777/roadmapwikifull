@@ -9,7 +9,7 @@ const UserDetails = () => {
 
 	return (
 		<div className="md:ml-[196px]">
-			<div className="flex items-center flex-wrap sm:gap-2">
+			<div className="flex items-center flex-wrap">
 				<h3 className="text-[24px] font-semibold text-black">{fullName}</h3>
 				<span className="text-[16px] font-normal text-[#898989]">
 					@{userName}

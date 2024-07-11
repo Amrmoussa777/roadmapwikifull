@@ -47,8 +47,8 @@ const roadmapPreviewSlice = createSlice({
 		builder.addCase(fetchRoadmapById.pending, state => {
 			state.isLoading = true;
 		});
-		builder.addCase(fetchRoadmapById.rejected, (state, action) => {
-			state.error = "server error";
+		builder.addCase(fetchRoadmapById.rejected, (state, action: any) => {
+			state.error = action.payload;
 			state.roadmap = null;
 		});
 	},

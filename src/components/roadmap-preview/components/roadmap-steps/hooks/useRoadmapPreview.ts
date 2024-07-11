@@ -1,7 +1,8 @@
 import PathnameHelper from "@/helpers/pathname.helper";
 import { fetchRoadmapById } from "@/redux/slices/thunks/roadmaps/roadmapPreviewAsyncThunks";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
-import { getCookie } from "cookies-next";
+import { fetchAnonymousToken } from "@/services/fetchAnonymousToken";
+import { setCookie } from "cookies-next";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect } from "react";
 
@@ -13,20 +14,30 @@ export const useRoadmapPreview = () => {
 		state => state.roadmapPreview
 	);
 
-	const accessToken = getCookie("accessToken");
-
 	const { push } = useRouter();
 
 	useEffect(() => {
 		(async () => {
-			if (error && accessToken) {
+			if (error && error !== "Unauthorized") {
 				push("/");
+			} else if (error && error === "Unauthorized") {
+				console.log("error");
+				const AnonymousToken = await fetchAnonymousToken();
+				setCookie("accessToken", AnonymousToken);
+				dispatch(fetchRoadmapById(roadmapId));
 			}
 		})();
-	}, [error]);
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [error, roadmap, isLoading]);
 
 	useEffect(() => {
-		dispatch(fetchRoadmapById(roadmapId));
+		if (!error && !roadmap) {
+			setTimeout(() => {
+				dispatch(fetchRoadmapById(roadmapId));
+			}, 1000);
+		}
+
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 };

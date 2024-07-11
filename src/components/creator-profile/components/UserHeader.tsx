@@ -34,7 +34,7 @@ const UserHeader = () => {
 	if (isLoading) return <UserHeaderLoader />;
 
 	return (
-		<div className="relative w-full h-[450px] md:h-[350px] bg-white sm:rounded-[16px] overflow-hidden">
+		<div className="relative w-full h-[430px] md:h-[340px] lg:h-[310px] bg-white sm:rounded-[16px] overflow-hidden">
 			<Image
 				src={cover}
 				width={400}

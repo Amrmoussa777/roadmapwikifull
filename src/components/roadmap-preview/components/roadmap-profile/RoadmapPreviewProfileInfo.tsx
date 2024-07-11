@@ -16,7 +16,7 @@ const RoadmapPreviewProfileInfo = () => {
 	const { user } = roadmap || {};
 	const { socialMedia, userName, description, occupation, _count } = user || {};
 
-	if (isLoading) return <LoadingRoadmapPreviewProfileInfo />;
+	if (isLoading && !roadmap) return <LoadingRoadmapPreviewProfileInfo />;
 
 	return (
 		<>
