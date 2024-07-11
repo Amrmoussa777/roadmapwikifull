@@ -2,7 +2,7 @@ import ThirdPartyAuthButton from "@/components/common/button/ThirdPartyAuthButto
 import HorizontalDivider from "@/components/common/divider/components/HorizontalDivider";
 import AuthInput from "@/components/common/input/AuthInput";
 import AuthPasswordInput from "@/components/common/input/AuthPasswordInput";
-import RoadmapLogo from "@/components/landing-page/components/navbar/RoadmapLogo";
+import RoadmapLogo from "@/components/landing-page/components/public-navbar/RoadmapLogo";
 import {
 	EMAIL_INPUT_ICON,
 	FACEBOOK_ICON,
@@ -14,7 +14,7 @@ import Link from "next/link";
 import React from "react";
 import AuthLeftImage from "@public/auth-left.svg";
 import { login } from "@/app/auth/login/service/login";
-import LoginButton from "@/components/auth/login/components/LoginButton";
+import FormButton from "@/components/auth/login/components/FormButton";
 
 const page = () => {
 	return (
@@ -70,7 +70,7 @@ const page = () => {
 							/>
 						</div>
 
-						<LoginButton />
+						<FormButton buttonText="Log in" />
 
 						<button className="w-full h-[54px] font-poppins font-medium text-[15px] text-black rounded-[8px] border-[1.6px] border-[#E0E2E9]">
 							Create roadmap without login

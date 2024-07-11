@@ -1,6 +1,9 @@
+import { CurrentUserType } from "@/providers/types/index.types";
 import axios from "axios";
 
 export const getUser = async (accessToken: string | undefined) => {
+	if (!accessToken) return null;
+
 	try {
 		const res = await axios({
 			method: "GET",
@@ -12,7 +15,7 @@ export const getUser = async (accessToken: string | undefined) => {
 
 		const { data: user } = res;
 
-		return user;
+		return user as CurrentUserType;
 	} catch (error) {
 		console.log(error);
 	}

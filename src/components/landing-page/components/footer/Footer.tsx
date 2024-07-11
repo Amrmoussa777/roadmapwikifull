@@ -8,7 +8,7 @@ import React from "react";
 import footerTopIcon from "@public/footer-top.svg";
 import statusImage from "@public/hero-status.svg";
 import Image from "next/image";
-import RoadmapLogo from "@/components/landing-page/components/navbar/RoadmapLogo";
+import RoadmapLogo from "@/components/landing-page/components/public-navbar/RoadmapLogo";
 import Link from "next/link";
 
 const Footer = () => {

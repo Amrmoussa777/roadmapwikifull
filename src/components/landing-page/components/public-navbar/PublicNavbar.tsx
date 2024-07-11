@@ -1,12 +1,12 @@
 "use client";
 
-import NavbarButtons from "@/components/landing-page/components/navbar/NavbarButtons";
-import NavbarLinks from "@/components/landing-page/components/navbar/NavbarLinks";
-import RoadmapLogo from "@/components/landing-page/components/navbar/RoadmapLogo";
+import NavbarButtons from "@/components/landing-page/components/public-navbar/NavbarButtons";
+import NavbarLinks from "@/components/landing-page/components/public-navbar/NavbarLinks";
+import RoadmapLogo from "@/components/landing-page/components/public-navbar/RoadmapLogo";
 import React from "react";
-import NavbarMobile from "@/components/landing-page/components/navbar/NavbarMobile";
+import NavbarMobile from "@/components/landing-page/components/public-navbar/NavbarMobile";
 import useToggle from "@/hooks/useToggle";
-import MenuButton from "@/components/landing-page/components/navbar/MenuButton";
+import MenuButton from "@/components/landing-page/components/public-navbar/MenuButton";
 import { usePathname } from "next/navigation";
 
 const navbarLinks = [
@@ -14,7 +14,8 @@ const navbarLinks = [
 	{ href: "/how-it-works", name: "How it works" },
 	{ href: "/our-mission", name: "Our mission" },
 ];
-const Navbar = () => {
+
+const PublicNavbar = () => {
 	const { currentState: isMenuOpen, toggle: toggleMobileNavbar } =
 		useToggle(false);
 	const isAuthRoute = usePathname().includes("auth");
@@ -46,4 +47,4 @@ const Navbar = () => {
 	);
 };
 
-export default Navbar;
+export default PublicNavbar;

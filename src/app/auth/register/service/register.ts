@@ -1,26 +1,23 @@
 import axios from "axios";
-import { cookies } from "next/headers";
 
-export const login = async (formData: FormData) => {
+export const register = async (formData: FormData) => {
 	"use server";
 	try {
+		const fullName = formData.get("fullName");
 		const email = formData.get("email");
 		const password = formData.get("password");
 
 		const res = await axios({
 			method: "POST",
-			url: `${process.env.NEXT_PUBLIC_BASE_URL}/auth/signin`,
+			url: `${process.env.NEXT_PUBLIC_BASE_URL}/auth/signup`,
 			data: {
+				fullName,
 				email,
 				password,
 			},
 		});
 
 		const { data } = res;
-		const { accessToken, refreshToken } = data;
-
-		cookies().set("accessToken", accessToken);
-		cookies().set("refreshToken", refreshToken);
 	} catch (error) {
 		console.log(error);
 	}

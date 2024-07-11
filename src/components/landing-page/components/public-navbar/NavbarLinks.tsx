@@ -1,4 +1,4 @@
-import NavbarLinkItem from "@/components/landing-page/components/navbar/NavbarLinkItem";
+import NavbarLinkItem from "@/components/landing-page/components/public-navbar/NavbarLinkItem";
 import { NavbarLinkItemType } from "@/components/landing-page/types/navbar.types";
 import React from "react";
 

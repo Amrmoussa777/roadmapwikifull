@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
-
+import { cookies } from "next/headers";
 import ReduxProvider from "@/redux/Provider";
-import Navbar from "@/components/landing-page/components/navbar/Navbar";
+import CheckCurrentUserProvider from "@/providers/CheckCurrentUser";
+import { getUser } from "@/app/auth/services/getUser";
+import PrivateNavbar from "@/components/navbar/components/PrivateNavbar";
+import PublicNavbar from "@/components/landing-page/components/public-navbar/PublicNavbar";
 
 const outfit = Outfit({ subsets: ["latin"] });
 
@@ -26,17 +29,22 @@ export const metadata: Metadata = {
 	},
 };
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+	const accessToken = cookies().get("accessToken");
+	const currentUser = await getUser(accessToken?.value);
+
 	return (
 		<html lang="en">
 			<body className={outfit.className}>
 				<ReduxProvider>
-					<Navbar />
-					{children}
+					<CheckCurrentUserProvider>
+						{currentUser ? <PrivateNavbar /> : <PublicNavbar />}
+						{children}
+					</CheckCurrentUserProvider>
 				</ReduxProvider>
 			</body>
 		</html>

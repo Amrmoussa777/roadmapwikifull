@@ -1,6 +1,6 @@
 import HorizontalDivider from "@/components/common/divider/components/HorizontalDivider";
-import NavbarButtons from "@/components/landing-page/components/navbar/NavbarButtons";
-import NavbarMobileLinkItem from "@/components/landing-page/components/navbar/NavbarMobileLinkitem";
+import NavbarButtons from "@/components/landing-page/components/public-navbar/NavbarButtons";
+import NavbarMobileLinkItem from "@/components/landing-page/components/public-navbar/NavbarMobileLinkitem";
 import { NavbarLinkItemType } from "@/components/landing-page/types/navbar.types";
 import React from "react";
 

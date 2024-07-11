@@ -2,7 +2,7 @@ import ThirdPartyAuthButton from "@/components/common/button/ThirdPartyAuthButto
 import HorizontalDivider from "@/components/common/divider/components/HorizontalDivider";
 import AuthInput from "@/components/common/input/AuthInput";
 import AuthPasswordInput from "@/components/common/input/AuthPasswordInput";
-import RoadmapLogo from "@/components/landing-page/components/navbar/RoadmapLogo";
+import RoadmapLogo from "@/components/landing-page/components/public-navbar/RoadmapLogo";
 import {
 	EMAIL_INPUT_ICON,
 	FACEBOOK_ICON,
@@ -14,11 +14,16 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import AuthLeftImage from "@public/auth-left.svg";
+import { register } from "@/app/auth/register/service/register";
+import FormButton from "@/components/auth/login/components/FormButton";
 
 const page = () => {
 	return (
 		<div className="h-screen grid grid-cols-2">
-			<form className="col-span-2 lg:col-span-1 px-8 py-8 bg-white">
+			<form
+				action={register}
+				className="col-span-2 lg:col-span-1 px-8 py-8 bg-white"
+			>
 				<div className="w-[400px] h-full mx-auto flex flex-col">
 					<div className="my-auto">
 						<RoadmapLogo
@@ -55,8 +60,8 @@ const page = () => {
 							<AuthInput
 								type="text"
 								icon={USER_INPUT_ICON}
-								name="username"
-								placeholder="Your username"
+								name="fullName"
+								placeholder="Your name"
 							/>
 							<AuthInput
 								type="email"
@@ -72,12 +77,7 @@ const page = () => {
 							/>
 						</div>
 
-						<button
-							type="submit"
-							className="w-full h-[54px] my-5 font-poppins font-semibold text-[15px] text-white rounded-[8px] bg-primary-ultramarineBlue"
-						>
-							Sign Up
-						</button>
+						<FormButton buttonText="Sign up" />
 
 						<button className="w-full h-[54px] font-poppins font-medium text-[15px] text-black rounded-[8px] border-[1.6px] border-[#E0E2E9]">
 							Create roadmap without register
