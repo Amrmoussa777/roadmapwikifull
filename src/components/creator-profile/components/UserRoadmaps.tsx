@@ -2,11 +2,36 @@
 
 import RoadmapItem from "@/components/creator-profile/components/RoadmapItem";
 import UserRoadmapsLoader from "@/components/creator-profile/loading/UserRoadmapsLoader";
+import { RoadmapType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
 import { useAppSelector } from "@/redux/store";
-import React from "react";
+import axios from "axios";
+import { getCookie } from "cookies-next";
+import React, { useEffect, useState } from "react";
 
 const UserRoadmaps = () => {
 	const { isLoading, user } = useAppSelector(state => state.userProfile);
+	const [roadmaps, setRoadmaps] = useState<RoadmapType[]>([]);
+
+	const handleGetCreatorRoadmaps = async () => {
+		const accessToken = getCookie("accessToken");
+
+		const res = await axios({
+			method: "GET",
+			url: `${process.env.NEXT_PUBLIC_BASE_URL}/roadmap/?page=1&pageSize=10&userId=fd0680ea-f918-45f6-9b38-8ef45a16de62`,
+			headers: {
+				Authorization: `Bearer ${accessToken}`,
+			},
+		});
+		const { data } = res;
+
+		setRoadmaps(data);
+	};
+
+	useEffect(() => {
+		if (user) {
+			handleGetCreatorRoadmaps();
+		}
+	}, [user]);
 
 	if (isLoading) return <UserRoadmapsLoader />;
 
@@ -16,7 +41,7 @@ const UserRoadmaps = () => {
 				<h3 className="text-[18px] text-[#202020] font-inter font-semibold">
 					Roadmaps
 					<span className="w-[25px] h-[24px] ml-2 rounded-full inline-flex justify-center items-center text-[14px] text-[#79828B] bg-black/5">
-						4
+						{roadmaps.length || 0}
 					</span>
 				</h3>
 
@@ -31,13 +56,9 @@ const UserRoadmaps = () => {
 			</div>
 
 			<ul className="mt-4">
-				<RoadmapItem />
-				<RoadmapItem />
-				<RoadmapItem />
-				<RoadmapItem />
-				<RoadmapItem />
-				<RoadmapItem />
-				<RoadmapItem />
+				{roadmaps.map(roadmap => (
+					<RoadmapItem key={roadmap.id} {...roadmap} />
+				))}
 			</ul>
 		</div>
 	);

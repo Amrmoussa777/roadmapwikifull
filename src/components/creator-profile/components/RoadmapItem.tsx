@@ -1,6 +1,6 @@
 "use client";
 
-import { DEVOPS_ICON, VERIFIED_ICON } from "@public/icons/creator";
+import { DEVOPS_ICON } from "@public/icons/creator";
 import {
 	SHARE_ICON,
 	STEPS_ICON,
@@ -13,12 +13,23 @@ import {
 } from "@public/icons/roadmapSteps";
 import Image from "next/image";
 import React from "react";
-import avatar from "@public/pp.jpeg";
 import { PLAY_ICON } from "@public/icons/landingPage";
 import { useRouter } from "next/navigation";
+import { RoadmapType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
 
-const RoadmapItem = () => {
+const RoadmapItem = ({
+	id,
+	title,
+	icon,
+	user,
+	isSubscribed,
+	duration,
+	_count,
+}: RoadmapType) => {
 	const { push } = useRouter();
+
+	const { fullName, userName, image } = user;
+	const { steps } = _count;
 
 	return (
 		<li className="bg-white rounded-[12px] p-[12px] md:p-[24px] mt-4">
@@ -30,12 +41,16 @@ const RoadmapItem = () => {
 
 					<div className="flex flex-col gap-2">
 						<h3 className="text-[18px] text-[#202020] font-inter font-semibold">
-							DevOps Roadmap
+							{title}
 						</h3>
 
 						<div className="hidden sm:flex flex-wrap justify-between items-center gap-2 md:gap-3 text-[12px] md:text-[14px] [&>span]:text-[#79828B] [&>span]:flex-jc-c [&>span]:gap-1 [&>span>svg]:text-[#ACB5B7]">
-							<span className="min-w-[70px]">{DURATION_ICON} 3 Weeks</span>
-							<span className="min-w-[70px]">{STEPS_ICON} 20 Steps</span>
+							<span className="min-w-[70px]">
+								{DURATION_ICON} {duration}
+							</span>
+							<span className="min-w-[70px]">
+								{STEPS_ICON} {steps} Steps
+							</span>
 							<span className="min-w-[70px]">{USERS_ICON} 32 Subscribe</span>
 						</div>
 					</div>
@@ -49,15 +64,19 @@ const RoadmapItem = () => {
 			</div>
 
 			<div className="sm:hidden flex flex-wrap justify-start items-center gap-2 mt-4 md:gap-3 text-[12px] md:text-[14px] [&>span]:text-[#79828B] [&>span]:flex-jc-c [&>span]:gap-1 [&>span>svg]:text-[#ACB5B7]">
-				<span className="min-w-[70px]">{DURATION_ICON} 3 Weeks</span>
-				<span className="min-w-[70px]">{STEPS_ICON} 20 Steps</span>
+				<span className="min-w-[70px]">
+					{DURATION_ICON} {duration} Weeks
+				</span>
+				<span className="min-w-[70px]">
+					{STEPS_ICON} {steps} Steps
+				</span>
 				<span className="min-w-[70px]">{USERS_ICON} 32 Subscribe</span>
 			</div>
 
 			<div className="flex flex-col sm:flex-row gap-4 justify-between">
 				<div className="mt-4 flex items-center gap-2">
 					<Image
-						src={avatar}
+						src={image}
 						width={100}
 						height={100}
 						alt="avatar"
@@ -66,26 +85,25 @@ const RoadmapItem = () => {
 
 					<div className="flex justify-center flex-col">
 						<h3 className="flex items-center gap-1 text-[14px] text-[#202020]">
-							Mohamed Elhossiny {VERIFIED_ICON}
+							{fullName}
 						</h3>
-						<span className="text-[12px] text-[#79828B]">mhmdlogan</span>
+						<span className="text-[12px] text-[#79828B]">{userName}</span>
 					</div>
 				</div>
 
 				<div className="flex-jc-c [&>button]:w-full [&>button]:flex-jc-c [&>button]:gap-2 gap-3 [&>button]:py-[6px] [&>button]:px-[12px] [&>button]:rounded-[5px] text-[#383838] text-[14px] font-inter font-semibold">
 					<button
-						onClick={() =>
-							push("/roadmap/28c6c08b-30cd-4717-8fd0-a47baa4c40fa")
-						}
+						onClick={() => push(`/roadmap/${id}`)}
 						className="bg-[#F5F5F5]"
 					>
 						{PLAY_ICON} Preview
 					</button>
 					<button
 						onClick={() => push("/auth/login")}
+						disabled={isSubscribed}
 						className="bg-primary-ultramarineBlue text-white"
 					>
-						Subscribe
+						{isSubscribed ? "Subscribed" : "Subscribe"}
 					</button>
 				</div>
 			</div>
