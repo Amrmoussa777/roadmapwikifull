@@ -39,5 +39,5 @@ export type CurrentUserType = {
 };
 
 export type CurrentUserContextType = {
-	currentUser: CurrentUserType | null;
+	currentUser: CurrentUserType | null | undefined;
 };

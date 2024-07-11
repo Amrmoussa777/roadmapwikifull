@@ -17,7 +17,9 @@ export const CurrentUserContext = createContext<CurrentUserContextType>({
 
 const CurrentUserProvider = ({ children }: ChildrenType) => {
 	const accessToken = getCookie("accessToken");
-	const [currentUser, setCurrentUser] = useState<CurrentUserType | null>(null);
+	const [currentUser, setCurrentUser] = useState<
+		CurrentUserType | null | undefined
+	>(null);
 	const pathname = usePathname();
 	useRefreshToken();
 
@@ -36,6 +38,8 @@ const CurrentUserProvider = ({ children }: ChildrenType) => {
 		if (pathname.includes("auth") && currentUser) {
 			redirect("/");
 		}
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [currentUser]);
 
 	return (
