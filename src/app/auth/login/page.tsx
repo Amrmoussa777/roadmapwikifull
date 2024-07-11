@@ -72,7 +72,10 @@ const page = () => {
 
 						<FormButton buttonText="Log in" />
 
-						<button className="w-full h-[54px] font-poppins font-medium text-[15px] text-black rounded-[8px] border-[1.6px] border-[#E0E2E9]">
+						<button
+							type="button"
+							className="w-full h-[54px] font-poppins font-medium text-[15px] text-black rounded-[8px] border-[1.6px] border-[#E0E2E9]"
+						>
 							Create roadmap without login
 						</button>
 					</div>
