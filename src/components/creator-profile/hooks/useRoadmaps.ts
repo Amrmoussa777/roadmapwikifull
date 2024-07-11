@@ -16,7 +16,7 @@ export const useRoadmaps = () => {
 
 		const res = await axios({
 			method: "GET",
-			url: `${process.env.NEXT_PUBLIC_BASE_URL}/roadmap/?page=${pageNumber}&pageSize=10&userId=fd0680ea-f918-45f6-9b38-8ef45a16de62`,
+			url: `${process.env.NEXT_PUBLIC_BASE_URL}/roadmap/?page=${pageNumber}&pageSize=10&userId=${user?.id}`,
 			headers: {
 				Authorization: `Bearer ${accessToken}`,
 			},
