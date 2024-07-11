@@ -16,6 +16,7 @@ import React from "react";
 import { PLAY_ICON } from "@public/icons/landingPage";
 import { useRouter } from "next/navigation";
 import { RoadmapType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
+import { UNKNOWN_USER_ICON } from "@public/icons/userProfile";
 
 const RoadmapItem = ({
 	id,
@@ -75,13 +76,17 @@ const RoadmapItem = ({
 
 			<div className="flex flex-col sm:flex-row gap-4 justify-between">
 				<div className="mt-4 flex items-center gap-2">
-					<Image
-						src={image}
-						width={100}
-						height={100}
-						alt="avatar"
-						className="w-[30px] h-[30px] rounded-full object-cover"
-					/>
+					{image ? (
+						<Image
+							src={image}
+							width={100}
+							height={100}
+							alt="author-pic"
+							className="w-[32px] h-[32px] object-cover rounded-full"
+						/>
+					) : (
+						UNKNOWN_USER_ICON
+					)}
 
 					<div className="flex justify-center flex-col">
 						<h3 className="flex items-center gap-1 text-[14px] text-[#202020]">

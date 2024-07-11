@@ -3,7 +3,7 @@ import { Outfit } from "next/font/google";
 import "./globals.css";
 import { cookies } from "next/headers";
 import ReduxProvider from "@/redux/Provider";
-import CheckCurrentUserProvider from "@/providers/CheckCurrentUser";
+import CheckCurrentUserProvider from "@/providers/CurrentUserContext";
 import { getUser } from "@/app/auth/services/getUser";
 import PrivateNavbar from "@/components/navbar/components/PrivateNavbar";
 import PublicNavbar from "@/components/landing-page/components/public-navbar/PublicNavbar";
@@ -35,7 +35,8 @@ export default async function RootLayout({
 	children: React.ReactNode;
 }>) {
 	const accessToken = cookies().get("accessToken");
-	const currentUser = await getUser(accessToken?.value);
+	const refreshToken = cookies().get("refreshToken");
+	const currentUser = await getUser(accessToken?.value, refreshToken?.value);
 
 	return (
 		<html lang="en">

@@ -1,6 +1,7 @@
 import PathnameHelper from "@/helpers/pathname.helper";
 import { fetchRoadmapById } from "@/redux/slices/thunks/roadmaps/roadmapPreviewAsyncThunks";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
+import { getCookie } from "cookies-next";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect } from "react";
 
@@ -11,15 +12,18 @@ export const useRoadmapPreview = () => {
 	const { isLoading, error, roadmap } = useAppSelector(
 		state => state.roadmapPreview
 	);
+
+	const accessToken = getCookie("accessToken");
+
 	const { push } = useRouter();
 
 	useEffect(() => {
-		if (error) {
-			push("/");
-		}
-
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [isLoading, error, roadmap]);
+		(async () => {
+			if (error && accessToken) {
+				push("/");
+			}
+		})();
+	}, [error]);
 
 	useEffect(() => {
 		dispatch(fetchRoadmapById(roadmapId));

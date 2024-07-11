@@ -34,7 +34,7 @@ const UserHeader = () => {
 	if (isLoading) return <UserHeaderLoader />;
 
 	return (
-		<div className="relative w-full h-[400px] md:h-[300px] bg-white sm:rounded-[16px] overflow-hidden">
+		<div className="relative w-full h-[450px] md:h-[350px] bg-white sm:rounded-[16px] overflow-hidden">
 			<Image
 				src={cover}
 				width={400}
@@ -48,7 +48,7 @@ const UserHeader = () => {
 			<div className="flex flex-col md:flex-row justify-between py-2 lg:px-[8px] mt-[74px] md:mt-4 mx-4 md:mx-0">
 				<UserDetails />
 
-				<div className="h-[40px] mr-0 md:mr-4 flex-jc-c gap-2">
+				<div className="h-[40px] mr-0 md:mr-4 flex-jc-c gap-2 mt-4">
 					<FollowButton customStyles="!rounded-[5px]" />
 					<DirectMessageButton customStyles="border-[#D8D8D8]" />
 

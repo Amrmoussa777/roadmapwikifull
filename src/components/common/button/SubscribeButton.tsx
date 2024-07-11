@@ -11,7 +11,8 @@ const SubscribeButton = ({
 }: SubscribeButtonProps) => {
 	return (
 		<button
-			onClick={onClick}
+			onClick={() => onClick()}
+			type="button"
 			className="flex-jc-c gap-2 bg-button-subscribe rounded-md text-white pl-2"
 		>
 			{ROADMAP_SUBSCRIBE_LOGO}

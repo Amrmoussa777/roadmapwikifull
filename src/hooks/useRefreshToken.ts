@@ -1,4 +1,5 @@
-import { CurrentUserContext } from "@/providers/CheckCurrentUser";
+import { CurrentUserContext } from "@/providers/CurrentUserContext";
+import { fetchAnonymousToken } from "@/services/fetchAnonymousToken";
 import axios from "axios";
 import { getCookie, setCookie } from "cookies-next";
 import { useContext, useEffect } from "react";
@@ -20,6 +21,7 @@ export const fetchNewAccessToken = async (refreshToken: string | undefined) => {
 
 export const useRefreshToken = () => {
 	const refreshToken = getCookie("refreshToken");
+	const accessToken = getCookie("accessToken");
 	const { currentUser } = useContext(CurrentUserContext);
 
 	useEffect(() => {
@@ -27,6 +29,12 @@ export const useRefreshToken = () => {
 			if (!currentUser && refreshToken) {
 				const newAccessToken = await fetchNewAccessToken(refreshToken);
 				setCookie("accessToken", newAccessToken);
+			}
+
+			if (!accessToken) {
+				const accessToken = await fetchAnonymousToken();
+
+				setCookie("accessToken", accessToken);
 			}
 		})();
 	}, [currentUser, refreshToken]);

@@ -1,19 +1,45 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import RoadmapCover from "@public/roadmapCover.png";
 import SubscribeButton from "@/components/common/button/SubscribeButton";
 import { SHARE_ICON } from "@public/icons/roadmapPreview";
 import { useAppSelector } from "@/redux/store";
 import LoadingRoadmapHeader from "@/components/roadmap-preview/components/loading/LoadingRoadmapHeader";
+import { getCookie } from "cookies-next";
+import axios from "axios";
+import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import { useRouter } from "next/navigation";
 
 const RoadmapHeader = () => {
 	const { roadmap, isLoading } = useAppSelector(state => state.roadmapPreview);
-	const { title, price, isSubscribed } = roadmap || {};
-
+	const { id, title, price, isSubscribed: initialIsSubscribed } = roadmap || {};
+	const [isSubscribed, setIsSubscribed] = useState(initialIsSubscribed);
+	const { currentUser } = useContext(CurrentUserContext);
 	const { push } = useRouter();
+
+	const handleSubscribeRoadmap = async () => {
+		if (!currentUser) return push("/auth/login");
+
+		const accessToken = getCookie("accessToken");
+
+		if (!isSubscribed) {
+			await axios({
+				method: "POST",
+				url: `${process.env.NEXT_PUBLIC_BASE_URL}/roadmap/${id}/subscribe`,
+				headers: {
+					Authorization: `Bearer ${accessToken}`,
+				},
+			});
+
+			setIsSubscribed(prev => !prev);
+		}
+	};
+
+	useEffect(() => {
+		setIsSubscribed(initialIsSubscribed);
+	}, [initialIsSubscribed]);
 
 	if (isLoading) return <LoadingRoadmapHeader />;
 
@@ -36,7 +62,7 @@ const RoadmapHeader = () => {
 				<div className="flex-jc-c gap-2">
 					<SubscribeButton
 						price={price?.amount}
-						onClick={() => push(`/auth/login`)}
+						onClick={handleSubscribeRoadmap}
 						isSubscribed={isSubscribed}
 					/>
 					<button className="w-[35px] h-[35px] md:w-[40px] md:h-[40px] flex-jc-c border border-grey-iconBorder rounded-full text-[#898989]">

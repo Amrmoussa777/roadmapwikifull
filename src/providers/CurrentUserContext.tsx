@@ -17,6 +17,8 @@ export const CurrentUserContext = createContext<CurrentUserContextType>({
 
 const CurrentUserProvider = ({ children }: ChildrenType) => {
 	const accessToken = getCookie("accessToken");
+	const refreshToken = getCookie("refreshToken");
+
 	const [currentUser, setCurrentUser] = useState<
 		CurrentUserType | null | undefined
 	>(null);
@@ -26,7 +28,7 @@ const CurrentUserProvider = ({ children }: ChildrenType) => {
 	useEffect(() => {
 		(async () => {
 			try {
-				const user = await getUser(accessToken);
+				const user = await getUser(accessToken, refreshToken);
 				setCurrentUser(user);
 			} catch (error) {
 				console.error(error);

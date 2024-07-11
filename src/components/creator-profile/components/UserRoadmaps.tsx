@@ -1,39 +1,20 @@
 "use client";
 
 import RoadmapItem from "@/components/creator-profile/components/RoadmapItem";
+import RoadmapsPagination from "@/components/creator-profile/components/RoadmapsPagination";
+import { useRoadmaps } from "@/components/creator-profile/hooks/useRoadmaps";
 import UserRoadmapsLoader from "@/components/creator-profile/loading/UserRoadmapsLoader";
-import { RoadmapType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
 import { useAppSelector } from "@/redux/store";
-import axios from "axios";
-import { getCookie } from "cookies-next";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 const UserRoadmaps = () => {
-	const { isLoading, user } = useAppSelector(state => state.userProfile);
-	const [roadmaps, setRoadmaps] = useState<RoadmapType[]>([]);
+	const { isLoading: roadmapIsLoading } = useAppSelector(
+		state => state.userProfile
+	);
+	const { roadmaps, totalItems, handleShowMoreRoadmaps, isLoading } =
+		useRoadmaps();
 
-	const handleGetCreatorRoadmaps = async () => {
-		const accessToken = getCookie("accessToken");
-
-		const res = await axios({
-			method: "GET",
-			url: `${process.env.NEXT_PUBLIC_BASE_URL}/roadmap/?page=1&pageSize=10&userId=fd0680ea-f918-45f6-9b38-8ef45a16de62`,
-			headers: {
-				Authorization: `Bearer ${accessToken}`,
-			},
-		});
-		const { data } = res;
-
-		setRoadmaps(data);
-	};
-
-	useEffect(() => {
-		if (user) {
-			handleGetCreatorRoadmaps();
-		}
-	}, [user]);
-
-	if (isLoading) return <UserRoadmapsLoader />;
+	if (roadmapIsLoading) return <UserRoadmapsLoader />;
 
 	return (
 		<div className="w-full md:w-[calc(100%-296px)] mt-8 md:mt-4 md:pl-4 px-2 sm:px-0">
@@ -60,6 +41,12 @@ const UserRoadmaps = () => {
 					<RoadmapItem key={roadmap.id} {...roadmap} />
 				))}
 			</ul>
+
+			<RoadmapsPagination
+				handleShowMoreRoadmaps={handleShowMoreRoadmaps}
+				totalItems={totalItems}
+				isLoading={isLoading}
+			/>
 		</div>
 	);
 };
