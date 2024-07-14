@@ -6,7 +6,11 @@ const PrivateNavbarMenuButton = ({
 	isMenuOpen,
 	toggle,
 }: PrivateNavbarMenuButtonProps) => {
-	return <MenuButton isMenuOpen={isMenuOpen} setIsMenuOpen={toggle} />;
+	return (
+		<div className="absolute right-2 z-50">
+			<MenuButton isMenuOpen={isMenuOpen} setIsMenuOpen={toggle} />
+		</div>
+	);
 };
 
 export default PrivateNavbarMenuButton;

@@ -53,10 +53,10 @@ const UserSideDetails = () => {
 					<p>Join date</p>
 					<span>10 Feb 2024</span>
 				</li>
-				<li>
-					<p>Experiences</p>
 
-					{experiences ? (
+				{experiences?.length ? (
+					<li>
+						<p>Experiences</p>
 						<div className="w-full flex gap-2 flex-wrap mt-2">
 							{experiences.map(item => (
 								<span
@@ -67,8 +67,8 @@ const UserSideDetails = () => {
 								</span>
 							))}
 						</div>
-					) : null}
-				</li>
+					</li>
+				) : null}
 			</ul>
 		</div>
 	);

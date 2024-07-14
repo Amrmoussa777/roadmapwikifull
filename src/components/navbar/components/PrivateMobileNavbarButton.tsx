@@ -8,7 +8,7 @@ const PrivateMobileNavbarButton = ({
 }: PrivateNavbarButtonProps) => {
 	return (
 		<button
-			className={`flex-ic-c gap-2 w-full h-[36px] hover:text-black ${customStyles}`}
+			className={`flex-ic-c gap-2 w-full h-[36px] hover:text-black ${customStyles} overflow-hidden`}
 		>
 			<span>{icon}</span>
 			<p className="font-normal text-[16px]">{text}</p>

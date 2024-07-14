@@ -25,8 +25,11 @@ export const register = async (formData: Record<string, string>) => {
 		return data;
 	} catch (error: any) {
 		const { message } = error.response.data;
-		notifyError(message);
-		console.log(error);
+		if (Array.isArray(message)) {
+			message.forEach(errorMsg => notifyError(errorMsg));
+		} else {
+			notifyError(message);
+		}
 
 		console.log(error);
 	}

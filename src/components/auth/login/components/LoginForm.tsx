@@ -32,10 +32,6 @@ const LoginForm = () => {
 
 		const { error } = await login(formData);
 		setIsLoading(false);
-
-		if (!error) {
-			return location.replace("/");
-		}
 	};
 
 	return (

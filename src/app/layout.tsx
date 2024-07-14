@@ -36,7 +36,7 @@ export default async function RootLayout({
 	return (
 		<html lang="en">
 			<body className={outfit.className}>
-				<ToastContainer position="bottom-left" />
+				<ToastContainer position="bottom-right" />
 				<ReduxProvider>
 					<CheckCurrentUserProvider>
 						<Navbar />

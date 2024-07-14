@@ -66,24 +66,26 @@ const RoadmapPreviewProfileInfo = () => {
 				</li>
 			</ul>
 
-			<div className="w-full">
-				<span className="font-poppins text-[12px] font-normal text-grey-secondary block mb-1">
-					Experience
-				</span>
+			{user?.experiences.length ? (
+				<div className="w-full">
+					<span className="font-poppins text-[12px] font-normal text-grey-secondary block mb-1">
+						Experience
+					</span>
 
-				{user?.experiences ? (
-					<div className="w-full flex gap-2 flex-wrap">
-						{user.experiences.map(item => (
-							<span
-								key={item.id}
-								className="h-[30px] flex-jc-c px-4 border border-grey-iconBorder rounded-full text-[12px] font-medium font-inter"
-							>
-								{item.title}
-							</span>
-						))}
-					</div>
-				) : null}
-			</div>
+					{user?.experiences ? (
+						<div className="w-full flex gap-2 flex-wrap">
+							{user.experiences.map(item => (
+								<span
+									key={item.id}
+									className="h-[30px] flex-jc-c px-4 border border-grey-iconBorder rounded-full text-[12px] font-medium font-inter"
+								>
+									{item.title}
+								</span>
+							))}
+						</div>
+					) : null}
+				</div>
+			) : null}
 
 			<div className="w-full">
 				<span className="font-poppins text-[12px] font-normal text-grey-secondary block mb-1">

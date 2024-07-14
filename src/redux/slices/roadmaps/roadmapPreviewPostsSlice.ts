@@ -45,7 +45,7 @@ export const roadmapPreviewPostsSlice = createSlice({
 		builder.addCase(addPost.fulfilled, (state, action) => {
 			const newPost = action.payload;
 
-			state.posts.list.push(newPost);
+			state.posts.list.unshift(newPost);
 		});
 	},
 });

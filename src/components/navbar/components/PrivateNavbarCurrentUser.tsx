@@ -14,7 +14,7 @@ const PrivateNavbarCurrentUser = () => {
 	if (!currentUser) return <PrivateNavbarCurrentUserLoader />;
 
 	return (
-		<div className="w-full items-start text-start md:text-end gap-2 flex flex-row-reverse md:flex-row md:flex-jc-c">
+		<div className="w-full justify-end items-start text-start md:text-end gap-2 flex flex-row-reverse md:flex-row md:flex-jc-c">
 			<div>
 				<h3 className="font-medium text-black text-[14px] leading-[1]">
 					HI, {firstName}
