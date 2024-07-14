@@ -8,6 +8,7 @@ import { RoadmapPostReplyPostType } from "@/components/roadmap-preview/component
 import { UNKNOWN_USER_ICON } from "@public/icons/userProfile";
 import { getCookie } from "cookies-next";
 import axios from "axios";
+import moment from "moment";
 
 const RoadmapDiscussionPostReply = ({
 	id,
@@ -58,7 +59,7 @@ const RoadmapDiscussionPostReply = ({
 					<h3 className="text-[13px] text-[#181818] font-inter font-medium">
 						{fullName}{" "}
 						<span className="ml-1 text-[#9C9DA4] text-[13px] font-normal">
-							{createdAt}
+							{moment(createdAt).startOf("hour").fromNow()}
 						</span>
 					</h3>
 					<p className="text-[12px] text-grey-secondary font-inter font-light">

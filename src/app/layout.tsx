@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
-import { cookies } from "next/headers";
+import "react-toastify/dist/ReactToastify.css";
 import ReduxProvider from "@/redux/Provider";
 import CheckCurrentUserProvider from "@/providers/CurrentUserContext";
-import { getUser } from "@/app/auth/services/getUser";
-import PrivateNavbar from "@/components/navbar/components/PrivateNavbar";
-import PublicNavbar from "@/components/landing-page/components/public-navbar/PublicNavbar";
+import { ToastContainer } from "react-toastify";
+import Navbar from "@/components/navbar/components/Navbar";
 
 const outfit = Outfit({ subsets: ["latin"] });
 
@@ -34,16 +33,13 @@ export default async function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
-	const accessToken = cookies().get("accessToken");
-	const refreshToken = cookies().get("refreshToken");
-	const currentUser = await getUser(accessToken?.value, refreshToken?.value);
-
 	return (
 		<html lang="en">
 			<body className={outfit.className}>
+				<ToastContainer position="bottom-left" />
 				<ReduxProvider>
 					<CheckCurrentUserProvider>
-						{currentUser ? <PrivateNavbar /> : <PublicNavbar />}
+						<Navbar />
 						{children}
 					</CheckCurrentUserProvider>
 				</ReduxProvider>

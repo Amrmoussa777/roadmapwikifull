@@ -13,6 +13,8 @@ const AuthPasswordInput = ({
 	name,
 	icon,
 	placeholder,
+	value,
+	handleChangeValue,
 	customStyles,
 }: AuthInputProps) => {
 	const { currentState: isVisiblePassword, toggle: togglePassword } =
@@ -26,6 +28,8 @@ const AuthPasswordInput = ({
 				type={isVisiblePassword ? "text" : type}
 				placeholder={placeholder}
 				name={name}
+				value={value}
+				onChange={handleChangeValue}
 				className="w-full h-full outline-none bg-transparent pl-4 text-[14px] placeholder:text-[14px] placeholder:font-poppins placeholder:font-medium placeholder:text-[#ADB0CD] text-[#202020]"
 			/>
 

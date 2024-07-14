@@ -1,0 +1,123 @@
+"use client";
+
+import { login } from "@/app/auth/login/service/login";
+import FormButton from "@/components/auth/login/components/FormButton";
+import ThirdPartyAuthButton from "@/components/common/button/ThirdPartyAuthButton";
+import HorizontalDivider from "@/components/common/divider/components/HorizontalDivider";
+import AuthInput from "@/components/common/input/AuthInput";
+import AuthPasswordInput from "@/components/common/input/AuthPasswordInput";
+import useInput from "@/components/common/input/hooks/useInput";
+import RoadmapLogo from "@/components/landing-page/components/public-navbar/RoadmapLogo";
+import {
+	EMAIL_INPUT_ICON,
+	GOOGLE_ICON,
+	PASSWORD_INPUT_ICON,
+} from "@public/icons/auth";
+import { FACEBOOK_ICON } from "@public/icons/socialMedia";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import React, { FormEvent, useState } from "react";
+
+const LoginForm = () => {
+	const { value: email, changeValue: changeEmail } = useInput("");
+	const { value: password, changeValue: changePassword } = useInput("");
+	const { push } = useRouter();
+
+	const [isLoading, setIsLoading] = useState(false);
+
+	const handleSubmitRegistration = async (e: FormEvent) => {
+		e.preventDefault();
+		setIsLoading(true);
+		const formData = { email, password };
+
+		const { error } = await login(formData);
+		setIsLoading(false);
+
+		if (!error) {
+			return location.replace("/");
+		}
+	};
+
+	return (
+		<form
+			onSubmit={handleSubmitRegistration}
+			className="col-span-2 lg:col-span-1 px-8 py-8 bg-white"
+		>
+			<div className="sm:w-[400px] h-full mx-auto flex flex-col">
+				<div className="my-auto">
+					<RoadmapLogo
+						extension=".io"
+						customStyles="[&>svg]:w-[40px] [&>svg]:h-[40px] text-[32px]"
+					/>
+
+					<h2 className="mt-[88px] font-poppins font-semibold text-[30px] text-[#171725]">
+						Log In
+					</h2>
+
+					<div className="flex-jb-c gap-4 mt-[32px]">
+						<ThirdPartyAuthButton
+							thirdPartyProviderIcon={GOOGLE_ICON}
+							thirdPartyProviderName="Google"
+							onClick={() => {}}
+						/>
+						<ThirdPartyAuthButton
+							thirdPartyProviderIcon={FACEBOOK_ICON}
+							thirdPartyProviderName="Facebook"
+							onClick={() => {}}
+						/>
+					</div>
+
+					<div className="flex-jc-c my-[26px]">
+						<HorizontalDivider height="h-[1px]" bgColor="bg-[#E4E6EC]" />
+						<span className="font-poppins font-medium bg-white text-[#969AB8] p-4">
+							or
+						</span>
+						<HorizontalDivider height="h-[1px]" bgColor="bg-[#E4E6EC]" />
+					</div>
+
+					<div>
+						<AuthInput
+							type="email"
+							icon={EMAIL_INPUT_ICON}
+							name="email"
+							placeholder="Your email"
+							value={email}
+							handleChangeValue={changeEmail}
+						/>
+						<AuthPasswordInput
+							type="password"
+							icon={PASSWORD_INPUT_ICON}
+							name="password"
+							placeholder="Your password"
+							value={password}
+							handleChangeValue={changePassword}
+						/>
+					</div>
+
+					<FormButton buttonText="Log in" isLoading={isLoading} />
+
+					<button
+						type="button"
+						className="w-full h-[54px] font-poppins font-medium text-[15px] text-black rounded-[8px] border-[1.6px] border-[#E0E2E9]"
+					>
+						Create roadmap without login
+					</button>
+				</div>
+
+				<div className="mt-auto">
+					<p className="inline-block text-[#79828B] text-[15px] font-normal font-poppins">
+						Don’t have an account?
+					</p>{" "}
+					<Link
+						href="/auth/register"
+						className="font-semibold text-[15px] font-poppins text-primary-ultramarineBlue"
+					>
+						Sign Up
+					</Link>
+				</div>
+			</div>
+		</form>
+	);
+};
+
+export default LoginForm;

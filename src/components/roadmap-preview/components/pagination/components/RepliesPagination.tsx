@@ -9,7 +9,7 @@ const RepliesPagination = ({
 	return (
 		<div
 			className={`text-center transition-all ml-6 ${
-				totalItems < 2 ? "hidden" : ""
+				totalItems < 5 ? "hidden" : ""
 			}`}
 		>
 			<button

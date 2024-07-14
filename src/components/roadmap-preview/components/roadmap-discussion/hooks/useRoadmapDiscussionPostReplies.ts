@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { useEffect, useState, useRef } from "react";
 
 export const useRoadmapDiscussionPostReplies = (postId: string) => {
-	const [totalItems, setTotalItems] = useState(5);
+	const [totalItems, setTotalItems] = useState(0);
 	const [isLoading, setIsLoading] = useState(false);
 	const { replies } = useAppSelector(state => state.roadmapPreviewReplies);
 	const dispatch = useAppDispatch();

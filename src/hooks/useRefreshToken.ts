@@ -26,11 +26,6 @@ export const useRefreshToken = () => {
 
 	useEffect(() => {
 		(async () => {
-			if (!currentUser && refreshToken) {
-				const newAccessToken = await fetchNewAccessToken(refreshToken);
-				setCookie("accessToken", newAccessToken);
-			}
-
 			if (!accessToken) {
 				const accessToken = await fetchAnonymousToken();
 

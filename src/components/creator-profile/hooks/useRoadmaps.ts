@@ -8,7 +8,7 @@ export const useRoadmaps = () => {
 	const { user } = useAppSelector(state => state.userProfile);
 	const [roadmaps, setRoadmaps] = useState<RoadmapType[]>([]);
 	const [pageNumber, setPageNumber] = useState(1);
-	const [totalItems, setTotalItems] = useState(10);
+	const [totalItems, setTotalItems] = useState(0);
 	const [isLoading, setIsLoading] = useState(false);
 
 	const handleGetCreatorRoadmaps = async (pageNumber: number) => {
@@ -22,6 +22,7 @@ export const useRoadmaps = () => {
 			},
 		});
 		const { data } = res;
+		setTotalItems(data.length);
 
 		return data;
 	};

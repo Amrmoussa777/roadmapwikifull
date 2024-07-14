@@ -15,6 +15,7 @@ const SuperRoadmapsSlider = () => {
 	return (
 		<div className="w-full">
 			<Swiper
+				slidesPerView={1}
 				pagination={{
 					type: "fraction",
 				}}

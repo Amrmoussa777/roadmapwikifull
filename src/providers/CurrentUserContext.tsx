@@ -34,6 +34,8 @@ const CurrentUserProvider = ({ children }: ChildrenType) => {
 				console.error(error);
 			}
 		})();
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [accessToken]);
 
 	useEffect(() => {

@@ -1,5 +1,6 @@
 import HorizontalDivider from "@/components/common/divider/components/HorizontalDivider";
 import useInput from "@/components/common/input/hooks/useInput";
+import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import { addPost } from "@/redux/slices/thunks/roadmaps/addPost";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import {
@@ -9,7 +10,8 @@ import {
 	TEXT_EDITOR_THROUGHLINE,
 	TEXT_EDITOR_UNDERLINE,
 } from "@public/icons/roadmapPreview";
-import React, { FormEvent, useState } from "react";
+import { useRouter } from "next/navigation";
+import React, { FormEvent, useContext, useState } from "react";
 
 const RoadmapDiscussionAddPostForm = () => {
 	const {
@@ -21,9 +23,16 @@ const RoadmapDiscussionAddPostForm = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const dispatch = useAppDispatch();
 	const { roadmap } = useAppSelector(state => state.roadmapPreview);
+	const { push } = useRouter();
+	const { currentUser } = useContext(CurrentUserContext);
 
 	const handleAddComment = (e: FormEvent) => {
 		e.preventDefault();
+
+		if (!currentUser) {
+			push("/auth/login");
+		}
+
 		setIsLoading(true);
 
 		if (roadmap) {

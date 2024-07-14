@@ -17,8 +17,6 @@ const RoadmapDiscussion = () => {
 	useDisableScroll(isExpandedDiscussion);
 	const { posts } = useAppSelector(state => state.roadmapPreviewPosts);
 
-	if (!posts.list.length) return;
-
 	return (
 		<div
 			className={`bg-white rounded-md p-2 md:p-4 transition-all duration-300 ${
@@ -44,15 +42,19 @@ const RoadmapDiscussion = () => {
 
 			<RoadmapDiscussionAddPostForm />
 
-			<HorizontalDivider
-				height="h-[0.25px]"
-				bgColor="bg-[#E0E0E0]"
-				customStyles="my-4"
-			/>
+			{posts.list.length ? (
+				<>
+					<HorizontalDivider
+						height="h-[0.25px]"
+						bgColor="bg-[#E0E0E0]"
+						customStyles="my-4"
+					/>
 
-			<RoadmapDiscussionPosts />
+					<RoadmapDiscussionPosts />
 
-			<PostsPagination handleMoreComments={handleMoreComments} />
+					<PostsPagination handleMoreComments={handleMoreComments} />
+				</>
+			) : null}
 		</div>
 	);
 };

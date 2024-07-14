@@ -24,4 +24,6 @@ export interface AuthInputProps {
 	icon: ReactNode;
 	placeholder: string;
 	customStyles?: string;
+	value: string;
+	handleChangeValue?: (e: ITarget) => void;
 }

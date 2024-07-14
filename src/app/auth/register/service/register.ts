@@ -1,11 +1,13 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
-export const register = async (formData: FormData) => {
-	"use server";
+export const register = async (formData: Record<string, string>) => {
+	const notifyError = (msg: string) => toast.error(msg);
+	const notifySuccess = () =>
+		toast.success("Congrats, your account has been created successfully.");
+
 	try {
-		const fullName = formData.get("fullName");
-		const email = formData.get("email");
-		const password = formData.get("password");
+		const { fullName, email, password } = formData;
 
 		const res = await axios({
 			method: "POST",
@@ -18,7 +20,14 @@ export const register = async (formData: FormData) => {
 		});
 
 		const { data } = res;
-	} catch (error) {
+		notifySuccess();
+
+		return data;
+	} catch (error: any) {
+		const { message } = error.response.data;
+		notifyError(message);
+		console.log(error);
+
 		console.log(error);
 	}
 };
