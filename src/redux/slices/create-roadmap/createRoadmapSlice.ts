@@ -7,12 +7,27 @@ const initialState: CreateRoadmapSliceStateType = {
 	roadmap: null,
 	isLoading: true,
 	error: null,
+	draftRoadmap: {
+		title: "",
+		description: "",
+		icon: null,
+	},
 };
 
 const createRoadmapSlice = createSlice({
 	initialState,
 	name: "createRoadmap",
-	reducers: {},
+	reducers: {
+		updateDraftRoadmap: (state, action) => {
+			const { title, description } = action.payload;
+
+			state.draftRoadmap = {
+				title,
+				description,
+				icon: null,
+			};
+		},
+	},
 	extraReducers(builder) {
 		builder.addCase(fetchRoadmapById.fulfilled, (state, action) => {
 			state.isLoading = false;
@@ -25,7 +40,6 @@ const createRoadmapSlice = createSlice({
 			state.error = action.payload;
 			state.roadmap = null;
 		});
-
 		builder.addCase(addRoadmapStep.fulfilled, (state, action) => {
 			const newStep = action.payload;
 
@@ -34,5 +48,5 @@ const createRoadmapSlice = createSlice({
 	},
 });
 
-export const {} = createRoadmapSlice.actions;
+export const { updateDraftRoadmap } = createRoadmapSlice.actions;
 export default createRoadmapSlice.reducer;

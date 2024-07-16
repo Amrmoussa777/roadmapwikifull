@@ -1,7 +1,10 @@
 import useToggle from "@/hooks/useToggle";
 import { ARROW_ICON } from "@public/icons/roadmapSteps";
-import React from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
+import useInput from "@/components/common/input/hooks/useInput";
+import { updateDraftRoadmap } from "@/redux/slices/create-roadmap/createRoadmapSlice";
 
 const RoadmapDescriptionStep = ({
 	handleNextStep,
@@ -12,6 +15,21 @@ const RoadmapDescriptionStep = ({
 }) => {
 	const { currentState: isOptionsHidden, toggle: hideOptions } =
 		useToggle(false);
+
+	const { draftRoadmap } = useAppSelector(state => state.createRoadmap);
+	const dispatch = useAppDispatch();
+
+	const { value: description, changeValue: changeDescription } = useInput(
+		draftRoadmap.description
+	);
+
+	const handleChangeDescription = () => {
+		dispatch(updateDraftRoadmap({ ...draftRoadmap, description }));
+	};
+
+	useEffect(() => {
+		handleChangeDescription();
+	}, [description]);
 
 	return (
 		<motion.div
@@ -64,6 +82,8 @@ const RoadmapDescriptionStep = ({
 
 				<textarea
 					placeholder="description"
+					onChange={changeDescription}
+					value={description}
 					className="h-[200px] resize-none py-4 create-new-roadmap-input hidden-scrollbar"
 				/>
 			</div>
