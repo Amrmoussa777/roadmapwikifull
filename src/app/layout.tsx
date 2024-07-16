@@ -6,6 +6,7 @@ import ReduxProvider from "@/redux/Provider";
 import CheckCurrentUserProvider from "@/providers/CurrentUserContext";
 import { ToastContainer } from "react-toastify";
 import Navbar from "@/components/navbar/components/Navbar";
+import CreateRoadmapLayout from "@/components/create-roadmap/layout/CreateRoadmapLayout";
 
 const outfit = Outfit({ subsets: ["latin"] });
 
@@ -40,7 +41,7 @@ export default async function RootLayout({
 				<ReduxProvider>
 					<CheckCurrentUserProvider>
 						<Navbar />
-						{children}
+						<CreateRoadmapLayout>{children}</CreateRoadmapLayout>
 					</CheckCurrentUserProvider>
 				</ReduxProvider>
 			</body>

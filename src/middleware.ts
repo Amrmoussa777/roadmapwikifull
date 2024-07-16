@@ -18,6 +18,7 @@ export const config = {
  * @type {string[]}
  */
 const protectedPaths = ["/auth"];
+const protectedDashboard = ["/create-roadmap"];
 
 export default async function handleAuthenticationMiddleware(req: NextRequest) {
 	const accessToken = req.cookies.get("accessToken")?.value;
@@ -40,12 +41,19 @@ export default async function handleAuthenticationMiddleware(req: NextRequest) {
 	const isProtectedPath = protectedPaths.some(route =>
 		req.nextUrl.pathname.startsWith(route)
 	);
+	const isProtectedDashboard = protectedDashboard.some(route =>
+		req.nextUrl.pathname.startsWith(route)
+	);
 
 	if (user && !isProtectedPath) {
 		return NextResponse.next();
 	}
 
 	if (user && isProtectedPath) {
+		return NextResponse.redirect(new URL("/", req.nextUrl));
+	}
+
+	if (!user && isProtectedDashboard) {
 		return NextResponse.redirect(new URL("/", req.nextUrl));
 	}
 }

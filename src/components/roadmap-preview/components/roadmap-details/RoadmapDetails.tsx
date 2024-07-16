@@ -66,13 +66,13 @@ const RoadmapDetails = () => {
 					</div>
 
 					<div className="w-full flex gap-2 flex-wrap mt-1">
-						{tags?.map(item => (
+						{tags?.map(tag => (
 							<span
-								key={item.id}
-								style={{ backgroundColor: item.color }}
+								key={tag.id}
+								style={{ backgroundColor: tag.color }}
 								className="h-[26px] flex-jc-c text-sm px-4 text-white rounded-full"
 							>
-								{item.tag}
+								{tag.name}
 							</span>
 						))}
 					</div>

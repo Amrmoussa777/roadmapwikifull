@@ -1,9 +1,9 @@
+"use client";
+
 import { RoadmapStepItemProps } from "@/components/roadmap-preview/types/roadmapSteps.types";
 import React from "react";
 import { CHECK_ICON, DURATION_ICON } from "@public/icons/roadmapSteps";
-import HorizontalDivider from "@/components/common/divider/components/HorizontalDivider";
 import { useAppDispatch } from "@/redux/store";
-import { toggleStep } from "@/redux/slices/roadmaps/roadmapPreviewSlice";
 import { calcAttachmentsCount } from "@/components/roadmap-preview/helpers/calcAttachmentsCount";
 import StepAttachmentsCount from "@/components/roadmap-preview/components/roadmap-steps/StepAttachmentsCount";
 
@@ -14,9 +14,8 @@ const RoadmapStepItem = ({
 	handlePreviewStep,
 	showTags,
 }: RoadmapStepItemProps) => {
-	const { duration, completed, tags, title, attachments } = step;
+	const { duration, tags, title, attachments } = step;
 	const dispatch = useAppDispatch();
-
 	const attachmentsCountList = calcAttachmentsCount(attachments);
 
 	return (
@@ -63,9 +62,7 @@ const RoadmapStepItem = ({
 						<div className="flex-jc-c gap-3">
 							<div className="flex items-center gap-1 text-[12px] font-medium font-inter leading-[14.4px] text-[#92929D]">
 								<span
-									className={`${
-										completed ? "text-[#00CF7C]" : "text-[#ACB5B7]"
-									}`}
+									className={`${false ? "text-[#00CF7C]" : "text-[#ACB5B7]"}`}
 								>
 									{CHECK_ICON}
 								</span>{" "}
@@ -86,9 +83,8 @@ const RoadmapStepItem = ({
 						<button
 							className="w-full text-white py-2 rounded-sm"
 							style={{ backgroundColor: "#506cf0" }}
-							onClick={() => dispatch(toggleStep(step.id))}
 						>
-							{completed ? "Uncheck assignment" : "Complete assignment"}
+							{true ? "Uncheck assignment" : "Complete assignment"}
 						</button>
 					</>
 				) : null} */}

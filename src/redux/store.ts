@@ -1,3 +1,4 @@
+import createRoadmapSlice from "@/redux/slices/create-roadmap/createRoadmapSlice";
 import roadmapPreviewPostsSlice from "@/redux/slices/roadmaps/roadmapPreviewPostsSlice";
 import roadmapPreviewRepliesSlice from "@/redux/slices/roadmaps/roadmapPreviewRepliesSlice";
 import roadmapPreviewSlice from "@/redux/slices/roadmaps/roadmapPreviewSlice";
@@ -11,6 +12,7 @@ export const store = configureStore({
 		roadmapPreviewPosts: roadmapPreviewPostsSlice,
 		userProfile: userProfileSlice,
 		roadmapPreviewReplies: roadmapPreviewRepliesSlice,
+		createRoadmap: createRoadmapSlice,
 	},
 });
 

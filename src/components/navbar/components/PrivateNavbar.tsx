@@ -9,6 +9,7 @@ import PrivateNavbarLinks from "@/components/navbar/components/PrivateNavbarLink
 import PrivateNavbarMenuButton from "@/components/navbar/components/PrivateNavbarMenuButton";
 import useDisableScroll from "@/hooks/useDisableScrolling";
 import useToggle from "@/hooks/useToggle";
+import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const PrivateNavbar = () => {
@@ -28,6 +29,10 @@ const PrivateNavbar = () => {
 			window.removeEventListener("resize", handleResize);
 		};
 	}, []);
+
+	const pathname = usePathname();
+
+	if (pathname.includes("create-roadmap")) return;
 
 	return (
 		<div className="bg-white w-full border-b border-[#E0E0E0]">

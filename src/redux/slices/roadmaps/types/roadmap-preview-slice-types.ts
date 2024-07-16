@@ -35,8 +35,8 @@ export interface RoadmapUserExperienceType {
 
 export interface RoadmapTagType {
 	id: string;
-	roadmapId: string;
-	tag: string;
+	roadmapStepId: string;
+	name: string;
 	color: string;
 }
 
@@ -67,7 +67,6 @@ export interface RoadmapStepType {
 	tags: RoadmapStepTagType[];
 	attachments: RoadmapStepAttachmentType[];
 	verifications: RoadmapStepVerificationType[];
-	completed: boolean;
 }
 
 export interface RoadmapType {

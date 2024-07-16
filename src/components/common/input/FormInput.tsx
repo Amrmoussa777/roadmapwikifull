@@ -17,11 +17,12 @@ const FormInput = ({
 	icon,
 }: IFormInput) => {
 	return (
-		<div className={`${customStyles} flex-jc-c`}>
+		<div className={`${customStyles}`}>
 			{label ? (
-				<label htmlFor={name} className="text-[#666666]">{`${label}${
-					required ? "*" : ""
-				}`}</label>
+				<label
+					htmlFor={name}
+					className="text-[14px] font-poppins text-[#666666]"
+				>{`${label}${required ? "*" : ""}`}</label>
 			) : null}
 
 			{type === "textarea" ? (

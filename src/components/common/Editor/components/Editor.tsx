@@ -1,12 +1,10 @@
-"use client";
-
 import styles from "../styles/editor.module.css";
 import "react-quill/dist/quill.snow.css";
 import React from "react";
 import ReactQuill from "react-quill";
 import { EditorProps } from "@/components/common/Editor/types/editor.types";
 
-var modules = {
+const modules = {
 	toolbar: [
 		["bold", "italic", "underline", "strike"],
 		[
@@ -31,7 +29,9 @@ const Editor = ({
 				theme="snow"
 				value={value}
 				onChange={changeValue}
-				className={`${styles.quill} ${hideToolbar ? "hide-toolbar" : ""}`}
+				className={`${styles.quill} ${
+					hideToolbar ? "hide-toolbar" : ""
+				} [&>div]:font-inter [&>div]:text-[#383838]`}
 				readOnly={disable}
 			/>
 		</div>

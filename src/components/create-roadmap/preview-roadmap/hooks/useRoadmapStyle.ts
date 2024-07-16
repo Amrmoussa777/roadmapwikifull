@@ -1,0 +1,87 @@
+import { Colors } from "@/components/create-roadmap/preview-roadmap/types/index.types";
+import { useAppSelector } from "@/redux/store";
+import { useEffect, useState } from "react";
+
+const initialColors: Colors = {
+	primaryColor: [
+		{ color: "#C0C2C5", active: false },
+		{ color: "#506CF0", active: true },
+		{ color: "#FF9900", active: false },
+		{ color: "#E0162E", active: false },
+		{ color: "#42505C", active: false },
+	],
+	secondaryColor: [
+		{ color: "#C0C2C5", active: false },
+		{ color: "#506CF0", active: false },
+		{ color: "#FF9900", active: true },
+		{ color: "#E0162E", active: false },
+		{ color: "#42505C", active: false },
+	],
+};
+
+const useRoadmapStyle = () => {
+	const [colors, setColors] = useState<Colors>(initialColors);
+	const { roadmap } = useAppSelector(state => state.createRoadmap);
+
+	const handleChangeColor = (keyColor: keyof Colors, newColor: string) => {
+		const updatedColors = colors[keyColor].map(item => {
+			if (item.color === newColor) {
+				return {
+					...item,
+					active: true,
+				};
+			} else {
+				return {
+					...item,
+					active: false,
+				};
+			}
+		});
+
+		setColors(prev => ({
+			...prev,
+			[keyColor]: updatedColors,
+		}));
+	};
+
+	const resetStyles = () => {
+		setColors(initialColors);
+	};
+
+	useEffect(() => {
+		if (roadmap) {
+			const updatedRoadmapStylesData = Object.entries(colors).reduce(
+				(acc: Record<string, string>, [key, arr]) => {
+					const activeItem = arr.find(item => item.active);
+					if (activeItem) {
+						acc[key] = activeItem.color;
+					}
+					return acc;
+				},
+				{}
+			);
+
+			console.log(updatedRoadmapStylesData);
+		}
+	}, [colors]);
+
+	useEffect(() => {
+		if (roadmap) {
+			const { primaryColor, secondaryColor } = roadmap;
+
+			// Update main color if provided in roadmap
+			if (primaryColor) {
+				handleChangeColor("primaryColor", primaryColor);
+			}
+
+			// Update secondary color if provided in roadmap
+			if (secondaryColor) {
+				handleChangeColor("secondaryColor", secondaryColor);
+			}
+		}
+	}, [roadmap]);
+
+	return { resetStyles, colors, handleChangeColor };
+};
+
+export { useRoadmapStyle };

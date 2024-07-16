@@ -6,7 +6,7 @@ class RoadmapPreviewUtils {
 			if (step.id === stepId) {
 				return {
 					...step,
-					completed: !step.completed,
+					completed: false,
 				};
 			}
 			return step;

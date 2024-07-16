@@ -14,16 +14,8 @@ const RoadmapPreviewStep = ({
 	previewStep,
 	togglePreviewStepModal,
 }: RoadmapPreviewStepProps) => {
-	const {
-		id,
-		title,
-		description,
-		duration,
-		attachments,
-		tags,
-		verifications,
-		completed,
-	} = previewStep || {};
+	const { id, title, description, duration, attachments, tags, verifications } =
+		previewStep || {};
 
 	return (
 		<div className="relative w-full p-4 mb-2 bg-white rounded-md">
@@ -64,12 +56,7 @@ const RoadmapPreviewStep = ({
 					</div>
 
 					<div className="flex items-center gap-1 text-[12px] font-medium font-inter leading-[14.4px] text-[#92929D]">
-						<span
-							className={`${completed ? "text-[#00CF7C]" : "text-[#ACB5B7]"}`}
-						>
-							{CHECK_ICON}
-						</span>{" "}
-						Not started
+						<span className={`text-[#ACB5B7]`}>{CHECK_ICON}</span> Not started
 					</div>
 				</div>
 			</div>
