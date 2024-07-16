@@ -1,10 +1,13 @@
 import useToggle from "@/hooks/useToggle";
 import { ARROW_ICON } from "@public/icons/roadmapSteps";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import useInput from "@/components/common/input/hooks/useInput";
 import { updateDraftRoadmap } from "@/redux/slices/create-roadmap/createRoadmapSlice";
+import { HoverBorderGradient } from "@/components/ui/moving-border";
+import { createRoadmap } from "@/components/create-roadmap/create-new-roadmap-steps/services/createRoadmap";
+import { useRouter } from "next/navigation";
 
 const RoadmapDescriptionStep = ({
 	handleNextStep,
@@ -15,13 +18,14 @@ const RoadmapDescriptionStep = ({
 }) => {
 	const { currentState: isOptionsHidden, toggle: hideOptions } =
 		useToggle(false);
-
+	const [isLoading, setIsLoading] = useState(false);
 	const { draftRoadmap } = useAppSelector(state => state.createRoadmap);
 	const dispatch = useAppDispatch();
-
 	const { value: description, changeValue: changeDescription } = useInput(
 		draftRoadmap.description
 	);
+
+	const { push } = useRouter();
 
 	const handleChangeDescription = () => {
 		dispatch(updateDraftRoadmap({ ...draftRoadmap, description }));
@@ -30,6 +34,18 @@ const RoadmapDescriptionStep = ({
 	useEffect(() => {
 		handleChangeDescription();
 	}, [description]);
+
+	const handleCreateRoadmap = async () => {
+		const newRoadmapData = { ...draftRoadmap, duration: "1 week" };
+		setIsLoading(true);
+		const newRoadmap = await createRoadmap(newRoadmapData);
+		setIsLoading(false);
+		const { id } = newRoadmap;
+
+		if (id) {
+			push(`/create-roadmap/${id}/steps`);
+		}
+	};
 
 	return (
 		<motion.div
@@ -84,18 +100,20 @@ const RoadmapDescriptionStep = ({
 					placeholder="description"
 					onChange={changeDescription}
 					value={description}
+					required
 					className="h-[200px] resize-none py-4 create-new-roadmap-input hidden-scrollbar"
 				/>
 			</div>
 
 			<div className="flex items-center mt-8">
-				<button
-					onClick={handleNextStep}
+				<HoverBorderGradient
+					onClick={handleCreateRoadmap}
+					containerClassName="rounded-[12px]"
+					as="button"
 					className="w-full md:w-[160px] h-[56px] rounded-[12px] flex-jc-c font-inter text-[18px] font-semibold text-start bg-primary-ultramarineBlue text-white"
 				>
-					Next
-				</button>
-
+					<span>{isLoading ? "Loading..." : "Create"}</span>
+				</HoverBorderGradient>
 				<button
 					className="min-w-[88px] h-[56px] text-[#606060] font-inter semibold text-[18px]"
 					onClick={handleNextStep}

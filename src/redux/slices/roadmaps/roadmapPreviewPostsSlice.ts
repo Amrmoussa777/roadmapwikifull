@@ -40,6 +40,7 @@ export const roadmapPreviewPostsSlice = createSlice({
 
 			state.posts.list = [...state.posts.list, ...newPosts];
 			state.posts.isLoading = false;
+			state.error = null;
 		});
 
 		builder.addCase(addPost.fulfilled, (state, action) => {

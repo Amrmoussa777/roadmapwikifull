@@ -1,20 +1,20 @@
 "use client";
 
-import CreateNewRoadmapHeader from "@/components/create-roadmap/navbar/CreateNewRoadmapHeader";
 import CreateRoadmapHeader from "@/components/create-roadmap/navbar/CreateRoadmapHeader";
 import RoadmapPreview from "@/components/create-roadmap/preview-roadmap/components/RoadmapPreview";
 import Sidebar from "@/components/create-roadmap/sidebar/components/Sidebar";
 import PathnameHelper from "@/helpers/pathname.helper";
 import { ChildrenType } from "@/providers/types/index.types";
 import { fetchRoadmapById } from "@/redux/slices/thunks/create-roadmap/fetchRoadmapById";
-import { useAppDispatch } from "@/redux/store";
-import { useParams, usePathname } from "next/navigation";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
+import { redirect, useParams, usePathname } from "next/navigation";
 import React, { useEffect } from "react";
 
 const CreateRoadmapLayout = ({ children }: ChildrenType) => {
 	const pathname = usePathname();
 	const lastPathname = PathnameHelper.getLastPathname(pathname);
 	const createNewRoadmapPaths = ["create-roadmap"];
+	const { error } = useAppSelector(state => state.createRoadmap);
 
 	const { roadmapId } = useParams();
 	const dispatch = useAppDispatch();
@@ -28,6 +28,8 @@ const CreateRoadmapLayout = ({ children }: ChildrenType) => {
 		createNewRoadmapPaths.includes(lastPathname)
 	)
 		return children;
+
+	if (error) return redirect("/create-roadmap");
 
 	return (
 		<div className="flex h-[calc(100vh-82px)]">

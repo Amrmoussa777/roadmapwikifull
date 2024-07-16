@@ -6,10 +6,11 @@ import { ARROW_ICON, DRAG_ICON } from "@public/icons/roadmapSteps";
 import MenuRoadmapStep from "@/components/create-roadmap/roadmap-steps/MenuRoadmapStep";
 import RoadmapTags from "@/components/create-roadmap/roadmap-steps/RoadmapTags";
 import { RoadmapStepType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
-import { AnimatePresence, motion, useDragControls } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Attachments from "@/components/create-roadmap/roadmap-steps/Attachments";
 import dynamic from "next/dynamic";
 import StepVerification from "@/components/create-roadmap/roadmap-steps/StepVerification";
+import { updateRoadmapStep } from "@/components/create-roadmap/preview-roadmap/services/updateRoadmapStep";
 const Editor = dynamic(
 	() => import("@/components/common/Editor/components/Editor"),
 	{ ssr: false }
@@ -23,11 +24,18 @@ const RoadmapStepItem = ({
 	activeId: string;
 	handleActiveStep: (id: string) => void;
 }) => {
-	const { id, description, title, tags } = step;
+	const { id, description, title, tags, duration } = step;
 	const { value, changeValue } = useInput(title);
 	const { currentState: titleNotDisabled, toggle: changeTitle } =
 		useToggle(false);
 	const [content, setContent] = useState<string>(description);
+
+	const handleChangeTitle = async () => {
+		const newData = { description, title: value, duration };
+
+		changeTitle();
+		await updateRoadmapStep(newData, id);
+	};
 
 	return (
 		<div
@@ -43,6 +51,7 @@ const RoadmapStepItem = ({
 					<input
 						type="text"
 						value={value}
+						onBlur={handleChangeTitle}
 						className={`w-full bg-transparent text-md sm:text-[18px] text-[#181818] border-2 border-transparent enabled:border-primary-ultramarineBlue/30 rounded-md pl-2 ${
 							titleNotDisabled
 								? "outline-3 outline-primary-ultramarineBlue/60"
@@ -54,7 +63,7 @@ const RoadmapStepItem = ({
 				</div>
 
 				<div className="flex items-center gap-2">
-					<MenuRoadmapStep stepId={id} />
+					<MenuRoadmapStep stepId={id} changeTitle={changeTitle} />
 
 					<button
 						onClick={() => handleActiveStep(id)}
