@@ -30,7 +30,7 @@ const RoadmapNameStep = ({
 
 			<button
 				onClick={handleNextStep}
-				className="w-[160px] h-[56px] rounded-[12px] flex-jc-c mt-36 font-inter text-[18px] font-semibold text-start bg-primary-ultramarineBlue text-white"
+				className="w-full md:w-[160px] h-[56px] rounded-[12px] flex-jc-c mt-36 font-inter text-[18px] font-semibold text-start bg-primary-ultramarineBlue text-white"
 			>
 				Next
 			</button>

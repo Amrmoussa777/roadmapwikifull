@@ -56,10 +56,12 @@ const Steps = () => {
 
 	return (
 		<>
-			<div className="max-w-[1300px] w-full mx-auto h-full flex-jc-c gap-4">
-				<div className="relative w-2/4 h-4/6 z-10">{renderStep()}</div>
+			<div className="max-w-[1300px] w-full mx-auto h-full mt-8 md:flex-jc-c gap-4">
+				<div className="relative w-full md:w-2/4 h-4/6 z-10">
+					{renderStep()}
+				</div>
 
-				<div className="w-2/4">
+				<div className="w-2/4 hidden md:block">
 					<Image
 						src={roadmapImage}
 						width={400}

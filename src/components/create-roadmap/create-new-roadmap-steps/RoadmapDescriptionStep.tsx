@@ -68,16 +68,16 @@ const RoadmapDescriptionStep = ({
 				/>
 			</div>
 
-			<div className="flex items-center">
+			<div className="flex items-center mt-8">
 				<button
 					onClick={handleNextStep}
-					className="w-[160px] h-[56px] rounded-[12px] flex-jc-c font-inter text-[18px] font-semibold text-start bg-primary-ultramarineBlue text-white"
+					className="w-full md:w-[160px] h-[56px] rounded-[12px] flex-jc-c font-inter text-[18px] font-semibold text-start bg-primary-ultramarineBlue text-white"
 				>
 					Next
 				</button>
 
 				<button
-					className="w-[88px] h-[56px] text-[#606060] font-inter semibold text-[18px]"
+					className="min-w-[88px] h-[56px] text-[#606060] font-inter semibold text-[18px]"
 					onClick={handleNextStep}
 				>
 					Skip
