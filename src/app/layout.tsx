@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
 import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
 import ReduxProvider from "@/redux/Provider";
@@ -7,8 +6,7 @@ import CheckCurrentUserProvider from "@/providers/CurrentUserContext";
 import { ToastContainer } from "react-toastify";
 import Navbar from "@/components/navbar/components/Navbar";
 import CreateRoadmapLayout from "@/components/create-roadmap/layout/CreateRoadmapLayout";
-
-const outfit = Outfit({ subsets: ["latin"] });
+import { inter, outfit, poppins } from "@/app/fonts";
 
 export const metadata: Metadata = {
 	title: "Roadmap",
@@ -36,7 +34,9 @@ export default async function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={outfit.className}>
+			<body
+				className={`${outfit.className} ${inter.variable} ${poppins.variable}`}
+			>
 				<ToastContainer position="bottom-right" />
 				<ReduxProvider>
 					<CheckCurrentUserProvider>

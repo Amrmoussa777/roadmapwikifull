@@ -1,3 +1,5 @@
+/** @type {import('tailwindcss').Config} */
+
 const {
 	default: flattenColorPalette,
 } = require("tailwindcss/lib/util/flattenColorPalette");
@@ -18,9 +20,9 @@ const config = {
 		},
 		extend: {
 			fontFamily: {
-				poppins: ["Poppins"],
-				inter: ["Inter"],
-				outfit: ["Outfit"],
+				inter: ["var(--font-inter)"],
+				outfit: ["var(--font-outfit)"],
+				poppins: ["var(--font-poppins)"],
 			},
 			colors: {
 				border: "hsl(var(--border))",
