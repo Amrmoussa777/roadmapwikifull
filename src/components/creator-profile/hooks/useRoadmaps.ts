@@ -13,6 +13,7 @@ export const useRoadmaps = () => {
 
 	const handleGetCreatorRoadmaps = async (pageNumber: number) => {
 		const accessToken = getCookie("accessToken");
+		setIsLoading(true);
 
 		const res = await axios({
 			method: "GET",
@@ -23,6 +24,7 @@ export const useRoadmaps = () => {
 		});
 		const { data } = res;
 		setTotalItems(data.length);
+		setIsLoading(false);
 
 		return data;
 	};

@@ -8,6 +8,7 @@ import FollowButton from "@/components/common/profile/FollowButton";
 import DirectMessageButton from "@/components/common/profile/DirectMessageButton";
 import Link from "next/link";
 import { SOCIAL_MEDIA_ICONS } from "@/config/socialMediaIcons";
+import NumberStats from "@/components/common/states/NumberStats";
 
 const RoadmapPreviewProfileInfo = () => {
 	useRoadmapPreview();
@@ -52,7 +53,12 @@ const RoadmapPreviewProfileInfo = () => {
 						Followers
 					</span>
 					<p className="font-inter font-normal text-[14px]">
-						{_count?.followers}
+						{_count?.followers || (
+							<NumberStats
+								text="No followers"
+								customStyles="!text-[14px] text-start"
+							/>
+						)}
 					</p>
 				</li>
 
@@ -61,7 +67,12 @@ const RoadmapPreviewProfileInfo = () => {
 						Roadmaps subscribers
 					</span>
 					<p className="font-inter font-normal text-[14px]">
-						{user?.roadmapsSubscribers}
+						{user?.roadmapsSubscribers || (
+							<NumberStats
+								text="No subscribers"
+								customStyles="!text-[14px] text-start"
+							/>
+						)}
 					</p>
 				</li>
 			</ul>

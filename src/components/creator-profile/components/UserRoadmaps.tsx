@@ -1,5 +1,6 @@
 "use client";
 
+import RoadmapStats from "@/components/common/states/RoadmapStats";
 import RoadmapItem from "@/components/creator-profile/components/RoadmapItem";
 import RoadmapsPagination from "@/components/creator-profile/components/RoadmapsPagination";
 import { useRoadmaps } from "@/components/creator-profile/hooks/useRoadmaps";
@@ -11,10 +12,14 @@ const UserRoadmaps = () => {
 	const { isLoading: roadmapIsLoading } = useAppSelector(
 		state => state.userProfile
 	);
+
 	const { roadmaps, totalItems, handleShowMoreRoadmaps, isLoading } =
 		useRoadmaps();
 
 	if (roadmapIsLoading) return <UserRoadmapsLoader />;
+
+	if (!roadmaps.length && !roadmapIsLoading)
+		return <RoadmapStats text="No roadmaps found!" />;
 
 	return (
 		<div className="w-full md:w-[calc(100%-296px)] mt-8 md:mt-4 md:pl-4 px-2 sm:px-0">

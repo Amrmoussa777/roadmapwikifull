@@ -1,5 +1,6 @@
 "use client";
 
+import NumberStats from "@/components/common/states/NumberStats";
 import UserSideDetailsLoader from "@/components/creator-profile/loading/UserSideDetailsLoader";
 import useToggle from "@/hooks/useToggle";
 import { useAppSelector } from "@/redux/store";
@@ -38,11 +39,25 @@ const UserSideDetails = () => {
 
 				<li>
 					<p>Followers</p>
-					<span>{_count?.followers}</span>
+					<span>
+						{_count?.followers || (
+							<NumberStats
+								text="No followers"
+								customStyles="!text-[14px] text-start"
+							/>
+						)}
+					</span>
 				</li>
 				<li>
 					<p>Roadmap Subscription</p>
-					<span>{roadmapsSubscribers}</span>
+					<span>
+						{roadmapsSubscribers || (
+							<NumberStats
+								text="No Subscription"
+								customStyles="!text-[14px] text-start"
+							/>
+						)}
+					</span>
 				</li>
 
 				<li>

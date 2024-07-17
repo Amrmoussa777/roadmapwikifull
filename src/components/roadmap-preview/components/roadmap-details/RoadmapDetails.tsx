@@ -6,6 +6,7 @@ import { STEPS_ICON, USERS_ICON } from "@public/icons/roadmapPreview";
 import useToggle from "@/hooks/useToggle";
 import { useAppSelector } from "@/redux/store";
 import LoadingRoadmapDetails from "@/components/roadmap-preview/components/loading/LoadingRoadmapDetails";
+import NumberStats from "@/components/common/states/NumberStats";
 
 const RoadmapDetails = () => {
 	const { currentState: isMoreContent, toggle: toggleMoreContent } =
@@ -41,7 +42,12 @@ const RoadmapDetails = () => {
 						<h3>Subscribers</h3>
 					</div>
 					<p className="font-inter font-normal text-[12px]">
-						{subscribersCount}
+						{subscribersCount || (
+							<NumberStats
+								text="No Subscribers"
+								customStyles="!text-[14px] text-start"
+							/>
+						)}
 					</p>
 				</li>
 				<li>
@@ -49,7 +55,14 @@ const RoadmapDetails = () => {
 						<span>{STEPS_ICON}</span>
 						<h3>Steps</h3>
 					</div>
-					<p>{_count?.steps}</p>
+					<p>
+						{_count?.steps || (
+							<NumberStats
+								text="No Steps"
+								customStyles="!text-[14px] text-start"
+							/>
+						)}
+					</p>
 				</li>
 			</ul>
 
