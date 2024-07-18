@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import useToggle from "@/hooks/useToggle";
 import useInput from "@/components/common/input/hooks/useInput";
 import HorizontalDivider from "@/components/common/divider/components/HorizontalDivider";
 import { ARROW_ICON, DRAG_ICON } from "@public/icons/roadmapSteps";
@@ -17,17 +16,15 @@ const Editor = dynamic(
 	() => import("@/components/common/Editor/components/Editor"),
 	{ ssr: false }
 );
+
 const RoadmapStepItem = ({ step }: { step: RoadmapStepType }) => {
 	const { id, description, title, tags, duration } = step;
 	const { value, changeValue } = useInput(title);
-	const { currentState: titleNotDisabled, toggle: changeTitle } =
-		useToggle(false);
 	const [content, setContent] = useState<string>(description);
 
 	const handleChangeTitle = async () => {
 		const newData = { description, title: value, duration };
 
-		changeTitle();
 		await updateRoadmapStep(newData, id);
 	};
 	const dispatch = useAppDispatch();
@@ -76,7 +73,7 @@ const RoadmapStepItem = ({ step }: { step: RoadmapStepType }) => {
 						transition={{ duration: 0.1 }}
 					>
 						<div className="flex-jb-c">
-							<RoadmapTags stepId={id} defaultTags={tags} />
+							<RoadmapTags stepId={id} tags={tags} />
 							{/* <CustomDatePicker stepId={id} /> */}
 						</div>
 

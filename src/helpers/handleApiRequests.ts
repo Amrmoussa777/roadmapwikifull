@@ -10,6 +10,7 @@ class HandleApiRequests {
 		endpoint,
 	}: IHandleApiRequestArgs<Data>) => {
 		const accessToken = getCookie("accessToken");
+
 		const { data } = await axios({
 			method,
 			url: `${process.env.NEXT_PUBLIC_BASE_URL}/${endpoint}`,

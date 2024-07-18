@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { Reorder } from "framer-motion";
 import { ADD_STEP_ICON } from "@public/icons/roadmapSteps";
 import { useRoadmapSteps } from "@/components/create-roadmap/preview-roadmap/hooks/useRoadmapSteps";
@@ -16,6 +16,11 @@ const RoadmapSteps = () => {
 	const { roadmap, isLoading } = useAppSelector(state => state.createRoadmap);
 	const dispatch = useAppDispatch();
 	const { roadmapId } = useParams();
+	const addStepButtonRef = useRef<HTMLButtonElement>(null);
+
+	const scrollToBottom = () => {
+		addStepButtonRef.current?.scrollIntoView({ behavior: "smooth" });
+	};
 
 	const handleAddRoadmapStep = () => {
 		dispatch(
@@ -26,6 +31,8 @@ const RoadmapSteps = () => {
 				duration: "1 day",
 			})
 		);
+
+		scrollToBottom();
 	};
 
 	useEffect(() => {
@@ -52,6 +59,7 @@ const RoadmapSteps = () => {
 			</Reorder.Group>
 
 			<button
+				ref={addStepButtonRef}
 				className="w-fit h-[48px] mx-auto flex gap-2 mt-4 font-normal"
 				onClick={handleAddRoadmapStep}
 			>

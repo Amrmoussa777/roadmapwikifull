@@ -38,13 +38,12 @@ const RoadmapStepItem = ({
 
 						{showTags ? (
 							<ul className="flex-jc-c gap-2">
-								{tags.map(tag => (
+								{tags.slice(0, 3).map(tag => (
 									<li
 										key={tag.id}
-										style={{ backgroundColor: tag.color }}
-										className="rounded-full w-fit px-2 text-[12px] font-normal text-white line-clamp-1"
+										className="rounded-full w-fit px-2 text-[12px] font-normal text-[#111111] bg-primary-ultramarineBlue/20"
 									>
-										<p>{tag.name}</p>
+										<p className="line-clamp-1">{tag.name}</p>
 									</li>
 								))}
 							</ul>

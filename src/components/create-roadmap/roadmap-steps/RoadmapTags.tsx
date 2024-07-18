@@ -5,29 +5,28 @@ import React from "react";
 
 const RoadmapTags = ({
 	stepId,
-	defaultTags,
+	tags,
 }: {
 	stepId: string;
-	defaultTags: RoadmapTagType[];
+	tags: RoadmapTagType[];
 }) => {
 	const {
-		tags,
-		removeTag,
 		changeValue,
 		addTag,
+		removeTag,
 		toggleAdding,
 		addingTag,
 		value,
 		error,
-	} = useRoadmapTags(stepId, defaultTags);
+	} = useRoadmapTags(stepId, tags);
 
 	return (
 		<div className="flex flex-wrap gap-2">
 			{tags.map(tag => (
 				<button
 					key={tag.id}
-					className="flex-jc-c gap-1 border border-transparent rounded-full py-[3px] px-[8px] bg-primary-ultramarineBlue/10 hover:bg-red-500/10 hover:line-through font-normal text-[14px]"
 					onClick={() => removeTag(tag.id)}
+					className="flex-jc-c gap-1 border border-transparent rounded-full py-[3px] px-[8px] bg-primary-ultramarineBlue/10 hover:bg-red-500/10 hover:line-through font-normal text-[14px]"
 				>
 					{tag.name}
 				</button>
