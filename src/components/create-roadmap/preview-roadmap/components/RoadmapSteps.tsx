@@ -9,21 +9,13 @@ import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { addRoadmapStep } from "@/redux/slices/thunks/create-roadmap/addRoadmapStep";
 import { useParams } from "next/navigation";
 import RoadmapStepsLoader from "@/components/create-roadmap/preview-roadmap/components/RoadmapStepsLoader";
+import { expandRoadmapStep } from "@/redux/slices/create-roadmap/createRoadmapSlice";
 
 const RoadmapSteps = () => {
 	const { items, setItems } = useRoadmapSteps();
 	const { roadmap, isLoading } = useAppSelector(state => state.createRoadmap);
-	const [activeId, setActiveId] = useState("");
 	const dispatch = useAppDispatch();
 	const { roadmapId } = useParams();
-
-	const handleActiveStep = (id: string) => {
-		if (activeId === id) {
-			setActiveId("");
-		} else {
-			setActiveId(id);
-		}
-	};
 
 	const handleAddRoadmapStep = () => {
 		dispatch(
@@ -38,9 +30,9 @@ const RoadmapSteps = () => {
 
 	useEffect(() => {
 		if (roadmap && roadmap.steps.length) {
-			setActiveId(roadmap.steps[0].id);
+			dispatch(expandRoadmapStep(roadmap.steps[0].id));
 		}
-	}, [roadmap]);
+	}, [isLoading]);
 
 	if (isLoading) return <RoadmapStepsLoader />;
 
@@ -54,26 +46,18 @@ const RoadmapSteps = () => {
 			>
 				{items.map(step => (
 					<Reorder.Item key={step.id} value={step} layout="position">
-						<RoadmapStepItem
-							key={step.id}
-							step={step}
-							activeId={activeId}
-							handleActiveStep={handleActiveStep}
-						/>
+						<RoadmapStepItem key={step.id} step={step} />
 					</Reorder.Item>
 				))}
 			</Reorder.Group>
 
 			<button
-				className="w-fit h-[48px] flex gap-2 mt-4 font-normal"
+				className="w-fit h-[48px] mx-auto flex gap-2 mt-4 font-normal"
 				onClick={handleAddRoadmapStep}
 			>
-				<div className="w-[48px] h-[48px] flex-jc-c rounded-full text-white bg-primary-ultramarineBlue">
+				<div className="w-[48px] h-[48px] flex-jc-c rounded-full text-white bg-primary-ultramarineBlue hover:text-primary-ultramarineBlue hover:bg-white border border-transparent hover:border-primary-ultramarineBlue transition duration-200">
 					{ADD_STEP_ICON}
 				</div>
-				<span className="leading-[48px] text-lg text-primary-ultramarineBlue">
-					Add new step
-				</span>
 			</button>
 		</div>
 	);

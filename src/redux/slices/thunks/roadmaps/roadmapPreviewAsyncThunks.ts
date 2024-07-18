@@ -1,29 +1,20 @@
+import HandleApiRequests from "@/helpers/handleApiRequests";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-import { getCookie } from "cookies-next";
 
 export const fetchRoadmapById = createAsyncThunk(
 	"roadmapPreviewSlice/fetchRoadmapById",
-	async (roadmapId: string) => {
+	async (roadmapId: string, thunkAPI) => {
 		try {
-			const accessToken = getCookie("accessToken");
-
-			const res = await axios({
+			const data: any = await HandleApiRequests.handleApiRequest({
 				method: "GET",
-				url: `${process.env.NEXT_PUBLIC_BASE_URL}/roadmap/${roadmapId}`,
-				headers: {
-					Authorization: `Bearer ${accessToken}`,
-				},
+				endpoint: `roadmap/${roadmapId}`,
 			});
-			const { data } = res;
 
 			return data;
 		} catch (error: any) {
-			const { response } = error;
+			const { message } = error.response.data;
 
-			const { message } = response.data;
-
-			return message;
+			return thunkAPI.rejectWithValue(message);
 		}
 	}
 );

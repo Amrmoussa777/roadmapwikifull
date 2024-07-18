@@ -1,4 +1,5 @@
 import PathnameHelper from "@/helpers/pathname.helper";
+import { useToast } from "@/hooks/useToast";
 import { fetchRoadmapById } from "@/redux/slices/thunks/roadmaps/roadmapPreviewAsyncThunks";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { fetchAnonymousToken } from "@/services/fetchAnonymousToken";
@@ -14,14 +15,16 @@ export const useRoadmapPreview = () => {
 		state => state.roadmapPreview
 	);
 
+	const { warningToast } = useToast();
+
 	const { push } = useRouter();
 
 	useEffect(() => {
 		(async () => {
-			if (error && error !== "Unauthorized") {
+			if (error) {
 				push("/");
+				warningToast(error);
 			} else if (error && error === "Unauthorized") {
-				console.log("error");
 				const AnonymousToken = await fetchAnonymousToken();
 				setCookie("accessToken", AnonymousToken);
 				dispatch(fetchRoadmapById(roadmapId));

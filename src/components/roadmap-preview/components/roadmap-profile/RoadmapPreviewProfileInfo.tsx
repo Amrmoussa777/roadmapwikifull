@@ -13,7 +13,9 @@ import NumberStats from "@/components/common/states/NumberStats";
 const RoadmapPreviewProfileInfo = () => {
 	useRoadmapPreview();
 
-	const { roadmap, isLoading } = useAppSelector(state => state.roadmapPreview);
+	const { roadmap, isLoading, error } = useAppSelector(
+		state => state.roadmapPreview
+	);
 	const { user } = roadmap || {};
 	const { socialMedia, userName, description, occupation, _count } = user || {};
 

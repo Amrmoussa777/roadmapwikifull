@@ -16,19 +16,18 @@ const useRoadmapTags = (stepId: string, defaultTags: RoadmapStepTagType[]) => {
 	};
 
 	const addTag = async () => {
-		if (!addingTag || !value.length) {
-			setAddingTag(true);
-		} else {
+		if (value.length) {
 			const isDuplicatedTag = checkTagDuplicate(value);
 
 			if (!isDuplicatedTag) {
-				const newTag = {
+				const newTagData = {
 					roadmapStepId: stepId,
 					name: value,
 					color: "",
 				};
 
-				await addTagToRoadmapStep(newTag);
+				const newTag = await addTagToRoadmapStep(newTagData);
+				setTags(prev => [...prev, newTag]);
 
 				reset();
 				setAddingTag(false);
@@ -36,11 +35,16 @@ const useRoadmapTags = (stepId: string, defaultTags: RoadmapStepTagType[]) => {
 			} else {
 				setError(true);
 			}
+		} else {
 		}
 	};
 
 	const removeTag = (tagId: string) => {
 		setTags(tags.filter(t => t.id !== tagId));
+	};
+
+	const toggleAdding = () => {
+		setAddingTag(prev => !prev);
 	};
 
 	return {
@@ -51,6 +55,7 @@ const useRoadmapTags = (stepId: string, defaultTags: RoadmapStepTagType[]) => {
 		removeTag,
 		value,
 		error,
+		toggleAdding,
 	};
 };
 

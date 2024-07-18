@@ -18,7 +18,7 @@ const SidebarLinkItem = ({
 
 	return (
 		<li
-			className={`w-[48px] h-[48px] block rounded-full ${customStyles} hover:bg-primary-ultramarineBlue ${
+			className={`w-[48px] h-[48px] block rounded-full ${customStyles} hover:bg-primary-ultramarineBlue transition duration-200 ${
 				active ? "bg-primary-ultramarineBlue" : ""
 			}`}
 		>

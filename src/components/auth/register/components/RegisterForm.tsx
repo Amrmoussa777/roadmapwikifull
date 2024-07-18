@@ -48,7 +48,7 @@ const RegisterForm = () => {
 	return (
 		<form
 			onSubmit={handleSubmitRegistration}
-			className="col-span-2 lg:col-span-1 px-8 py-8 bg-white"
+			className="col-span-2 lg:col-span-1 px-4 sm:px-8 py-8 bg-white"
 		>
 			<div className="w-[400px] h-full mx-auto flex flex-col">
 				<div className="my-auto">

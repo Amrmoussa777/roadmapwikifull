@@ -14,6 +14,7 @@ export const fetchRoadmapById = createAsyncThunk(
 				Authorization: `Bearer ${accessToken}`,
 			},
 		});
+
 		const { data } = res;
 
 		return data;

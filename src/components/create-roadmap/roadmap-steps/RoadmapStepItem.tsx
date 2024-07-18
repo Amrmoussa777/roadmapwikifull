@@ -11,19 +11,13 @@ import Attachments from "@/components/create-roadmap/roadmap-steps/Attachments";
 import dynamic from "next/dynamic";
 import StepVerification from "@/components/create-roadmap/roadmap-steps/StepVerification";
 import { updateRoadmapStep } from "@/components/create-roadmap/preview-roadmap/services/updateRoadmapStep";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
+import { expandRoadmapStep } from "@/redux/slices/create-roadmap/createRoadmapSlice";
 const Editor = dynamic(
 	() => import("@/components/common/Editor/components/Editor"),
 	{ ssr: false }
 );
-const RoadmapStepItem = ({
-	step,
-	activeId,
-	handleActiveStep,
-}: {
-	step: RoadmapStepType;
-	activeId: string;
-	handleActiveStep: (id: string) => void;
-}) => {
+const RoadmapStepItem = ({ step }: { step: RoadmapStepType }) => {
 	const { id, description, title, tags, duration } = step;
 	const { value, changeValue } = useInput(title);
 	const { currentState: titleNotDisabled, toggle: changeTitle } =
@@ -36,39 +30,36 @@ const RoadmapStepItem = ({
 		changeTitle();
 		await updateRoadmapStep(newData, id);
 	};
+	const dispatch = useAppDispatch();
+	const { activeRoadmapStepId } = useAppSelector(state => state.createRoadmap);
 
 	return (
 		<div
 			className={`flex flex-col h-fit gap-2 rounded-[12px] p-4 border border-transparent transition-all duration-300 hover:border-primary-ultramarineBlue ${
-				activeId === id
+				activeRoadmapStepId === id
 					? "bg-white !border-primary-ultramarineBlue"
 					: "bg-[#F6F6F6]"
 			}`}
 		>
 			<div className="flex-jb-c gap-2">
-				<div className="w-full flex items-center">
+				<div className="w-full flex items-center gap-2">
 					<button className="cursor-grab">{DRAG_ICON}</button>
 					<input
 						type="text"
 						value={value}
 						onBlur={handleChangeTitle}
-						className={`w-full bg-transparent text-md sm:text-[18px] text-[#181818] border-2 border-transparent enabled:border-primary-ultramarineBlue/30 rounded-md pl-2 ${
-							titleNotDisabled
-								? "outline-3 outline-primary-ultramarineBlue/60"
-								: ""
-						}`}
-						disabled={!titleNotDisabled}
+						className={`w-full bg-transparent text-md sm:text-[18px] text-[#181818] border-2 border-transparent hover:border-primary-ultramarineBlue/20 focus:border-primary-ultramarineBlue focus:outline-none rounded-md pl-2 transition-all`}
 						onChange={changeValue}
 					/>
 				</div>
 
 				<div className="flex items-center gap-2">
-					<MenuRoadmapStep stepId={id} changeTitle={changeTitle} />
+					<MenuRoadmapStep stepId={id} />
 
 					<button
-						onClick={() => handleActiveStep(id)}
+						onClick={() => dispatch(expandRoadmapStep(id))}
 						className={`text-[#181818] ${
-							activeId === id ? "rotate-0" : "rotate-180"
+							activeRoadmapStepId === id ? "rotate-0" : "rotate-180"
 						} transition-all`}
 					>
 						{ARROW_ICON}
@@ -77,7 +68,7 @@ const RoadmapStepItem = ({
 			</div>
 
 			<AnimatePresence>
-				{activeId === id && (
+				{activeRoadmapStepId === id && (
 					<motion.div
 						initial={{ y: -10, opacity: 0 }}
 						animate={{ y: 0, opacity: 1 }}

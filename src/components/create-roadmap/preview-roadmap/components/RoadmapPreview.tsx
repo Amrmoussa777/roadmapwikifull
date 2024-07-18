@@ -6,7 +6,6 @@ import React from "react";
 
 const RoadmapPreview = () => {
 	const { roadmap, isLoading } = useAppSelector(state => state.createRoadmap);
-
 	const { flag, steps } = roadmap || {};
 
 	if (isLoading) return <RoadmapPreviewLoader />;

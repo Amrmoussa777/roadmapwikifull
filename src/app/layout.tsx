@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import "react-toastify/dist/ReactToastify.css";
+import { Toaster } from "@/components/ui/toaster";
 import ReduxProvider from "@/redux/Provider";
 import CheckCurrentUserProvider from "@/providers/CurrentUserContext";
-import { ToastContainer } from "react-toastify";
 import Navbar from "@/components/navbar/components/Navbar";
 import CreateRoadmapLayout from "@/components/create-roadmap/layout/CreateRoadmapLayout";
 import { inter, outfit, poppins } from "@/app/fonts";
@@ -37,7 +36,7 @@ export default async function RootLayout({
 			<body
 				className={`${outfit.className} ${inter.variable} ${poppins.variable}`}
 			>
-				<ToastContainer position="bottom-right" />
+				<Toaster />
 				<ReduxProvider>
 					<CheckCurrentUserProvider>
 						<Navbar />

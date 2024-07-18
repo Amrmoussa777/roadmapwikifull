@@ -6,7 +6,7 @@ import { EditorProps } from "@/components/common/Editor/types/editor.types";
 
 const modules = {
 	toolbar: [
-		["bold", "italic", "underline", "strike"],
+		["bold", "italic", "underline", "strike", "link"],
 		[
 			{ align: ["", "center", "right", "justify"] },
 			{ indent: "-1" },

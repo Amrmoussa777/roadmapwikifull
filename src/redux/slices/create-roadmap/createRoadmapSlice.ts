@@ -12,6 +12,7 @@ const initialState: CreateRoadmapSliceStateType = {
 		description: "",
 		icon: null,
 	},
+	activeRoadmapStepId: "",
 };
 
 const createRoadmapSlice = createSlice({
@@ -26,6 +27,15 @@ const createRoadmapSlice = createSlice({
 				description,
 				icon: null,
 			};
+		},
+		expandRoadmapStep: (state, action) => {
+			const roadmapStepId = action.payload;
+
+			if (roadmapStepId === state.activeRoadmapStepId) {
+				state.activeRoadmapStepId = "";
+			} else {
+				state.activeRoadmapStepId = roadmapStepId;
+			}
 		},
 	},
 	extraReducers(builder) {
@@ -47,10 +57,12 @@ const createRoadmapSlice = createSlice({
 		builder.addCase(addRoadmapStep.fulfilled, (state, action) => {
 			const newStep = action.payload;
 
-			state.roadmap?.steps.unshift(newStep);
+			state.roadmap?.steps.push(newStep);
+			state.activeRoadmapStepId = newStep.id;
 		});
 	},
 });
 
-export const { updateDraftRoadmap } = createRoadmapSlice.actions;
+export const { updateDraftRoadmap, expandRoadmapStep } =
+	createRoadmapSlice.actions;
 export default createRoadmapSlice.reducer;

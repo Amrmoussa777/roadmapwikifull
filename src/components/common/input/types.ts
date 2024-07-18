@@ -25,5 +25,6 @@ export interface AuthInputProps {
 	placeholder: string;
 	customStyles?: string;
 	value: string;
-	handleChangeValue?: (e: ITarget) => void;
+	handleChangeValue?: (e: ITarget | string) => void;
+	validationError?: string | null;
 }

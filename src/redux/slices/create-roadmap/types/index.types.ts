@@ -10,4 +10,6 @@ export type CreateRoadmapSliceStateType = {
 		description: string;
 		icon: null;
 	};
+
+	activeRoadmapStepId: string;
 };

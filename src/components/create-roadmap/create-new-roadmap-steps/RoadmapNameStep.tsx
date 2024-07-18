@@ -30,8 +30,7 @@ const RoadmapNameStep = ({
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1 }}
 			transition={{
-				duration: 0.8,
-				ease: [0, 0.71, 0.2, 1.01],
+				duration: 1,
 			}}
 		>
 			<div>
