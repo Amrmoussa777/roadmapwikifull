@@ -11,6 +11,7 @@ const RoadmapStepDurationSelectItem = ({
 }) => {
 	return (
 		<button
+			type="button"
 			className={`uppercase hover:text-white hover:bg-primary-ultramarineBlue transition duration-200 ${
 				activeDurationType === type
 					? "text-white bg-primary-ultramarineBlue"

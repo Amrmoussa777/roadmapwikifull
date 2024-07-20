@@ -73,7 +73,7 @@ const RoadmapTags = ({
 							{ADD_TAG}
 						</span>
 
-						{!addingTag ? <p className="text-[12px]">Add tag</p> : null}
+						{!addingTag ? <p>Add tag</p> : null}
 					</button>
 				</div>
 			</form>

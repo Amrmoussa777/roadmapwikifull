@@ -75,7 +75,12 @@ const RoadmapStepItem = ({ step }: { step: RoadmapStepType }) => {
 					>
 						<div className="flex-jb-c">
 							<RoadmapTags stepId={id} tags={tags} />
-							<RoadmapStepDuration />
+							<RoadmapStepDuration
+								stepId={id}
+								description={description}
+								title={title}
+								defaultDuration={duration}
+							/>
 						</div>
 
 						<Editor value={content} />

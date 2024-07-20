@@ -8,3 +8,10 @@ export type RoadmapStepItemProps = {
 	active: boolean;
 	status: string;
 };
+
+export type RoadmapStepDurationProps = {
+	stepId: string;
+	description: string;
+	title: string;
+	defaultDuration: string;
+};
