@@ -1,4 +1,7 @@
-import { RoadmapStepType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
+import {
+	RoadmapStepType,
+	RoadmapStepVerificationType,
+} from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
 
 export type RoadmapStepItemProps = {
 	id: string;
@@ -22,4 +25,9 @@ export type CreateRoadmapStepItemProps = {
 	step: RoadmapStepType;
 	isDragging: boolean;
 	setIsDragging: (value: boolean) => void;
+};
+
+export type StepVerificationProps = {
+	verifications: RoadmapStepVerificationType[];
+	stepId: string;
 };

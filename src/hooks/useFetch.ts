@@ -19,7 +19,7 @@ export const useFetch = <B = any>() => {
 		setError(null);
 
 		try {
-			const { data } = await HandleApiRequests.handleApiRequest({
+			const data = await HandleApiRequests.handleApiRequest({
 				method,
 				endpoint,
 				body,
@@ -30,6 +30,7 @@ export const useFetch = <B = any>() => {
 			return { data, error: null };
 		} catch (error: any) {
 			setLoading(false);
+			console.log(error);
 
 			const message = error?.response?.data?.message || "An error occurred";
 

@@ -27,7 +27,7 @@ const RoadmapStepItem = ({
 	isDragging,
 	setIsDragging,
 }: CreateRoadmapStepItemProps) => {
-	const { id, description, title, tags, duration } = step;
+	const { id, description, title, tags, duration, verifications } = step;
 	const { value, changeValue } = useInput(title);
 	const dispatch = useAppDispatch();
 	const { fetchData } = useFetch();
@@ -134,7 +134,7 @@ const RoadmapStepItem = ({
 								duration={duration}
 							/>
 
-							<StepVerification stepId={id} />
+							<StepVerification stepId={id} verifications={verifications} />
 
 							<HorizontalDivider height="h-[1px]" bgColor="bg-[#E0E0E0]" />
 

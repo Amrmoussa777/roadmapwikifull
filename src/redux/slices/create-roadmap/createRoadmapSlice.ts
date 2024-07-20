@@ -7,6 +7,7 @@ const initialState: CreateRoadmapSliceStateType = {
 	roadmap: null,
 	isLoading: true,
 	error: null,
+	verificationToUpdate: null,
 	draftRoadmap: {
 		title: "",
 		description: "",
@@ -106,6 +107,84 @@ const createRoadmapSlice = createSlice({
 				};
 			}
 		},
+		deleteStepVerification: (state, action) => {
+			const { stepId, verificationId } = action.payload;
+
+			const updatedSteps =
+				state.roadmap?.steps?.map(step =>
+					step.id === stepId
+						? {
+								...step,
+								verifications: step.verifications.filter(
+									verification => verification.id !== verificationId
+								),
+						  }
+						: step
+				) ?? [];
+
+			if (state.roadmap) {
+				state.roadmap = {
+					...state.roadmap,
+					steps: updatedSteps,
+				};
+			}
+		},
+		addStepVerification: (state, action) => {
+			const { stepId, newVerification } = action.payload;
+
+			const updatedSteps =
+				state.roadmap?.steps.map(step =>
+					step.id === stepId
+						? {
+								...step,
+								verifications: [...step.verifications, newVerification],
+						  }
+						: step
+				) ?? [];
+
+			if (state.roadmap) {
+				state.roadmap = {
+					...state.roadmap,
+					steps: updatedSteps,
+				};
+			}
+		},
+		fillVerificationToUpdate: (state, action) => {
+			const verification = action.payload;
+
+			state.verificationToUpdate = verification;
+		},
+		resetVerificationToUpdate: state => {
+			state.verificationToUpdate = null;
+		},
+		updateVerification: (state, action) => {
+			const { stepId, updatedVerification } = action.payload;
+
+			const updatedSteps =
+				state.roadmap?.steps.map(step => {
+					if (step.id === stepId) {
+						const updateVerifications = step.verifications.map(verification =>
+							verification.id === updatedVerification.id
+								? updatedVerification
+								: verification
+						);
+
+						return {
+							...step,
+							verifications: updateVerifications,
+						};
+					} else {
+						return step;
+					}
+				}) ?? [];
+
+			if (state.roadmap) {
+				state.roadmap = {
+					...state.roadmap,
+					steps: updatedSteps,
+				};
+			}
+		},
 	},
 	extraReducers(builder) {
 		builder.addCase(fetchRoadmapById.pending, state => {
@@ -141,5 +220,10 @@ export const {
 	removeStep,
 	updateStepDuration,
 	updateRoadmapStepData,
+	deleteStepVerification,
+	addStepVerification,
+	fillVerificationToUpdate,
+	resetVerificationToUpdate,
+	updateVerification,
 } = createRoadmapSlice.actions;
 export default createRoadmapSlice.reducer;
