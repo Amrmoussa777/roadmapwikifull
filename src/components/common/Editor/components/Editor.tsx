@@ -21,6 +21,7 @@ const Editor = ({
 	disable,
 	hideToolbar,
 	customStyles = "",
+	onBlur,
 }: EditorProps) => {
 	return (
 		<div className={`${styles.editor} ${customStyles}`}>
@@ -29,6 +30,7 @@ const Editor = ({
 				theme="snow"
 				value={value}
 				onChange={changeValue}
+				onBlur={onBlur}
 				className={`${styles.quill} ${
 					hideToolbar ? "hide-toolbar" : ""
 				} [&>div]:font-inter [&>div]:text-[#383838]`}

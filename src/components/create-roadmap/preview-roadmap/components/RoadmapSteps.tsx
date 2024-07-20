@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Reorder } from "framer-motion";
 import { ADD_STEP_ICON } from "@public/icons/roadmapSteps";
 import { useRoadmapSteps } from "@/components/create-roadmap/preview-roadmap/hooks/useRoadmapSteps";
@@ -16,8 +16,8 @@ const RoadmapSteps = () => {
 	const { roadmap, isLoading } = useAppSelector(state => state.createRoadmap);
 	const dispatch = useAppDispatch();
 	const { roadmapId } = useParams();
-	const addStepButtonRef = useRef<HTMLButtonElement>(null);
-	const lastStepRef = useRef<HTMLDivElement>(null);
+	const lastStepRef = useRef<HTMLButtonElement>(null);
+	const [isDragging, setIsDragging] = useState(false);
 
 	const scrollToLastStep = () => {
 		if (lastStepRef.current) {
@@ -46,22 +46,26 @@ const RoadmapSteps = () => {
 
 	return (
 		<div className="py-4 px-4 sm:px-6">
-			<Reorder.Group
-				axis="y"
-				values={items}
-				onReorder={setItems}
-				className="flex flex-col gap-4"
-			>
-				{items.map((step, index) => (
-					<Reorder.Item key={step.id} value={step} layout="position">
-						<RoadmapStepItem key={step.id} step={step} />
-						{index === items.length - 1 && <div ref={lastStepRef}></div>}
-					</Reorder.Item>
-				))}
-			</Reorder.Group>
+			<>
+				<Reorder.Group
+					className="flex flex-col gap-4"
+					axis="y"
+					onReorder={setItems}
+					values={items}
+				>
+					{items.map(step => (
+						<RoadmapStepItem
+							key={step.id}
+							step={step}
+							isDragging={isDragging}
+							setIsDragging={setIsDragging}
+						/>
+					))}
+				</Reorder.Group>
+			</>
 
 			<button
-				ref={addStepButtonRef}
+				ref={lastStepRef}
 				className="w-fit h-[48px] mx-auto flex gap-2 mt-4 font-normal"
 				onClick={handleAddRoadmapStep}
 			>

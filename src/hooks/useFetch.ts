@@ -35,7 +35,7 @@ export const useFetch = <B = any>() => {
 
 			setError(message);
 			errorToast(message);
-			return { data: null, error: message };
+			throw { data: null, error: message };
 		}
 	};
 

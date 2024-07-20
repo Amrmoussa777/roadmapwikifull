@@ -91,6 +91,21 @@ const createRoadmapSlice = createSlice({
 				};
 			}
 		},
+		updateRoadmapStepData: (state, action) => {
+			const { stepId, newData } = action.payload;
+
+			const updatedSteps =
+				state.roadmap?.steps.map(step =>
+					step.id === stepId ? { ...step, ...newData } : step
+				) ?? [];
+
+			if (state.roadmap) {
+				state.roadmap = {
+					...state.roadmap,
+					steps: updatedSteps,
+				};
+			}
+		},
 	},
 	extraReducers(builder) {
 		builder.addCase(fetchRoadmapById.pending, state => {
@@ -125,5 +140,6 @@ export const {
 	removeStepTag,
 	removeStep,
 	updateStepDuration,
+	updateRoadmapStepData,
 } = createRoadmapSlice.actions;
 export default createRoadmapSlice.reducer;
