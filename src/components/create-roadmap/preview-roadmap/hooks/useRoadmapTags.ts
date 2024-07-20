@@ -7,7 +7,7 @@ import {
 } from "@/redux/slices/create-roadmap/createRoadmapSlice";
 import { RoadmapTagType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
 import { useAppDispatch } from "@/redux/store";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 
 const useRoadmapTags = (stepId: string, tags: RoadmapTagType[]) => {
 	const { value, changeValue, reset } = useInput("");
@@ -21,7 +21,9 @@ const useRoadmapTags = (stepId: string, tags: RoadmapTagType[]) => {
 		return found;
 	};
 
-	const addTag = async () => {
+	const addTag = async (e: FormEvent) => {
+		e.preventDefault();
+
 		if (value.length) {
 			const newTagData = {
 				roadmapStepId: stepId,

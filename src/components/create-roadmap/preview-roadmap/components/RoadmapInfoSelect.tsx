@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react";
 import useToggle from "@/hooks/useToggle";
 import { ARROW_ICON } from "@public/icons/roadmapSteps";
+import { useOnClickOutside } from "@/hooks/useOnClickOutside";
 
 const RoadmapInfoSelect = ({
 	children,
@@ -13,6 +14,8 @@ const RoadmapInfoSelect = ({
 }) => {
 	const { currentState: isOptionsHidden, toggle: hideOptions } =
 		useToggle(false);
+
+	const ref = useOnClickOutside(hideOptions);
 
 	return (
 		<div className="relative col-span-2">
@@ -36,7 +39,10 @@ const RoadmapInfoSelect = ({
 			</button>
 
 			{isOptionsHidden ? (
-				<div className="absolute w-full top-[83px] bg-white mt-1 border border-[#E0E0E0] rounded-xl flex flex-col gap-2 [&>button]:font-normal [&>button]:text-[18px] [&>:first-child]:rounded-t-xl [&>:last-child]:rounded-b-xl [&>button]:p-2 [&>button:hover]:bg-[#E0E0E0]/20">
+				<div
+					ref={ref}
+					className="absolute w-full top-[83px] bg-white mt-1 border border-[#E0E0E0] rounded-xl flex flex-col gap-2 [&>button]:font-normal [&>button]:text-[18px] [&>:first-child]:rounded-t-xl [&>:last-child]:rounded-b-xl [&>button]:p-2 [&>button:hover]:bg-[#E0E0E0]/20"
+				>
 					{children}
 				</div>
 			) : null}

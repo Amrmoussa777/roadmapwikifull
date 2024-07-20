@@ -32,7 +32,8 @@ const RoadmapTags = ({
 				</button>
 			))}
 
-			<div
+			<form
+				onSubmit={addTag}
 				className={`flex-jc-c border rounded-full ${
 					error ? "border-red-400" : ""
 				}`}
@@ -53,13 +54,17 @@ const RoadmapTags = ({
 				>
 					{addingTag ? (
 						<button
-							onClick={addTag}
+							type="submit"
 							className={`[&>svg]:w-[14px] [&>svg]:h-[14px] rounded-full p-1 bg-[#10B26B]/10 text-[#10B26B]`}
 						>
 							{CHECK_TAG_ICON}
 						</button>
 					) : null}
-					<button onClick={toggleAdding} className={`flex-jc-c gap-1`}>
+					<button
+						type="button"
+						onClick={toggleAdding}
+						className={`flex-jc-c gap-1`}
+					>
 						<span
 							className={`rounded-full p-1 bg-[#ECEEFF] text-primary-ultramarineBlue transition-all duration-500 ease-in-out ${
 								addingTag ? "rotate-45 bg-[#A72C32]/10 text-[#A72C32]" : ""
@@ -71,7 +76,7 @@ const RoadmapTags = ({
 						{!addingTag ? <p className="text-[12px]">Add tag</p> : null}
 					</button>
 				</div>
-			</div>
+			</form>
 		</div>
 	);
 };

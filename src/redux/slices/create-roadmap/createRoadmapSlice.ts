@@ -63,6 +63,19 @@ const createRoadmapSlice = createSlice({
 				};
 			}
 		},
+		removeStep: (state, action) => {
+			const stepId = action.payload;
+
+			const updatedSteps =
+				state.roadmap?.steps.filter(step => step.id !== stepId) ?? [];
+
+			if (state.roadmap) {
+				state.roadmap = {
+					...state.roadmap,
+					steps: updatedSteps,
+				};
+			}
+		},
 	},
 	extraReducers(builder) {
 		builder.addCase(fetchRoadmapById.pending, state => {
@@ -76,8 +89,9 @@ const createRoadmapSlice = createSlice({
 			state.error = null;
 		});
 		builder.addCase(fetchRoadmapById.rejected, (state, action) => {
-			state.error = "No roadmap";
+			state.error = action.payload;
 			state.isLoading = false;
+			state.roadmap = null;
 		});
 
 		builder.addCase(addRoadmapStep.fulfilled, (state, action) => {
@@ -94,5 +108,6 @@ export const {
 	expandRoadmapStep,
 	addStepTag,
 	removeStepTag,
+	removeStep,
 } = createRoadmapSlice.actions;
 export default createRoadmapSlice.reducer;

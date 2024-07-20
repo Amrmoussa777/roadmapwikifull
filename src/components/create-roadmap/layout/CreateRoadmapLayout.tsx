@@ -20,8 +20,10 @@ const CreateRoadmapLayout = ({ children }: ChildrenType) => {
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		dispatch(fetchRoadmapById(roadmapId));
-	}, []);
+		if (roadmapId) {
+			dispatch(fetchRoadmapById(roadmapId));
+		}
+	}, [roadmapId]);
 
 	if (
 		!pathname.includes("create-roadmap") ||

@@ -12,6 +12,7 @@ import StepVerification from "@/components/create-roadmap/roadmap-steps/StepVeri
 import { updateRoadmapStep } from "@/components/create-roadmap/preview-roadmap/services/updateRoadmapStep";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { expandRoadmapStep } from "@/redux/slices/create-roadmap/createRoadmapSlice";
+import RoadmapStepDuration from "@/components/create-roadmap/roadmap-steps/RoadmapStepDuration";
 const Editor = dynamic(
 	() => import("@/components/common/Editor/components/Editor"),
 	{ ssr: false }
@@ -74,7 +75,7 @@ const RoadmapStepItem = ({ step }: { step: RoadmapStepType }) => {
 					>
 						<div className="flex-jb-c">
 							<RoadmapTags stepId={id} tags={tags} />
-							{/* <CustomDatePicker stepId={id} /> */}
+							<RoadmapStepDuration />
 						</div>
 
 						<Editor value={content} />

@@ -1,5 +1,5 @@
 import { toast } from "@/components/ui/use-toast";
-import { QUESTION_MARK } from "@public/icons/toast";
+import { CHECK_MARK, QUESTION_MARK } from "@public/icons/toast";
 
 const useToast = () => {
 	const errorToast = (errorTitle: string, description: string = "") => {
@@ -8,8 +8,8 @@ const useToast = () => {
 				<div className="flex-jc-c gap-2">
 					<span
 						style={{
-							width: "34px",
-							height: "34px",
+							minWidth: "34px",
+							minHeight: "34px",
 							backgroundColor: "#ffffff33",
 						}}
 						className="flex-jc-c rounded-full bg-white/20"
@@ -30,8 +30,8 @@ const useToast = () => {
 				<div className="flex-jc-c gap-2">
 					<span
 						style={{
-							width: "34px",
-							height: "34px",
+							minWidth: "34px",
+							minHeight: "34px",
 							backgroundColor: "#ffffff33",
 						}}
 						className="w-[34px] h-[34px] flex-jc-c rounded-full bg-white/25"
@@ -52,13 +52,13 @@ const useToast = () => {
 				<div className="flex-jc-c gap-2">
 					<span
 						style={{
-							width: "34px",
-							height: "34px",
+							minWidth: "34px",
+							minHeight: "34px",
 							backgroundColor: "#ffffff33",
 						}}
 						className="w-[34px] h-[34px] flex-jc-c rounded-full bg-white/25"
 					>
-						{QUESTION_MARK}
+						{CHECK_MARK}
 					</span>{" "}
 					{successTitle}
 				</div>

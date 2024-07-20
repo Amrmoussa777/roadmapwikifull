@@ -5,21 +5,15 @@ import RoadmapItem from "@/components/creator-profile/components/RoadmapItem";
 import RoadmapsPagination from "@/components/creator-profile/components/RoadmapsPagination";
 import { useRoadmaps } from "@/components/creator-profile/hooks/useRoadmaps";
 import UserRoadmapsLoader from "@/components/creator-profile/loading/UserRoadmapsLoader";
-import { useAppSelector } from "@/redux/store";
 import React from "react";
 
 const UserRoadmaps = () => {
-	const { isLoading: roadmapIsLoading } = useAppSelector(
-		state => state.userProfile
-	);
-
-	const { roadmaps, totalItems, handleShowMoreRoadmaps, isLoading } =
+	const { roadmaps, totalItems, handleShowMoreRoadmaps, loading } =
 		useRoadmaps();
 
-	if (roadmapIsLoading) return <UserRoadmapsLoader />;
+	if (loading) return <UserRoadmapsLoader />;
 
-	if (!roadmaps.length && !roadmapIsLoading)
-		return <RoadmapStats text="No roadmaps found!" />;
+	if (!roadmaps && !loading) return <RoadmapStats text="No roadmaps found!" />;
 
 	return (
 		<div className="w-full md:w-[calc(100%-296px)] mt-8 md:mt-4 md:pl-4 px-2 sm:px-0">
@@ -33,12 +27,12 @@ const UserRoadmaps = () => {
 
 				{/* Sorting */}
 				{/* <div className="flex-jc-c font-poppins font-normal text-[14px]">
-					<p className="text-[#9A9A9A] mr-1">Sort by:</p>
+				<p className="text-[#9A9A9A] mr-1">Sort by:</p>
 
-					<button className="w-fit flex-jc-c gap-1 font-poppins font-normal text-[14px] text-[#4E5D78] [&>svg]:w-[20px] [&>svg]:rotate-180">
-						Recently Added {ARROW_ICON}
-					</button>
-				</div> */}
+				<button className="w-fit flex-jc-c gap-1 font-poppins font-normal text-[14px] text-[#4E5D78] [&>svg]:w-[20px] [&>svg]:rotate-180">
+					Recently Added {ARROW_ICON}
+				</button>
+			</div> */}
 			</div>
 
 			<ul className="mt-4">
@@ -50,7 +44,7 @@ const UserRoadmaps = () => {
 			<RoadmapsPagination
 				handleShowMoreRoadmaps={handleShowMoreRoadmaps}
 				totalItems={totalItems}
-				isLoading={isLoading}
+				isLoading={loading}
 			/>
 		</div>
 	);

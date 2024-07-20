@@ -4,7 +4,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 export const fetchUserByUsername = createAsyncThunk(
 	"userProfileSlice/fetchUserByUsername",
 	async (username: string | string[]) => {
-		const { data } = await HandleApiRequests.handleApiRequest({
+		const data = await HandleApiRequests.handleApiRequest({
 			method: "GET",
 			endpoint: `users/username/${username}`,
 		});

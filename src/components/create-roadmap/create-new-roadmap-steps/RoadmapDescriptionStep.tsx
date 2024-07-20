@@ -40,6 +40,8 @@ const RoadmapDescriptionStep = ({
 		setIsLoading(true);
 		const newRoadmap = await createRoadmap(newRoadmapData);
 		setIsLoading(false);
+
+		console.log(newRoadmap);
 		const { id } = newRoadmap;
 
 		if (id) {

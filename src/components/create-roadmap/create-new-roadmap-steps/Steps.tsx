@@ -68,7 +68,7 @@ const Steps = () => {
 						height={400}
 						priority
 						alt=""
-						className={`relative block w-full max-w-[700px] mx-auto transition-all duration-300 z-0 ${imageAnimation} ${
+						className={`relative block w-full max-w-[700px] mx-auto transition-all duration-200 z-0 ${imageAnimation} ${
 							stepNumber > 0 ? "grayscale" : ""
 						}`}
 					/>

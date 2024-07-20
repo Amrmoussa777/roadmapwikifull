@@ -17,9 +17,12 @@ const RoadmapSteps = () => {
 	const dispatch = useAppDispatch();
 	const { roadmapId } = useParams();
 	const addStepButtonRef = useRef<HTMLButtonElement>(null);
+	const lastStepRef = useRef<HTMLDivElement>(null);
 
-	const scrollToBottom = () => {
-		addStepButtonRef.current?.scrollIntoView({ behavior: "smooth" });
+	const scrollToLastStep = () => {
+		if (lastStepRef.current) {
+			lastStepRef.current.scrollIntoView({ behavior: "smooth" });
+		}
 	};
 
 	const handleAddRoadmapStep = () => {
@@ -30,9 +33,7 @@ const RoadmapSteps = () => {
 				description: "Step default description",
 				duration: "1 day",
 			})
-		);
-
-		scrollToBottom();
+		).then(() => scrollToLastStep());
 	};
 
 	useEffect(() => {
@@ -51,9 +52,10 @@ const RoadmapSteps = () => {
 				onReorder={setItems}
 				className="flex flex-col gap-4"
 			>
-				{items.map(step => (
+				{items.map((step, index) => (
 					<Reorder.Item key={step.id} value={step} layout="position">
 						<RoadmapStepItem key={step.id} step={step} />
+						{index === items.length - 1 && <div ref={lastStepRef}></div>}
 					</Reorder.Item>
 				))}
 			</Reorder.Group>

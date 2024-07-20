@@ -4,6 +4,7 @@ import PrivateNavbarCurrentUserLoader from "@/components/navbar/components/loadi
 import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import { UNKNOWN_USER_ICON } from "@public/icons/userProfile";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useContext } from "react";
 
 const PrivateNavbarCurrentUser = () => {
@@ -14,7 +15,10 @@ const PrivateNavbarCurrentUser = () => {
 	if (!currentUser) return <PrivateNavbarCurrentUserLoader />;
 
 	return (
-		<div className="w-full justify-end items-start text-start md:text-end gap-2 flex flex-row-reverse md:flex-row md:flex-jc-c">
+		<Link
+			href={`/user/${userName}`}
+			className="w-full justify-end items-start text-start md:text-end gap-2 flex flex-row-reverse md:flex-row md:flex-jc-c"
+		>
 			<div>
 				<h3 className="font-medium text-black text-[14px] leading-[1]">
 					HI, {firstName}
@@ -35,7 +39,7 @@ const PrivateNavbarCurrentUser = () => {
 			) : (
 				UNKNOWN_USER_ICON
 			)}
-		</div>
+		</Link>
 	);
 };
 
