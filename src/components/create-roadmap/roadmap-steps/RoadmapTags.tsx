@@ -41,6 +41,7 @@ const RoadmapTags = ({
 				{addingTag ? (
 					<input
 						style={{ borderColor: "" }}
+						autoFocus
 						className={`w-[100px] max-h-[30px] flex-jc-c gap-1 rounded-full py-[3px] px-[10px] outline-none`}
 						value={value}
 						onChange={changeValue}

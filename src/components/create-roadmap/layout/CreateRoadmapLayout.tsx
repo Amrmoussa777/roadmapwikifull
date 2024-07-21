@@ -40,7 +40,7 @@ const CreateRoadmapLayout = ({ children }: ChildrenType) => {
 			<div className="w-[calc(100%-60px)] sm:w-[calc(100%-75px)] ml-auto">
 				<CreateRoadmapHeader />
 
-				<div className="w-full h-full grid lg:grid-cols-2">
+				<div className="w-full h-full grid lg:grid-cols-12">
 					{children}
 					<RoadmapPreview />
 				</div>

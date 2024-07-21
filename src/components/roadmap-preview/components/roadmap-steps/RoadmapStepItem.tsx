@@ -3,7 +3,7 @@
 import { RoadmapStepItemProps } from "@/components/roadmap-preview/types/roadmapSteps.types";
 import React from "react";
 import { CHECK_ICON, DURATION_ICON } from "@public/icons/roadmapSteps";
-import { useAppDispatch } from "@/redux/store";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { calcAttachmentsCount } from "@/components/roadmap-preview/helpers/calcAttachmentsCount";
 import StepAttachmentsCount from "@/components/roadmap-preview/components/roadmap-steps/StepAttachmentsCount";
 
@@ -17,17 +17,20 @@ const RoadmapStepItem = ({
 	const { duration, tags, title, attachments } = step;
 	const dispatch = useAppDispatch();
 	const attachmentsCountList = calcAttachmentsCount(attachments);
+	const { roadmap } = useAppSelector(state => state.createRoadmap);
+
+	const { secondaryColor } = roadmap || {};
 
 	return (
 		<>
 			{!isFirstStep ? <div className="line-dashed h-8 mx-auto" /> : null}
 
-			<div className="relative w-full max-w-[400px] block mx-auto p-2 rounded-sm bg-white border border-[#EBECF2] group">
+			<div className="relative w-full max-w-[600px] h-[80px] mx-auto px-2 py-3 rounded-sm bg-white border border-[#EBECF2] group">
 				<button
-					className="w-full h-full block"
+					className="w-full h-full flex flex-col justify-between"
 					onClick={() => (handlePreviewStep ? handlePreviewStep(step) : null)}
 				>
-					<div className="flex-jb-c gap-2">
+					<div className="w-full flex-jb-c gap-2">
 						<div className="flex-jc-c gap-2">
 							<span className="block min-w-[20px] min-h-[20px] rounded-sm bg-[#ACB5B7] line-clamp-1" />
 
@@ -41,7 +44,8 @@ const RoadmapStepItem = ({
 								{tags.slice(0, 3).map(tag => (
 									<li
 										key={tag.id}
-										className="rounded-full w-fit px-2 text-[12px] font-normal text-[#111111] bg-primary-ultramarineBlue/20"
+										style={{ backgroundColor: `${secondaryColor + "33"}` }}
+										className="rounded-full w-fit px-2 text-[12px] font-normal text-[#111111]"
 									>
 										<p className="line-clamp-1">{tag.name}</p>
 									</li>
@@ -50,7 +54,7 @@ const RoadmapStepItem = ({
 						) : null}
 					</div>
 
-					<div className="flex-jb-c mt-2">
+					<div className="w-full flex-jb-c mt-2">
 						<div className="flex-jc-c gap-1 [&>svg]:w-[16px] [&>svg]:text-primary-ultramarineBlue">
 							{DURATION_ICON}{" "}
 							<span className="text-primary-dark text-[12px] font-normal">

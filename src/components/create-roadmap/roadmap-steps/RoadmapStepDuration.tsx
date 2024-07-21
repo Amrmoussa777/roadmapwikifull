@@ -45,17 +45,14 @@ const RoadmapStepDuration = ({
 			duration: `${duration} ${durationType}`,
 		};
 
-		await fetchData(
-			"PATCH",
-			`roadmsap/step/${stepId}`,
-			updatedRoadmapStep
-		).then(() =>
-			dispatch(
-				updateStepDuration({
-					stepId,
-					newDuration: `${duration} ${durationType}`,
-				})
-			)
+		await fetchData("PATCH", `roadmap/step/${stepId}`, updatedRoadmapStep).then(
+			() =>
+				dispatch(
+					updateStepDuration({
+						stepId,
+						newDuration: `${duration} ${durationType}`,
+					})
+				)
 		);
 
 		toggleDuration();
