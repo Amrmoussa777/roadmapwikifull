@@ -3,7 +3,7 @@ import React from "react";
 
 const page = () => {
 	return (
-		<div className="w-full bg-white col-span-12 lg:col-span-5">
+		<div className="bg-white">
 			<RoadmapSteps />
 		</div>
 	);

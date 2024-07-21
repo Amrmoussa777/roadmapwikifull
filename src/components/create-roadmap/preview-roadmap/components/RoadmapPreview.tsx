@@ -11,7 +11,7 @@ const RoadmapPreview = () => {
 	if (isLoading) return <RoadmapPreviewLoader />;
 
 	return (
-		<div className={`w-full h-full dotted-bg p-6 col-span-12 lg:col-span-7`}>
+		<div className={`w-full h-full dotted-bg p-6`}>
 			<div className="flex-jc-c">
 				<h3 className="h-[40px] flex items-center gap-2 text-white bg-primary-ultramarineBlue rounded-full font-medium py-2 px-4">
 					<span>{PARK_ICON}</span>

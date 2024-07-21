@@ -22,7 +22,7 @@ const RoadmapInfo = () => {
 	}, [roadmap]);
 
 	return (
-		<div className="p-4 sm:p-6 col-span-12 lg:col-span-5">
+		<div className="p-4 sm:p-6">
 			<h2 className="font-semibold text-xl sm:text-3xl my-2">
 				Roadmap Information & style
 			</h2>
