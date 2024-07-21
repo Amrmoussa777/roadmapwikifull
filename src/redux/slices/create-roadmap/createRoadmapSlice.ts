@@ -8,6 +8,7 @@ const initialState: CreateRoadmapSliceStateType = {
 	isLoading: true,
 	error: null,
 	verificationToUpdate: null,
+	stepToPreview: null,
 	draftRoadmap: {
 		title: "",
 		description: "",
@@ -231,6 +232,15 @@ const createRoadmapSlice = createSlice({
 				state.roadmap.steps = newReOrderedSteps;
 			}
 		},
+		toggleStepToPreview: (state, action) => {
+			const stepToPreview = action.payload;
+
+			if (!state.stepToPreview) {
+				state.stepToPreview = stepToPreview;
+			} else {
+				state.stepToPreview = null;
+			}
+		},
 	},
 	extraReducers(builder) {
 		builder.addCase(fetchRoadmapById.pending, state => {
@@ -274,5 +284,6 @@ export const {
 	addStepAttachment,
 	deleteStepAttachment,
 	reorderRoadmapSteps,
+	toggleStepToPreview,
 } = createRoadmapSlice.actions;
 export default createRoadmapSlice.reducer;

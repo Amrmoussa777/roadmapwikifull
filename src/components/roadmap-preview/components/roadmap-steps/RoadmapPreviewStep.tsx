@@ -40,7 +40,7 @@ const RoadmapPreviewStep = ({
 							style={{ backgroundColor: tag.color }}
 							className="h-[24px] flex-jc-c rounded-full px-2 text-[12px] font-normal font-inter leading-[16px] bg-grey-primary"
 						>
-							<p className="text-white">{tag.name}</p>
+							<p className="text-[#111111]">{tag.name}</p>
 						</li>
 					))}
 				</ul>

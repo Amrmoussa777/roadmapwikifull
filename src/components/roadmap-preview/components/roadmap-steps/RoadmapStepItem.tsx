@@ -16,6 +16,7 @@ const RoadmapStepItem = ({
 }: RoadmapStepItemProps) => {
 	const { duration, tags, title, attachments } = step;
 	const dispatch = useAppDispatch();
+
 	const attachmentsCountList = calcAttachmentsCount(attachments);
 	const { roadmap } = useAppSelector(state => state.createRoadmap);
 
@@ -45,7 +46,9 @@ const RoadmapStepItem = ({
 									<li
 										key={tag.id}
 										style={{
-											backgroundColor: `${secondaryColor || "#506CF0" + "33"}`,
+											backgroundColor: `${
+												secondaryColor + "33" || "#506CF0" + "33"
+											}`,
 										}}
 										className="rounded-full w-fit px-2 text-[12px] font-normal text-[#111111]"
 									>

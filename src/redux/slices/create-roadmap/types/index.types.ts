@@ -1,4 +1,5 @@
 import {
+	RoadmapStepType,
 	RoadmapStepVerificationType,
 	RoadmapType,
 } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
@@ -8,6 +9,7 @@ export type CreateRoadmapSliceStateType = {
 	isLoading: boolean;
 	error: any;
 	verificationToUpdate: RoadmapStepVerificationType | null;
+	stepToPreview: RoadmapStepType | null;
 
 	draftRoadmap: {
 		title: string;

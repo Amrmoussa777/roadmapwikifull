@@ -25,13 +25,13 @@ const Verification = ({
 						<a
 							href={item.link}
 							target="_blank"
-							className="text-[#506CF0] text-[14px]"
+							className="text-[#506CF0] text-[14px] line-clamp-1"
 						>
 							{item.link}
 						</a>
 					</div>
 
-					{CHECK_ATTACHMENT_ICON}
+					<span>{CHECK_ATTACHMENT_ICON}</span>
 				</div>
 			))}
 		</div>

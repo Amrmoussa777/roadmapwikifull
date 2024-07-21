@@ -1,12 +1,20 @@
 import RoadmapPreviewLoader from "@/components/create-roadmap/preview-roadmap/components/RoadmapPreviewLoader";
 import RoadmapStepItem from "@/components/roadmap-preview/components/roadmap-steps/RoadmapStepItem";
-import { useAppSelector } from "@/redux/store";
+import { toggleStepToPreview } from "@/redux/slices/create-roadmap/createRoadmapSlice";
+import { RoadmapStepType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { PARK_ICON } from "@public/icons/roadmapPreview";
 import React from "react";
 
 const RoadmapPreview = () => {
 	const { roadmap, isLoading } = useAppSelector(state => state.createRoadmap);
 	const { flag, steps } = roadmap || {};
+
+	const dispatch = useAppDispatch();
+
+	const handlePreviewStep = (step: RoadmapStepType) => {
+		dispatch(toggleStepToPreview(step));
+	};
 
 	if (isLoading) return <RoadmapPreviewLoader />;
 
@@ -28,6 +36,7 @@ const RoadmapPreview = () => {
 					lastStep={index + 1 === steps.length}
 					isFirstStep={index === 0}
 					showTags={true}
+					handlePreviewStep={handlePreviewStep}
 				/>
 			))}
 		</div>

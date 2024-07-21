@@ -2,6 +2,7 @@
 
 import CreateRoadmapHeader from "@/components/create-roadmap/navbar/CreateRoadmapHeader";
 import RoadmapPreview from "@/components/create-roadmap/preview-roadmap/components/RoadmapPreview";
+import RoadmapStepPreview from "@/components/create-roadmap/preview-roadmap/components/RoadmapStepPreview";
 import Sidebar from "@/components/create-roadmap/sidebar/components/Sidebar";
 import PathnameHelper from "@/helpers/pathname.helper";
 import { ChildrenType } from "@/providers/types/index.types";
@@ -34,7 +35,7 @@ const CreateRoadmapLayout = ({ children }: ChildrenType) => {
 	if (error) return redirect("/create-roadmap");
 
 	return (
-		<div className="flex h-[calc(100vh-82px)]">
+		<div className="relative">
 			<Sidebar />
 
 			<div className="w-[calc(100%-60px)] sm:w-[calc(100%-75px)] ml-auto">
@@ -45,6 +46,8 @@ const CreateRoadmapLayout = ({ children }: ChildrenType) => {
 					<RoadmapPreview />
 				</div>
 			</div>
+
+			<RoadmapStepPreview />
 		</div>
 	);
 };
