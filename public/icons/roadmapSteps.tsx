@@ -353,6 +353,41 @@ const BOOKMARK_ICON = (
 	</svg>
 );
 
+const CROSS_ATTACHMENT_ICON = (
+	<svg
+		width="16"
+		height="16"
+		viewBox="0 0 16 16"
+		fill="none"
+		xmlns="http://www.w3.org/2000/svg"
+	>
+		<rect width="16" height="16" rx="8" fill="white" fillOpacity="0.6" />
+		<rect width="16" height="16" rx="8" fill="black" fillOpacity="0.02" />
+		<rect
+			x="0.25"
+			y="0.25"
+			width="15.5"
+			height="15.5"
+			rx="7.75"
+			stroke="black"
+			strokeOpacity="0.1"
+			strokeWidth="0.5"
+		/>
+		<path
+			fillRule="evenodd"
+			clipRule="evenodd"
+			d="M11.8326 4.16737C12.0558 4.39052 12.0558 4.75233 11.8326 4.97549L4.97549 11.8326C4.75233 12.0558 4.39052 12.0558 4.16737 11.8326C3.94421 11.6095 3.94421 11.2477 4.16737 11.0245L11.0245 4.16737C11.2477 3.94421 11.6095 3.94421 11.8326 4.16737Z"
+			fill="currentColor"
+		/>
+		<path
+			fillRule="evenodd"
+			clipRule="evenodd"
+			d="M4.16737 4.16737C4.39052 3.94421 4.75233 3.94421 4.97549 4.16737L11.8326 11.0245C12.0558 11.2477 12.0558 11.6095 11.8326 11.8326C11.6095 12.0558 11.2477 12.0558 11.0245 11.8326L4.16737 4.97549C3.94421 4.75233 3.94421 4.39052 4.16737 4.16737Z"
+			fill="currentColor"
+		/>
+	</svg>
+);
+
 export {
 	ADD_TAG,
 	DURATION_ICON,
@@ -370,4 +405,5 @@ export {
 	CROSS_ICON,
 	BOOKMARK_ICON,
 	CHECK_TAG_ICON,
+	CROSS_ATTACHMENT_ICON,
 };

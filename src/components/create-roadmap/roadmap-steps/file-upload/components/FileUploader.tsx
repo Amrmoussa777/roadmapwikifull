@@ -1,6 +1,5 @@
 "use client";
 
-import FileUploadedItem from "@/components/create-roadmap/roadmap-steps/file-upload/components/FileUploadedItem";
 import useHandleFilesChanges from "@/components/create-roadmap/roadmap-steps/file-upload/hooks/useHandleFilesChanges";
 import { FileUploaderProps } from "@/components/create-roadmap/roadmap-steps/file-upload/types/index.types";
 import { FILE_ICON, IMAGE_ICON, VIDEO_ICON } from "@public/icons/roadmapSteps";
@@ -9,7 +8,7 @@ import React, { useRef, useState } from "react";
 const FileUploader = ({
 	selectedFiles,
 	setSelectedFiles,
-	stepId,
+	children,
 }: FileUploaderProps) => {
 	const { handleFileChange } = useHandleFilesChanges({
 		selectedFiles,
@@ -31,7 +30,7 @@ const FileUploader = ({
 
 	return (
 		<div className="w-full">
-			<p className="text-[#92929D]">Attachments</p>
+			{children}
 
 			<input
 				ref={fileInputRef}
@@ -42,14 +41,6 @@ const FileUploader = ({
 				onChange={handleFileChange}
 				className="hidden"
 			/>
-
-			{selectedFiles.length > 0 ? (
-				<ul className="flex flex-wrap items-start gap-4">
-					{selectedFiles.map(file => (
-						<FileUploadedItem key={file.name} file={file} />
-					))}
-				</ul>
-			) : null}
 
 			<div className="flex items-center gap-4 mt-4">
 				<button

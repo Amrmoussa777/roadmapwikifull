@@ -185,6 +185,45 @@ const createRoadmapSlice = createSlice({
 				};
 			}
 		},
+		addStepAttachment: (state, action) => {
+			const { stepId, newAttachment } = action.payload;
+
+			const updatedSteps =
+				state.roadmap?.steps.map(step =>
+					step.id === stepId
+						? { ...step, attachments: [...step.attachments, newAttachment] }
+						: step
+				) ?? [];
+
+			if (state.roadmap) {
+				state.roadmap = {
+					...state.roadmap,
+					steps: updatedSteps,
+				};
+			}
+		},
+		deleteStepAttachment: (state, action) => {
+			const { stepId, attachmentId } = action.payload;
+
+			const updatedSteps =
+				state.roadmap?.steps.map(step =>
+					step.id === stepId
+						? {
+								...step,
+								attachments: step.attachments.filter(
+									attachment => attachment.id !== attachmentId
+								),
+						  }
+						: step
+				) ?? [];
+
+			if (state.roadmap) {
+				state.roadmap = {
+					...state.roadmap,
+					steps: updatedSteps,
+				};
+			}
+		},
 	},
 	extraReducers(builder) {
 		builder.addCase(fetchRoadmapById.pending, state => {
@@ -225,5 +264,7 @@ export const {
 	fillVerificationToUpdate,
 	resetVerificationToUpdate,
 	updateVerification,
+	addStepAttachment,
+	deleteStepAttachment,
 } = createRoadmapSlice.actions;
 export default createRoadmapSlice.reducer;

@@ -115,16 +115,18 @@ const StepVerification = ({ stepId, verifications }: StepVerificationProps) => {
 							) : null}
 						</AnimatePresence>
 
-						<ul className="mt-4 text-[#92929D] font-inter text-[14px]">
-							Verifications
-							{verifications.map(verification => (
-								<StepVerificationItem
-									key={verification.id}
-									verification={verification}
-									stepId={stepId}
-								/>
-							))}
-						</ul>
+						{verifications.length ? (
+							<ul className="mt-4 text-[#92929D] font-inter text-[14px]">
+								Verifications
+								{verifications.map(verification => (
+									<StepVerificationItem
+										key={verification.id}
+										verification={verification}
+										stepId={stepId}
+									/>
+								))}
+							</ul>
+						) : null}
 					</motion.div>
 				) : null}
 			</AnimatePresence>

@@ -13,7 +13,7 @@ export const useRoadmaps = () => {
 	const handleGetCreatorRoadmaps = async (pageNumber: number) => {
 		const { data, error } = await fetchData(
 			"GET",
-			`${process.env.NEXT_PUBLIC_BASE_URL}/roadmap/?page=${pageNumber}&pageSize=10&userId=${user?.id}`
+			`roadmap/?page=${pageNumber}&pageSize=10&userId=${user?.id}`
 		);
 
 		setTotalItems(error ? 0 : data.length);

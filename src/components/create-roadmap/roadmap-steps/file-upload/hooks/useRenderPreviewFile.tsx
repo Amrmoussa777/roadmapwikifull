@@ -1,10 +1,13 @@
+import { RoadmapStepAttachmentType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
 import { UPLOADED_FILE_ICON } from "@public/icons/roadmapSteps";
 import Image from "next/image";
 
-const useRenderPreviewFile = (file: File) => {
-	const fileType = file.type.split("/")[0];
+const useRenderPreviewFile = () => {
+	const renderPreviewFile = (file?: File) => {
+		if (!file) return;
 
-	const renderPreviewFile = () => {
+		const fileType = file.type.split("/")[0];
+
 		if (fileType === "image") {
 			return (
 				<Image
@@ -28,7 +31,7 @@ const useRenderPreviewFile = (file: File) => {
 			return (
 				<div className="flex flex-col justify-center items-center gap-2">
 					{UPLOADED_FILE_ICON}
-					<span className="text-center line-clamp-1 text-ellipsis overflow-hidden">
+					<span className="text-[12px] text-center line-clamp-1 text-ellipsis overflow-hidden">
 						{file.name}
 					</span>
 				</div>
@@ -36,7 +39,41 @@ const useRenderPreviewFile = (file: File) => {
 		}
 	};
 
-	return { renderPreviewFile };
+	const renderUploadedFile = (uploadedFile?: RoadmapStepAttachmentType) => {
+		if (!uploadedFile) return;
+
+		if (uploadedFile.type === "IMAGE") {
+			return (
+				<Image
+					width={200}
+					height={200}
+					src={uploadedFile.url}
+					alt={uploadedFile.key}
+					className="w-full h-full object-cover rounded-md shadow-md"
+				/>
+			);
+		} else if (uploadedFile.type === "VIDEO") {
+			return (
+				<video
+					controls
+					className="w-full h-full object-cover rounded-md shadow-md"
+				>
+					<source src={uploadedFile.url} />
+				</video>
+			);
+		} else {
+			return (
+				<div className="flex flex-col justify-center items-center gap-2">
+					{UPLOADED_FILE_ICON}
+					<span className="text-[12px] text-center line-clamp-1 text-ellipsis overflow-hidden">
+						{uploadedFile.key}
+					</span>
+				</div>
+			);
+		}
+	};
+
+	return { renderPreviewFile, renderUploadedFile };
 };
 
 export { useRenderPreviewFile };

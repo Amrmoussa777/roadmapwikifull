@@ -1,7 +1,10 @@
+import { ReactNode } from "react";
+
 export type FileUploaderProps = {
 	selectedFiles: File[];
 	setSelectedFiles: (files: File[]) => void;
-	stepId: string;
+	removeSelectedFile: (fileName: string) => void;
+	children: ReactNode;
 };
 
 export type useHandleFilesChangesArgs = Pick<

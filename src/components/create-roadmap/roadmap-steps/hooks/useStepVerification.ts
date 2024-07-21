@@ -10,7 +10,7 @@ import { useEffect } from "react";
 
 export const useStepVerification = (stepId: string) => {
 	const { currentState: verificationListOpen, toggle: toggleVerificationList } =
-		useToggle(false);
+		useToggle(true);
 	const actions = [{ id: "redirectLink", name: "Redirect Link" }];
 
 	const { verificationToUpdate } = useAppSelector(state => state.createRoadmap);

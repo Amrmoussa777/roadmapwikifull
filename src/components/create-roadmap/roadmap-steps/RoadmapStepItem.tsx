@@ -27,7 +27,8 @@ const RoadmapStepItem = ({
 	isDragging,
 	setIsDragging,
 }: CreateRoadmapStepItemProps) => {
-	const { id, description, title, tags, duration, verifications } = step;
+	const { id, description, title, tags, duration, verifications, attachments } =
+		step;
 	const { value, changeValue } = useInput(title);
 	const dispatch = useAppDispatch();
 	const { fetchData } = useFetch();
@@ -138,7 +139,7 @@ const RoadmapStepItem = ({
 
 							<HorizontalDivider height="h-[1px]" bgColor="bg-[#E0E0E0]" />
 
-							<Attachments stepId={id} />
+							<Attachments stepId={id} attachments={attachments} />
 						</motion.div>
 					)}
 				</AnimatePresence>

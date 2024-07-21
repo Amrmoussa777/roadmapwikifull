@@ -43,7 +43,9 @@ export interface RoadmapTagType {
 export interface RoadmapStepAttachmentType {
 	id: string;
 	type: string;
+	key: string;
 	url: string;
+	roadmapStepId: string;
 }
 
 export interface RoadmapStepVerificationType {

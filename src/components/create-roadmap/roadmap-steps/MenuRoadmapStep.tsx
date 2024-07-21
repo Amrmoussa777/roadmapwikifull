@@ -1,13 +1,14 @@
 import React from "react";
 import useToggle from "@/hooks/useToggle";
 import { MENU_ICON } from "@public/icons/roadmapSteps";
-import { useAppDispatch } from "@/redux/store";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { removeStep } from "@/redux/slices/create-roadmap/createRoadmapSlice";
 import HandleApiRequests from "@/helpers/handleApiRequests";
 import { useOnClickOutside } from "@/hooks/useOnClickOutside";
 
 const MenuRoadmapStep = ({ stepId }: { stepId: string }) => {
 	const { currentState: menuOpen, toggle: openMenu } = useToggle(false);
+	const { roadmap } = useAppSelector(state => state.createRoadmap);
 
 	const dispatch = useAppDispatch();
 
@@ -31,6 +32,7 @@ const MenuRoadmapStep = ({ stepId }: { stepId: string }) => {
 				>
 					<button
 						onClick={handleRemoveStep}
+						disabled={roadmap?.steps.length === 1}
 						className="w-32 bg-[#A72C32] border rounded-md text-white"
 					>
 						Delete

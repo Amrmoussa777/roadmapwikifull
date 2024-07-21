@@ -107,7 +107,7 @@ const RoadmapStepDuration = ({
 							type="number"
 							value={duration}
 							onChange={changeDuration}
-							className="w-full h-[60px] text-xl mt-4 px-4 bg-transparent text-[#181818] border-2 hover:border-primary-ultramarineBlue/50 focus:border-primary-ultramarineBlue focus:outline-none rounded-md pl-2 transition-all"
+							className="w-full h-[60px] text-xl mt-4 px-4 bg-transparent text-[#181818] font-medium border-2 hover:border-primary-ultramarineBlue/50 focus:border-primary-ultramarineBlue focus:outline-none rounded-md pl-2 transition-all"
 						/>
 
 						<HorizontalDivider
@@ -119,14 +119,14 @@ const RoadmapStepDuration = ({
 						<div className="flex-jb-c gap-2 [&>button]:w-full">
 							<button
 								disabled={!duration.length}
-								className="text-[#181818] hover:text-primary-ultramarineBlue transition duration-200 disabled:hover:text-[#181818]"
+								className="text-[#181818] font-medium hover:text-primary-ultramarineBlue transition duration-200 disabled:hover:text-[#181818]"
 							>
 								{loading ? "Loading..." : "OK"}
 							</button>
 							<button
 								onClick={toggleDuration}
 								type="button"
-								className="hover:text-primary-ultramarineBlue transition duration-200"
+								className="font-medium hover:text-primary-ultramarineBlue transition duration-200"
 							>
 								CANCEL
 							</button>
