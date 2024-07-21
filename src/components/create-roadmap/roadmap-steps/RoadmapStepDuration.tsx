@@ -39,11 +39,19 @@ const RoadmapStepDuration = ({
 	const handleSubmitDuration = async (e: FormEvent) => {
 		e.preventDefault();
 
-		const updatedRoadmapStep = {
-			title,
-			description,
-			duration: `${duration} ${durationType}`,
-		};
+		const updatedRoadmapStep: Record<string, string> = {};
+
+		if (title) {
+			updatedRoadmapStep.title = title;
+		}
+
+		if (description) {
+			updatedRoadmapStep.description = description;
+		}
+
+		if (duration && durationType) {
+			updatedRoadmapStep.duration = `${duration} ${durationType}`;
+		}
 
 		await fetchData("PATCH", `roadmap/step/${stepId}`, updatedRoadmapStep).then(
 			() =>
@@ -67,7 +75,7 @@ const RoadmapStepDuration = ({
 			>
 				<span className="text-primary-ultramarineBlue">{DURATION_ICON}</span>
 				<p className="text-[14px] font-normal leading-[16px]">
-					{`${duration} ${durationType}` || "Duration"}
+					{defaultDuration ? `${duration} ${durationType}` : "Duration"}
 				</p>
 			</button>
 

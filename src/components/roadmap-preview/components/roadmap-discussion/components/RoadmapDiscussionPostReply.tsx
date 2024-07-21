@@ -1,6 +1,6 @@
 import useToggle from "@/hooks/useToggle";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import AuthorImage from "@public/pp.jpeg";
 import { UP_VOTE_ICON } from "@public/icons/roadmapPreview";
 import { MENU_ICON } from "@public/icons/roadmapSteps";
@@ -9,6 +9,9 @@ import { UNKNOWN_USER_ICON } from "@public/icons/userProfile";
 import { getCookie } from "cookies-next";
 import axios from "axios";
 import moment from "moment";
+import { CurrentUserContext } from "@/providers/CurrentUserContext";
+import { useRouter } from "next/navigation";
+import HandleApiRequests from "@/helpers/handleApiRequests";
 
 const RoadmapDiscussionPostReply = ({
 	id,
@@ -22,18 +25,15 @@ const RoadmapDiscussionPostReply = ({
 		useToggle(initialIsVoted);
 	const [votesCount, setVotesCount] = useState(_count.votes);
 	const { image, fullName } = author;
+	const { currentUser } = useContext(CurrentUserContext);
+	const { push } = useRouter();
 
 	const handleToggleVote = async () => {
-		const accessToken = getCookie("accessToken");
+		if (!currentUser) return push("/auth/login");
 
-		await axios({
+		await HandleApiRequests.handleApiRequest({
 			method: "POST",
-			url: `${process.env.NEXT_PUBLIC_BASE_URL}/posts/comments/${id}/${
-				isVoted ? "downvote" : "upvote"
-			}`,
-			headers: {
-				Authorization: `Bearer ${accessToken}`,
-			},
+			endpoint: `posts/comments/${id}/${isVoted ? "downvote" : "upvote"}`,
 		});
 
 		setVotesCount(prev => (isVoted ? prev - 1 : prev + 1));

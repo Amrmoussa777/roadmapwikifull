@@ -82,8 +82,8 @@ const RoadmapDetails = () => {
 						{tags?.map(tag => (
 							<span
 								key={tag.id}
-								style={{ backgroundColor: tag.color }}
-								className="h-[26px] flex-jc-c text-sm px-4 text-white rounded-full"
+								style={{ backgroundColor: roadmap?.secondaryColor + "33" }}
+								className="h-[26px] flex-jc-c text-sm px-4 !text-[#111111] rounded-full"
 							>
 								{tag.name}
 							</span>

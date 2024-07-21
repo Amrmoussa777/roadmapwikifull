@@ -26,9 +26,21 @@ const RoadmapStepDescription = ({
 	const updateDescription = async () => {
 		if (description === defaultDescription) return;
 
-		const newData = { description, title, duration };
+		const updatedRoadmapStep: Record<string, string> = {};
 
-		await fetchData("PATCH", `roadmap/step/${stepId}`, newData)
+		if (title) {
+			updatedRoadmapStep.title = title;
+		}
+
+		if (description) {
+			updatedRoadmapStep.description = description;
+		}
+
+		if (duration) {
+			updatedRoadmapStep.duration = duration;
+		}
+
+		await fetchData("PATCH", `roadmap/step/${stepId}`, updatedRoadmapStep)
 			.then(() =>
 				dispatch(updateRoadmapStepData({ stepId, newData: { description } }))
 			)

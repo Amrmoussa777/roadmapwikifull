@@ -44,7 +44,9 @@ const RoadmapStepItem = ({
 								{tags.slice(0, 3).map(tag => (
 									<li
 										key={tag.id}
-										style={{ backgroundColor: `${secondaryColor + "33"}` }}
+										style={{
+											backgroundColor: `${secondaryColor || "#506CF0" + "33"}`,
+										}}
 										className="rounded-full w-fit px-2 text-[12px] font-normal text-[#111111]"
 									>
 										<p className="line-clamp-1">{tag.name}</p>
@@ -58,7 +60,7 @@ const RoadmapStepItem = ({
 						<div className="flex-jc-c gap-1 [&>svg]:w-[16px] [&>svg]:text-primary-ultramarineBlue">
 							{DURATION_ICON}{" "}
 							<span className="text-primary-dark text-[12px] font-normal">
-								{duration}
+								{duration || "Duration"}
 							</span>
 						</div>
 

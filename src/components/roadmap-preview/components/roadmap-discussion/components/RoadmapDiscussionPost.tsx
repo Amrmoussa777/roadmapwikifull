@@ -1,5 +1,5 @@
 import { RoadmapPostType } from "@/components/roadmap-preview/components/roadmap-discussion/types/roadmap-discussion-posts";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Image from "next/image";
 import { COMMENT_ICON, UP_VOTE_ICON } from "@public/icons/roadmapPreview";
 import { MENU_ICON } from "@public/icons/roadmapSteps";
@@ -17,6 +17,9 @@ import { toggleCommentForm } from "@/redux/slices/roadmaps/roadmapPreviewPostsSl
 import RoadmapDiscussionReplyForm from "@/components/roadmap-preview/components/roadmap-discussion/components/RoadmapDiscussionReplyForm";
 import { getCookie } from "cookies-next";
 import axios from "axios";
+import HandleApiRequests from "@/helpers/handleApiRequests";
+import { CurrentUserContext } from "@/providers/CurrentUserContext";
+import { useRouter } from "next/navigation";
 
 const RoadmapDiscussionPost = ({
 	id,
@@ -33,6 +36,8 @@ const RoadmapDiscussionPost = ({
 	const dispatch = useAppDispatch();
 	const { replies } = useAppSelector(state => state.roadmapPreviewReplies);
 	const { currentPostId } = useAppSelector(state => state.roadmapPreviewPosts);
+	const { currentUser } = useContext(CurrentUserContext);
+	const { push } = useRouter();
 
 	useEffect(() => {
 		dispatch(setInitialPostReplies(id));
@@ -41,16 +46,11 @@ const RoadmapDiscussionPost = ({
 	}, []);
 
 	const handleToggleVote = async () => {
-		const accessToken = getCookie("accessToken");
+		if (!currentUser) return push("/auth/login");
 
-		await axios({
+		await HandleApiRequests.handleApiRequest({
 			method: "POST",
-			url: `${process.env.NEXT_PUBLIC_BASE_URL}/posts/${id}/${
-				isVoted ? "downvote" : "upvote"
-			}`,
-			headers: {
-				Authorization: `Bearer ${accessToken}`,
-			},
+			endpoint: `posts/${id}/${isVoted ? "downvote" : "upvote"}`,
 		});
 
 		setVotesCount(prev => (isVoted ? prev - 1 : prev + 1));
