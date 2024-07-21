@@ -1,4 +1,4 @@
-import React, { PointerEvent } from "react";
+import React, { PointerEvent, useEffect, useRef } from "react";
 import useInput from "@/components/common/input/hooks/useInput";
 import HorizontalDivider from "@/components/common/divider/components/HorizontalDivider";
 import { ARROW_ICON, DRAG_ICON } from "@public/icons/roadmapSteps";
@@ -31,7 +31,11 @@ const RoadmapStepItem = ({
 		step;
 	const { value, changeValue } = useInput(title);
 	const dispatch = useAppDispatch();
+	const { roadmap } = useAppSelector(state => state.createRoadmap);
 	const { fetchData } = useFetch();
+	const { fetchData: fetchReorderSteps } = useFetch();
+
+	const stepRef = useRef<HTMLDivElement>(null);
 
 	const handleChangeTitle = async () => {
 		if (value === title) return;
@@ -59,6 +63,33 @@ const RoadmapStepItem = ({
 		setIsDragging(false);
 	};
 
+	const handleReorderSteps = async () => {
+		if (!roadmap) return;
+
+		const orderIds = roadmap.steps.map((step, index) => ({
+			stepId: step.id,
+			order: index + 1,
+		}));
+
+		const reorderBody = {
+			steps: orderIds,
+		};
+
+		fetchReorderSteps(
+			"POST",
+			`roadmap/${roadmap.id}/reorder-steps`,
+			reorderBody
+		);
+	};
+
+	useEffect(() => {
+		setTimeout(() => {
+			if (activeRoadmapStepId === id && stepRef.current) {
+				stepRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+			}
+		}, 300);
+	}, [activeRoadmapStepId, id]);
+
 	return (
 		<Reorder.Item
 			dragListener={false}
@@ -67,8 +98,10 @@ const RoadmapStepItem = ({
 			value={step}
 			layout="position"
 			onPointerUp={handlePointerUp}
+			onDragEnd={handleReorderSteps}
 		>
 			<div
+				ref={stepRef}
 				className={`flex flex-col h-fit gap-2 rounded-[12px] p-4 border border-transparent transition-all duration-300 hover:border-primary-ultramarineBlue ${
 					activeRoadmapStepId === id
 						? "bg-white !border-primary-ultramarineBlue"

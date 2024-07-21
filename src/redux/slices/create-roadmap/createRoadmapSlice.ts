@@ -224,6 +224,13 @@ const createRoadmapSlice = createSlice({
 				};
 			}
 		},
+		reorderRoadmapSteps: (state, action) => {
+			const newReOrderedSteps = action.payload;
+
+			if (state.roadmap) {
+				state.roadmap.steps = newReOrderedSteps;
+			}
+		},
 	},
 	extraReducers(builder) {
 		builder.addCase(fetchRoadmapById.pending, state => {
@@ -266,5 +273,6 @@ export const {
 	updateVerification,
 	addStepAttachment,
 	deleteStepAttachment,
+	reorderRoadmapSteps,
 } = createRoadmapSlice.actions;
 export default createRoadmapSlice.reducer;
