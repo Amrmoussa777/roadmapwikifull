@@ -8,27 +8,16 @@ import PrivateNavbarCurrentUser from "@/components/navbar/components/PrivateNavb
 import PrivateNavbarLinks from "@/components/navbar/components/PrivateNavbarLinks";
 import PrivateNavbarMenuButton from "@/components/navbar/components/PrivateNavbarMenuButton";
 import useDisableScroll from "@/hooks/useDisableScrolling";
+import { useMobileScreen } from "@/hooks/useMobileScreen";
 import useToggle from "@/hooks/useToggle";
 import { usePathname } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 const PrivateNavbar = () => {
 	const { currentState: isMenuOpen, toggle } = useToggle(false);
 	useDisableScroll(isMenuOpen);
 
-	const [isMobile, setIsMobile] = useState(false);
-
-	const handleResize = () => {
-		setIsMobile(window.innerWidth <= 768);
-	};
-
-	useEffect(() => {
-		handleResize();
-		window.addEventListener("resize", handleResize);
-		return () => {
-			window.removeEventListener("resize", handleResize);
-		};
-	}, []);
+	const { isMobile } = useMobileScreen();
 
 	const pathname = usePathname();
 
