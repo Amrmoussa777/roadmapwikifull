@@ -13,8 +13,6 @@ import {
 import { ROADMAP_LOGO } from "@public/icons/landingPage";
 import { useAppSelector } from "@/redux/store";
 import SidebarLoader from "@/components/create-roadmap/sidebar/components/SidebarLoader";
-import { useOnClickOutside } from "@/hooks/useOnClickOutside";
-import { useMobileScreen } from "@/hooks/useMobileScreen";
 import SidebarMobile from "@/components/create-roadmap/sidebar/components/SidebarMobile";
 
 const Sidebar = ({
@@ -26,8 +24,6 @@ const Sidebar = ({
 }) => {
 	const { roadmap, isLoading } = useAppSelector(state => state.createRoadmap);
 	const { id } = roadmap || {};
-
-	const { isMobile } = useMobileScreen();
 
 	if (isLoading) return <SidebarLoader />;
 

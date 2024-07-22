@@ -30,20 +30,18 @@ const CreateNewRoadmapHeader = () => {
 					</h3>
 				</div>
 
-				{lastPathname !== "create-roadmap" ? (
-					<div className="flex-jc-c gap-2">
-						<button
-							disabled={lastPathname === "create-roadmap"}
-							className="w-[100px] md:w-[132px] h-[35px] md:h-[40px] flex-jc-c gap-2 rounded-full text-white [&>svg]:w-[20px] [&>svg]:fill-white bg-primary-ultramarineBlue hover:-translate-y-1 transform transition duration-200 hover:shadow-md"
-						>
-							{SAVE_ICON} Publish
-						</button>
+				<div className="flex-jc-c gap-2">
+					<button
+						disabled
+						className="w-[35px] sm:w-[100px] md:w-[132px] h-[35px] md:h-[40px] flex-jc-c gap-2 rounded-full text-white [&>svg]:w-[20px] [&>svg]:fill-white bg-primary-ultramarineBlue hover:-translate-y-1 transform transition duration-200 hover:shadow-md"
+					>
+						{SAVE_ICON} <span className="hidden sm:block">Publish</span>
+					</button>
 
-						<button className="w-[35px] md:w-[40px] h-[35px] md:h-[40px] flex-jc-c border border-[#181818] rounded-full hover:-translate-y-1 transform transition duration-200 hover:shadow-md">
-							{NAVBAR_MENU_ICON}
-						</button>
-					</div>
-				) : null}
+					<button className="w-[35px] md:w-[40px] h-[35px] md:h-[40px] flex-jc-c border border-[#181818] rounded-full hover:-translate-y-1 transform transition duration-200 hover:shadow-md">
+						{NAVBAR_MENU_ICON}
+					</button>
+				</div>
 			</div>
 		</div>
 	);

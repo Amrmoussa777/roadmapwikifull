@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
-export const useMobileScreen = () => {
-	const [isMobile, setIsMobile] = useState(false);
+export const useSizeScreen = (screen: number) => {
+	const [responsive, setResponsive] = useState(false);
 
 	const handleResize = () => {
-		setIsMobile(window.innerWidth <= 768);
+		setResponsive(window.innerWidth <= screen);
 	};
 
 	useEffect(() => {
@@ -15,5 +15,5 @@ export const useMobileScreen = () => {
 		};
 	}, []);
 
-	return { isMobile };
+	return { responsive };
 };

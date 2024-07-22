@@ -76,7 +76,7 @@ const SidebarMobile = ({
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 100 }}
 						exit={{ opacity: 0 }}
-						className="sm:hidden fixed w-screen h-screen right-0 top-0 bg-black/60 z-10"
+						className="sm:hidden fixed w-screen h-screen right-0 top-0 bg-black/60 z-20"
 					/>
 				) : null}
 			</AnimatePresence>

@@ -8,7 +8,7 @@ import PrivateNavbarCurrentUser from "@/components/navbar/components/PrivateNavb
 import PrivateNavbarLinks from "@/components/navbar/components/PrivateNavbarLinks";
 import PrivateNavbarMenuButton from "@/components/navbar/components/PrivateNavbarMenuButton";
 import useDisableScroll from "@/hooks/useDisableScrolling";
-import { useMobileScreen } from "@/hooks/useMobileScreen";
+import { useSizeScreen } from "@/hooks/useSizeScreen";
 import useToggle from "@/hooks/useToggle";
 import { usePathname } from "next/navigation";
 import React from "react";
@@ -17,7 +17,7 @@ const PrivateNavbar = () => {
 	const { currentState: isMenuOpen, toggle } = useToggle(false);
 	useDisableScroll(isMenuOpen);
 
-	const { isMobile } = useMobileScreen();
+	const { responsive } = useSizeScreen(768);
 
 	const pathname = usePathname();
 
@@ -29,7 +29,7 @@ const PrivateNavbar = () => {
 				<RoadmapLogo />
 				<PrivateNavbarMenuButton isMenuOpen={isMenuOpen} toggle={toggle} />
 
-				{!isMobile ? (
+				{!responsive ? (
 					<div className="hidden ml-auto md:flex">
 						<PrivateNavbarLinks />
 
