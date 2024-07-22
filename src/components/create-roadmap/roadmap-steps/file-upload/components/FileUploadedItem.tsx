@@ -57,7 +57,7 @@ const FileUploadedItem = ({
 
 	return (
 		<>
-			<li className="relative w-[64px] h-[64px] border-2 border-grey-primary flex-jc-c rounded-md">
+			<li className="relative min-w-[72px] w-[72px] min-h-[72px] h-[72px] border-2 border-grey-primary flex-jc-c rounded-md">
 				{loading ? (
 					<div className="absolute top-0 left-0 w-full h-full flex-jc-c bg-black/20 rounded-md z-10">
 						<div role="status">

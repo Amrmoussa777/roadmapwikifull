@@ -30,7 +30,6 @@ export const useFetch = <B = any>() => {
 			return { data, error: null };
 		} catch (error: any) {
 			setLoading(false);
-			console.log(error);
 
 			const message = error?.response?.data?.message || "An error occurred";
 

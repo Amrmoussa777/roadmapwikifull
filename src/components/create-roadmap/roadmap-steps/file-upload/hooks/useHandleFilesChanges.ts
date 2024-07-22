@@ -11,6 +11,8 @@ const useHandleFilesChanges = ({
 		if (files) {
 			const newFiles = [...selectedFiles, ...Array.from(files)];
 			setSelectedFiles(newFiles);
+
+			event.target.value = "";
 		}
 	};
 

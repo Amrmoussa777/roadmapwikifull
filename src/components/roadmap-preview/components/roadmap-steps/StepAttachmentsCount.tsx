@@ -12,14 +12,14 @@ const StepAttachmentsCount = ({
 		<div className="flex gap-3 [&>div]:flex-jc-c [&>div]:gap-1 [&>div>svg]:w-[12px] text-[12px] font-inter font-medium text-grey-secondary leading-[14.4px]">
 			{attachmentsCountList.map(attachment => {
 				switch (attachment.type) {
-					case "FILE":
+					case "files":
 						return (
 							<div key={attachment.type}>
 								{FILE_ICON} {attachment.count}
 							</div>
 						);
 						break;
-					case "VIDEO":
+					case "videos":
 						return (
 							<div key={attachment.type}>
 								{VIDEO_ICON} {attachment.count}

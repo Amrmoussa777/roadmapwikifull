@@ -4,6 +4,6 @@ export type RoadmapStepItemProps = {
 	step: RoadmapStepType;
 	isFirstStep: boolean;
 	lastStep: boolean;
-	handlePreviewStep?: (step: RoadmapStepType) => void;
+	handlePreviewStep?: (stepId: string) => void;
 	showTags: boolean;
 };

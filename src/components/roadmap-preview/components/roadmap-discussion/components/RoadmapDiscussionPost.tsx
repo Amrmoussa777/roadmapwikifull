@@ -20,6 +20,7 @@ import axios from "axios";
 import HandleApiRequests from "@/helpers/handleApiRequests";
 import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import { useRouter } from "next/navigation";
+import Avatar from "@/components/common/avatar/components/Avatar";
 
 const RoadmapDiscussionPost = ({
 	id,
@@ -62,17 +63,11 @@ const RoadmapDiscussionPost = ({
 			<div className="rounded-md bg-gradient-to-b from-[#EBECF2] to-transparent p-[1.3px]">
 				<div className="relative flex justify-between items-start gap-2 bg-white p-2 rounded-md">
 					<div className="w-[32px] h-[32px] object-cover rounded-full text-[#181818]">
-						{image ? (
-							<Image
-								src={image}
-								width={100}
-								height={100}
-								alt="author-pic"
-								className="w-full h-full rounded-full"
-							/>
-						) : (
-							UNKNOWN_USER_ICON
-						)}
+						<Avatar
+							image_url={image}
+							name={fullName || ""}
+							customStyles="w-[32px] h-[32px] rounded-full object-cover !bg-primary-ultramarineBlue text-white"
+						/>
 					</div>
 
 					<div className="w-full grid">

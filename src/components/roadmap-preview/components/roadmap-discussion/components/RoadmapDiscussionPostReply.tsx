@@ -12,6 +12,7 @@ import moment from "moment";
 import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import { useRouter } from "next/navigation";
 import HandleApiRequests from "@/helpers/handleApiRequests";
+import Avatar from "@/components/common/avatar/components/Avatar";
 
 const RoadmapDiscussionPostReply = ({
 	id,
@@ -43,17 +44,11 @@ const RoadmapDiscussionPostReply = ({
 	return (
 		<>
 			<div className="relative flex justify-between items-start gap-2 p-2 ml-4 rounded-md">
-				{image ? (
-					<Image
-						src={AuthorImage}
-						width={100}
-						height={100}
-						alt="author-pic"
-						className="w-[32px] h-[32px] object-cover rounded-full"
-					/>
-				) : (
-					UNKNOWN_USER_ICON
-				)}
+				<Avatar
+					image_url={image}
+					name={fullName || ""}
+					customStyles="min-w-[25px] w-[25px] min-h-[25px] h-[25px] rounded-full object-cover !bg-primary-ultramarineBlue text-white text-[14px]"
+				/>
 
 				<div className="w-full grid">
 					<h3 className="text-[13px] text-[#181818] font-inter font-medium">

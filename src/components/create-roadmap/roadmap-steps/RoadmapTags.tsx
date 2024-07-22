@@ -2,6 +2,7 @@ import { useRoadmapTags } from "@/components/create-roadmap/preview-roadmap/hook
 import { RoadmapTagType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
 import { ADD_TAG, CHECK_TAG_ICON } from "@public/icons/roadmapSteps";
 import React from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 const RoadmapTags = ({
 	stepId,
@@ -38,15 +39,23 @@ const RoadmapTags = ({
 					error ? "border-red-400" : ""
 				}`}
 			>
-				{addingTag ? (
-					<input
-						style={{ borderColor: "" }}
-						autoFocus
-						className={`w-[100px] max-h-[30px] flex-jc-c gap-1 rounded-full py-[3px] px-[10px] outline-none`}
-						value={value}
-						onChange={changeValue}
-					/>
-				) : null}
+				<AnimatePresence>
+					{addingTag ? (
+						<motion.div
+							initial={{ width: 0 }}
+							animate={{ width: 100 }}
+							exit={{ width: 0 }}
+						>
+							<input
+								style={{ borderColor: "" }}
+								autoFocus
+								className={`w-[100px] max-h-[30px] flex-jc-c gap-1 rounded-full py-[3px] px-[10px] outline-none`}
+								value={value}
+								onChange={changeValue}
+							/>
+						</motion.div>
+					) : null}
+				</AnimatePresence>
 
 				<div
 					className={`h-[30px] flex-jc-c gap-1 rounded-full py-2 px-[3px] hover:opacity-90 font-normal text-[14px] ${

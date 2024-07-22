@@ -1,6 +1,4 @@
-import Attachments from "@/components/common/step/components/Attachments";
 import Verification from "@/components/roadmap-preview/components/roadmap-steps/Verification";
-import useDisableScroll from "@/hooks/useDisableScrolling";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import {
 	CHECK_ICON,
@@ -11,19 +9,22 @@ import {
 import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { toggleStepToPreview } from "@/redux/slices/create-roadmap/createRoadmapSlice";
-import { useOnClickOutside } from "@/hooks/useOnClickOutside";
 import dynamic from "next/dynamic";
+import PreviewAttachments from "@/components/create-roadmap/roadmap-steps/PreviewAttachments";
 
 const Editor = dynamic(
 	() => import("@/components/common/Editor/components/Editor")
 );
 
 const RoadmapStepPreview = () => {
-	const { stepToPreview } = useAppSelector(state => state.createRoadmap);
+	const { stepIdToPreview, roadmap } = useAppSelector(
+		state => state.createRoadmap
+	);
+	const stepToPreview = roadmap?.steps.find(
+		step => step.id === stepIdToPreview
+	);
 
 	const dispatch = useAppDispatch();
-
-	useDisableScroll(stepToPreview ? true : false);
 
 	const { id, title, description, duration, attachments, tags, verifications } =
 		stepToPreview || {};
@@ -31,8 +32,6 @@ const RoadmapStepPreview = () => {
 	const handleToggleStepPreview = () => {
 		dispatch(toggleStepToPreview(null));
 	};
-
-	const ref = useOnClickOutside(handleToggleStepPreview);
 
 	return (
 		<AnimatePresence>
@@ -45,7 +44,7 @@ const RoadmapStepPreview = () => {
 						ease: "easeInOut",
 						duration: 0.1,
 					}}
-					className="fixed w-screen h-screen top-0 left-0 bg-black/40 flex justify-end z-40"
+					className="fixed w-[80%] sm:w-[460px] h-screen top-0 right-0 flex justify-end z-40"
 				>
 					<motion.div
 						initial={{ x: 500 }}
@@ -55,8 +54,7 @@ const RoadmapStepPreview = () => {
 							ease: "easeInOut",
 							duration: 0.2,
 						}}
-						ref={ref}
-						className="w-[80%] sm:w-[460px] p-[24px] bg-white"
+						className="w-full h-full p-[24px] bg-white shadow-clg"
 					>
 						<div className="flex-jb-c">
 							<button
@@ -115,7 +113,11 @@ const RoadmapStepPreview = () => {
 						{attachments?.length ? (
 							<>
 								<p className="text-[#5A5A5A] text-[12px]">Attachments</p>
-								<Attachments attachments={attachments} />
+								<PreviewAttachments
+									attachments={attachments}
+									stepId={id || ""}
+									readOnly={true}
+								/>
 							</>
 						) : null}
 					</motion.div>

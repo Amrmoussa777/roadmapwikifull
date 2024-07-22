@@ -54,12 +54,11 @@ const useRenderPreviewFile = () => {
 			);
 		} else if (uploadedFile.type === "VIDEO") {
 			return (
-				<video
-					controls
-					className="w-full h-full object-cover rounded-md shadow-md"
-				>
-					<source src={uploadedFile.url} />
-				</video>
+				<>
+					<video className="w-full h-full object-cover rounded-md shadow-md">
+						<source src={uploadedFile.url} type="video/mp4" />
+					</video>
+				</>
 			);
 		} else {
 			return (

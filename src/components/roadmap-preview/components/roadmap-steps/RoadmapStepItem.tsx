@@ -3,24 +3,27 @@
 import { RoadmapStepItemProps } from "@/components/roadmap-preview/types/roadmapSteps.types";
 import React from "react";
 import { CHECK_ICON, DURATION_ICON } from "@public/icons/roadmapSteps";
-import { useAppDispatch, useAppSelector } from "@/redux/store";
+import { useAppSelector } from "@/redux/store";
 import { calcAttachmentsCount } from "@/components/roadmap-preview/helpers/calcAttachmentsCount";
 import StepAttachmentsCount from "@/components/roadmap-preview/components/roadmap-steps/StepAttachmentsCount";
 
 const RoadmapStepItem = ({
 	step,
 	isFirstStep,
-	lastStep,
 	handlePreviewStep,
 	showTags,
 }: RoadmapStepItemProps) => {
-	const { duration, tags, title, attachments } = step;
-	const dispatch = useAppDispatch();
+	const { id, duration, tags, title, attachments } = step;
 
 	const attachmentsCountList = calcAttachmentsCount(attachments);
-	const { roadmap } = useAppSelector(state => state.createRoadmap);
+	const { roadmap: roadmapPreview } = useAppSelector(
+		state => state.roadmapPreview
+	);
+	const { roadmap: createRoadmapPreview } = useAppSelector(
+		state => state.createRoadmap
+	);
 
-	const { secondaryColor } = roadmap || {};
+	const { secondaryColor } = roadmapPreview || createRoadmapPreview || {};
 
 	return (
 		<>
@@ -29,7 +32,7 @@ const RoadmapStepItem = ({
 			<div className="relative w-full max-w-[600px] h-[80px] mx-auto px-2 py-3 rounded-sm bg-white border border-[#EBECF2] group">
 				<button
 					className="w-full h-full flex flex-col justify-between"
-					onClick={() => (handlePreviewStep ? handlePreviewStep(step) : null)}
+					onClick={() => (handlePreviewStep ? handlePreviewStep(id) : null)}
 				>
 					<div className="w-full flex-jb-c gap-2">
 						<div className="flex-jc-c gap-2">

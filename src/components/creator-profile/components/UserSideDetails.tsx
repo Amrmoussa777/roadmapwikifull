@@ -25,16 +25,23 @@ const UserSideDetails = () => {
 							isReadMore ? "line-clamp-none" : "line-clamp-1 md:line-clamp-2"
 						}`}
 					>
-						{description}
+						{description || (
+							<NumberStats
+								text="No description"
+								customStyles="!text-[14px] text-start"
+							/>
+						)}
 					</span>
-					<button
-						onClick={toggleReadMore}
-						className={`flex-jc-c gap-1 text-[14px] font-inter font-normal [&>svg]:w-[20px] text-[#506CF0] ${
-							isReadMore ? "[&>svg]:rotate-0" : "[&>svg]:rotate-180"
-						} [&>svg]:transition-all`}
-					>
-						{isReadMore ? "Read less" : "Read more"} {ARROW_ICON}
-					</button>
+					{description ? (
+						<button
+							onClick={toggleReadMore}
+							className={`flex-jc-c gap-1 text-[14px] font-inter font-normal [&>svg]:w-[20px] text-[#506CF0] ${
+								isReadMore ? "[&>svg]:rotate-0" : "[&>svg]:rotate-180"
+							} [&>svg]:transition-all`}
+						>
+							{isReadMore ? "Read less" : "Read more"} {ARROW_ICON}
+						</button>
+					) : null}
 				</li>
 
 				<li>

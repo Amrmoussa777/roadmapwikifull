@@ -16,7 +16,7 @@ const RoadmapPreviewStep = lazy(
 
 const RoadmapPreviewSteps = () => {
 	const {
-		previewStep,
+		previewStepId,
 		isPreviewStepModalVisible,
 		togglePreviewStepModal,
 		handlePreviewStep,
@@ -49,7 +49,7 @@ const RoadmapPreviewSteps = () => {
 						className="relative w-full p-4 mb-2 bg-white rounded-md"
 					>
 						<RoadmapPreviewStep
-							previewStep={previewStep}
+							previewStepId={previewStepId}
 							togglePreviewStepModal={togglePreviewStepModal}
 						/>
 					</motion.div>

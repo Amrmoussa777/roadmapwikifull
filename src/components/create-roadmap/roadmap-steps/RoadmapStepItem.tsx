@@ -153,6 +153,7 @@ const RoadmapStepItem = ({
 						>
 							<div className="flex-jb-c">
 								<RoadmapTags stepId={id} tags={tags} />
+
 								<RoadmapStepDuration
 									stepId={id}
 									description={description}

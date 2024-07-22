@@ -1,7 +1,7 @@
 import { useFetch } from "@/hooks/useFetch";
 import { RoadmapType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
 import { useAppSelector } from "@/redux/store";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export const useRoadmaps = () => {
 	const { user } = useAppSelector(state => state.userProfile);

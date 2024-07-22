@@ -8,7 +8,7 @@ const initialState: CreateRoadmapSliceStateType = {
 	isLoading: true,
 	error: null,
 	verificationToUpdate: null,
-	stepToPreview: null,
+	stepIdToPreview: null,
 	draftRoadmap: {
 		title: "",
 		description: "",
@@ -192,7 +192,7 @@ const createRoadmapSlice = createSlice({
 			const updatedSteps =
 				state.roadmap?.steps.map(step =>
 					step.id === stepId
-						? { ...step, attachments: [...step.attachments, newAttachment] }
+						? { ...step, attachments: [newAttachment, ...step.attachments] }
 						: step
 				) ?? [];
 
@@ -233,12 +233,12 @@ const createRoadmapSlice = createSlice({
 			}
 		},
 		toggleStepToPreview: (state, action) => {
-			const stepToPreview = action.payload;
+			const stepIdToPreview = action.payload;
 
-			if (!state.stepToPreview) {
-				state.stepToPreview = stepToPreview;
+			if (!state.stepIdToPreview) {
+				state.stepIdToPreview = stepIdToPreview;
 			} else {
-				state.stepToPreview = null;
+				state.stepIdToPreview = null;
 			}
 		},
 	},

@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
  * Custom hook to manage the state and behavior of roadmap preview steps.
  *
  * @returns {Object} - The state and handlers for roadmap preview steps.
- * @property {RoadmapStepType | null} previewStep - The current preview step.
+ * @property {string | null} previewStepId - The current preview step id.
  * @property {boolean} isPreviewStepModalVisible - The visibility state of the preview step modal.
  * @property {string} editorContent - The content of the editor.
  * @property {function} changeEditorContent - Function to change the editor content.
@@ -15,7 +15,7 @@ import { useEffect, useState } from "react";
  * @property {function} togglePreviewStepModal - Function to toggle the preview step modal visibility.
  */
 export const useRoadmapPreviewSteps = () => {
-	const [previewStep, setPreviewStep] = useState<null | RoadmapStepType>(null);
+	const [previewStepId, setPreviewStepId] = useState<null | string>(null);
 	const {
 		currentState: isPreviewStepModalVisible,
 		toggle: togglePreviewStepModal,
@@ -27,21 +27,21 @@ export const useRoadmapPreviewSteps = () => {
 	/**
 	 * Handles the preview step by setting the current step and toggling the modal.
 	 *
-	 * @param {RoadmapStepType} step - The roadmap step to preview.
+	 * @param {RoadmapStepType} stepId - The roadmap step id to preview.
 	 */
-	const handlePreviewStep = (step: RoadmapStepType) => {
-		setPreviewStep(step);
+	const handlePreviewStep = (stepId: string) => {
+		setPreviewStepId(stepId);
 		togglePreviewStepModal();
 	};
 
 	useEffect(() => {
 		if (!isPreviewStepModalVisible) {
-			setPreviewStep(null);
+			setPreviewStepId(null);
 		}
 	}, [isPreviewStepModalVisible]);
 
 	return {
-		previewStep,
+		previewStepId,
 		isPreviewStepModalVisible,
 		editorContent,
 		changeEditorContent,

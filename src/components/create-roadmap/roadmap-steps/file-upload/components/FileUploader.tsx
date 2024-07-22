@@ -60,7 +60,7 @@ const FileUploader = ({
 				<button
 					onClick={() => {
 						handleChangeAccepts(
-							".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.txt,.zip"
+							".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.txt,.zip,.mp3,.mpeg"
 						);
 					}}
 				>

@@ -9,7 +9,7 @@ export type CreateRoadmapSliceStateType = {
 	isLoading: boolean;
 	error: any;
 	verificationToUpdate: RoadmapStepVerificationType | null;
-	stepToPreview: RoadmapStepType | null;
+	stepIdToPreview: string | null;
 
 	draftRoadmap: {
 		title: string;

@@ -7,13 +7,19 @@ import {
 	MENU_ICON,
 } from "@public/icons/roadmapSteps";
 import { RoadmapPreviewStepProps } from "@/components/roadmap-preview/components/roadmap-steps/types/roadmap-preview-step";
-import Attachments from "@/components/common/step/components/Attachments";
 import Verification from "@/components/roadmap-preview/components/roadmap-steps/Verification";
+import { useAppSelector } from "@/redux/store";
+import PreviewAttachments from "@/components/create-roadmap/roadmap-steps/PreviewAttachments";
 
 const RoadmapPreviewStep = ({
-	previewStep,
+	previewStepId,
 	togglePreviewStepModal,
 }: RoadmapPreviewStepProps) => {
+	const { roadmap } = useAppSelector(state => state.roadmapPreview);
+	const { secondaryColor } = roadmap || {};
+
+	const previewStep = roadmap?.steps.find(step => step.id === previewStepId);
+
 	const { id, title, description, duration, attachments, tags, verifications } =
 		previewStep || {};
 
@@ -37,7 +43,9 @@ const RoadmapPreviewStep = ({
 					{tags?.map(tag => (
 						<li
 							key={tag.id}
-							style={{ backgroundColor: tag.color }}
+							style={{
+								backgroundColor: `${secondaryColor + "33" || "#506CF0" + "33"}`,
+							}}
 							className="h-[24px] flex-jc-c rounded-full px-2 text-[12px] font-normal font-inter leading-[16px] bg-grey-primary"
 						>
 							<p className="text-[#111111]">{tag.name}</p>
@@ -75,7 +83,11 @@ const RoadmapPreviewStep = ({
 			{attachments?.length ? (
 				<>
 					<p className="text-[#5A5A5A] text-[12px]">Attachments</p>
-					<Attachments attachments={attachments} />
+					<PreviewAttachments
+						attachments={attachments}
+						stepId={id || ""}
+						readOnly={true}
+					/>
 				</>
 			) : null}
 		</div>
