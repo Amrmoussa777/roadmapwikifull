@@ -7,6 +7,8 @@ import React from "react";
 const RoadmapStyle = () => {
 	const { colors, handleChangeColor, resetStyles } = useRoadmapStyle();
 
+	if (!colors) return;
+
 	return (
 		<div className="w-full">
 			<div className="flex-jb-c sm:gap-4">

@@ -241,6 +241,16 @@ const createRoadmapSlice = createSlice({
 				state.stepIdToPreview = null;
 			}
 		},
+		updateRoadmapData: (state, action) => {
+			const newRoadmapData = action.payload;
+
+			if (state.roadmap) {
+				state.roadmap = {
+					...state.roadmap,
+					...newRoadmapData,
+				};
+			}
+		},
 	},
 	extraReducers(builder) {
 		builder.addCase(fetchRoadmapById.pending, state => {
@@ -285,5 +295,6 @@ export const {
 	deleteStepAttachment,
 	reorderRoadmapSteps,
 	toggleStepToPreview,
+	updateRoadmapData,
 } = createRoadmapSlice.actions;
 export default createRoadmapSlice.reducer;

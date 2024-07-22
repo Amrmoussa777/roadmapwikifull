@@ -21,6 +21,7 @@ const initialColors: Colors = {
 
 const useRoadmapStyle = () => {
 	const [colors, setColors] = useState<Colors>(initialColors);
+
 	const { roadmap } = useAppSelector(state => state.createRoadmap);
 
 	const handleChangeColor = (keyColor: keyof Colors, newColor: string) => {
@@ -47,23 +48,6 @@ const useRoadmapStyle = () => {
 	const resetStyles = () => {
 		setColors(initialColors);
 	};
-
-	useEffect(() => {
-		if (roadmap) {
-			const updatedRoadmapStylesData = Object.entries(colors).reduce(
-				(acc: Record<string, string>, [key, arr]) => {
-					const activeItem = arr.find(item => item.active);
-					if (activeItem) {
-						acc[key] = activeItem.color;
-					}
-					return acc;
-				},
-				{}
-			);
-
-			console.log(updatedRoadmapStylesData);
-		}
-	}, [colors]);
 
 	useEffect(() => {
 		if (roadmap) {

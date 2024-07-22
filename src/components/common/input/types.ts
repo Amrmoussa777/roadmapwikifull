@@ -13,6 +13,7 @@ export interface IFormInput {
 	label?: string;
 	inputRef?: MutableRefObject<null | HTMLInputElement> | undefined;
 	icon?: ReactNode;
+	onBlur?: () => void;
 }
 export interface ITarget {
 	target: { value: React.SetStateAction<string | number> };

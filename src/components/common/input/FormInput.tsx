@@ -15,6 +15,7 @@ const FormInput = ({
 	value,
 	inputRef,
 	icon,
+	onBlur,
 }: IFormInput) => {
 	return (
 		<div className={`${customStyles}`}>
@@ -32,6 +33,7 @@ const FormInput = ({
 					name={name}
 					autoFocus={autoFocus}
 					placeholder={placeholder}
+					onBlur={onBlur}
 					className={`w-full h-[172px] min-h-[172px] border border-[#E0E0E0] mt-1 rounded-md p-4 justify-between gap-2 sm:text-xl font-normal bg-white outline-none focus:border-primary-ultramarineBlue resize-none ${customStyles}`}
 				/>
 			) : (
@@ -45,6 +47,7 @@ const FormInput = ({
 					autoFocus={autoFocus}
 					placeholder={placeholder}
 					id={name}
+					onBlur={onBlur}
 				/>
 			)}
 
