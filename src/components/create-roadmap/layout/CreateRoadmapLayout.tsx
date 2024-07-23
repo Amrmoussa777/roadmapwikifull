@@ -54,7 +54,7 @@ const CreateRoadmapLayout = ({ children }: ChildrenType) => {
 					toggleSidebarMobile={toggleSidebarMobile}
 				/>
 
-				<div className="w-full h-full grid lg:grid-cols-2">
+				<div className="w-full h-[calc(100vh-60px)] sm:h-[calc(100vh-82px)] grid lg:grid-cols-2">
 					{responsive ? (
 						mobileLayout === "grid" ? (
 							children
