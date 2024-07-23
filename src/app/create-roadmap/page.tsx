@@ -8,7 +8,7 @@ const page = () => {
 			<CreateNewRoadmapHeader />
 
 			<div className="h-[calc(100%-82px)] flex flex-col justify-center px-4 lg:px-12">
-				<div className="fixed w-screen h-[60%] bottom-0 bg-gradient-to-b from-transparent to-white z-10" />
+				<div className="fixed w-screen h-[60%] bottom-0 left-0 bg-gradient-to-b from-transparent to-white z-10" />
 
 				<Steps />
 			</div>

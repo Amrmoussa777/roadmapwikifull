@@ -151,7 +151,7 @@ const RoadmapStepItem = ({
 							exit={{ y: -10, opacity: 0 }}
 							transition={{ duration: 0.1 }}
 						>
-							<div className="flex-jb-c">
+							<div className="flex-jb-c flex-wrap gap-2">
 								<RoadmapTags stepId={id} tags={tags} />
 
 								<RoadmapStepDuration

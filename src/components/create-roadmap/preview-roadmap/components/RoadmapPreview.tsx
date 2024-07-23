@@ -6,7 +6,9 @@ import { PARK_ICON } from "@public/icons/roadmapPreview";
 import React from "react";
 
 const RoadmapPreview = () => {
-	const { roadmap, isLoading } = useAppSelector(state => state.createRoadmap);
+	const { roadmap, isLoading, stepIdToPreview } = useAppSelector(
+		state => state.createRoadmap
+	);
 	const { flag, steps } = roadmap || {};
 
 	const dispatch = useAppDispatch();

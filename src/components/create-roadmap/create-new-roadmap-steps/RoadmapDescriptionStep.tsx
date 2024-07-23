@@ -1,6 +1,6 @@
 import useToggle from "@/hooks/useToggle";
 import { ARROW_ICON } from "@public/icons/roadmapSteps";
-import React, { useEffect, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import useInput from "@/components/common/input/hooks/useInput";
@@ -8,6 +8,7 @@ import { updateDraftRoadmap } from "@/redux/slices/create-roadmap/createRoadmapS
 import { HoverBorderGradient } from "@/components/ui/moving-border";
 import { createRoadmap } from "@/components/create-roadmap/create-new-roadmap-steps/services/createRoadmap";
 import { useRouter } from "next/navigation";
+import { useOnClickOutside } from "@/hooks/useOnClickOutside";
 
 const RoadmapDescriptionStep = ({
 	handleNextStep,
@@ -24,6 +25,7 @@ const RoadmapDescriptionStep = ({
 	const { value: description, changeValue: changeDescription } = useInput(
 		draftRoadmap.description
 	);
+	const ref = useOnClickOutside(hideOptions);
 
 	const { push } = useRouter();
 
@@ -41,7 +43,6 @@ const RoadmapDescriptionStep = ({
 		const newRoadmap = await createRoadmap(newRoadmapData);
 		setIsLoading(false);
 
-		console.log(newRoadmap);
 		const { id } = newRoadmap;
 
 		if (id) {
@@ -49,19 +50,26 @@ const RoadmapDescriptionStep = ({
 		}
 	};
 
+	const handleSubmit = (e: FormEvent) => {
+		e.preventDefault();
+		handleCreateRoadmap();
+	};
+
 	return (
-		<motion.div
+		<motion.form
+			onSubmit={handleSubmit}
 			className="max-w-[500px] mx-auto h-full flex flex-col justify-evenly"
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1 }}
 			transition={{
 				ease: "easeInOut",
-				duration: 1,
+				duration: 0.8,
 			}}
 		>
 			<div>
 				<button
 					onClick={handleBackStep}
+					type="button"
 					className="flex-jc-c text-[#79828B] font-inter text-[18px] font-normal"
 				>
 					<span className="[&>svg]:-rotate-90 [&>svg]:w-[24px] text-[#ADAEB5]">
@@ -91,25 +99,32 @@ const RoadmapDescriptionStep = ({
 					</button>
 
 					{isOptionsHidden ? (
-						<div className="absolute w-full top-[55px] bg-white mt-1 border border-[#E0E0E0] rounded-xl flex flex-col gap-2 [&>button]:font-normal [&>button]:text-[18px] [&>:first-child]:rounded-t-xl [&>:last-child]:rounded-b-xl [&>button]:p-2 [&>button:hover]:bg-[#E0E0E0]/20">
-							<button className="w-full h-[55px] min-h-[55px]">icon</button>
-							<button className="w-full h-[55px] min-h-[55px]">icon</button>
+						<div
+							ref={ref}
+							className="absolute w-full top-[55px] bg-white mt-1 border border-[#E0E0E0] rounded-xl flex flex-col gap-2 [&>button]:font-normal [&>button]:text-[18px] [&>:first-child]:rounded-t-xl [&>:last-child]:rounded-b-xl [&>button]:p-2 [&>button:hover]:bg-[#E0E0E0]/20"
+						>
+							<button type="button" className="w-full h-[55px] min-h-[55px]">
+								icon
+							</button>
+							<button type="button" className="w-full h-[55px] min-h-[55px]">
+								icon
+							</button>
 						</div>
 					) : null}
 				</div>
 
 				<textarea
-					placeholder="description"
+					placeholder="Roadmap description*"
 					onChange={changeDescription}
 					value={description}
 					required
+					autoFocus
 					className="h-[200px] resize-none py-4 create-new-roadmap-input hidden-scrollbar"
 				/>
 			</div>
 
 			<div className="flex items-center mt-8">
 				<HoverBorderGradient
-					onClick={handleCreateRoadmap}
 					containerClassName="rounded-[12px]"
 					as="button"
 					className="w-full md:w-[160px] h-[56px] rounded-[12px] flex-jc-c font-inter text-[18px] font-semibold text-start bg-primary-ultramarineBlue text-white"
@@ -118,12 +133,12 @@ const RoadmapDescriptionStep = ({
 				</HoverBorderGradient>
 				<button
 					className="min-w-[88px] h-[56px] text-[#606060] font-inter semibold text-[18px]"
-					onClick={handleNextStep}
+					type="button"
 				>
 					Skip
 				</button>
 			</div>
-		</motion.div>
+		</motion.form>
 	);
 };
 

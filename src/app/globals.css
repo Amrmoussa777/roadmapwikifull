@@ -144,7 +144,7 @@
 	}
 
 	.create-new-roadmap-input {
-		@apply w-full h-[55px] outline-none placeholder:text-[14px] md:placeholder:text-[24px] text-[14px] md:text-[24px] bg-white rounded-[12px] px-4 border border-[#E0E0E0] placeholder:font-normal placeholder:text-[#92929D] text-[#202020];
+		@apply w-full h-[55px] outline-none placeholder:text-[14px] md:placeholder:text-[24px] text-[14px] md:text-[24px] bg-white rounded-[12px] px-4 border border-[#E0E0E0] focus:border-primary-ultramarineBlue hover:border-primary-ultramarineBlue/60 transition duration-200 placeholder:font-normal placeholder:text-[#92929D] text-[#202020];
 	}
 }
 

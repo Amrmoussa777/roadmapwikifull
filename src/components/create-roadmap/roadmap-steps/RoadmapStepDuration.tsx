@@ -74,7 +74,7 @@ const RoadmapStepDuration = ({
 	};
 
 	return (
-		<div className="relative">
+		<div className="relative ml-auto">
 			<button
 				onClick={toggleDuration}
 				type="button"

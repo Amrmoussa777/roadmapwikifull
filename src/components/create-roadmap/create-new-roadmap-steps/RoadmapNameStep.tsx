@@ -24,14 +24,21 @@ const RoadmapNameStep = ({
 		handleChangeTitle();
 	}, [title]);
 
+	const handleSubmit = (e: FormEvent) => {
+		e.preventDefault();
+
+		handleNextStep();
+	};
+
 	return (
-		<motion.div
+		<motion.form
+			onSubmit={handleSubmit}
 			className="max-w-[500px] mx-auto h-full flex flex-col justify-center"
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1 }}
 			transition={{
 				ease: "easeInOut",
-				duration: 1,
+				duration: 0.8,
 			}}
 		>
 			<label className="block text-[#171725] text-[36px] font-semibold font-poppins mb-6">
@@ -43,18 +50,18 @@ const RoadmapNameStep = ({
 				placeholder="Roadmap name*"
 				onChange={changeTitle}
 				value={title}
-				required
+				required={true}
+				autoFocus
 				className="create-new-roadmap-input"
 			/>
 
 			<button
 				type="submit"
-				onClick={handleNextStep}
 				className="w-full md:w-[160px] h-[56px] rounded-[12px] mt-8 flex-jc-c font-inter text-[18px] font-semibold text-start bg-primary-ultramarineBlue text-white"
 			>
 				Next
 			</button>
-		</motion.div>
+		</motion.form>
 	);
 };
 

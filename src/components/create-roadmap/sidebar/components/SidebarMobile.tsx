@@ -12,6 +12,8 @@ import {
 } from "@public/icons/sidebar";
 import { useAppSelector } from "@/redux/store";
 import { useOnClickOutside } from "@/hooks/useOnClickOutside";
+import { useSizeScreen } from "@/hooks/useSizeScreen";
+import useDisableScroll from "@/hooks/useDisableScrolling";
 
 const SidebarMobile = ({
 	sidebarMobile,
@@ -22,13 +24,15 @@ const SidebarMobile = ({
 }) => {
 	const { roadmap } = useAppSelector(state => state.createRoadmap);
 	const { id } = roadmap || {};
+	const { responsive } = useSizeScreen(640);
+	useDisableScroll(sidebarMobile);
 
 	const ref = useOnClickOutside(toggleSidebarMobile);
 
 	return (
 		<>
 			<AnimatePresence>
-				{sidebarMobile ? (
+				{sidebarMobile && responsive ? (
 					<motion.div
 						ref={ref}
 						initial={{ x: -100 }}

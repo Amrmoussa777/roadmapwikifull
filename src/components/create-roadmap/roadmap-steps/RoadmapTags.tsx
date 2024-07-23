@@ -43,7 +43,7 @@ const RoadmapTags = ({
 					{addingTag ? (
 						<motion.div
 							initial={{ width: 0 }}
-							animate={{ width: 100 }}
+							animate={{ width: "100px" }}
 							exit={{ width: 0 }}
 						>
 							<input
@@ -76,7 +76,7 @@ const RoadmapTags = ({
 						className={`flex-jc-c gap-1`}
 					>
 						<span
-							className={`rounded-full p-1 bg-[#ECEEFF] text-primary-ultramarineBlue transition-all duration-500 ease-in-out ${
+							className={`rounded-full p-1 bg-[#ECEEFF] text-primary-ultramarineBlue transition duration-500 ${
 								addingTag ? "rotate-45 bg-[#A72C32]/10 text-[#A72C32]" : ""
 							}`}
 						>
