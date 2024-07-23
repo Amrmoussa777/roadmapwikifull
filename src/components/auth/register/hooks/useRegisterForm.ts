@@ -1,14 +1,15 @@
-import { login } from "@/app/auth/login/service/login";
+import { register } from "@/app/auth/register/service/register";
 import {
 	emailValidator,
-	loginSchema,
+	fullNameValidator,
+	registerSchema,
 	passwordValidator,
-} from "@/components/auth/login/validation/loginValidation";
+} from "@/components/auth/login/validation/registerValidation";
 import useInput from "@/components/common/input/hooks/useInput";
 import { useToast } from "@/hooks/useToast";
 import { FormEvent, useState } from "react";
 
-export const useLoginForm = () => {
+export const useRegisterForm = () => {
 	const {
 		value: email,
 		changeValue: changeEmail,
@@ -21,6 +22,13 @@ export const useLoginForm = () => {
 		error: passwordError,
 		handleSetError: setPasswordError,
 	} = useInput("", passwordValidator);
+	const {
+		value: fullName,
+		changeValue: changeFullName,
+		error: fullNameError,
+		handleSetError: setFullNameError,
+	} = useInput("", fullNameValidator);
+
 	const [isLoading, setIsLoading] = useState(false);
 	const { errorToast, successToast } = useToast();
 
@@ -29,11 +37,14 @@ export const useLoginForm = () => {
 		setIsLoading(true);
 
 		// Validate form data
-		const formData = { email, password };
-		const result = loginSchema.safeParse(formData);
+		const formData = { email, password, fullName };
+		const result = registerSchema.safeParse(formData);
 
-		console.log("Hello");
 		if (!result.success) {
+			setFullNameError(
+				result.error.errors.find(err => err.path[0] === "fullName")?.message ||
+					""
+			);
 			setEmailError(
 				result.error.errors.find(err => err.path[0] === "email")?.message || ""
 			);
@@ -47,13 +58,13 @@ export const useLoginForm = () => {
 		}
 
 		// Clear previous errors
-		const { message } = await login(formData);
+		const { message } = await register(formData);
 
 		if (!message) {
-			successToast("Logged in successfully");
+			successToast("Registration successful");
 
 			setTimeout(() => {
-				location.replace("/");
+				location.replace("/auth/login");
 			}, 1000);
 		} else {
 			errorToast(message);
@@ -63,6 +74,9 @@ export const useLoginForm = () => {
 	};
 
 	return {
+		fullName,
+		changeFullName,
+		fullNameError,
 		email,
 		changeEmail,
 		changePassword,

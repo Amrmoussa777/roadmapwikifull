@@ -3,7 +3,7 @@ import { setCookie } from "cookies-next";
 
 export const login = async (formData: Record<string, string>) => {
 	try {
-		const data: any = await HandleApiRequests.handlePublicApiRequest({
+		const data = await HandleApiRequests.handlePublicApiRequest({
 			method: "POST",
 			endpoint: `auth/signin`,
 			body: formData,

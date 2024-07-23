@@ -11,6 +11,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { toggleStepToPreview } from "@/redux/slices/create-roadmap/createRoadmapSlice";
 import dynamic from "next/dynamic";
 import PreviewAttachments from "@/components/create-roadmap/roadmap-steps/PreviewAttachments";
+import { useSizeScreen } from "@/hooks/useSizeScreen";
 
 const Editor = dynamic(
 	() => import("@/components/common/Editor/components/Editor")
@@ -24,6 +25,8 @@ const RoadmapStepPreview = () => {
 		step => step.id === stepIdToPreview
 	);
 
+	const { responsive } = useSizeScreen(640);
+
 	const dispatch = useAppDispatch();
 
 	const { id, title, description, duration, attachments, tags, verifications } =
@@ -35,7 +38,7 @@ const RoadmapStepPreview = () => {
 
 	return (
 		<AnimatePresence>
-			{stepToPreview ? (
+			{stepToPreview && responsive ? (
 				<motion.div
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}

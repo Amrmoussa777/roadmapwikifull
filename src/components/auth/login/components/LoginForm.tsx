@@ -97,7 +97,7 @@ const LoginForm = () => {
 					</button>
 				</div>
 
-				<div className="mt-auto">
+				<div className="mt-4 sm:mt-auto">
 					<p className="inline-block text-[#79828B] text-[15px] font-normal font-poppins">
 						Don’t have an account?
 					</p>{" "}

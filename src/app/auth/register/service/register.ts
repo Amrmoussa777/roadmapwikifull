@@ -1,29 +1,17 @@
-import axios from "axios";
+import HandleApiRequests from "@/helpers/handleApiRequests";
 
 export const register = async (formData: Record<string, string>) => {
 	try {
-		const { fullName, email, password } = formData;
-
-		const res = await axios({
+		await HandleApiRequests.handlePublicApiRequest({
 			method: "POST",
-			url: `${process.env.NEXT_PUBLIC_BASE_URL}/auth/signup`,
-			data: {
-				fullName,
-				email,
-				password,
-			},
+			endpoint: `auth/signup`,
+			body: formData,
 		});
 
-		const { data } = res;
-
-		return data;
+		return { error: null };
 	} catch (error: any) {
-		const { message } = error.response.data;
-		if (Array.isArray(message)) {
-			// message.forEach(errorMsg => notifyError(errorMsg));
-		} else {
-		}
+		const { message, error: errorTitle } = error.response.data;
 
-		console.log(error);
+		return { errorTitle, message };
 	}
 };

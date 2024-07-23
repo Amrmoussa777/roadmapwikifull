@@ -1,12 +1,11 @@
 "use client";
 
-import { register } from "@/app/auth/register/service/register";
 import FormButton from "@/components/auth/login/components/FormButton";
+import { useRegisterForm } from "@/components/auth/register/hooks/useRegisterForm";
 import ThirdPartyAuthButton from "@/components/common/button/ThirdPartyAuthButton";
 import HorizontalDivider from "@/components/common/divider/components/HorizontalDivider";
 import AuthInput from "@/components/common/input/AuthInput";
 import AuthPasswordInput from "@/components/common/input/AuthPasswordInput";
-import useInput from "@/components/common/input/hooks/useInput";
 import RoadmapLogo from "@/components/landing-page/components/public-navbar/RoadmapLogo";
 import {
 	EMAIL_INPUT_ICON,
@@ -16,41 +15,29 @@ import {
 } from "@public/icons/auth";
 import { FACEBOOK_ICON } from "@public/icons/socialMedia";
 import Link from "next/link";
-import React, { FormEvent, useState } from "react";
+import React from "react";
 
 const RegisterForm = () => {
 	const {
-		value: fullName,
-		changeValue: changeFullName,
-		reset: resetFullName,
-	} = useInput("");
-	const {
-		value: email,
-		changeValue: changeEmail,
-		reset: resetEmail,
-	} = useInput("");
-	const {
-		value: password,
-		changeValue: changePassword,
-		reset: resetPassword,
-	} = useInput("");
-	const [isLoading, setIsLoading] = useState(false);
-
-	const handleSubmitRegistration = async (e: FormEvent) => {
-		e.preventDefault();
-		setIsLoading(true);
-		const formData = { fullName, email, password };
-
-		await register(formData);
-		setIsLoading(false);
-	};
+		fullName,
+		changeFullName,
+		fullNameError,
+		email,
+		emailError,
+		changeEmail,
+		password,
+		changePassword,
+		passwordError,
+		handleSubmitRegistration,
+		isLoading,
+	} = useRegisterForm();
 
 	return (
 		<form
 			onSubmit={handleSubmitRegistration}
 			className="col-span-2 lg:col-span-1 px-4 sm:px-8 py-8 bg-white"
 		>
-			<div className="w-[400px] h-full mx-auto flex flex-col">
+			<div className="sm:w-[400px] h-full mx-auto flex flex-col">
 				<div className="my-auto">
 					<RoadmapLogo
 						extension=".io"
@@ -90,6 +77,7 @@ const RegisterForm = () => {
 							placeholder="Your name"
 							value={fullName}
 							handleChangeValue={changeFullName}
+							validationError={fullNameError}
 						/>
 						<AuthInput
 							type="email"
@@ -98,6 +86,7 @@ const RegisterForm = () => {
 							placeholder="Your email"
 							value={email}
 							handleChangeValue={changeEmail}
+							validationError={emailError}
 						/>
 						<AuthPasswordInput
 							type="password"
@@ -106,6 +95,7 @@ const RegisterForm = () => {
 							placeholder="Your password"
 							value={password}
 							handleChangeValue={changePassword}
+							validationError={passwordError}
 						/>
 					</div>
 
@@ -119,7 +109,7 @@ const RegisterForm = () => {
 					</button>
 				</div>
 
-				<div className="mt-auto">
+				<div className="mt-4 sm:mt-auto">
 					<p className="inline-block text-[#79828B] text-[15px] font-normal font-poppins">
 						Already have an account?
 					</p>{" "}
