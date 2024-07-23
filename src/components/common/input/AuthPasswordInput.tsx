@@ -16,6 +16,7 @@ const AuthPasswordInput = ({
 	value,
 	handleChangeValue,
 	customStyles,
+	autoFocus,
 	validationError,
 }: AuthInputProps) => {
 	const { currentState: isVisiblePassword, toggle: togglePassword } =
@@ -23,7 +24,7 @@ const AuthPasswordInput = ({
 
 	return (
 		<div className="mb-4">
-			<div className="h-[50px] flex-jc-c rounded-[8px] border-[1.6px] border-[#E0E2E9]">
+			<div className="h-[50px] flex-jc-c rounded-[8px] border-[1.6px] border-[#E0E2E9] focus-within:border-primary-ultramarineBlue hover:border-primary-ultramarineBlue transition duration-200">
 				<span className="text-[#ADB0CD] px-4">{icon}</span>
 
 				<input
@@ -32,6 +33,7 @@ const AuthPasswordInput = ({
 					name={name}
 					value={value}
 					onChange={handleChangeValue}
+					autoFocus={autoFocus}
 					className="w-full h-full outline-none bg-transparent text-[14px] placeholder:text-[14px] placeholder:font-poppins placeholder:font-medium placeholder:text-[#ADB0CD] text-[#202020]"
 				/>
 

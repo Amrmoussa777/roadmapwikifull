@@ -75,6 +75,7 @@ const RegisterForm = () => {
 							value={fullName}
 							handleChangeValue={changeFullName}
 							validationError={fullNameError}
+							autoFocus={true}
 						/>
 						<AuthInput
 							type="email"
@@ -100,7 +101,7 @@ const RegisterForm = () => {
 
 					<button
 						type="button"
-						className="w-full h-[54px] font-poppins font-medium text-[15px] text-black rounded-[8px] border-[1.6px] border-[#E0E2E9]"
+						className="w-full h-[54px] font-poppins font-medium text-[15px] text-black rounded-[8px] border-[1.6px] border-[#E0E2E9] hover:shadow-lg duration-200 transition"
 					>
 						Create roadmap without register
 					</button>

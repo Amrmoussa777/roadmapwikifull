@@ -71,6 +71,7 @@ const LoginForm = () => {
 							value={email}
 							handleChangeValue={changeEmail}
 							validationError={emailError}
+							autoFocus={true}
 						/>
 
 						<AuthPasswordInput
@@ -88,7 +89,7 @@ const LoginForm = () => {
 
 					<button
 						type="button"
-						className="w-full h-[54px] font-poppins font-medium text-[15px] text-black rounded-[8px] border-[1.6px] border-[#E0E2E9]"
+						className="w-full h-[54px] font-poppins font-medium text-[15px] text-black rounded-[8px] border-[1.6px] border-[#E0E2E9] hover:shadow-lg duration-200 transition"
 					>
 						Create roadmap without login
 					</button>

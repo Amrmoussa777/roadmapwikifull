@@ -8,7 +8,9 @@ const MostViralRoadmaps = () => {
 			<div className="section-header [&>*]:!text-[#171618]">
 				<h2>Most Viral Roadmaps</h2>
 				<p>
-				<span className="font-semibold">Don't Miss Out on Success: </span>  Explore Our Most Viral Roadmaps and subscribe to expert-curated pathways to achieve your goals.
+					<span className="font-semibold">Don't Miss Out on Success: </span>{" "}
+					Explore Our Most Viral Roadmaps and subscribe to expert-curated
+					pathways to achieve your goals.
 				</p>
 			</div>
 
@@ -18,8 +20,11 @@ const MostViralRoadmaps = () => {
 				))}
 			</ul>
 
-			<button className="flex-jc-c mx-auto mt-12 [&>svg]:rotate-90 text-[#506CF0] font-inter font-medium text-[16px]">
-				View More {ARROW_ICON}
+			<button className="flex-jc-c mx-auto mt-12 text-[#506CF0] font-inter font-medium text-[16px] group">
+				View More{" "}
+				<span className="[&>svg]:rotate-90 group-hover:translate-x-1 transform transition duration-200">
+					{ARROW_ICON}
+				</span>
 			</button>
 		</section>
 	);

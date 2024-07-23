@@ -15,17 +15,23 @@ const TestimonialsSlider = () => {
 			<div className="absolute bottom-[-60px] left-2/4 -translate-x-2/4 lg:translate-x-auto lg:left-[7rem] lg:bottom-[100px] flex-jc-c gap-2 [&>button]:w-[40px] [&>button]:h-[40px] [&>button]:flex-jc-c [&>button]:bg-primary-ultramarineBlue text-white [&>button]:rounded-full">
 				<button
 					onClick={handlePrevTestimonial}
-					className="-rotate-90"
+					className={`-rotate-90 ${activeTestimonial === 0 ? "" : "group"}`}
 					disabled={activeTestimonial === 0}
 				>
-					{ARROW_ICON}
+					<span className="group-hover:-translate-y-[2px] duration-200 transition">
+						{ARROW_ICON}
+					</span>
 				</button>
 				<button
 					onClick={handleNextTestimonial}
-					className="rotate-90"
+					className={`rotate-90 ${
+						activeTestimonial === testimonialsList.length - 1 ? "" : "group"
+					}`}
 					disabled={activeTestimonial === testimonialsList.length - 1}
 				>
-					{ARROW_ICON}
+					<span className="group-hover:-translate-y-[2px] duration-200 transition">
+						{ARROW_ICON}
+					</span>
 				</button>
 			</div>
 		</>

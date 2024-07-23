@@ -20,12 +20,20 @@ const Footer = () => {
 				</h3>
 
 				<div className="flex items-center justify-center gap-4 xl:gap-6 mt-[40px] md:mt-[40px]">
-					<button className="w-[148px] md:w-[208px] h-[42px] md:h-[56px] flex-jc-c text-[14px] md:text-[16px] p-[16px] text-primary-ultramarineBlue font-inter font-semibold bg-white rounded-[10px]">
+					<Link
+						href={"/auth/register"}
+						className="w-[148px] md:w-[208px] h-[42px] md:h-[56px] flex-jc-c text-[14px] md:text-[16px] p-[16px] text-primary-ultramarineBlue font-inter font-semibold bg-white rounded-[10px] hover:text-black hover:shadow-clg transition duration-200"
+					>
 						Create Roadmap
-					</button>
-					<button className="w-[148px] md:w-[208px] h-[42px] md:h-[56px] flex-jc-c gap-2 text-[14px] md:text-[16px] p-[16px] text-white font-inter font-semibold bg-primary-ultramarineBlue border-2 border-[#ACB5B7] rounded-[10px]">
-						{PLAY_ICON} Watch demo
-					</button>
+					</Link>
+					<Link
+						href={`/roadmap/28c6c08b-30cd-4717-8fd0-a47baa4c40fa`}
+						className="w-[148px] md:w-[208px] h-[42px] md:h-[56px] flex-jc-c gap-2 text-[14px] md:text-[16px] text-white font-inter font-semibold bg-primary-ultramarineBlue border-2 border-[#ACB5B7] rounded-[10px]"
+					>
+						<span className="w-full h-full flex-jc-c gap-2 hover:translate-x-[2px] transform transition duration-200">
+							{PLAY_ICON} Watch demo
+						</span>
+					</Link>
 				</div>
 
 				<Image
@@ -85,7 +93,7 @@ const Footer = () => {
 				</div>
 
 				<div className="w-full flex-ic-c flex-col md:flex-row gap-6 md:gap-24 mt-6">
-					<div className="w-fit md:w-[200px] flex-ic-c gap-2 [&>a]:w-[42px] [&>a]:h-[42px] [&>a]:flex-jc-c [&>a]:rounded-full [&>a]:border [&>a]:border-[#38388A]/15 text-black">
+					<div className="w-fit md:w-[200px] flex-ic-c gap-2 [&>a]:w-[42px] [&>a]:h-[42px] [&>a]:flex-jc-c [&>a]:rounded-full [&>a]:border [&>a]:border-[#38388A]/15 text-black [&>a:hover]:shadow-lg [&>a]:duration-200 [&>a]:transition [&>a:hover]:bg-white">
 						<a href="https://www.instagram.com/" target="_blank">
 							{IG_ICON}
 						</a>

@@ -25,11 +25,11 @@ const MostViralRoadmapItem = () => {
 				</div>
 			</div>
 
-			<div className="md:ml-auto flex-jc-c gap-2 self-end">
+			<div className="h-full md:ml-auto flex-jc-c gap-2 self-end">
 				<h3 className="text-[18px] text-[#979797] font-medium font-inter">
 					Free
 				</h3>
-				<button className="w-[114px] h-[36px] flex-jc-c gap-1 md:gap-2 bg-[#F5F5F5] text-[#383838] font-inter font-medium text-[14px] rounded-[5px]">
+				<button className="w-[114px] h-[36px] flex-jc-c gap-1 md:gap-2 bg-[#F5F5F5] hover:bg-primary-ultramarineBlue hover:text-white text-[#383838] font-inter font-medium text-[14px] rounded-[5px] transition duration-200">
 					{PLAY_ICON} Preview
 				</button>
 			</div>

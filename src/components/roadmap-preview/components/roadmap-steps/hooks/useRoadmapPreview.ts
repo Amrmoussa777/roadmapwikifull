@@ -1,15 +1,13 @@
-import PathnameHelper from "@/helpers/pathname.helper";
 import { useToast } from "@/hooks/useToast";
 import { fetchRoadmapById } from "@/redux/slices/thunks/roadmaps/roadmapPreviewAsyncThunks";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { fetchAnonymousToken } from "@/services/fetchAnonymousToken";
 import { setCookie } from "cookies-next";
-import { usePathname, useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export const useRoadmapPreview = () => {
-	const pathname = usePathname() as string;
-	const roadmapId = PathnameHelper.getLastPathname(pathname);
+	const { id } = useParams();
 	const dispatch = useAppDispatch();
 	const { isLoading, error, roadmap } = useAppSelector(
 		state => state.roadmapPreview
@@ -27,7 +25,7 @@ export const useRoadmapPreview = () => {
 			} else if (error && error === "Unauthorized") {
 				const AnonymousToken = await fetchAnonymousToken();
 				setCookie("accessToken", AnonymousToken);
-				dispatch(fetchRoadmapById(roadmapId));
+				dispatch(fetchRoadmapById(id.toString()));
 			}
 		})();
 
@@ -35,12 +33,10 @@ export const useRoadmapPreview = () => {
 	}, [error, roadmap, isLoading]);
 
 	useEffect(() => {
-		if (!error && !roadmap) {
-			setTimeout(() => {
-				dispatch(fetchRoadmapById(roadmapId));
-			}, 1000);
+		if (!error) {
+			dispatch(fetchRoadmapById(id.toString()));
 		}
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [id]);
 };

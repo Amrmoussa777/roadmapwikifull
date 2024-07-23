@@ -59,17 +59,21 @@ const SuperRoadmapsSlider = () => {
 			<div className="relative w-fit mx-auto flex-jc-c gap-3 text-[#171618] [&>button]:bg-white [&>button]:rounded-full [&>button]:w-[40px] [&>button]:h-[40px] [&>button]:flex-jc-c">
 				<button
 					onClick={() => swiperRef.current?.slidePrev()}
-					className="-rotate-90"
+					className={`-rotate-90 ${activeIndex === 0 ? "" : "group"}`}
 					disabled={activeIndex === 0}
 				>
-					{ARROW_ICON}
+					<span className="group-hover:-translate-y-[2px] duration-200 transition">
+						{ARROW_ICON}
+					</span>
 				</button>
 				<button
 					onClick={() => swiperRef.current?.slideNext()}
-					className="rotate-90"
+					className={`rotate-90 ${activeIndex === 2 ? "" : "group"}`}
 					disabled={activeIndex === 2}
 				>
-					{ARROW_ICON}
+					<span className="group-hover:-translate-y-[2px] duration-200 transition">
+						{ARROW_ICON}
+					</span>
 				</button>
 				<span className="absolute right-[-45px] text-white font-inter font-normal text-[14px]">
 					{activeIndex + 1} of 3

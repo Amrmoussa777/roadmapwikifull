@@ -28,4 +28,5 @@ export interface AuthInputProps {
 	value: string;
 	handleChangeValue?: (e: ITarget | string) => void;
 	validationError?: string | null;
+	autoFocus?: boolean;
 }
