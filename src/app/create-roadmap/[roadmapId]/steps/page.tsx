@@ -3,7 +3,7 @@ import React from "react";
 
 const page = () => {
 	return (
-		<div className="bg-white">
+		<div className="bg-white pb-[100px] lg:pb-0">
 			<RoadmapSteps />
 		</div>
 	);

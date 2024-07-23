@@ -36,7 +36,7 @@ const RoadmapInfo = () => {
 	if (isLoading) return <RoadmapInfoLoader />;
 
 	return (
-		<div className="p-4 sm:p-6">
+		<div className="p-4 sm:p-6 pb-[100px] lg:pb-0">
 			<h2 className="font-semibold text-xl sm:text-3xl my-2">
 				Roadmap Information & style
 			</h2>
