@@ -52,7 +52,7 @@ const UserHeader = () => {
 					<FollowButton customStyles="!rounded-[5px]" />
 					<DirectMessageButton customStyles="border-[#D8D8D8]" />
 
-					<button className="min-w-[40px] min-h-[40px] flex-jc-c rounded-full border-2 border-[#D8D8D8] text-[#898989]">
+					<button className="min-w-[40px] min-h-[40px] flex-jc-c rounded-full border-2 border-[#D8D8D8] text-[#898989] hover:-translate-y-[2px] transform transition duration-200">
 						{MENU_ICON}
 					</button>
 				</div>

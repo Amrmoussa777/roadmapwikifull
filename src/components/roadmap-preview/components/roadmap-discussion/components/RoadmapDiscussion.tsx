@@ -34,7 +34,12 @@ const RoadmapDiscussion = () => {
 				</div>
 
 				<div className="flex-jc-c [&>button:hover]:text-primary-dark [&>button]:text-grey-icon transition-all">
-					<button className="w-[40px] h-[40px]" onClick={toggleDiscussion}>
+					<button
+						className={`w-[40px] h-[40px] flex-jc-c ${
+							!isExpandedDiscussion ? "hover:scale-125" : ""
+						} transition duration-200`}
+						onClick={toggleDiscussion}
+					>
 						{isExpandedDiscussion ? CROSS_ICON : EXPAND_ICON}
 					</button>
 					{/* <button className="w-[40px] h-[40px]">{SEARCH_ICON}</button> */}

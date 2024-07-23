@@ -8,7 +8,7 @@ const FollowButton = ({ customStyles = "" }: { customStyles?: string }) => {
 	return (
 		<button
 			onClick={() => push("/auth/login")}
-			className={`w-full h-full px-6 bg-primary-ultramarineBlue text-white rounded-full ${customStyles}`}
+			className={`w-full h-full px-6 bg-primary-ultramarineBlue text-white rounded-full border-2 border-transparent hover:border-primary-ultramarineBlue hover:bg-white hover:text-primary-ultramarineBlue transition duration-200 ${customStyles}`}
 		>
 			Follow
 		</button>

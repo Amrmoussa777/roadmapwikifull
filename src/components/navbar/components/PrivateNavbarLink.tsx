@@ -42,10 +42,10 @@ const PrivateNavbarLink = ({
 			<motion.div variants={liVariant}>
 				<Link
 					href={href}
-					className={`flex items-center md:flex-jc-c gap-2 text-[#383838] md:text-[#79828B] hover:text-black group`}
+					className={`flex items-center md:flex-jc-c gap-2 text-[#383838] md:text-[#79828B] hover:text-black group transition duration-200`}
 				>
 					<span
-						className={`group-hover:text-[#506CF0] ${
+						className={`group-hover:text-[#506CF0] transition duration-200 ${
 							isActive ? "text-[#506CF0]" : ""
 						}`}
 					>

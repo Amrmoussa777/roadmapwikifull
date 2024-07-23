@@ -85,7 +85,7 @@ const RoadmapDiscussionPost = ({
 						<div className="flex items-center gap-3 mt-2">
 							<button
 								onClick={handleToggleVote}
-								className={`flex-jc-c text-[#79828B] vote-btn text-[16px] font-inter font-medium ${
+								className={`flex-jc-c text-[#79828B] vote-btn text-[16px] font-inter font-medium [&>svg]:hover:text-[#F4392B] [&>svg]:transition [&>svg]:duration-100 ${
 									isVoted ? "voted" : ""
 								}`}
 							>

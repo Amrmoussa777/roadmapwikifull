@@ -43,7 +43,7 @@ const NEW_NOTIFICATIONS_ICON = (
 				<rect
 					width="24"
 					height="24"
-					fill="white"
+					fill="currentColor"
 					transform="translate(0.446289)"
 				/>
 			</clipPath>

@@ -11,12 +11,10 @@ import {
 	DURATION_ICON,
 	MENU_ICON,
 } from "@public/icons/roadmapSteps";
-import Image from "next/image";
 import React from "react";
 import { PLAY_ICON } from "@public/icons/landingPage";
 import { useRouter } from "next/navigation";
 import { RoadmapType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
-import { UNKNOWN_USER_ICON } from "@public/icons/userProfile";
 import Avatar from "@/components/common/avatar/components/Avatar";
 
 const RoadmapItem = ({
@@ -58,7 +56,7 @@ const RoadmapItem = ({
 					</div>
 				</div>
 
-				<div className="ml-auto md:ml-0 flex-jc-c gap-2 text-[#898989] [&>button]:w-[24px] [&>button]:h-[24px] [&>button>svg]:w-[24px] [&>button>svg]:h-[24px]">
+				<div className="ml-auto md:ml-0 flex-jc-c gap-2 text-[#898989] [&>button]:duration-200 [&>button]:transition [&>button:hover]:text-black [&>button]:w-[24px] [&>button]:h-[24px] [&>button>svg]:w-[24px] [&>button>svg]:h-[24px]">
 					<button>{SHARE_ICON}</button>
 					<button>{BOOKMARK_ICON}</button>
 					<button>{MENU_ICON}</button>
@@ -94,14 +92,14 @@ const RoadmapItem = ({
 				<div className="flex-jc-c [&>button]:w-full [&>button]:flex-jc-c [&>button]:gap-2 gap-3 [&>button]:py-[6px] [&>button]:px-[12px] [&>button]:rounded-[5px] text-[#383838] text-[14px] font-inter font-semibold">
 					<button
 						onClick={() => push(`/roadmap/${id}`)}
-						className="bg-[#F5F5F5]"
+						className="bg-[#F5F5F5] border border-transparent hover:shadow-csm hover:border-[#ACB5B7] hover:bg-white hover:text-primary-ultramarineBlue transition duration-200"
 					>
 						{PLAY_ICON} Preview
 					</button>
 					<button
 						onClick={() => push("/auth/login")}
 						disabled={isSubscribed}
-						className="bg-primary-ultramarineBlue text-white"
+						className="bg-primary-ultramarineBlue text-white border border-transparent hover:border-primary-ultramarineBlue hover:bg-white hover:text-primary-ultramarineBlue transition duration-200"
 					>
 						{isSubscribed ? "Subscribed" : "Subscribe"}
 					</button>

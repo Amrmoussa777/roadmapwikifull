@@ -27,7 +27,7 @@ const UserDetails = () => {
 							key={item.id}
 							target="_blank"
 							href={`https://${item.link}`}
-							className="w-[40px] h-[40px]"
+							className="w-[40px] h-[40px] hover:-translate-y-[2px] transform transition duration-200"
 						>
 							{SOCIAL_MEDIA_ICONS[item.platform]}
 						</a>

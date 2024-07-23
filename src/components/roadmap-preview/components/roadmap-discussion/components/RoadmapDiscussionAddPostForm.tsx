@@ -43,7 +43,7 @@ const RoadmapDiscussionAddPostForm = () => {
 	};
 
 	return (
-		<form className="relative w-full p-1 bg-white mb-4 rounded-md border border-[#E0E0E0]">
+		<form className="relative w-full p-1 bg-white mb-4 rounded-md border border-[#E0E0E0] focus-within:shadow-csm focus-within:border-primary-ultramarineBlue transition duration-200">
 			<textarea
 				name="addPost"
 				placeholder="Ask about the roadmap or discuss your thoughts..."
@@ -70,8 +70,8 @@ const RoadmapDiscussionAddPostForm = () => {
 				<button
 					type="submit"
 					onClick={handleAddComment}
-					disabled={isLoading}
-					className="w-fit h-[36px] px-4 ml-auto mb-1 block bg-primary-ultramarineBlue rounded-md text-white font-inter font-semibold text-[14px]"
+					disabled={isLoading || !content.length}
+					className="w-fit h-[36px] px-4 ml-auto mb-1 block bg-primary-ultramarineBlue rounded-md text-white font-inter font-semibold text-[14px] disabled:border-transparent disabled:text-white disabled:bg-primary-ultramarineBlue border border-transparent hover:border-primary-ultramarineBlue hover:bg-white hover:text-primary-ultramarineBlue transition duration-200"
 				>
 					{isLoading ? "Loading..." : "Post"}
 				</button>
