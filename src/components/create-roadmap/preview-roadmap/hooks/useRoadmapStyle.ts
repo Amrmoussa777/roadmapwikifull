@@ -1,5 +1,7 @@
 import { Colors } from "@/components/create-roadmap/preview-roadmap/types/index.types";
-import { useAppSelector } from "@/redux/store";
+import { useFetch } from "@/hooks/useFetch";
+import { updateRoadmapData } from "@/redux/slices/create-roadmap/createRoadmapSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { useEffect, useState } from "react";
 
 const initialColors: Colors = {
@@ -21,8 +23,18 @@ const initialColors: Colors = {
 
 const useRoadmapStyle = () => {
 	const [colors, setColors] = useState<Colors>(initialColors);
-
 	const { roadmap } = useAppSelector(state => state.createRoadmap);
+
+	const dispatch = useAppDispatch();
+
+	const { fetchData } = useFetch();
+
+	const handleUpdateRoadmapStyles = async (
+		newRoadmapStyles: Record<string, string>
+	) => {
+		await fetchData("PATCH", `roadmap/${roadmap?.id}`, newRoadmapStyles);
+		dispatch(updateRoadmapData(newRoadmapStyles));
+	};
 
 	const handleChangeColor = (keyColor: keyof Colors, newColor: string) => {
 		const updatedColors = colors[keyColor].map(item => {
@@ -47,6 +59,13 @@ const useRoadmapStyle = () => {
 
 	const resetStyles = () => {
 		setColors(initialColors);
+
+		const resetStylesData = {
+			primaryColor: "#506CF0",
+			secondaryColor: "#FF9900",
+		};
+
+		handleUpdateRoadmapStyles(resetStylesData);
 	};
 
 	useEffect(() => {

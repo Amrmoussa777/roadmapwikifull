@@ -1,23 +1,23 @@
 import HorizontalDivider from "@/components/common/divider/components/HorizontalDivider";
 import useInput from "@/components/common/input/hooks/useInput";
 import RoadmapStepDurationSelectItem from "@/components/create-roadmap/roadmap-steps/RoadmapStepDurationSelectItem";
-import { RoadmapStepDurationProps } from "@/components/create-roadmap/roadmap-steps/types/index.types";
 import { useFetch } from "@/hooks/useFetch";
 import { useOnClickOutside } from "@/hooks/useOnClickOutside";
 import useToggle from "@/hooks/useToggle";
-import { updateStepDuration } from "@/redux/slices/create-roadmap/createRoadmapSlice";
+import { updateRoadmapData } from "@/redux/slices/create-roadmap/createRoadmapSlice";
 import { useAppDispatch } from "@/redux/store";
 import { DURATION_ICON } from "@public/icons/roadmapSteps";
 import { AnimatePresence, motion } from "framer-motion";
+import { useParams } from "next/navigation";
 import React, { FormEvent, useState } from "react";
 
-const RoadmapStepDuration = ({
-	stepId,
-	description,
-	title,
+const RoadmapDurationPicker = ({
 	defaultDuration,
-}: RoadmapStepDurationProps) => {
+}: {
+	defaultDuration: string;
+}) => {
 	const durationSplit = defaultDuration.split(" ");
+	const { roadmapId } = useParams();
 
 	const defaultDurationNumber = durationSplit[0];
 	const defaultDurationType = durationSplit[1];
@@ -29,13 +29,6 @@ const RoadmapStepDuration = ({
 	const { currentState: isDurationOpen, toggle: toggleDuration } =
 		useToggle(false);
 
-	const handleCancelDuration = () => {
-		changeDuration(defaultDurationNumber);
-		setDurationType(defaultDurationType);
-		toggleDuration();
-	};
-
-	const ref = useOnClickOutside(handleCancelDuration);
 	const dispatch = useAppDispatch();
 	const { loading, fetchData } = useFetch();
 
@@ -48,43 +41,42 @@ const RoadmapStepDuration = ({
 
 		const updatedRoadmapStep: Record<string, string> = {};
 
-		if (title) {
-			updatedRoadmapStep.title = title;
-		}
-
-		if (description) {
-			updatedRoadmapStep.description = description;
-		}
-
 		if (duration && durationType) {
 			updatedRoadmapStep.duration = `${duration} ${durationType}`;
 		}
 
-		await fetchData("PATCH", `roadmap/step/${stepId}`, updatedRoadmapStep).then(
-			() =>
-				dispatch(
-					updateStepDuration({
-						stepId,
-						newDuration: `${duration} ${durationType}`,
-					})
-				)
-		);
+		await fetchData("PATCH", `roadmap/${roadmapId}`, updatedRoadmapStep);
+		dispatch(updateRoadmapData(updatedRoadmapStep));
 
 		toggleDuration();
 	};
 
+	const handleCancelDuration = () => {
+		changeDuration(defaultDurationNumber);
+		setDurationType(defaultDurationType);
+		toggleDuration();
+	};
+
+	const ref = useOnClickOutside(handleCancelDuration);
+
 	return (
-		<div className="relative">
-			<button
-				onClick={toggleDuration}
-				type="button"
-				className="flex-jc-c gap-1 text-[#383838]"
-			>
-				<span className="text-primary-ultramarineBlue">{DURATION_ICON}</span>
-				<p className="text-[14px] font-normal leading-[16px]">
+		<div className="relative col-span-2">
+			<div>
+				<label className="text-[#666666]">Roadmap Duration*</label>
+				<button
+					onClick={toggleDuration}
+					id="roadmapDuration"
+					type="button"
+					className="flex-jb-c roadmap-info-select text-[16px] sm:text-[18px] capitalize"
+				>
 					{defaultDuration ? `${duration} ${durationType}` : "Duration"}
-				</p>
-			</button>
+					<span
+						className={`!text-primary-ultramarineBlue [&>svg]:transition-all`}
+					>
+						{DURATION_ICON}
+					</span>
+				</button>
+			</div>
 
 			<AnimatePresence>
 				{isDurationOpen ? (
@@ -95,7 +87,7 @@ const RoadmapStepDuration = ({
 						exit={{ y: -10, opacity: 0 }}
 						transition={{ duration: 0.1 }}
 						ref={ref}
-						className="absolute w-[300px] right-0 lg:right-[-240px] flex flex-col p-4 bg-white shadow-clg border border-primary-ultramarineBlue/20 rounded-xl z-10"
+						className="absolute w-[300px] sm:w-full left-0 top-[90px] flex flex-col p-4 bg-white shadow-clg border border-primary-ultramarineBlue/20 rounded-xl z-10"
 					>
 						<div className="flex-jb-c gap-2 [&>button]:rounded-md [&>button]:border-primary-ultramarineBlue/20 [&>button]:border [&>button]:w-full">
 							<RoadmapStepDurationSelectItem
@@ -131,10 +123,12 @@ const RoadmapStepDuration = ({
 						<div className="flex-jb-c gap-2 [&>button]:w-full">
 							<button
 								disabled={!duration.length}
+								type="submit"
 								className="text-[#181818] font-medium hover:text-primary-ultramarineBlue transition duration-200 disabled:hover:text-[#181818]"
 							>
 								{loading ? "Loading..." : "OK"}
 							</button>
+
 							<button
 								onClick={handleCancelDuration}
 								type="button"
@@ -150,4 +144,4 @@ const RoadmapStepDuration = ({
 	);
 };
 
-export default RoadmapStepDuration;
+export default RoadmapDurationPicker;

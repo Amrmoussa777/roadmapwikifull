@@ -2,7 +2,7 @@ import React from "react";
 
 const RoadmapPreviewLoader = () => {
 	return (
-		<div className="w-full h-full p-6 animate-pulse">
+		<div className="hidden lg:block w-full h-full p-6 animate-pulse">
 			<div className="h-10 mx-auto bg-gray-200 rounded-full"></div>
 			<div className="h-2 mx-auto bg-gray-200 rounded-full my-4"></div>
 			<div className="flex flex-col gap-4">

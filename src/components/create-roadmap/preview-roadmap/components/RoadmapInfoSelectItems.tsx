@@ -1,10 +1,21 @@
+import RoadmapDurationPicker from "@/components/create-roadmap/preview-roadmap/components/RoadmapDurationPicker";
 import RoadmapInfoSelect from "@/components/create-roadmap/preview-roadmap/components/RoadmapInfoSelect";
+import { useFetch } from "@/hooks/useFetch";
+import { updateRoadmapData } from "@/redux/slices/create-roadmap/createRoadmapSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { EXAMPLE_ICON, RESET_ICON } from "@public/icons/roadmapInfo";
 import { ADD_STEP_ICON, CROSS_ICON } from "@public/icons/roadmapSteps";
+import { useParams } from "next/navigation";
 import React, { ReactNode, useState } from "react";
 
 const RoadmapInfoSelectItems = () => {
-	const roadmapDurationListInWeeks = [1, 2, 3, 4, 5, 6];
+	const { roadmapId } = useParams();
+
+	const { roadmap } = useAppSelector(state => state.createRoadmap);
+	const { duration: defaultDuration } = roadmap || {};
+	const dispatch = useAppDispatch();
+	const { loading, fetchData } = useFetch();
+
 	const roadmapIconsList = [
 		{ name: "ICON 1", icon: EXAMPLE_ICON },
 		{ name: "ICON 2", icon: RESET_ICON },
@@ -12,34 +23,23 @@ const RoadmapInfoSelectItems = () => {
 		{ name: "ICON 4", icon: CROSS_ICON },
 	];
 
-	const [roadmapActiveDuration, setRoadmapActiveDuration] = useState<number>(
-		roadmapDurationListInWeeks[0]
-	);
-
 	const [roadmapActiveIcon, setRoadmapActiveIcon] = useState<
 		Record<string, ReactNode>
 	>(roadmapIconsList[0]);
 
+	const handleSubmitIcon = async (newIcon: Record<string, ReactNode>) => {
+		const { icon } = newIcon;
+
+		// const updatedRoadmapStep = { icon };
+
+		// await fetchData("PATCH", `roadmap/${roadmapId}`, updatedRoadmapStep);
+		// dispatch(updateRoadmapData(updatedRoadmapStep));
+		setRoadmapActiveIcon(newIcon);
+	};
+
 	return (
 		<>
-			<RoadmapInfoSelect
-				label={{ id: "roadmapDuration", name: "Roadmap duration" }}
-				activeOption={
-					<span>
-						{`${roadmapActiveDuration - 1}:${roadmapActiveDuration}`} weeks
-					</span>
-				}
-			>
-				{roadmapDurationListInWeeks.map(item => (
-					<button
-						type="button"
-						key={item}
-						onClick={() => setRoadmapActiveDuration(item)}
-					>
-						{`${item - 1}:${item}`} weeks
-					</button>
-				))}
-			</RoadmapInfoSelect>
+			<RoadmapDurationPicker defaultDuration={defaultDuration || ""} />
 
 			<RoadmapInfoSelect
 				label={{ id: "roadmapIcon", name: "Roadmap icon" }}
@@ -60,7 +60,7 @@ const RoadmapInfoSelectItems = () => {
 						type="button"
 						key={index}
 						className="flex items-center gap-2 !px-4 sm:gap-2 !text-[16px] sm:text-[18px]"
-						onClick={() => setRoadmapActiveIcon(item)}
+						onClick={() => handleSubmitIcon(item)}
 					>
 						<span
 							style={{ backgroundColor: "" }}

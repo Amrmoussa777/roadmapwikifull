@@ -2,6 +2,7 @@
 
 import FormInput from "@/components/common/input/FormInput";
 import useInput from "@/components/common/input/hooks/useInput";
+import RoadmapInfoLoader from "@/components/create-roadmap/preview-roadmap/components/RoadmapInfoLoader";
 import RoadmapInfoSelectItems from "@/components/create-roadmap/preview-roadmap/components/RoadmapInfoSelectItems";
 import RoadmapStyle from "@/components/create-roadmap/preview-roadmap/components/RoadmapStyle";
 import { useFetch } from "@/hooks/useFetch";
@@ -10,7 +11,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/store";
 import React, { useEffect } from "react";
 
 const RoadmapInfo = () => {
-	const { roadmap } = useAppSelector(state => state.createRoadmap);
+	const { roadmap, isLoading } = useAppSelector(state => state.createRoadmap);
 	const dispatch = useAppDispatch();
 
 	const { value: roadmapName, changeValue: changeRoadmapName } = useInput("");
@@ -32,13 +33,15 @@ const RoadmapInfo = () => {
 		}
 	}, [roadmap]);
 
+	if (isLoading) return <RoadmapInfoLoader />;
+
 	return (
 		<div className="p-4 sm:p-6">
 			<h2 className="font-semibold text-xl sm:text-3xl my-2">
 				Roadmap Information & style
 			</h2>
 
-			<form className="grid grid-cols-4 gap-1 sm:gap-4 mt-6">
+			<div className="grid grid-cols-4 gap-1 sm:gap-4 mt-6">
 				<FormInput
 					type="text"
 					name="roadmapName"
@@ -70,7 +73,7 @@ const RoadmapInfo = () => {
 							handleUpdateRoadmapData({ description: roadmapDescription });
 					}}
 				/>
-			</form>
+			</div>
 
 			<h2 className="font-semibold text-xl sm:text-3xl my-4">Roadmap style</h2>
 
