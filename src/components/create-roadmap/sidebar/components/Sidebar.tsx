@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import SidebarLinkItem from "@/components/create-roadmap/sidebar/components/SidebarLinkItem";
 import {
@@ -14,6 +14,7 @@ import { ROADMAP_LOGO } from "@public/icons/landingPage";
 import { useAppSelector } from "@/redux/store";
 import SidebarLoader from "@/components/create-roadmap/sidebar/components/SidebarLoader";
 import SidebarMobile from "@/components/create-roadmap/sidebar/components/SidebarMobile";
+import { usePathname } from "next/navigation";
 
 const Sidebar = ({
 	sidebarMobile,
@@ -24,6 +25,11 @@ const Sidebar = ({
 }) => {
 	const { roadmap, isLoading } = useAppSelector(state => state.createRoadmap);
 	const { id } = roadmap || {};
+	const pathname = usePathname();
+
+	useEffect(() => {
+		toggleSidebarMobile();
+	}, [pathname]);
 
 	if (isLoading) return <SidebarLoader />;
 

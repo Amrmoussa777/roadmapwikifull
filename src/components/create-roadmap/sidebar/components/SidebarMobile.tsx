@@ -38,7 +38,7 @@ const SidebarMobile = ({
 							ease: "easeInOut",
 							duration: 0.6,
 						}}
-						className={`fixed w-[75px] h-screen bg-white border-r-2 border-grey-primary p-2 sm:flex flex-col justify-between gap-14 z-40 ${
+						className={`fixed w-[75px] h-screen bg-white border-r-2 border-grey-primary p-2 flex-col justify-between gap-14 z-40 flex sm:hidden ${
 							sidebarMobile ? "flex" : "hidden"
 						}`}
 					>
@@ -76,6 +76,10 @@ const SidebarMobile = ({
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 100 }}
 						exit={{ opacity: 0 }}
+						transition={{
+							ease: "easeInOut",
+							duration: 0.6,
+						}}
 						className="sm:hidden fixed w-screen h-screen right-0 top-0 bg-black/60 z-20"
 					/>
 				) : null}
