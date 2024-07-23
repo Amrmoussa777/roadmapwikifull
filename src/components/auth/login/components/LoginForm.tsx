@@ -35,10 +35,7 @@ const LoginForm = () => {
 		>
 			<div className="sm:w-[400px] h-full mx-auto flex flex-col">
 				<div className="my-auto">
-					<RoadmapLogo
-						extension=".io"
-						customStyles="[&>svg]:w-[40px] [&>svg]:h-[40px] text-[32px]"
-					/>
+					<RoadmapLogo customStyles="[&>svg]:w-[40px] [&>svg]:h-[40px] text-[32px]" />
 
 					<h2 className="mt-[88px] font-poppins font-semibold text-[30px] text-[#171725]">
 						Log In

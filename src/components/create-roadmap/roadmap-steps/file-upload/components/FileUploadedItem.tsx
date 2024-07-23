@@ -38,7 +38,12 @@ const FileUploadedItem = ({
 				};
 				fetchStepAttachment("POST", `roadmap/step/attachment`, fileData).then(
 					({ data }) => {
-						dispatch(addStepAttachment({ stepId, newAttachment: data }));
+						dispatch(
+							addStepAttachment({
+								stepId,
+								newAttachment: { ...data, localFile: file },
+							})
+						);
 						removeSelectedFile(file.name);
 					}
 				);

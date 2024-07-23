@@ -47,16 +47,31 @@ const useRenderPreviewFile = () => {
 				<Image
 					width={200}
 					height={200}
-					src={uploadedFile.url}
+					src={
+						uploadedFile.localFile
+							? URL.createObjectURL(uploadedFile.localFile)
+							: uploadedFile.url
+					}
 					alt={uploadedFile.key}
+					loading="eager"
 					className="w-full h-full object-cover rounded-md shadow-md"
 				/>
 			);
 		} else if (uploadedFile.type === "VIDEO") {
 			return (
 				<>
-					<video className="w-full h-full object-cover rounded-md shadow-md">
-						<source src={uploadedFile.url} type="video/mp4" />
+					<video
+						className="w-full h-full object-cover rounded-md shadow-md"
+						controls={false}
+					>
+						<source
+							src={
+								uploadedFile.localFile
+									? URL.createObjectURL(uploadedFile.localFile)
+									: uploadedFile.url
+							}
+							type="video/mp4"
+						/>
 					</video>
 				</>
 			);

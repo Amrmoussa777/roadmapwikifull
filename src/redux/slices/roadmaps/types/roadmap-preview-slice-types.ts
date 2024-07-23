@@ -46,6 +46,7 @@ export interface RoadmapStepAttachmentType {
 	key: string;
 	url: string;
 	roadmapStepId: string;
+	localFile?: File;
 }
 
 export interface RoadmapStepVerificationType {

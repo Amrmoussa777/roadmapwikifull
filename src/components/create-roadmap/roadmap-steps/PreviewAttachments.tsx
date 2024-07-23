@@ -45,12 +45,12 @@ const PreviewAttachments = ({
 							<a
 								key={attachment.id}
 								href={attachment.url}
-								className="relative min-w-[72px] w-[72px] min-h-[72px] h-[72px] group"
+								className="group relative min-w-[72px] w-[72px] min-h-[72px] h-[72px] border-2 border-grey-primary flex-jc-c rounded-md"
 							>
 								{!readOnly ? (
 									<button
 										onClick={() => handleRemoveUploadedFile(attachment.id)}
-										className="absolute right-1 top-1 opacity-0 group-hover:opacity-100 transition duration-200"
+										className="absolute right-1 top-1 opacity-0 group-hover:opacity-100 transition duration-200 z-10"
 									>
 										{CROSS_ATTACHMENT_ICON}
 									</button>
@@ -70,7 +70,7 @@ const PreviewAttachments = ({
 								{!readOnly ? (
 									<button
 										onClick={() => handleRemoveUploadedFile(attachment.id)}
-										className="absolute right-1 top-1 opacity-0 group-hover:opacity-100 transition duration-200"
+										className="absolute right-1 top-1 opacity-0 group-hover:opacity-100 transition duration-200 z-10"
 									>
 										{CROSS_ATTACHMENT_ICON}
 									</button>

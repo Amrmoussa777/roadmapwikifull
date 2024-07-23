@@ -12,7 +12,7 @@ const FAQ = () => {
 	const FAQList: FAQItemType[] = [
 		{
 			id: "1",
-			questionName: "What is Roadmap.io?",
+			questionName: "What is Roadmap?",
 			answer:
 				"Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
 		},
@@ -30,7 +30,7 @@ const FAQ = () => {
 		},
 		{
 			id: "4",
-			questionName: "What is Roadmap.io?",
+			questionName: "What is Roadmap?",
 			answer:
 				"Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
 		},
