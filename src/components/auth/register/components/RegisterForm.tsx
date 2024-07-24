@@ -15,6 +15,7 @@ import {
 } from "@public/icons/auth";
 import { FACEBOOK_ICON } from "@public/icons/socialMedia";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const RegisterForm = () => {
@@ -31,6 +32,8 @@ const RegisterForm = () => {
 		handleSubmitRegistration,
 		isLoading,
 	} = useRegisterForm();
+
+	const { push } = useRouter();
 
 	return (
 		<form
@@ -101,6 +104,7 @@ const RegisterForm = () => {
 
 					<button
 						type="button"
+						onClick={() => push("/create-roadmap")}
 						className="w-full h-[54px] font-poppins font-medium text-[15px] text-black rounded-[8px] border-[1.6px] border-[#E0E2E9] hover:shadow-lg duration-200 transition"
 					>
 						Create roadmap without register

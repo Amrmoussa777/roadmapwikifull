@@ -14,6 +14,7 @@ import {
 } from "@public/icons/auth";
 import { FACEBOOK_ICON } from "@public/icons/socialMedia";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const LoginForm = () => {
@@ -27,6 +28,8 @@ const LoginForm = () => {
 		handleSubmitRegistration,
 		isLoading,
 	} = useLoginForm();
+
+	const { push } = useRouter();
 
 	return (
 		<form
@@ -88,6 +91,7 @@ const LoginForm = () => {
 					<FormButton buttonText="Log in" isLoading={isLoading} />
 
 					<button
+						onClick={() => push("/create-roadmap")}
 						type="button"
 						className="w-full h-[54px] font-poppins font-medium text-[15px] text-black rounded-[8px] border-[1.6px] border-[#E0E2E9] hover:shadow-lg duration-200 transition"
 					>

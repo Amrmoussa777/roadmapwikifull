@@ -61,6 +61,10 @@
 		scrollbar-width: none; /* Firefox */
 	}
 
+	.hidden-input-number-arrows {
+		@apply [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none;
+	}
+
 	.grid-background {
 		background-image: radial-gradient(
 			rgba(169, 167, 167, 0.232) 2px,

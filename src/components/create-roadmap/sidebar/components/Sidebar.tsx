@@ -50,7 +50,10 @@ const Sidebar = ({
 						href={`/create-roadmap/${id}/info`}
 						icon={COLOR_ICON}
 					/>
-					<SidebarLinkItem href="#" icon={TARIFF_ICON} />
+					<SidebarLinkItem
+						href={`/create-roadmap/${id}/plans`}
+						icon={TARIFF_ICON}
+					/>
 					<SidebarLinkItem
 						href={`/create-roadmap/${id}/settings`}
 						icon={SETTINGS_ICON}

@@ -5,6 +5,7 @@ import useInput from "@/components/common/input/hooks/useInput";
 import RoadmapInfoLoader from "@/components/create-roadmap/preview-roadmap/components/RoadmapInfoLoader";
 import RoadmapInfoSelectItems from "@/components/create-roadmap/preview-roadmap/components/RoadmapInfoSelectItems";
 import RoadmapStyle from "@/components/create-roadmap/preview-roadmap/components/RoadmapStyle";
+import RoadmapTags from "@/components/create-roadmap/preview-roadmap/components/RoadmapTags";
 import { useFetch } from "@/hooks/useFetch";
 import { updateRoadmapData } from "@/redux/slices/create-roadmap/createRoadmapSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
@@ -73,6 +74,8 @@ const RoadmapInfo = () => {
 							handleUpdateRoadmapData({ description: roadmapDescription });
 					}}
 				/>
+
+				<RoadmapTags />
 			</div>
 
 			<h2 className="font-semibold text-xl sm:text-3xl my-4">Roadmap style</h2>

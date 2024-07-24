@@ -8,7 +8,7 @@ const Avatar = ({ name, image_url, customStyles }: AvatarPropsType) => {
 
 	return (
 		<div
-			className={`flex-jc-c font-semibold bg-primary-ultramarineBlue overflow-hidden rounded-full text-primary-ultramarineBlue border-2 border-primary-ultramarineBlue shadow-static shadow-white ${customStyles}`}
+			className={`flex-jc-c font-normal bg-primary-ultramarineBlue overflow-hidden rounded-full text-primary-ultramarineBlue border-2 border-primary-ultramarineBlue shadow-static shadow-white ${customStyles}`}
 		>
 			{image_url ? (
 				<AvatarImage image_url={image_url} />

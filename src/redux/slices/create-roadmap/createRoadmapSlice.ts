@@ -251,6 +251,25 @@ const createRoadmapSlice = createSlice({
 				};
 			}
 		},
+		addRoadmapTag: (state, action) => {
+			const newTag = action.payload;
+
+			if (state.roadmap) {
+				state.roadmap.tags.push(newTag);
+			}
+		},
+		deleteRoadmapTag: (state, action) => {
+			const tagId = action.payload;
+
+			if (state.roadmap) {
+				const filteredTags = state.roadmap.tags.filter(tag => tag.id !== tagId);
+
+				state.roadmap = {
+					...state.roadmap,
+					tags: filteredTags,
+				};
+			}
+		},
 	},
 	extraReducers(builder) {
 		builder.addCase(fetchRoadmapById.pending, state => {
@@ -296,5 +315,7 @@ export const {
 	reorderRoadmapSteps,
 	toggleStepToPreview,
 	updateRoadmapData,
+	addRoadmapTag,
+	deleteRoadmapTag,
 } = createRoadmapSlice.actions;
 export default createRoadmapSlice.reducer;

@@ -18,9 +18,9 @@ const navbarLinks = [
 const PublicNavbar = () => {
 	const { currentState: isMenuOpen, toggle: toggleMobileNavbar } =
 		useToggle(false);
-	const isAuthRoute = usePathname().includes("auth");
+	const pathname = usePathname();
 
-	if (isAuthRoute) return;
+	if (pathname.includes("create-roadmap" || "auth")) return;
 
 	return (
 		<div className="relative bg-white w-full">
