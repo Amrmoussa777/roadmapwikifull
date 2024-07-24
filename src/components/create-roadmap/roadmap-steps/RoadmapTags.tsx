@@ -45,6 +45,9 @@ const RoadmapTags = ({
 							initial={{ width: 0 }}
 							animate={{ width: "100px" }}
 							exit={{ width: 0 }}
+							transition={{
+								duration: 0.2,
+							}}
 						>
 							<input
 								style={{ borderColor: "" }}

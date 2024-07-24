@@ -25,7 +25,7 @@ const SidebarMobile = ({
 	const { roadmap } = useAppSelector(state => state.createRoadmap);
 	const { id } = roadmap || {};
 	const { responsive } = useSizeScreen(640);
-	useDisableScroll(sidebarMobile);
+	useDisableScroll(sidebarMobile && responsive);
 
 	const ref = useOnClickOutside(toggleSidebarMobile);
 

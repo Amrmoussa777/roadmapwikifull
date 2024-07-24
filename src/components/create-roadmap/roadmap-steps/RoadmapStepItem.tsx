@@ -40,7 +40,7 @@ const RoadmapStepItem = ({
 	const handleChangeTitle = async () => {
 		if (value === title) return;
 
-		const newData = { description, title: value, duration };
+		const newData = { title: value };
 
 		await fetchData("PATCH", `roadmap/step/${id}`, newData)
 			.then(() =>

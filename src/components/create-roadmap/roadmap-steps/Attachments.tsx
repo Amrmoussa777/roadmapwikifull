@@ -1,16 +1,15 @@
+import React, { useState } from "react";
 import PreviewAttachments from "@/components/create-roadmap/roadmap-steps/PreviewAttachments";
 import FileUploadedItem from "@/components/create-roadmap/roadmap-steps/file-upload/components/FileUploadedItem";
 import FileUploader from "@/components/create-roadmap/roadmap-steps/file-upload/components/FileUploader";
 import { RoadmapStepAttachmentType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
-import React, { useState } from "react";
 
-const Attachments = ({
-	stepId,
-	attachments,
-}: {
+interface AttachmentsProps {
 	stepId: string;
 	attachments: RoadmapStepAttachmentType[];
-}) => {
+}
+
+const Attachments = ({ stepId, attachments }: AttachmentsProps) => {
 	const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
 	const removeSelectedFile = (fileName: string) => {
 		const filteredSelectedFiles = selectedFiles.filter(
@@ -48,4 +47,16 @@ const Attachments = ({
 	);
 };
 
-export default Attachments;
+const areEqual = (prevProps: AttachmentsProps, nextProps: AttachmentsProps) => {
+	if (prevProps.attachments.length !== nextProps.attachments.length) {
+		return false;
+	}
+	for (let i = 0; i < prevProps.attachments.length; i++) {
+		if (prevProps.attachments[i].id !== nextProps.attachments[i].id) {
+			return false;
+		}
+	}
+	return true;
+};
+
+export default React.memo(Attachments, areEqual);

@@ -6,10 +6,8 @@ import { PARK_ICON } from "@public/icons/roadmapPreview";
 import React from "react";
 
 const RoadmapPreview = () => {
-	const { roadmap, isLoading, stepIdToPreview } = useAppSelector(
-		state => state.createRoadmap
-	);
-	const { flag, steps } = roadmap || {};
+	const { roadmap, isLoading } = useAppSelector(state => state.createRoadmap);
+	const { flag, steps, primaryColor } = roadmap || {};
 
 	const dispatch = useAppDispatch();
 
@@ -22,7 +20,10 @@ const RoadmapPreview = () => {
 	return (
 		<div className={`w-full h-full dotted-bg p-6 pb-[100px] lg:pb-0`}>
 			<div className="flex-jc-c">
-				<h3 className="h-[40px] flex items-center gap-2 text-white bg-primary-ultramarineBlue rounded-full font-medium py-2 px-4">
+				<h3
+					style={{ backgroundColor: primaryColor }}
+					className="h-[40px] flex items-center gap-2 text-white bg-primary-ultramarineBlue rounded-full font-medium py-2 px-4"
+				>
 					<span>{PARK_ICON}</span>
 					{flag} 🚀
 				</h3>

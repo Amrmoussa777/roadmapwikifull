@@ -1,5 +1,5 @@
 import Editor from "@/components/common/Editor/components/Editor";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import {
 	CHECK_ICON,
 	CROSS_ICON,
@@ -23,8 +23,18 @@ const RoadmapPreviewStep = ({
 	const { id, title, description, duration, attachments, tags, verifications } =
 		previewStep || {};
 
+	const stepRef = useRef<HTMLDivElement>(null);
+
+	useEffect(() => {
+		setTimeout(() => {
+			if (previewStep && stepRef.current) {
+				stepRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+			}
+		}, 300);
+	}, [previewStep]);
+
 	return (
-		<div className="relative w-full p-4 mb-2 bg-white rounded-md">
+		<div ref={stepRef} className="relative w-full p-4 mb-2 bg-white rounded-md">
 			<div className="flex-jb-c">
 				<button
 					className="flex-jc-c gap-1 [&>svg]:w-[20px] text-primary-dark"

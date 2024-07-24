@@ -1,6 +1,5 @@
 import useInput from "@/components/common/input/hooks/useInput";
 import useToggle from "@/hooks/useToggle";
-import { RoadmapStepType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
 import { useEffect, useState } from "react";
 
 /**

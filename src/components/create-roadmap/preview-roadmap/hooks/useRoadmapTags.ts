@@ -38,8 +38,11 @@ const useRoadmapTags = (stepId: string, tags: RoadmapTagType[]) => {
 			const newTag = await addTagToRoadmapStep(newTagData);
 			dispatch(addStepTag({ stepId, newTag }));
 
+			setTimeout(() => {
+				setAddingTag(false);
+			}, 50);
+
 			reset();
-			setAddingTag(false);
 			setError(false);
 		} else {
 			setError(true);
