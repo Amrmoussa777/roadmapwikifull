@@ -70,7 +70,7 @@ const CreateRoadmapLayout = ({ children }: ChildrenType) => {
 				</div>
 			</div>
 
-			<div className="w-[130px] h-[49px] shadow-clg rounded-full bg-white fixed bottom-4 left-2/4 -translate-x-2/4 z-10 block lg:hidden">
+			<div className="w-[130px] h-[49px] shadow-clg rounded-full bg-white fixed bottom-4 left-2/4 -translate-x-2/4 m-0 sm:ml-[37.5px] z-10 block lg:hidden">
 				<div
 					className={`relative w-[124px] h-[49px] text-[#D3D3D3] z-10 transition duration-200 ease-in-out ${
 						mobileLayout === "grid"

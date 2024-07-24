@@ -25,6 +25,11 @@ export const useStepVerification = (stepId: string) => {
 			title: "LINK",
 			link: value,
 		};
+
+		if (!/^https?:\/\//i.test(value)) {
+			verificationData.link = `https://${verificationData.link}`;
+		}
+
 		await fetchData("POST", `roadmap/step/verification`, verificationData).then(
 			({ data }) => {
 				const newVerification = data;
@@ -44,6 +49,10 @@ export const useStepVerification = (stepId: string) => {
 			title: "LINK",
 			link: value,
 		};
+
+		if (!/^https?:\/\//i.test(value)) {
+			updatedVerification.link = `https://${updatedVerification.link}`;
+		}
 
 		await fetchData(
 			"PATCH",

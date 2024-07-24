@@ -81,7 +81,7 @@ const PreviewAttachments = ({
 						);
 					} else {
 						return (
-							<li
+							<div
 								className="relative min-w-[72px] w-[72px] min-h-[72px] h-[72px] group"
 								key={attachment.id}
 							>
@@ -95,7 +95,7 @@ const PreviewAttachments = ({
 								) : null}
 
 								{renderUploadedFile(attachment)}
-							</li>
+							</div>
 						);
 					}
 				})}

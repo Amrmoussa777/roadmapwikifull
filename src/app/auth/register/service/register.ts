@@ -2,7 +2,7 @@ import HandleApiRequests from "@/helpers/handleApiRequests";
 
 export const register = async (formData: Record<string, string>) => {
 	try {
-		await HandleApiRequests.handlePublicApiRequest({
+		await HandleApiRequests.handleApiRequest({
 			method: "POST",
 			endpoint: `auth/signup`,
 			body: formData,

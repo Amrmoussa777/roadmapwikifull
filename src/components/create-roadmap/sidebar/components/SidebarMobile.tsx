@@ -78,7 +78,7 @@ const SidebarMobile = ({
 			</AnimatePresence>
 
 			<AnimatePresence>
-				{sidebarMobile ? (
+				{sidebarMobile && responsive ? (
 					<motion.div
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 100 }}

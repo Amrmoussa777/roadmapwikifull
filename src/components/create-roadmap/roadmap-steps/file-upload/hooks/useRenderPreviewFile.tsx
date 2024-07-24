@@ -29,9 +29,9 @@ const useRenderPreviewFile = () => {
 			);
 		} else {
 			return (
-				<div className="flex flex-col justify-center items-center gap-2">
+				<div className="w-full h-full flex flex-col justify-center items-center gap-2 rounded-md shadow-md border">
 					{UPLOADED_FILE_ICON}
-					<span className="text-[12px] text-center line-clamp-1 text-ellipsis overflow-hidden">
+					<span className="w-full text-[12px] text-center line-clamp-1 text-ellipsis overflow-hidden">
 						{file.name}
 					</span>
 				</div>
@@ -77,9 +77,9 @@ const useRenderPreviewFile = () => {
 			);
 		} else {
 			return (
-				<div className="flex flex-col justify-center items-center gap-2">
+				<div className="w-full h-full flex flex-col justify-center items-center gap-2 rounded-md shadow-md border">
 					{UPLOADED_FILE_ICON}
-					<span className="text-[12px] text-center line-clamp-1 text-ellipsis overflow-hidden">
+					<span className="w-full text-[12px] text-center line-clamp-1 text-ellipsis overflow-hidden">
 						{uploadedFile.key}
 					</span>
 				</div>

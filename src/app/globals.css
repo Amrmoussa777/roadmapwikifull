@@ -164,6 +164,10 @@
 	margin: 10px;
 }
 
+.ql-tooltip.ql-editing {
+	left: 14.487px !important;
+}
+
 .ql-container {
 	border: 0 !important;
 	height: 200px !important;
