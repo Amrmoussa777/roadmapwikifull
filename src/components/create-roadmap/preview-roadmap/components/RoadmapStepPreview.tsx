@@ -54,7 +54,7 @@ const RoadmapStepPreview = () => {
 							ease: "easeInOut",
 							duration: 0.2,
 						}}
-						className="w-full h-full p-[24px] bg-white shadow-clg"
+						className="w-full h-full p-[24px] bg-white overflow-y-scroll hidden-scrollbar shadow-clg"
 					>
 						<div className="flex-jb-c">
 							<button

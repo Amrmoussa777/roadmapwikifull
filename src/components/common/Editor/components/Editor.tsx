@@ -31,8 +31,13 @@ const Editor = ({
 
 		Link.create = (value: string) => {
 			let href = value;
+			// Check for https:// or http:// at the beginning of the string
 			if (!/^https?:\/\//i.test(href)) {
-				href = `https://${href}`;
+				href = `https://${href}`; // Add https:// if missing
+			}
+			// Check for www. after https:// or http://
+			if (!/^(https?:\/\/)?www\./i.test(href)) {
+				href = href.replace(/^(https?:\/\/)?/, "$1www."); // Add www. if missing
 			}
 			return builtInCreate.call(Link, href);
 		};

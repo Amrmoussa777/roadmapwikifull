@@ -270,6 +270,16 @@ const createRoadmapSlice = createSlice({
 				};
 			}
 		},
+		toggleRoadmapStatus: state => {
+			const status = state.roadmap?.status;
+
+			if (state.roadmap) {
+				state.roadmap = {
+					...state.roadmap,
+					status: status === "DRAFT" ? "PUBLISHED" : "DRAFT",
+				};
+			}
+		},
 	},
 	extraReducers(builder) {
 		builder.addCase(fetchRoadmapById.pending, state => {
@@ -317,5 +327,6 @@ export const {
 	updateRoadmapData,
 	addRoadmapTag,
 	deleteRoadmapTag,
+	toggleRoadmapStatus,
 } = createRoadmapSlice.actions;
 export default createRoadmapSlice.reducer;

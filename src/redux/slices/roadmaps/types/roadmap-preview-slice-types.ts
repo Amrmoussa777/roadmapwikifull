@@ -98,6 +98,7 @@ export interface RoadmapType {
 		tags: number;
 	};
 	isSubscribed: boolean;
+	status: "DRAFT" | "PUBLISHED";
 }
 
 export interface LandingRoadmapType extends Omit<RoadmapType, "isSubscribed"> {}
