@@ -76,7 +76,7 @@ const RoadmapDiscussionPost = ({
 								{fullName || "Unknown"}{" "}
 							</Link>
 							<span className="text-[#9C9DA4] ml-1 text-[14px] font-normal">
-								{moment(createdAt).startOf("hour").fromNow()}
+								{moment(createdAt).fromNow()}
 							</span>
 						</h3>
 						<p className="text-grey-secondary font-inter font-light text-[14px]">

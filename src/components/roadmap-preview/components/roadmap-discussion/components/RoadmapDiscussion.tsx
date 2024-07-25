@@ -16,6 +16,7 @@ const RoadmapDiscussion = () => {
 	const { isExpandedDiscussion, handleMoreComments, toggleDiscussion } =
 		useRoadmapDiscussion();
 	useDisableScroll(isExpandedDiscussion);
+
 	const { posts } = useAppSelector(state => state.roadmapPreviewPosts);
 
 	return (

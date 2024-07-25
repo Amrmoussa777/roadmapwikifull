@@ -54,7 +54,7 @@ const RoadmapDiscussionPostReply = ({
 					<h3 className="text-[13px] text-[#181818] font-inter font-medium">
 						{fullName}{" "}
 						<span className="ml-1 text-[#9C9DA4] text-[13px] font-normal">
-							{moment(createdAt).startOf("hour").fromNow()}
+							{moment(createdAt).fromNow()}
 						</span>
 					</h3>
 					<p className="text-[12px] text-grey-secondary font-inter font-light">

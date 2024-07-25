@@ -28,6 +28,7 @@ export const roadmapPreviewPostsSlice = createSlice({
 		builder.addCase(getRoadmapPosts.pending, state => {
 			state.isLoading = true;
 			state.posts.isLoading = true;
+			state.posts.list = [];
 		});
 
 		builder.addCase(getRoadmapPosts.fulfilled, (state, action) => {

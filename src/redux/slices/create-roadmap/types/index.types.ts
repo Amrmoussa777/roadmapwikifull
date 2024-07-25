@@ -1,5 +1,5 @@
+import { RoadmapIconType } from "@/config/roadmapIcons";
 import {
-	RoadmapStepType,
 	RoadmapStepVerificationType,
 	RoadmapType,
 } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
@@ -14,7 +14,7 @@ export type CreateRoadmapSliceStateType = {
 	draftRoadmap: {
 		title: string;
 		description: string;
-		icon: null;
+		icon: null | RoadmapIconType;
 	};
 
 	activeRoadmapStepId: string;

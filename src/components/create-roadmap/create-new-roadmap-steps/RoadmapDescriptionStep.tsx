@@ -1,4 +1,3 @@
-import useToggle from "@/hooks/useToggle";
 import { ARROW_ICON } from "@public/icons/roadmapSteps";
 import React, { FormEvent, useEffect, useState } from "react";
 import { motion } from "framer-motion";
@@ -8,7 +7,7 @@ import { updateDraftRoadmap } from "@/redux/slices/create-roadmap/createRoadmapS
 import { HoverBorderGradient } from "@/components/ui/moving-border";
 import { createRoadmap } from "@/components/create-roadmap/create-new-roadmap-steps/services/createRoadmap";
 import { useRouter } from "next/navigation";
-import { useOnClickOutside } from "@/hooks/useOnClickOutside";
+import RoadmapSelectIcon from "@/components/create-roadmap/create-new-roadmap-steps/RoadmapSelectIcon";
 
 const RoadmapDescriptionStep = ({
 	handleNextStep,
@@ -17,15 +16,12 @@ const RoadmapDescriptionStep = ({
 	handleNextStep: () => void;
 	handleBackStep: () => void;
 }) => {
-	const { currentState: isOptionsHidden, toggle: hideOptions } =
-		useToggle(false);
 	const [isLoading, setIsLoading] = useState(false);
 	const { draftRoadmap } = useAppSelector(state => state.createRoadmap);
 	const dispatch = useAppDispatch();
 	const { value: description, changeValue: changeDescription } = useInput(
 		draftRoadmap.description
 	);
-	const ref = useOnClickOutside(hideOptions);
 
 	const { push } = useRouter();
 
@@ -38,9 +34,18 @@ const RoadmapDescriptionStep = ({
 	}, [description]);
 
 	const handleCreateRoadmap = async () => {
-		const newRoadmapData = { ...draftRoadmap, duration: "1 week" };
+		const iconKey = draftRoadmap.icon ? draftRoadmap.icon.name : null;
+
+		const newRoadmapData = {
+			title: draftRoadmap.title,
+			duration: "1 week",
+			icon: iconKey,
+			description,
+		};
 		setIsLoading(true);
+
 		const newRoadmap = await createRoadmap(newRoadmapData);
+
 		setIsLoading(false);
 
 		const { id } = newRoadmap;
@@ -82,36 +87,7 @@ const RoadmapDescriptionStep = ({
 					Roadmap icon and description
 				</label>
 
-				<div className="w-full relative mb-8">
-					<button
-						onClick={hideOptions}
-						id="roadmapDuration"
-						type="button"
-						className="flex-jb-c roadmap-info-select text-[16px] sm:text-[18px]"
-					>
-						<span
-							className={`!text-[#ADAEB5] [&>svg]:transition-all ${
-								isOptionsHidden ? "[&>svg]:rotate-0" : "[&>svg]:rotate-180"
-							}`}
-						>
-							{ARROW_ICON}
-						</span>
-					</button>
-
-					{isOptionsHidden ? (
-						<div
-							ref={ref}
-							className="absolute w-full top-[55px] bg-white mt-1 border border-[#E0E0E0] rounded-xl flex flex-col gap-2 [&>button]:font-normal [&>button]:text-[18px] [&>:first-child]:rounded-t-xl [&>:last-child]:rounded-b-xl [&>button]:p-2 [&>button:hover]:bg-[#E0E0E0]/20"
-						>
-							<button type="button" className="w-full h-[55px] min-h-[55px]">
-								icon
-							</button>
-							<button type="button" className="w-full h-[55px] min-h-[55px]">
-								icon
-							</button>
-						</div>
-					) : null}
-				</div>
+				<RoadmapSelectIcon />
 
 				<textarea
 					placeholder="Roadmap description*"

@@ -302,6 +302,7 @@ export const roadmapList: LandingRoadmapType[] = [
 			steps: 11,
 			tags: 2,
 		},
+		status: "DRAFT",
 	},
 	{
 		id: "c6f1878f-fcb3-4068-99e7-33eb6c5742c1",
@@ -442,6 +443,7 @@ export const roadmapList: LandingRoadmapType[] = [
 			steps: 7,
 			tags: 0,
 		},
+		status: "DRAFT",
 	},
 	{
 		id: "d873a3ea-ef68-483f-8ba8-d11fc36d8074",
@@ -687,6 +689,7 @@ export const roadmapList: LandingRoadmapType[] = [
 			steps: 10,
 			tags: 0,
 		},
+		status: "DRAFT",
 	},
 	{
 		id: "28c6c08b-30cd-4717-8fd0-a47baa4c40fa",
@@ -989,5 +992,6 @@ export const roadmapList: LandingRoadmapType[] = [
 			steps: 11,
 			tags: 2,
 		},
+		status: "DRAFT",
 	},
 ];

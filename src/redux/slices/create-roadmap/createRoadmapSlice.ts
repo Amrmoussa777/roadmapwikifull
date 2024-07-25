@@ -22,12 +22,12 @@ const createRoadmapSlice = createSlice({
 	name: "createRoadmap",
 	reducers: {
 		updateDraftRoadmap: (state, action) => {
-			const { title, description } = action.payload;
+			const { title, description, icon } = action.payload;
 
 			state.draftRoadmap = {
 				title,
 				description,
-				icon: null,
+				icon,
 			};
 		},
 		expandRoadmapStep: (state, action) => {

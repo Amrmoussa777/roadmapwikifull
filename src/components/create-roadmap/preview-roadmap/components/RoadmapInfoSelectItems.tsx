@@ -1,10 +1,9 @@
 import RoadmapDurationPicker from "@/components/create-roadmap/preview-roadmap/components/RoadmapDurationPicker";
 import RoadmapInfoSelect from "@/components/create-roadmap/preview-roadmap/components/RoadmapInfoSelect";
+import { ROADMAP_ICONS, RoadmapIconType } from "@/config/roadmapIcons";
 import { useFetch } from "@/hooks/useFetch";
 import { updateRoadmapData } from "@/redux/slices/create-roadmap/createRoadmapSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
-import { EXAMPLE_ICON, RESET_ICON } from "@public/icons/roadmapInfo";
-import { ADD_STEP_ICON, CROSS_ICON } from "@public/icons/roadmapSteps";
 import { useParams } from "next/navigation";
 import React, { ReactNode, useState } from "react";
 
@@ -12,28 +11,23 @@ const RoadmapInfoSelectItems = () => {
 	const { roadmapId } = useParams();
 
 	const { roadmap } = useAppSelector(state => state.createRoadmap);
-	const { duration: defaultDuration } = roadmap || {};
+	const { duration: defaultDuration, icon: defaultIconName } = roadmap || {};
 	const dispatch = useAppDispatch();
 	const { loading, fetchData } = useFetch();
 
-	const roadmapIconsList = [
-		{ name: "ICON 1", icon: EXAMPLE_ICON },
-		{ name: "ICON 2", icon: RESET_ICON },
-		{ name: "ICON 3", icon: ADD_STEP_ICON },
-		{ name: "ICON 4", icon: CROSS_ICON },
-	];
+	const defaultIcon = ROADMAP_ICONS.find(icon => icon.name === defaultIconName);
 
-	const [roadmapActiveIcon, setRoadmapActiveIcon] = useState<
-		Record<string, ReactNode>
-	>(roadmapIconsList[0]);
+	const [roadmapActiveIcon, setRoadmapActiveIcon] = useState<Record<
+		string,
+		ReactNode
+	> | null>(defaultIcon || null);
 
-	const handleSubmitIcon = async (newIcon: Record<string, ReactNode>) => {
-		const { icon } = newIcon;
+	const handleSubmitIcon = async (newIcon: RoadmapIconType) => {
+		const updatedRoadmapStep = { icon: newIcon.name };
 
-		// const updatedRoadmapStep = { icon };
+		await fetchData("PATCH", `roadmap/${roadmapId}`, updatedRoadmapStep);
+		dispatch(updateRoadmapData(updatedRoadmapStep));
 
-		// await fetchData("PATCH", `roadmap/${roadmapId}`, updatedRoadmapStep);
-		// dispatch(updateRoadmapData(updatedRoadmapStep));
 		setRoadmapActiveIcon(newIcon);
 	};
 
@@ -49,18 +43,24 @@ const RoadmapInfoSelectItems = () => {
 							style={{ backgroundColor: "" }}
 							className="w-[25px] sm:w-[32px] h-[25px] sm:h-[32px] flex-jc-c rounded-lg text-primary-ultramarineBlue"
 						>
-							{roadmapActiveIcon.icon}
+							{roadmapActiveIcon ? roadmapActiveIcon.icon : "-"}
 						</span>
-						{roadmapActiveIcon.name}
+
+						<span>
+							{roadmapActiveIcon
+								? roadmapActiveIcon.name?.toString().replace("_", " ")
+								: "-"}
+						</span>
 					</span>
 				}
 			>
-				{roadmapIconsList.map((item, index) => (
+				{ROADMAP_ICONS.map(item => (
 					<button
 						type="button"
-						key={index}
-						className="flex items-center gap-2 !px-4 sm:gap-2 !text-[16px] sm:text-[18px]"
+						key={item.name}
 						onClick={() => handleSubmitIcon(item)}
+						disabled={loading}
+						className="flex items-center gap-2 !px-4 sm:gap-2 !text-[16px] sm:text-[18px]"
 					>
 						<span
 							style={{ backgroundColor: "" }}
@@ -68,7 +68,7 @@ const RoadmapInfoSelectItems = () => {
 						>
 							{item.icon}
 						</span>{" "}
-						{item.name}
+						<span>{item.name.replace("_", " ")}</span>
 					</button>
 				))}
 			</RoadmapInfoSelect>

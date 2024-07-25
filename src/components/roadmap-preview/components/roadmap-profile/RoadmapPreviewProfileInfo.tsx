@@ -100,12 +100,12 @@ const RoadmapPreviewProfileInfo = () => {
 				</div>
 			) : null}
 
-			<div className="w-full">
-				<span className="font-poppins text-[12px] font-normal text-grey-secondary block mb-1">
-					Social Media
-				</span>
+			{socialMedia?.length ? (
+				<div className="w-full">
+					<span className="font-poppins text-[12px] font-normal text-grey-secondary block mb-1">
+						Social Media
+					</span>
 
-				{socialMedia?.length ? (
 					<div className="w-full flex gap-2 mt-1">
 						{socialMedia.map(item => (
 							<a
@@ -118,8 +118,8 @@ const RoadmapPreviewProfileInfo = () => {
 							</a>
 						))}
 					</div>
-				) : null}
-			</div>
+				</div>
+			) : null}
 		</>
 	);
 };
