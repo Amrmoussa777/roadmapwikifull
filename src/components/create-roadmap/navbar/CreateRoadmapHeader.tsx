@@ -6,7 +6,7 @@ import { useFetch } from "@/hooks/useFetch";
 import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import { toggleRoadmapStatus } from "@/redux/slices/create-roadmap/createRoadmapSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
-import { NAVBAR_MENU_ICON } from "@public/icons/roadmapPreview";
+import { NAVBAR_MENU_ICON, SHARE_ICON } from "@public/icons/roadmapPreview";
 import { SAVE_ICON } from "@public/icons/roadmapSteps";
 import { useRouter } from "next/navigation";
 import React, { useContext } from "react";
@@ -28,6 +28,8 @@ const CreateRoadmapHeader = ({
 	const { fetchData, loading } = useFetch();
 
 	const handlePublishRoadmap = async () => {
+		if (status !== "DRAFT") return;
+
 		if (currentUser) {
 			await fetchData("POST", `roadmap/${roadmap?.id}/publish`);
 			dispatch(toggleRoadmapStatus());
@@ -65,16 +67,15 @@ const CreateRoadmapHeader = ({
 					>
 						<button
 							onClick={handlePublishRoadmap}
-							disabled={status === "PUBLISHED"}
 							className="w-[35px] sm:w-[100px] md:w-[132px] h-[35px] md:h-[40px] flex-jc-c gap-2 rounded-full text-white [&>svg]:w-[20px] [&>svg]:fill-white bg-primary-ultramarineBlue hover:-translate-y-1 transform transition duration-200 hover:shadow-md"
 						>
-							{SAVE_ICON}{" "}
+							{status === "PUBLISHED" ? SHARE_ICON : SAVE_ICON}{" "}
 							<span className="hidden sm:block">
 								{loading
 									? "Loading..."
 									: status === "DRAFT"
 									? "Publish"
-									: "Published"}
+									: "Share"}
 							</span>
 						</button>
 					</ShareModal>

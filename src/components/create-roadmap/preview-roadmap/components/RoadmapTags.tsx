@@ -60,19 +60,27 @@ const RoadmapTags = () => {
 				className="flex-jb-c roadmap-info-select !p-2 focus-within:border-primary-ultramarineBlue text-[16px] sm:text-xl"
 			>
 				{tags?.length ? (
-					<ul className="relative flex gap-1 md:gap-2 h-full w-[150px] sm:w-[300px]">
+					<ul className="relative flex gap-1 md:gap-2 h-full w-[150px] sm:w-[300px] md:w-[350px]">
 						<Swiper
-							slidesPerView={tags.length < 2 ? 1 : tags.length < 3 ? 1.5 : 2.5}
+							slidesPerView={
+								tags.length < 2
+									? 1
+									: tags.length < 3
+									? 1.5
+									: tags.length < 4
+									? 2.5
+									: 3.5
+							}
 							breakpoints={{
 								1280: {
 									slidesPerView:
-										tags.length < 2 ? 1 : tags.length < 3 ? 1.5 : 2.5,
+										tags.length < 2 ? 1 : tags.length < 3 ? 1.5 : 3.5,
 								},
 								876: {
-									slidesPerView: tags.length < 2 ? 1 : 1.2,
+									slidesPerView: tags.length < 2 ? 1 : 1.5,
 								},
 								100: {
-									slidesPerView: tags.length < 2 ? 1 : 1.2,
+									slidesPerView: tags.length < 2 ? 1 : 1.5,
 								},
 							}}
 							className="w-full relative z-0"

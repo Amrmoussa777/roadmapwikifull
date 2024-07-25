@@ -60,7 +60,7 @@ const RoadmapInfoSelectItems = () => {
 						key={item.name}
 						onClick={() => handleSubmitIcon(item)}
 						disabled={loading}
-						className="flex items-center gap-2 !px-4 sm:gap-2 !text-[16px] sm:text-[18px]"
+						className="flex items-center gap-2 !px-4 sm:gap-2 !text-[14px] md:!text-[16px]"
 					>
 						<span
 							style={{ backgroundColor: "" }}

@@ -170,7 +170,7 @@
 
 .ql-container {
 	border: 0 !important;
-	height: 200px !important;
+	height: 200px;
 }
 
 .ql-editor::-webkit-scrollbar {

@@ -48,7 +48,7 @@ const RoadmapInfoSelect = ({
 			{isOptionsHidden ? (
 				<div
 					ref={ref}
-					className="absolute w-full h-[250px] overflow-y-scroll hidden-scrollbar top-[83px] bg-white mt-1 border border-[#E0E0E0] rounded-xl flex flex-col gap-2 [&>button]:font-normal [&>button]:text-[18px] [&>:first-child]:rounded-t-xl [&>:last-child]:rounded-b-xl [&>button]:p-2 [&>button:hover]:bg-[#E0E0E0]/20"
+					className="absolute right-0 w-[calc(100vw-80px)] sm:w-full h-[250px] overflow-y-scroll hidden-scrollbar top-[83px] bg-white mt-1 border border-[#E0E0E0] rounded-xl flex flex-col gap-2 [&>button]:font-normal [&>button]:text-[18px] [&>:first-child]:rounded-t-xl [&>:last-child]:rounded-b-xl [&>button]:p-2 [&>button:hover]:bg-[#E0E0E0]/20"
 				>
 					{children}
 				</div>
