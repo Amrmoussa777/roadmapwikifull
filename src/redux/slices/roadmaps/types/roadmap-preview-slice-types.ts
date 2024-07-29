@@ -16,6 +16,7 @@ export interface RoadmapUserType {
 	image: string;
 	occupation: string;
 	roadmapsSubscribers: number;
+	cover: string;
 	fullName: string;
 	userName: string;
 	description: string;
@@ -70,6 +71,7 @@ export interface RoadmapStepType {
 	tags: RoadmapStepTagType[];
 	attachments: RoadmapStepAttachmentType[];
 	verifications: RoadmapStepVerificationType[];
+	order: number;
 }
 
 export interface RoadmapType {
@@ -89,7 +91,7 @@ export interface RoadmapType {
 	price: {
 		currency: string;
 		amount: number;
-	};
+	} | null;
 	user: RoadmapUserType;
 	steps: RoadmapStepType[];
 	tags: RoadmapTagType[];
