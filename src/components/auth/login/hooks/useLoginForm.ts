@@ -52,8 +52,24 @@ export const useLoginForm = () => {
 		if (!message) {
 			successToast("Logged in successfully");
 
+			const urlParams = new URLSearchParams(location.search);
+
+			const redirectPath = urlParams.get("redirectPath");
+
+			const newParams = new URLSearchParams();
+
+			urlParams.forEach((value, key) => {
+				if (key !== "redirectPath") {
+					newParams.append(key, value);
+				}
+			});
+
 			setTimeout(() => {
-				location.replace("/");
+				if (redirectPath) {
+					location.replace(`${redirectPath}?${newParams}`);
+				} else {
+					location.replace("/");
+				}
 			}, 1000);
 		} else {
 			errorToast(message);

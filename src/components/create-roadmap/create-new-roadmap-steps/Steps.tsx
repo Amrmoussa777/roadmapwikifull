@@ -25,12 +25,7 @@ const Steps = () => {
 			case 1:
 				return <RoadmapNameStep handleNextStep={handleNextStep} />;
 			case 2:
-				return (
-					<RoadmapDescriptionStep
-						handleNextStep={handleNextStep}
-						handleBackStep={handleBackStep}
-					/>
-				);
+				return <RoadmapDescriptionStep handleBackStep={handleBackStep} />;
 			default:
 				return <WelcomeStep />;
 		}

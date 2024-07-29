@@ -9,17 +9,22 @@ import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { addRoadmapStep } from "@/redux/slices/thunks/create-roadmap/addRoadmapStep";
 import { useParams } from "next/navigation";
 import RoadmapStepsLoader from "@/components/create-roadmap/preview-roadmap/components/RoadmapStepsLoader";
-import { expandRoadmapStep } from "@/redux/slices/create-roadmap/createRoadmapSlice";
+import {
+	expandRoadmapStep,
+	toggleStepToPreview,
+} from "@/redux/slices/create-roadmap/createRoadmapSlice";
 
 const RoadmapSteps = () => {
-	const { roadmap, isLoading } = useAppSelector(state => state.createRoadmap);
+	const { roadmap, isLoading, stepIdToPreview } = useAppSelector(
+		state => state.createRoadmap
+	);
 
 	const { handleReOrderRoadmapSteps } = useRoadmapSteps();
 	const dispatch = useAppDispatch();
 	const { roadmapId } = useParams();
 	const [isDragging, setIsDragging] = useState(false);
 
-	const handleAddRoadmapStep = () => {
+	const handleAddRoadmapStep = async () => {
 		dispatch(
 			addRoadmapStep({
 				roadmapId,
@@ -27,7 +32,13 @@ const RoadmapSteps = () => {
 				description: "Step default description",
 				duration: "1 day",
 			})
-		);
+		).then(({ payload }) => {
+			const { id } = payload;
+
+			if (stepIdToPreview) {
+				dispatch(toggleStepToPreview({ type: "expand", stepIdToPreview: id }));
+			}
+		});
 	};
 
 	useEffect(() => {

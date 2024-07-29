@@ -4,6 +4,7 @@ import PrivateNavbarLink from "@/components/navbar/components/PrivateNavbarLink"
 import { PrivateNavbarLinkTypes } from "@/components/navbar/types/private-navbar.types";
 import PathnameHelper from "@/helpers/pathname.helper";
 import { motion } from "framer-motion";
+import { ADD_ICON } from "@public/icons/userProfile";
 import {
 	CONVERSATION_ICON,
 	HOME_ICON,
@@ -18,6 +19,7 @@ const navbarLinks: PrivateNavbarLinkTypes[] = [
 	{ href: "/roadmaps", name: "Roadmaps", icon: ROADMAP_ICON },
 	{ href: "/conversation", name: "Conversation", icon: CONVERSATION_ICON },
 	{ href: "/monetization", name: "Monetization", icon: MONETIZATION_ICON },
+	{ href: "/create-roadmap", name: "Create Roadmap", icon: ADD_ICON },
 ];
 
 const PrivateNavbarLinks = () => {

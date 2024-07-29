@@ -18,6 +18,15 @@ class PathnameHelper {
 
 		return isHomePage;
 	}
+
+	static clearUrlParams() {
+		const newUrl =
+			window.location.protocol +
+			"//" +
+			window.location.host +
+			window.location.pathname;
+		window.history.replaceState({ path: newUrl }, "", newUrl);
+	}
 }
 
 export default PathnameHelper;

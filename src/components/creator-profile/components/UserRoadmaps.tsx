@@ -11,7 +11,8 @@ const UserRoadmaps = () => {
 	const { roadmaps, totalItems, handleShowMoreRoadmaps, loading } =
 		useRoadmaps();
 
-	if (!roadmaps && !loading) return <RoadmapStats text="No roadmaps found!" />;
+	if (!roadmaps.length && !loading)
+		return <RoadmapStats text="No roadmaps found!" />;
 
 	if (roadmaps.length)
 		return (

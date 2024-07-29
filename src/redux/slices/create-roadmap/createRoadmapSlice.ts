@@ -184,6 +184,8 @@ const createRoadmapSlice = createSlice({
 					...state.roadmap,
 					steps: updatedSteps,
 				};
+
+				state.verificationToUpdate = null;
 			}
 		},
 		addStepAttachment: (state, action) => {
@@ -233,9 +235,9 @@ const createRoadmapSlice = createSlice({
 			}
 		},
 		toggleStepToPreview: (state, action) => {
-			const stepIdToPreview = action.payload;
+			const { type, stepIdToPreview } = action.payload;
 
-			if (!state.stepIdToPreview) {
+			if (type === "expand") {
 				state.stepIdToPreview = stepIdToPreview;
 			} else {
 				state.stepIdToPreview = null;

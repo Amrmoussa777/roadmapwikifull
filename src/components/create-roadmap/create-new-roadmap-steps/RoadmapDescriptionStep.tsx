@@ -10,10 +10,8 @@ import { useRouter } from "next/navigation";
 import RoadmapSelectIcon from "@/components/create-roadmap/create-new-roadmap-steps/RoadmapSelectIcon";
 
 const RoadmapDescriptionStep = ({
-	handleNextStep,
 	handleBackStep,
 }: {
-	handleNextStep: () => void;
 	handleBackStep: () => void;
 }) => {
 	const [isLoading, setIsLoading] = useState(false);
@@ -42,6 +40,26 @@ const RoadmapDescriptionStep = ({
 			icon: iconKey,
 			description,
 		};
+
+		setIsLoading(true);
+
+		const newRoadmap = await createRoadmap(newRoadmapData);
+
+		setIsLoading(false);
+
+		const { id } = newRoadmap;
+
+		if (id) {
+			push(`/create-roadmap/${id}/steps`);
+		}
+	};
+
+	const handleSkipCreateRoadmap = async () => {
+		const newRoadmapData = {
+			title: draftRoadmap.title,
+			duration: "1 week",
+		};
+
 		setIsLoading(true);
 
 		const newRoadmap = await createRoadmap(newRoadmapData);
@@ -93,7 +111,6 @@ const RoadmapDescriptionStep = ({
 					placeholder="Roadmap description*"
 					onChange={changeDescription}
 					value={description}
-					required
 					autoFocus
 					className="h-[200px] resize-none py-4 create-new-roadmap-input hidden-scrollbar"
 				/>
@@ -110,6 +127,7 @@ const RoadmapDescriptionStep = ({
 				<button
 					className="min-w-[88px] h-[56px] text-[#606060] font-inter semibold text-[18px]"
 					type="button"
+					onClick={handleSkipCreateRoadmap}
 				>
 					Skip
 				</button>

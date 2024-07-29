@@ -29,8 +29,8 @@ const RoadmapStepPreview = () => {
 	const { id, title, description, duration, attachments, tags, verifications } =
 		stepToPreview || {};
 
-	const handleToggleStepPreview = () => {
-		dispatch(toggleStepToPreview(null));
+	const handleCollapseStepPreview = () => {
+		dispatch(toggleStepToPreview({ type: "collapse", stepIdToPreview: null }));
 	};
 
 	return (
@@ -58,7 +58,7 @@ const RoadmapStepPreview = () => {
 					>
 						<div className="flex-jb-c">
 							<button
-								onClick={handleToggleStepPreview}
+								onClick={handleCollapseStepPreview}
 								className="flex-jc-c gap-1 [&>svg]:w-[20px] text-primary-dark"
 							>
 								{CROSS_ICON}

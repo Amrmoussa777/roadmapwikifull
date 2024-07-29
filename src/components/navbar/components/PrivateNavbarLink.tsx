@@ -37,7 +37,7 @@ const PrivateNavbarLink = ({
 				isActive
 					? "md:bg-primary-ultramarineBlue/5 xl:bg-transparent rounded-full"
 					: ""
-			}`}
+			} ${href === "/create-roadmap" ? "md:hidden" : "block"}`}
 		>
 			<motion.div variants={liVariant}>
 				<Link

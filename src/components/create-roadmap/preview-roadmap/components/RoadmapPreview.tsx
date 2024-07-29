@@ -12,7 +12,7 @@ const RoadmapPreview = () => {
 	const dispatch = useAppDispatch();
 
 	const handlePreviewStep = (stepId: string) => {
-		dispatch(toggleStepToPreview(stepId));
+		dispatch(toggleStepToPreview({ type: "expand", stepIdToPreview: stepId }));
 	};
 
 	if (isLoading) return <RoadmapPreviewLoader />;

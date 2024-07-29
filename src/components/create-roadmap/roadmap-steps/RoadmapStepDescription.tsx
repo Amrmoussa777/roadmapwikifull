@@ -53,7 +53,7 @@ const RoadmapStepDescription = ({
 				value={description}
 				changeValue={setDescription}
 				onBlur={updateDescription}
-				customStyles="[&>div>div>div]:!h-[200px]"
+				customStyles="[&>div>div>.ql-editor]:!h-[200px]"
 			/>
 		</div>
 	);

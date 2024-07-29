@@ -13,8 +13,6 @@ export const useRoadmapDiscussion = () => {
 
 	const { id } = useParams();
 
-	console.log(id);
-
 	useEffect(() => {
 		dispatch(getRoadmapPosts({ roadmapId: id, pageNumber: 1, pageSize: 5 }));
 

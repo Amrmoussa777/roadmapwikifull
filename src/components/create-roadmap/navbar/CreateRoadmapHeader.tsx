@@ -2,14 +2,16 @@ import VerticalDivider from "@/components/common/divider/components/VerticalDivi
 import ShareModal from "@/components/common/modal/components/ShareModal";
 import CreateRoadmapHeaderLoader from "@/components/create-roadmap/navbar/CreateRoadmapHeaderLoader";
 import MenuButton from "@/components/landing-page/components/public-navbar/MenuButton";
+import PathnameHelper from "@/helpers/pathname.helper";
 import { useFetch } from "@/hooks/useFetch";
+import useToggle from "@/hooks/useToggle";
 import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import { toggleRoadmapStatus } from "@/redux/slices/create-roadmap/createRoadmapSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { NAVBAR_MENU_ICON, SHARE_ICON } from "@public/icons/roadmapPreview";
 import { SAVE_ICON } from "@public/icons/roadmapSteps";
-import { useRouter } from "next/navigation";
-import React, { useContext } from "react";
+import { useParams, useRouter } from "next/navigation";
+import React, { useContext, useEffect } from "react";
 
 const CreateRoadmapHeader = ({
 	sidebarMobile,
@@ -18,25 +20,48 @@ const CreateRoadmapHeader = ({
 	sidebarMobile: boolean;
 	toggleSidebarMobile: () => void;
 }) => {
+	const { roadmapId } = useParams();
 	const { roadmap, isLoading } = useAppSelector(state => state.createRoadmap);
 	const { currentUser } = useContext(CurrentUserContext);
 	const { title, id, status } = roadmap || {};
+	const { currentState: shareModal, toggle: toggleShareModal } =
+		useToggle(false);
 
 	const { push } = useRouter();
 	const dispatch = useAppDispatch();
 
 	const { fetchData, loading } = useFetch();
 
-	const handlePublishRoadmap = async () => {
-		if (status !== "DRAFT") return;
+	const publishRoadmap = async () => {
+		await fetchData("POST", `roadmap/${roadmapId}/publish`);
+		toggleShareModal();
+		dispatch(toggleRoadmapStatus());
+	};
+
+	const handleClickPublishRoadmap = () => {
+		if (status !== "DRAFT") return toggleShareModal();
 
 		if (currentUser) {
-			await fetchData("POST", `roadmap/${roadmap?.id}/publish`);
-			dispatch(toggleRoadmapStatus());
+			publishRoadmap();
 		} else {
-			return push("/auth/register");
+			return push(
+				`/auth/register?redirectPath=/create-roadmap/${roadmap?.id}/steps&action=publish`
+			);
 		}
 	};
+
+	// Handle callback
+	useEffect(() => {
+		const urlParams = new URLSearchParams(location.search);
+
+		if (urlParams.get("action") === "publish" && status && status === "DRAFT") {
+			setTimeout(() => {
+				publishRoadmap();
+
+				PathnameHelper.clearUrlParams();
+			}, 1000);
+		}
+	}, [status]);
 
 	if (isLoading) return <CreateRoadmapHeaderLoader />;
 
@@ -64,9 +89,11 @@ const CreateRoadmapHeader = ({
 					<ShareModal
 						link={`https://roadmapwiki.com/roadmap/${id}`}
 						messageText="Your roadmap has been published"
+						open={shareModal}
+						toggleShareModal={toggleShareModal}
 					>
 						<button
-							onClick={handlePublishRoadmap}
+							onClick={handleClickPublishRoadmap}
 							className="w-[35px] sm:w-[100px] md:w-[132px] h-[35px] md:h-[40px] flex-jc-c gap-2 rounded-full text-white [&>svg]:w-[20px] [&>svg]:fill-white bg-primary-ultramarineBlue hover:-translate-y-1 transform transition duration-200 hover:shadow-md"
 						>
 							{status === "PUBLISHED" ? SHARE_ICON : SAVE_ICON}{" "}

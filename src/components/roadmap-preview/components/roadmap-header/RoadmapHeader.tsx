@@ -65,6 +65,7 @@ const RoadmapHeader = () => {
 						onClick={handleSubscribeRoadmap}
 						isSubscribed={isSubscribed}
 					/>
+
 					<button className="w-[35px] h-[35px] md:w-[40px] md:h-[40px] flex-jc-c border border-grey-iconBorder rounded-full text-[#898989] hover:-translate-y-[2px] transform transition duration-200">
 						{SHARE_ICON}
 					</button>

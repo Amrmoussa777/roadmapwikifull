@@ -7,6 +7,7 @@ import {
 } from "@/components/auth/login/validation/registerValidation";
 import useInput from "@/components/common/input/hooks/useInput";
 import { useToast } from "@/hooks/useToast";
+import { useSearchParams } from "next/navigation";
 import { FormEvent, useState } from "react";
 
 export const useRegisterForm = () => {
@@ -28,6 +29,8 @@ export const useRegisterForm = () => {
 		error: fullNameError,
 		handleSetError: setFullNameError,
 	} = useInput("", fullNameValidator);
+
+	const params = useSearchParams();
 
 	const [isLoading, setIsLoading] = useState(false);
 	const { errorToast, successToast } = useToast();
@@ -63,8 +66,24 @@ export const useRegisterForm = () => {
 		if (!message) {
 			successToast("Registration successful");
 
+			const urlParams = new URLSearchParams(location.search);
+
+			const redirectPath = urlParams.get("redirectPath");
+
+			const newParams = new URLSearchParams();
+
+			urlParams.forEach((value, key) => {
+				if (key !== "redirectPath") {
+					newParams.append(key, value);
+				}
+			});
+
 			setTimeout(() => {
-				location.replace("/auth/login");
+				if (redirectPath) {
+					location.replace(`${redirectPath}?${newParams}`);
+				} else {
+					location.replace("/");
+				}
 			}, 1000);
 		} else {
 			errorToast(message);

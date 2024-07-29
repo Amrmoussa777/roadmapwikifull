@@ -1,5 +1,6 @@
 import HorizontalDivider from "@/components/common/divider/components/HorizontalDivider";
 import useInput from "@/components/common/input/hooks/useInput";
+import PathnameHelper from "@/helpers/pathname.helper";
 import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import { addPost } from "@/redux/slices/thunks/roadmaps/addPost";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
@@ -11,7 +12,13 @@ import {
 	TEXT_EDITOR_UNDERLINE,
 } from "@public/icons/roadmapPreview";
 import { useRouter } from "next/navigation";
-import React, { FormEvent, useContext, useEffect, useState } from "react";
+import React, {
+	FormEvent,
+	useContext,
+	useEffect,
+	useRef,
+	useState,
+} from "react";
 
 const RoadmapDiscussionAddPostForm = () => {
 	const {
@@ -27,12 +34,15 @@ const RoadmapDiscussionAddPostForm = () => {
 	const { roadmap } = useAppSelector(state => state.roadmapPreview);
 	const { push } = useRouter();
 	const { currentUser } = useContext(CurrentUserContext);
+	const formRef = useRef<HTMLTextAreaElement>(null);
 
 	const handleAddComment = (e: FormEvent) => {
 		e.preventDefault();
 
 		if (!currentUser) {
-			push("/auth/login");
+			return push(
+				`/auth/login?redirectPath=/roadmap/${roadmap?.id}&action=addPost&formData=${content}`
+			);
 		}
 
 		if (content.length < 1) {
@@ -54,6 +64,31 @@ const RoadmapDiscussionAddPostForm = () => {
 		}
 	}, [content]);
 
+	useEffect(() => {
+		const urlParams = new URLSearchParams(location.search);
+
+		if (urlParams.get("action") === "addPost") {
+			const formData = urlParams.get("formData") || "";
+
+			if (formRef.current) {
+				formRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+			}
+
+			changeContent(formData);
+
+			setTimeout(() => {
+				if (roadmap) {
+					setIsLoading(true);
+
+					dispatch(addPost({ title: "title", content, roadmapId: roadmap.id }));
+					setIsLoading(false);
+					resetValue();
+					PathnameHelper.clearUrlParams();
+				}
+			}, 1000);
+		}
+	}, [roadmap?.id]);
+
 	return (
 		<>
 			<form className="relative w-full p-1 bg-white mb-2 rounded-md border border-[#E0E0E0] focus-within:shadow-csm focus-within:border-primary-ultramarineBlue transition duration-200">
@@ -62,6 +97,7 @@ const RoadmapDiscussionAddPostForm = () => {
 					placeholder="Ask about the roadmap or discuss your thoughts..."
 					value={content}
 					onChange={changeContent}
+					ref={formRef}
 					className="w-full h-[100px] p-2 sm:text-[14px] placeholder:text-[14px] font-inter font-normal bg-white outline-none focus:border-primary-ultramarineBlue resize-none hidden-scrollbar"
 				/>
 

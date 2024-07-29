@@ -1,10 +1,7 @@
 import HorizontalDivider from "@/components/common/divider/components/HorizontalDivider";
-import {
-	DialogClose,
-	DialogContent,
-	DialogTrigger,
-} from "@/components/ui/dialog";
+import { DialogContent } from "@/components/ui/dialog";
 import { SOCIAL_MEDIA_ICONS } from "@/config/socialMediaIcons";
+import { useOnClickOutside } from "@/hooks/useOnClickOutside";
 import { useToast } from "@/hooks/useToast";
 import { COPY_ICON } from "@public/icons/roadmapSteps";
 import { CROSS_ICON } from "@public/icons/userProfile";
@@ -14,10 +11,14 @@ const ShareModal = ({
 	messageText,
 	link,
 	children,
+	open,
+	toggleShareModal,
 }: {
 	link: string;
 	messageText: string;
 	children: ReactNode;
+	open: boolean;
+	toggleShareModal: () => void;
 }) => {
 	const socialMedia = [
 		{ id: 1, link: "https://facebook.com/", platform: "FACEBOOK" },
@@ -34,20 +35,25 @@ const ShareModal = ({
 		successToast("Link copied to clipboard");
 	};
 
+	const ref = useOnClickOutside(toggleShareModal);
+
 	return (
-		<Dialog>
-			<DialogTrigger>{children}</DialogTrigger>
+		<Dialog open={open}>
+			{children}
 
 			<DialogContent>
-				<div className="w-[80%] md:w-[544px] rounded-[15px] shadow-clg p-8 bg-white">
+				<div
+					ref={ref}
+					className="w-[80%] md:w-[544px] rounded-[15px] shadow-clg p-8 bg-white"
+				>
 					<div className="flex-jb-c">
 						<h3 className="font-inter font-medium text-[24px] text-[#23262F]">
 							Share link
 						</h3>
 
-						<DialogClose>
-							<button className="text-[#332626]">{CROSS_ICON}</button>
-						</DialogClose>
+						<button onClick={toggleShareModal} className="text-[#332626]">
+							{CROSS_ICON}
+						</button>
 					</div>
 
 					<p className="mt-[32px] font-inter font-medium text-[#87898E] text-[16px] text-center">
