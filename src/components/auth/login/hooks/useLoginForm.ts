@@ -32,7 +32,6 @@ export const useLoginForm = () => {
 		const formData = { email, password };
 		const result = loginSchema.safeParse(formData);
 
-		console.log("Hello");
 		if (!result.success) {
 			setEmailError(
 				result.error.errors.find(err => err.path[0] === "email")?.message || ""

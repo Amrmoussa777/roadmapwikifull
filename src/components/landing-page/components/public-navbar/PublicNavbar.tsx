@@ -10,7 +10,7 @@ import MenuButton from "@/components/landing-page/components/public-navbar/MenuB
 import { usePathname } from "next/navigation";
 
 const navbarLinks = [
-	{ href: "/roadmap", name: "Roadmaps" },
+	{ href: "/roadmaps", name: "Roadmaps" },
 	{ href: "/how-it-works", name: "How it works" },
 	{ href: "/our-mission", name: "Our mission" },
 ];

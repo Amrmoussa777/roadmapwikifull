@@ -1,0 +1,129 @@
+"use client";
+
+import {
+	SHARE_ICON,
+	STEPS_ICON,
+	USERS_ICON,
+} from "@public/icons/roadmapPreview";
+import {
+	BOOKMARK_ICON,
+	DURATION_ICON,
+	MENU_ICON,
+} from "@public/icons/roadmapSteps";
+import React from "react";
+import { PLAY_ICON } from "@public/icons/landingPage";
+import { useRouter } from "next/navigation";
+import { RoadmapType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
+import Avatar from "@/components/common/avatar/components/Avatar";
+import HorizontalDivider from "@/components/common/divider/components/HorizontalDivider";
+import Link from "next/link";
+
+const RoadmapItem = ({
+	id,
+	title,
+	icon,
+	user,
+	isSubscribed,
+	duration,
+	_count,
+	tags,
+}: RoadmapType) => {
+	const { push } = useRouter();
+
+	const { fullName, userName, image } = user;
+	const { steps } = _count;
+
+	return (
+		<li className="bg-white rounded-[12px] py-[12px] md:py-[20px] px-[12px] md:px-[24px] mt-4 border border-[#D8D8D8]">
+			<div className="flex justify-between items-start gap-2">
+				<div className="flex flex-col sm:flex-row gap-2">
+					<Avatar
+						image_url={image}
+						name={fullName || ""}
+						customStyles="min-w-[40px] min-h-[40px] w-[40px] h-[40px] rounded-full object-cover !bg-primary-ultramarineBlue text-white"
+					/>
+
+					<div className="flex flex-col">
+						<h3 className="text-[18px] text-[#202020] font-inter font-semibold">
+							{title}
+						</h3>
+
+						<div className="hidden sm:flex flex-wrap justify-between items-center gap-2 md:gap-3 text-[12px] md:text-[14px] [&>span]:text-[#79828B] [&>span]:flex-jc-c [&>span]:gap-1 [&>span>svg]:text-[#ACB5B7]">
+							<span className="hover:text-[#202020] transition duration-200">
+								<Link href={`/user/${userName}`}>{fullName}</Link>
+							</span>
+							<span>
+								{DURATION_ICON} {duration}
+							</span>
+							<span>
+								{STEPS_ICON} {steps} Steps
+							</span>
+							<span>{USERS_ICON} 32 Subscribe</span>
+						</div>
+
+						{tags.length ? (
+							<div className="flex gap-2 mt-4">
+								{tags.map(tag => (
+									<p
+										key={tag.id}
+										className="font-inter font-normal text-[12px] bg-[#F6F6F6] text-[#202020] rounded-full px-2"
+									>
+										{tag.name}
+									</p>
+								))}
+							</div>
+						) : null}
+					</div>
+				</div>
+
+				<div className="ml-auto md:ml-0 flex-jc-c gap-2 text-[#898989] [&>button]:duration-200 [&>button]:transition [&>button:hover]:text-black [&>button]:w-[24px] [&>button]:h-[24px] [&>button>svg]:w-[24px] [&>button>svg]:h-[24px]">
+					<button>{SHARE_ICON}</button>
+					<button>{BOOKMARK_ICON}</button>
+					<button>{MENU_ICON}</button>
+				</div>
+			</div>
+
+			<div className="sm:hidden flex flex-wrap justify-start items-center gap-2 mt-4 md:gap-3 text-[12px] md:text-[14px] [&>span]:text-[#79828B] [&>span]:flex-jc-c [&>span]:gap-1 [&>span>svg]:text-[#ACB5B7]">
+				<span>{fullName}</span>
+
+				<span>
+					{DURATION_ICON} {duration} Weeks
+				</span>
+				<span>
+					{STEPS_ICON} {steps} Steps
+				</span>
+				<span>{USERS_ICON} 32 Subscribe</span>
+			</div>
+
+			<HorizontalDivider
+				height="h-[1px]"
+				bgColor="bg-[#D8D8D8]"
+				customStyles="my-4"
+			/>
+
+			<div className="flex items-center gap-4 justify-between">
+				<h3 className="font-inter font-semibold text-[17px] text-[#979797] mt-auto">
+					Free
+				</h3>
+
+				<div className="flex-jc-c [&>button]:w-full [&>button]:flex-jc-c [&>button]:gap-2 gap-3 [&>button]:py-[6px] [&>button]:px-[12px] [&>button]:rounded-[5px] text-[#383838] text-[14px] font-inter font-semibold">
+					<button
+						onClick={() => push(`/roadmap/${id}`)}
+						className="bg-[#F5F5F5] border border-transparent hover:shadow-csm hover:border-[#ACB5B7] hover:bg-white hover:text-primary-ultramarineBlue transition duration-200"
+					>
+						{PLAY_ICON} Preview
+					</button>
+					<button
+						onClick={() => push("/auth/login")}
+						disabled={isSubscribed}
+						className="bg-primary-ultramarineBlue text-white border border-transparent hover:border-primary-ultramarineBlue hover:bg-white hover:text-primary-ultramarineBlue transition duration-200"
+					>
+						{isSubscribed ? "Subscribed" : "Subscribe"}
+					</button>
+				</div>
+			</div>
+		</li>
+	);
+};
+
+export default RoadmapItem;

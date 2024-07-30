@@ -10,7 +10,7 @@ export const getUser = async (
 	try {
 		const res = await axios({
 			method: "GET",
-			url: `${process.env.NEXT_PUBLIC_BASE_URL}/users/me`,
+			url: `https://api.roadmapwiki.com/users/me`,
 			headers: {
 				Authorization: `Bearer ${accessToken}`,
 			},

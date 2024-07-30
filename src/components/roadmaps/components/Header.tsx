@@ -9,7 +9,7 @@ const Header = () => {
 	const { push } = useRouter();
 
 	return (
-		<section className="flex-jb-c">
+		<section className="hidden sm:flex-jb-c">
 			<div>
 				<h3 className="text-[24px] text-[#202020] font-semibold">
 					Let the great path begin 🚀

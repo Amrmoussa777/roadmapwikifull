@@ -27,6 +27,7 @@ export const roadmapList: LandingRoadmapType[] = [
 			image: "",
 			occupation: "Creator",
 			roadmapsSubscribers: 0,
+			cover: "",
 			fullName: "",
 			userName: "MohamedABdelsabour",
 			description: "",
@@ -79,6 +80,7 @@ export const roadmapList: LandingRoadmapType[] = [
 						link: "https://implicit.harvard.edu/implicit/takeatest.html",
 					},
 				],
+				order: 1,
 			},
 			{
 				id: "4b243ee7-52f1-410c-9bb4-ad2b115903de",
@@ -95,6 +97,7 @@ export const roadmapList: LandingRoadmapType[] = [
 						link: "https://implicit.harvard.edu/implicit/takeatest.html",
 					},
 				],
+				order: 1,
 			},
 			{
 				id: "1d16c42f-1570-46d2-ad9f-7be95407e981",
@@ -111,6 +114,7 @@ export const roadmapList: LandingRoadmapType[] = [
 						link: "https://implicit.harvard.edu/implicit/takeatest.html",
 					},
 				],
+				order: 1,
 			},
 			{
 				id: "9e421885-1b50-44b3-b003-e2beefaccf3b",
@@ -149,6 +153,7 @@ export const roadmapList: LandingRoadmapType[] = [
 						link: "https://implicit.harvard.edu/implicit/takeatest.html",
 					},
 				],
+				order: 1,
 			},
 			{
 				id: "4f78c02c-3bfc-4d35-a242-76b0dff8d5d1",
@@ -180,6 +185,7 @@ export const roadmapList: LandingRoadmapType[] = [
 						link: "https://implicit.harvard.edu/implicit/takeatest.html",
 					},
 				],
+				order: 1,
 			},
 			{
 				id: "e3d8ba48-a92b-4f50-a039-5aa28bd362e8",
@@ -211,6 +217,7 @@ export const roadmapList: LandingRoadmapType[] = [
 					},
 				],
 				verifications: [],
+				order: 1,
 			},
 			{
 				id: "806e0010-0f21-48b2-afba-2c3f7c4a3383",
@@ -221,6 +228,7 @@ export const roadmapList: LandingRoadmapType[] = [
 				tags: [],
 				attachments: [],
 				verifications: [],
+				order: 1,
 			},
 			{
 				id: "00b42216-2c67-4228-85fb-bd4b4a623dda",
@@ -231,6 +239,7 @@ export const roadmapList: LandingRoadmapType[] = [
 				tags: [],
 				attachments: [],
 				verifications: [],
+				order: 1,
 			},
 			{
 				id: "9df59296-91f1-470f-b803-bf1972b1f99c",
@@ -241,6 +250,7 @@ export const roadmapList: LandingRoadmapType[] = [
 				tags: [],
 				attachments: [],
 				verifications: [],
+				order: 1,
 			},
 			{
 				id: "97185507-aa34-47f6-b11b-9303e7443224",
@@ -258,6 +268,7 @@ export const roadmapList: LandingRoadmapType[] = [
 					},
 				],
 				verifications: [],
+				order: 1,
 			},
 			{
 				id: "1c19ac27-0baa-4721-b602-8c6c080374a5",
@@ -282,6 +293,7 @@ export const roadmapList: LandingRoadmapType[] = [
 						link: "https://www.w3schools.com/css/css_quiz.asp",
 					},
 				],
+				order: 1,
 			},
 		],
 		tags: [
@@ -331,6 +343,7 @@ export const roadmapList: LandingRoadmapType[] = [
 			roadmapsSubscribers: 0,
 			fullName: "",
 			userName: "Maximmillian Jones",
+			cover: "",
 			description: "",
 			experiences: [],
 			socialMedia: [],
@@ -356,6 +369,7 @@ export const roadmapList: LandingRoadmapType[] = [
 				],
 				attachments: [],
 				verifications: [],
+				order: 1,
 			},
 			{
 				id: "2db3b3dc-2d07-4291-9132-e0d769af1ec3",
@@ -379,6 +393,7 @@ export const roadmapList: LandingRoadmapType[] = [
 				],
 				attachments: [],
 				verifications: [],
+				order: 1,
 			},
 			{
 				id: "17c97c7a-e99a-4ed8-a17e-4108fb749ae3",
@@ -396,6 +411,7 @@ export const roadmapList: LandingRoadmapType[] = [
 				],
 				attachments: [],
 				verifications: [],
+				order: 1,
 			},
 			{
 				id: "319d1d2f-1b50-4d49-ab08-f23b32965f83",
@@ -406,6 +422,7 @@ export const roadmapList: LandingRoadmapType[] = [
 				tags: [],
 				attachments: [],
 				verifications: [],
+				order: 1,
 			},
 			{
 				id: "3316dd5f-0f7a-48d4-9a18-945e4bb8c3b9",
@@ -416,6 +433,7 @@ export const roadmapList: LandingRoadmapType[] = [
 				tags: [],
 				attachments: [],
 				verifications: [],
+				order: 1,
 			},
 			{
 				id: "30ec8705-6130-4145-9dba-205b313fb9c0",
@@ -426,6 +444,7 @@ export const roadmapList: LandingRoadmapType[] = [
 				tags: [],
 				attachments: [],
 				verifications: [],
+				order: 1,
 			},
 			{
 				id: "a36fa264-0e9d-4f42-94b7-5686259aac25",
@@ -436,6 +455,7 @@ export const roadmapList: LandingRoadmapType[] = [
 				tags: [],
 				attachments: [],
 				verifications: [],
+				order: 1,
 			},
 		],
 		tags: [],
@@ -471,6 +491,7 @@ export const roadmapList: LandingRoadmapType[] = [
 			image: "",
 			occupation: "Creator",
 			roadmapsSubscribers: 0,
+			cover: "",
 			fullName: "",
 			userName: "MohamedABdelsabour",
 			description: "",
@@ -517,6 +538,7 @@ export const roadmapList: LandingRoadmapType[] = [
 				tags: [],
 				attachments: [],
 				verifications: [],
+				order: 1,
 			},
 			{
 				id: "a4fe2b08-0493-4e20-b915-7290d8dc26a5",
@@ -527,6 +549,7 @@ export const roadmapList: LandingRoadmapType[] = [
 				tags: [],
 				attachments: [],
 				verifications: [],
+				order: 1,
 			},
 			{
 				id: "97ef740a-7b2f-4ff8-9dd1-4949f69770ff",
@@ -551,6 +574,7 @@ export const roadmapList: LandingRoadmapType[] = [
 						link: "https://www.w3schools.com/css/css_quiz.asp",
 					},
 				],
+				order: 1,
 			},
 			{
 				id: "ccc378bb-c7d4-4cf1-9113-85483cbc5604",
@@ -582,6 +606,7 @@ export const roadmapList: LandingRoadmapType[] = [
 						link: "https://www.w3schools.com/css/css_quiz.asp",
 					},
 				],
+				order: 1,
 			},
 			{
 				id: "0f2af7ad-778b-41e4-990d-2c20c772d31c",
@@ -612,6 +637,7 @@ export const roadmapList: LandingRoadmapType[] = [
 						link: "https://www.w3schools.com/css/css_quiz.asp",
 					},
 				],
+				order: 1,
 			},
 			{
 				id: "158b0923-4c94-4c41-9f5b-20cddf5b1ae1",
@@ -636,6 +662,7 @@ export const roadmapList: LandingRoadmapType[] = [
 						link: "https://www.w3schools.com/css/css_quiz.asp",
 					},
 				],
+				order: 1,
 			},
 			{
 				id: "6e105ca8-7959-449a-96fc-29f4166f5340",
@@ -652,6 +679,7 @@ export const roadmapList: LandingRoadmapType[] = [
 						link: "https://www.w3schools.com/css/css_quiz.asp",
 					},
 				],
+				order: 1,
 			},
 			{
 				id: "3317e905-ff0c-4b57-8998-d6c417778735",
@@ -662,6 +690,7 @@ export const roadmapList: LandingRoadmapType[] = [
 				tags: [],
 				attachments: [],
 				verifications: [],
+				order: 1,
 			},
 			{
 				id: "b1cc79c0-74bf-43e0-bc84-ad4f1d44be2a",
@@ -672,6 +701,7 @@ export const roadmapList: LandingRoadmapType[] = [
 				tags: [],
 				attachments: [],
 				verifications: [],
+				order: 1,
 			},
 			{
 				id: "a3739a62-d816-4e39-8d8a-b4a2d481b574",
@@ -682,6 +712,7 @@ export const roadmapList: LandingRoadmapType[] = [
 				tags: [],
 				attachments: [],
 				verifications: [],
+				order: 1,
 			},
 		],
 		tags: [],
@@ -720,6 +751,7 @@ export const roadmapList: LandingRoadmapType[] = [
 			fullName: "",
 			userName: "MohamedABdelsabour",
 			description: "",
+			cover: "",
 			experiences: [
 				{
 					id: "9999cdb4-7891-48a9-a000-da2eb29c2f39",
@@ -769,6 +801,7 @@ export const roadmapList: LandingRoadmapType[] = [
 						link: "https://implicit.harvard.edu/implicit/takeatest.html",
 					},
 				],
+				order: 1,
 			},
 			{
 				id: "4b243ee7-52f1-410c-9bb4-ad2b115903de",
@@ -785,6 +818,7 @@ export const roadmapList: LandingRoadmapType[] = [
 						link: "https://implicit.harvard.edu/implicit/takeatest.html",
 					},
 				],
+				order: 1,
 			},
 			{
 				id: "1d16c42f-1570-46d2-ad9f-7be95407e981",
@@ -801,6 +835,7 @@ export const roadmapList: LandingRoadmapType[] = [
 						link: "https://implicit.harvard.edu/implicit/takeatest.html",
 					},
 				],
+				order: 1,
 			},
 			{
 				id: "9e421885-1b50-44b3-b003-e2beefaccf3b",
@@ -839,6 +874,7 @@ export const roadmapList: LandingRoadmapType[] = [
 						link: "https://implicit.harvard.edu/implicit/takeatest.html",
 					},
 				],
+				order: 1,
 			},
 			{
 				id: "4f78c02c-3bfc-4d35-a242-76b0dff8d5d1",
@@ -870,6 +906,7 @@ export const roadmapList: LandingRoadmapType[] = [
 						link: "https://implicit.harvard.edu/implicit/takeatest.html",
 					},
 				],
+				order: 1,
 			},
 			{
 				id: "e3d8ba48-a92b-4f50-a039-5aa28bd362e8",
@@ -901,6 +938,7 @@ export const roadmapList: LandingRoadmapType[] = [
 					},
 				],
 				verifications: [],
+				order: 1,
 			},
 			{
 				id: "806e0010-0f21-48b2-afba-2c3f7c4a3383",
@@ -911,6 +949,7 @@ export const roadmapList: LandingRoadmapType[] = [
 				tags: [],
 				attachments: [],
 				verifications: [],
+				order: 1,
 			},
 			{
 				id: "00b42216-2c67-4228-85fb-bd4b4a623dda",
@@ -921,6 +960,7 @@ export const roadmapList: LandingRoadmapType[] = [
 				tags: [],
 				attachments: [],
 				verifications: [],
+				order: 1,
 			},
 			{
 				id: "9df59296-91f1-470f-b803-bf1972b1f99c",
@@ -931,6 +971,7 @@ export const roadmapList: LandingRoadmapType[] = [
 				tags: [],
 				attachments: [],
 				verifications: [],
+				order: 1,
 			},
 			{
 				id: "97185507-aa34-47f6-b11b-9303e7443224",
@@ -948,6 +989,7 @@ export const roadmapList: LandingRoadmapType[] = [
 					},
 				],
 				verifications: [],
+				order: 1,
 			},
 			{
 				id: "1c19ac27-0baa-4721-b602-8c6c080374a5",
@@ -972,6 +1014,7 @@ export const roadmapList: LandingRoadmapType[] = [
 						link: "https://www.w3schools.com/css/css_quiz.asp",
 					},
 				],
+				order: 1,
 			},
 		],
 		tags: [

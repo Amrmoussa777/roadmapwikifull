@@ -28,8 +28,8 @@ const CHECK_PLAN = (
 		<path
 			d="M6 9.94545L8.84444 13L14 7"
 			stroke="black"
-			stroke-linecap="round"
-			stroke-linejoin="round"
+			strokeLinecap="round"
+			strokeLinejoin="round"
 		/>
 	</svg>
 );

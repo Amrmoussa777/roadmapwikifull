@@ -16,7 +16,7 @@ const GeneralStatistics = () => {
 					</p>
 				</div>
 
-				<button className="flex-jc-c font-inter font-medium text-[14px] text-[#606060] hover:opacity-80 group transition duration-200">
+				<button className="min-w-[110px] flex-jc-c font-inter font-medium text-[14px] text-[#606060] hover:opacity-80 group transition duration-200">
 					View more{" "}
 					<span className="w-[17px] h-[17px] rotate-90 [&>svg]:w-[17px] [&>svg]:h-[17px] group-hover:translate-x-[2px] transition duration-200">
 						{ARROW_ICON}

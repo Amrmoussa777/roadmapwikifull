@@ -12,15 +12,13 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 const Summary = () => {
-	const isMobile = useSizeScreen(768);
+	const { responsive } = useSizeScreen(768);
 
 	return (
 		<div className="">
 			<Swiper
 				slidesPerView={4}
-				className={`[&>div>div]:!w-[156px] [&>div>div]:lg:!w-[200px] [&>div]:flex-jb-c ${
-					!isMobile ? "swiper-no-swiping" : ""
-				}`}
+				className={`[&>div>div]:!w-[156px] [&>div>div]:lg:!w-[200px] [&>div]:flex-jb-c`}
 				breakpoints={{
 					1280: {
 						slidesPerView: 4,

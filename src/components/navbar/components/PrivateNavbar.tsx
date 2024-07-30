@@ -25,7 +25,7 @@ const PrivateNavbar = () => {
 
 	return (
 		<div className="bg-white w-full border-b border-[#E0E0E0]">
-			<nav className="relative max-w-[1440px] h-[74px] flex-jb-c mx-auto p-2 md:p-6 lg:px-8 bg-white z-50">
+			<nav className="relative max-w-[1440px] h-[74px] flex-jb-c mx-auto p-6 lg:px-8 bg-white z-50">
 				<RoadmapLogo />
 				<PrivateNavbarMenuButton isMenuOpen={isMenuOpen} toggle={toggle} />
 
@@ -39,6 +39,11 @@ const PrivateNavbar = () => {
 							customStyles="h-[20px] my-auto rounded-full hidden md:block xl:hidden"
 						/>
 						<PrivateNavbarButtons />
+						<VerticalDivider
+							width="min-w-[1px]"
+							bgColor="bg-[#D8D8D8]"
+							customStyles="h-[20px] my-auto rounded-full mx-2 sm:mx-4"
+						/>
 						<PrivateNavbarCurrentUser />
 						<PrivateNavbarMenuButton isMenuOpen={isMenuOpen} toggle={toggle} />
 					</div>

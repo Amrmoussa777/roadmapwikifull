@@ -110,7 +110,7 @@ const GeneralStatisticsPreview = () => {
 				</button>
 			</div>
 
-			<div className="h-full md:h-[203px] mt-[24px] px-[24px] py-[28px] flex-jb-c flex-col md:flex-row gap-8 border border-[#DCDCDC] rounded-[12px]">
+			<div className="h-full md:h-[203px] mt-[24px] px-[24px] py-[28px] flex justify-between flex-col md:flex-row gap-8 border border-[#DCDCDC] rounded-[12px]">
 				<div className="h-full flex flex-col justify-between">
 					<h3 className="font-inter font-medium text-[16] text-[#383838]">
 						Average Reach
@@ -126,7 +126,7 @@ const GeneralStatisticsPreview = () => {
 					</p>
 				</div>
 
-				<div className="w-[531px]">
+				<div className="w-full sm:w-[531px]">
 					<Bar data={data} options={options} />
 
 					<div className="flex-jb-c mt-4 font-inter [&>div>span]:font-semibold [&>div>span]:text-[#202020] text-[#898989] text-[14px]">
