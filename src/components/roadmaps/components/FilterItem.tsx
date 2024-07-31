@@ -1,8 +1,10 @@
 "use client";
 
 import CheckboxWithLabel from "@/components/common/selection-inputs/components/CheckboxWithLabel";
-import { FilterItemProps } from "@/components/roadmaps/types/index.types";
-import useToggle from "@/hooks/useToggle";
+import {
+	FilterItemProps,
+	FilterListItem,
+} from "@/components/roadmaps/types/index.types";
 import React from "react";
 
 const FilterItem = ({
@@ -10,8 +12,29 @@ const FilterItem = ({
 	filterList,
 	row,
 	circle,
+	setNewList,
 }: FilterItemProps) => {
-	const { currentState, toggle } = useToggle();
+	const handleChangeFilterItemList = (
+		list: FilterListItem[],
+		newItem: FilterListItem,
+		setNewList: (list: FilterListItem[]) => void
+	) => {
+		const updatedList = list.map(item => {
+			if (item.label.id === newItem.label.id) {
+				return {
+					...item,
+					checked: true,
+				};
+			} else {
+				return {
+					...item,
+					checked: false,
+				};
+			}
+		});
+
+		setNewList(updatedList);
+	};
 
 	return (
 		<li className="mb-[25px]">
@@ -26,21 +49,23 @@ const FilterItem = ({
 						label={item.label}
 						bgColor={
 							circle
-								? currentState
+								? item.checked
 									? "bg-[#506CF0]"
 									: "bg-white"
 								: "bg-[#506CF0]"
 						}
-						checked={currentState}
-						toggle={toggle}
+						checked={item.checked}
+						toggle={() =>
+							handleChangeFilterItemList(filterList, item, setNewList)
+						}
 						customStyles={`${
 							circle
 								? "rounded-full [&>svg]:hidden border-[2px] border-[#DADADA]"
-								: currentState
+								: item.checked
 								? "bg-[#506CF0]"
 								: "bg-[#F6F6F6]"
 						} ${
-							currentState && circle
+							item.checked && circle
 								? "border-[8px] bg-white !border-[#506CF0]"
 								: ""
 						}`}

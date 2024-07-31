@@ -4,6 +4,8 @@ import VerticalDivider from "@/components/common/divider/components/VerticalDivi
 import { useOnClickOutside } from "@/hooks/useOnClickOutside";
 import { useSizeScreen } from "@/hooks/useSizeScreen";
 import useToggle from "@/hooks/useToggle";
+import { changeSearchType } from "@/redux/slices/roadmapList/roadmapListSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { ARROW_ICON } from "@public/icons/roadmapSteps";
 import { ROADMAP_ICON, SEARCH_ICON } from "@public/icons/roadmaps";
 import { AnimatePresence, motion } from "framer-motion";
@@ -13,6 +15,15 @@ const SearchRoadmapForm = () => {
 	const { currentState: isOptionsHidden, toggle: hideOptions } =
 		useToggle(false);
 	const { responsive } = useSizeScreen(640);
+
+	const dispatch = useAppDispatch();
+	const { searchType } = useAppSelector(state => state.roadmapList);
+
+	const handleChangeSearchType = (newSearchType: "roadmaps" | "creators") => {
+		dispatch(changeSearchType(newSearchType));
+
+		hideOptions();
+	};
 
 	const ref = useOnClickOutside(hideOptions);
 
@@ -42,9 +53,9 @@ const SearchRoadmapForm = () => {
 					id="roadmapDuration"
 					type="button"
 					onClick={hideOptions}
-					className="w-fit roadmap-info-select font-poppins text-[16px] border-none sm:text-[18px] text-[#383838] hidden sm:flex-jb-c"
+					className="w-fit roadmap-info-select capitalize font-poppins text-[16px] border-none sm:text-[18px] text-[#383838] hidden sm:flex-jb-c"
 				>
-					Roadmaps
+					{searchType}
 					<span
 						className={`!text-[#3F3F3F] [&>svg]:transition-all ${
 							isOptionsHidden ? "[&>svg]:rotate-0" : "[&>svg]:rotate-180"
@@ -66,12 +77,14 @@ const SearchRoadmapForm = () => {
 						>
 							<button
 								type="button"
+								onClick={() => handleChangeSearchType("roadmaps")}
 								className="roadmap-info-select mt-0 rounded-none rounded-t-xl hover:bg-[#F6F6F6] font-poppins text-[16px] border-none sm:text-[18px] text-[#383838]"
 							>
 								Roadmaps
 							</button>
 							<button
 								type="button"
+								onClick={() => handleChangeSearchType("creators")}
 								className="roadmap-info-select hover:bg-[#F6F6F6] rounded-none rounded-b-xl font-poppins text-[16px] border-none sm:text-[18px] text-[#383838]"
 							>
 								Creators

@@ -2,6 +2,7 @@ import createRoadmapSlice from "@/redux/slices/create-roadmap/createRoadmapSlice
 import roadmapPreviewPostsSlice from "@/redux/slices/roadmaps/roadmapPreviewPostsSlice";
 import roadmapPreviewRepliesSlice from "@/redux/slices/roadmaps/roadmapPreviewRepliesSlice";
 import roadmapPreviewSlice from "@/redux/slices/roadmaps/roadmapPreviewSlice";
+import roadmapListSlice from "@/redux/slices/roadmapList/roadmapListSlice";
 import userProfileSlice from "@/redux/slices/user-profile/userProfileSlice";
 import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
@@ -13,6 +14,7 @@ export const store = configureStore({
 		userProfile: userProfileSlice,
 		roadmapPreviewReplies: roadmapPreviewRepliesSlice,
 		createRoadmap: createRoadmapSlice,
+		roadmapList: roadmapListSlice,
 	},
 });
 

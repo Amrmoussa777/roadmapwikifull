@@ -10,27 +10,47 @@ import {
 	DURATION_ICON,
 	MENU_ICON,
 } from "@public/icons/roadmapSteps";
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { PLAY_ICON } from "@public/icons/landingPage";
 import { useRouter } from "next/navigation";
 import { RoadmapType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
 import Avatar from "@/components/common/avatar/components/Avatar";
 import HorizontalDivider from "@/components/common/divider/components/HorizontalDivider";
 import Link from "next/link";
+import { CurrentUserContext } from "@/providers/CurrentUserContext";
+import { useFetch } from "@/hooks/useFetch";
 
 const RoadmapItem = ({
 	id,
 	title,
 	icon,
 	user,
-	isSubscribed,
+	isSubscribed: initialIsSubscribed,
 	duration,
 	_count,
 	tags,
 }: RoadmapType) => {
+	const [isSubscribed, setIsSubscribed] = useState(initialIsSubscribed);
+	const { currentUser } = useContext(CurrentUserContext);
+	const { fetchData, loading } = useFetch();
+
+	const handleSubscribeRoadmap = async () => {
+		if (!currentUser) return push("/auth/login");
+
+		if (!isSubscribed) {
+			await fetchData("POST", `roadmap/${id}/subscribe`);
+
+			setIsSubscribed(prev => !prev);
+		}
+	};
+
+	useEffect(() => {
+		setIsSubscribed(initialIsSubscribed);
+	}, [initialIsSubscribed]);
+
 	const { push } = useRouter();
 
-	const { fullName, userName, image } = user;
+	const { id: userId, fullName, userName, image } = user;
 	const { steps } = _count;
 
 	return (
@@ -113,13 +133,19 @@ const RoadmapItem = ({
 					>
 						{PLAY_ICON} Preview
 					</button>
-					<button
-						onClick={() => push("/auth/login")}
-						disabled={isSubscribed}
-						className="bg-primary-ultramarineBlue text-white border border-transparent hover:border-primary-ultramarineBlue hover:bg-white hover:text-primary-ultramarineBlue transition duration-200"
-					>
-						{isSubscribed ? "Subscribed" : "Subscribe"}
-					</button>
+					{userId !== currentUser?.id ? (
+						<button
+							onClick={handleSubscribeRoadmap}
+							disabled={isSubscribed}
+							className="bg-primary-ultramarineBlue text-white border border-transparent disabled:hover:bg-primary-ultramarineBlue disabled:hover:text-white disabled:hover:border disabled:hover:border-transparent hover:border-primary-ultramarineBlue hover:bg-white hover:text-primary-ultramarineBlue transition duration-200"
+						>
+							{loading
+								? "Loading..."
+								: isSubscribed
+								? "Subscribed"
+								: "Subscribe"}
+						</button>
+					) : null}
 				</div>
 			</div>
 		</li>

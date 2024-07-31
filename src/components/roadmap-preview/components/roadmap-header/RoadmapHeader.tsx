@@ -7,10 +7,9 @@ import SubscribeButton from "@/components/common/button/SubscribeButton";
 import { SHARE_ICON } from "@public/icons/roadmapPreview";
 import { useAppSelector } from "@/redux/store";
 import LoadingRoadmapHeader from "@/components/roadmap-preview/components/loading/LoadingRoadmapHeader";
-import { getCookie } from "cookies-next";
-import axios from "axios";
 import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import { useRouter } from "next/navigation";
+import { useFetch } from "@/hooks/useFetch";
 
 const RoadmapHeader = () => {
 	const { roadmap, isLoading } = useAppSelector(state => state.roadmapPreview);
@@ -18,20 +17,13 @@ const RoadmapHeader = () => {
 	const [isSubscribed, setIsSubscribed] = useState(initialIsSubscribed);
 	const { currentUser } = useContext(CurrentUserContext);
 	const { push } = useRouter();
+	const { fetchData } = useFetch();
 
 	const handleSubscribeRoadmap = async () => {
 		if (!currentUser) return push("/auth/login");
 
-		const accessToken = getCookie("accessToken");
-
 		if (!isSubscribed) {
-			await axios({
-				method: "POST",
-				url: `${process.env.NEXT_PUBLIC_BASE_URL}/roadmap/${id}/subscribe`,
-				headers: {
-					Authorization: `Bearer ${accessToken}`,
-				},
-			});
+			await fetchData("POST", `roadmap/${id}/subscribe`);
 
 			setIsSubscribed(prev => !prev);
 		}

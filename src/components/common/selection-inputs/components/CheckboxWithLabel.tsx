@@ -34,7 +34,9 @@ const CheckboxWithLabel = ({
 			{
 				<label
 					htmlFor={label.id}
-					className="pl-2 cursor-pointer font-poppins text-[14px] text-[#484848]"
+					className={`pl-2 cursor-pointer font-poppins text-[14px] ${
+						checked ? "text-primary-ultramarineBlue" : "text-[#484848]"
+					}`}
 				>
 					{label.name}
 				</label>
