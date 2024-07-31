@@ -21,7 +21,7 @@ const roadmapListSlice = createSlice({
 		updatedFilterList: (state, action) => {
 			const newFilter = action.payload;
 
-			state.filterList[newFilter.filterKey] = newFilter.id;
+			state.filterList[newFilter.filterKey] = newFilter.value;
 		},
 	},
 });

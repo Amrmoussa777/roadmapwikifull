@@ -79,7 +79,7 @@ const useRoadmapsFilter = () => {
 			dispatch(
 				updatedFilterList({
 					filterKey: "roadmapType",
-					id: selectedRoadmapType?.label.id,
+					value: selectedRoadmapType?.label.id,
 				})
 			);
 	}, [roadmapTypeList]);

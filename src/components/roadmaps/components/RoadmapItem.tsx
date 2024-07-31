@@ -64,9 +64,12 @@ const RoadmapItem = ({
 					/>
 
 					<div className="flex flex-col">
-						<h3 className="text-[18px] text-[#202020] font-inter font-semibold">
+						<Link
+							href={`/roadmap/${id}`}
+							className="w-fit text-[18px] text-[#202020] font-inter font-semibold hover:text-primary-ultramarineBlue transition duration-200"
+						>
 							{title}
-						</h3>
+						</Link>
 
 						<div className="hidden sm:flex flex-wrap justify-between items-center gap-2 md:gap-3 text-[12px] md:text-[14px] [&>span]:text-[#79828B] [&>span]:flex-jc-c [&>span]:gap-1 [&>span>svg]:text-[#ACB5B7]">
 							<span className="hover:text-[#202020] transition duration-200">

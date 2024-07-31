@@ -3,7 +3,7 @@ import { RoadmapType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice
 export type RoadmapListSliceType = {
 	roadmapListView: "list" | "grid";
 	searchType: "roadmaps" | "creators";
-	filterList: Record<string, string>;
+	filterList: Record<string, string> | Record<string, number[]>;
 	sortType: "latest";
 	roadmapList: RoadmapType[];
 };

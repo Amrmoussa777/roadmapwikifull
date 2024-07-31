@@ -9,10 +9,10 @@ import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { ARROW_ICON } from "@public/icons/roadmapSteps";
 import { ROADMAP_ICON, SEARCH_ICON } from "@public/icons/roadmaps";
 import { AnimatePresence, motion } from "framer-motion";
-import React from "react";
+import React, { useEffect } from "react";
 
 const SearchRoadmapForm = () => {
-	const { currentState: isOptionsHidden, toggle: hideOptions } =
+	const { currentState: isOptionsVisible, toggle: hideOptions } =
 		useToggle(false);
 	const { responsive } = useSizeScreen(640);
 
@@ -24,6 +24,12 @@ const SearchRoadmapForm = () => {
 
 		hideOptions();
 	};
+
+	useEffect(() => {
+		if (responsive && isOptionsVisible) {
+			hideOptions();
+		}
+	}, [responsive]);
 
 	const ref = useOnClickOutside(hideOptions);
 
@@ -58,7 +64,7 @@ const SearchRoadmapForm = () => {
 					{searchType}
 					<span
 						className={`!text-[#3F3F3F] [&>svg]:transition-all ${
-							isOptionsHidden ? "[&>svg]:rotate-0" : "[&>svg]:rotate-180"
+							isOptionsVisible ? "[&>svg]:rotate-0" : "[&>svg]:rotate-180"
 						}`}
 					>
 						{ARROW_ICON}
@@ -66,7 +72,7 @@ const SearchRoadmapForm = () => {
 				</button>
 
 				<AnimatePresence>
-					{isOptionsHidden ? (
+					{isOptionsVisible ? (
 						<motion.div
 							initial={{ y: -10, opacity: 0 }}
 							animate={{ y: 0, opacity: 1 }}

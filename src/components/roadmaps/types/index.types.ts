@@ -19,3 +19,15 @@ export type FilterItemProps = {
 	row?: boolean;
 	circle?: boolean;
 };
+
+export type FilterContentProps = {
+	responsive: boolean;
+	searchTypeList: any[];
+	setSearchTypeList: (list: any[]) => void;
+	roadmapTypeList: any[];
+	setRoadmapTypeList: (list: any[]) => void;
+};
+
+export type BottomButtonsProps = {
+	toggleMobileFilter: () => void;
+};

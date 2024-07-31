@@ -7,7 +7,7 @@ import React from "react";
 
 const CreatorHome = () => {
 	return (
-		<main className="relative max-w-[1440px] mx-auto p-2 md:p-6 lg:px-8 py-[2rem] bg-white">
+		<main className="relative max-w-[1440px] mx-auto p-6 lg:px-8 py-[2rem] bg-white">
 			<Header />
 
 			<div className="flex justify-between lg:gap-[20px] xl:gap-[40px] mt-[30px]">

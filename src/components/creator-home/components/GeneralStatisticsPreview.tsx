@@ -4,7 +4,12 @@ import useToggle from "@/hooks/useToggle";
 import { AT_MARK_ICON } from "@public/icons/creatorHome";
 import { ARROW_ICON } from "@public/icons/roadmapSteps";
 import React from "react";
-import { Bar } from "react-chartjs-2";
+import dynamic from "next/dynamic";
+
+const Bar = dynamic(() => import("react-chartjs-2").then(mod => mod.Bar), {
+	ssr: false,
+});
+
 import {
 	Chart as ChartJS,
 	CategoryScale,
