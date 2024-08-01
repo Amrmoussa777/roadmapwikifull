@@ -32,7 +32,11 @@ const UserLinks = () => {
 			{links.length ? (
 				<ul className="flex flex-col gap-2">
 					{links.map(link => (
-						<UserLink key={link.href} link={link} disabled={isEditEnabled} />
+						<UserLink
+							key={link.id}
+							socialMediaLink={link}
+							disabled={!isEditEnabled}
+						/>
 					))}
 				</ul>
 			) : (
@@ -46,10 +50,7 @@ const UserLinks = () => {
 				<>
 					<AddLinkForm />
 
-					<UserProfileSaveButton
-						handleSave={toggleEdit}
-						handleCancel={toggleEdit}
-					/>
+					<UserProfileSaveButton handleCancel={toggleEdit} />
 				</>
 			) : null}
 		</div>

@@ -2,8 +2,9 @@ import React, { ReactNode, useEffect } from "react";
 import useToggle from "@/hooks/useToggle";
 import { ARROW_ICON } from "@public/icons/roadmapSteps";
 import { useOnClickOutside } from "@/hooks/useOnClickOutside";
+import { AnimatePresence, motion } from "framer-motion";
 
-const RoadmapInfoSelect = ({
+const DropSelect = ({
 	children,
 	label,
 	activeOption,
@@ -45,16 +46,22 @@ const RoadmapInfoSelect = ({
 				</span>
 			</button>
 
-			{isOptionsHidden ? (
-				<div
-					ref={ref}
-					className="absolute right-0 w-[calc(100vw-80px)] sm:w-full h-[250px] overflow-y-scroll hidden-scrollbar top-[83px] bg-white mt-1 border border-[#E0E0E0] rounded-xl flex flex-col gap-2 [&>button]:font-normal [&>button]:text-[18px] [&>:first-child]:rounded-t-xl [&>:last-child]:rounded-b-xl [&>button]:p-2 [&>button:hover]:bg-[#E0E0E0]/20"
-				>
-					{children}
-				</div>
-			) : null}
+			<AnimatePresence>
+				{isOptionsHidden ? (
+					<motion.div
+						initial={{ y: -10, opacity: 0 }}
+						animate={{ y: 0, opacity: 1 }}
+						exit={{ y: -10, opacity: 0 }}
+						transition={{ duration: 0.1 }}
+						ref={ref}
+						className="absolute right-0 w-[calc(100vw-80px)] sm:w-full h-[250px] overflow-y-scroll hidden-scrollbar top-[83px] bg-white mt-1 border border-[#E0E0E0] rounded-xl flex flex-col gap-2 [&>button]:font-normal [&>button]:text-[18px] [&>:first-child]:rounded-t-xl [&>:last-child]:rounded-b-xl [&>button]:p-2 [&>button:hover]:bg-[#E0E0E0]/20"
+					>
+						{children}
+					</motion.div>
+				) : null}
+			</AnimatePresence>
 		</div>
 	);
 };
 
-export default RoadmapInfoSelect;
+export default DropSelect;

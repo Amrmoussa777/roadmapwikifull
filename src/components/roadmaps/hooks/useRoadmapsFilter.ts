@@ -1,31 +1,38 @@
+import { useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
+import {
+	changeSearchType,
+	clearRoadmapFilter,
+	updatedFilterList,
+} from "@/redux/slices/roadmapList/roadmapListSlice";
+import {
+	categoriesList,
+	roadmapDurationListData,
+	searchTypeListData,
+} from "@/components/roadmaps/data/filterLists";
 import useDisableScroll from "@/hooks/useDisableScrolling";
 import { useSizeScreen } from "@/hooks/useSizeScreen";
 import useToggle from "@/hooks/useToggle";
-import {
-	changeSearchType,
-	updatedFilterList,
-} from "@/redux/slices/roadmapList/roadmapListSlice";
-import { useAppDispatch, useAppSelector } from "@/redux/store";
-import { useEffect, useState } from "react";
+import { FilterListItem } from "@/components/roadmaps/types/index.types";
 
 const useRoadmapsFilter = () => {
-	const { currentState: filterIsOpen, toggle: toggleMobileFilter } =
-		useToggle(false);
-	const [searchTypeList, setSearchTypeList] = useState([
-		{ label: { id: "roadmaps", name: "Roadmaps" }, checked: true },
-		{ label: { id: "creators", name: "Creators" }, checked: false },
-	]);
-	const [roadmapTypeList, setRoadmapTypeList] = useState([
-		{ label: { id: "all", name: "All" }, checked: false },
-		{ label: { id: "example", name: "Example" }, checked: false },
-		{ label: { id: "free", name: "Free" }, checked: false },
-	]);
-
 	const dispatch = useAppDispatch();
 	const { searchType, filterList } = useAppSelector(state => state.roadmapList);
 
-	useDisableScroll(filterIsOpen);
+	const [searchTypeList, setSearchTypeList] =
+		useState<FilterListItem[]>(searchTypeListData);
+	const [roadmapCategoryList, setRoadmapCategoryList] = useState<
+		FilterListItem[]
+	>(categoriesList.slice(0, 15));
+	const [roadmapDurationList, setRoadmapDurationList] = useState<
+		FilterListItem[]
+	>(roadmapDurationListData);
+
+	const { currentState: filterIsOpen, toggle: toggleMobileFilter } =
+		useToggle(false);
 	const { responsive } = useSizeScreen(640);
+
+	useDisableScroll(filterIsOpen);
 
 	const mobileMenuVariant = {
 		opened: {
@@ -44,57 +51,61 @@ const useRoadmapsFilter = () => {
 		},
 	};
 
+	const setSelectedItems = (
+		list: FilterListItem[],
+		key: "categories" | "durations"
+	) => {
+		const selectedItems = list
+			.filter(item => item.checked)
+			.map(item => item.label.id);
+
+		dispatch(updatedFilterList({ filterKey: key, value: selectedItems }));
+	};
+
 	useEffect(() => {
 		const selectedItem = searchTypeList.find(item => item.checked);
 
-		selectedItem ? dispatch(changeSearchType(selectedItem.label.id)) : null;
+		if (selectedItem && selectedItem.label.id !== searchType) {
+			dispatch(changeSearchType(selectedItem.label.id));
+		}
 	}, [searchTypeList]);
 
 	useEffect(() => {
-		const selectedItem = searchTypeList.find(item => item.checked);
-
-		if (searchType !== selectedItem?.label.id) {
-			const updatedSearchTypeList = searchTypeList.map(item => {
-				if (item.label.id === searchType) {
-					return {
-						...item,
-						checked: true,
-					};
-				} else {
-					return {
-						...item,
-						checked: false,
-					};
-				}
-			});
-
-			setSearchTypeList(updatedSearchTypeList);
-		}
-	}, [searchType]);
+		setSelectedItems(roadmapCategoryList, "categories");
+	}, [roadmapCategoryList]);
 
 	useEffect(() => {
-		const selectedRoadmapType = roadmapTypeList.find(item => item.checked);
+		setSelectedItems(roadmapDurationList, "durations");
+	}, [roadmapDurationList]);
 
-		selectedRoadmapType &&
-			dispatch(
-				updatedFilterList({
-					filterKey: "roadmapType",
-					value: selectedRoadmapType?.label.id,
-				})
-			);
-	}, [roadmapTypeList]);
+	const showMoreCategories = () => {
+		setRoadmapCategoryList(
+			roadmapCategoryList.length > 15
+				? categoriesList.slice(0, 15)
+				: categoriesList
+		);
+	};
 
-	console.log(filterList);
+	const clearFilter = () => {
+		dispatch(clearRoadmapFilter());
+		setSearchTypeList(searchTypeListData);
+		setRoadmapCategoryList(categoriesList.slice(0, 15));
+		setRoadmapDurationList(roadmapDurationListData);
+	};
 
 	return {
 		toggleMobileFilter,
 		searchTypeList,
 		setSearchTypeList,
-		roadmapTypeList,
-		setRoadmapTypeList,
+		roadmapCategoryList,
+		setRoadmapCategoryList,
 		responsive,
 		mobileMenuVariant,
 		filterIsOpen,
+		showMoreCategories,
+		roadmapDurationList,
+		setRoadmapDurationList,
+		clearFilter,
 	};
 };
 

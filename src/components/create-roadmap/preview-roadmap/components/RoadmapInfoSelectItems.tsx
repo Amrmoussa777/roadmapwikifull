@@ -1,5 +1,5 @@
 import RoadmapDurationPicker from "@/components/create-roadmap/preview-roadmap/components/RoadmapDurationPicker";
-import RoadmapInfoSelect from "@/components/create-roadmap/preview-roadmap/components/RoadmapInfoSelect";
+import DropSelect from "@/components/create-roadmap/preview-roadmap/components/RoadmapInfoSelect";
 import { ROADMAP_ICONS, RoadmapIconType } from "@/config/roadmapIcons";
 import { useFetch } from "@/hooks/useFetch";
 import { updateRoadmapData } from "@/redux/slices/create-roadmap/createRoadmapSlice";
@@ -35,7 +35,7 @@ const RoadmapInfoSelectItems = () => {
 		<>
 			<RoadmapDurationPicker defaultDuration={defaultDuration || ""} />
 
-			<RoadmapInfoSelect
+			<DropSelect
 				label={{ id: "roadmapIcon", name: "Roadmap icon" }}
 				activeOption={
 					<span className="flex-jc-c gap-1 sm:gap-2 sm:text-[18px] [&>svg]:fill-red-500">
@@ -71,7 +71,7 @@ const RoadmapInfoSelectItems = () => {
 						<span>{item.name.replace("_", " ")}</span>
 					</button>
 				))}
-			</RoadmapInfoSelect>
+			</DropSelect>
 		</>
 	);
 };

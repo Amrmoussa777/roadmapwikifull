@@ -4,6 +4,7 @@ import UserLinks from "@/components/user-profile/components/UserLinks";
 import UserProfilePayments from "@/components/user-profile/components/UserProfilePayments";
 import UserProfileRoadmaps from "@/components/user-profile/components/UserProfileRoadmaps";
 import UserProfileTabs from "@/components/user-profile/components/UserProfileTabs";
+import UserSubscriptions from "@/components/user-profile/components/UserSubscriptions";
 import React from "react";
 
 const UserProfile = () => {
@@ -17,6 +18,7 @@ const UserProfile = () => {
 				<div className="w-full md:w-[calc(100%-296px)] mt-8 md:mt-4 md:pl-4 flex flex-col gap-4">
 					<PersonalInfo />
 					<UserLinks />
+					<UserSubscriptions />
 					<UserProfileRoadmaps />
 					<UserProfilePayments />
 				</div>

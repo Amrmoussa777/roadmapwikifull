@@ -3,7 +3,7 @@ import {
 	EMAIL_ICON,
 	JOB_ICON,
 	PHONE_ICON,
-	USERNAME_ICON,
+	USER_ICON,
 } from "@public/icons/userProfile";
 
 export const personalInfoInputs = [
@@ -21,9 +21,9 @@ export const personalInfoInputs = [
 	},
 	{
 		type: "text",
-		label: "Username",
-		icon: USERNAME_ICON,
-		name: "userName",
+		label: "Full name",
+		icon: USER_ICON,
+		name: "fullName",
 	},
 	{
 		type: "text",

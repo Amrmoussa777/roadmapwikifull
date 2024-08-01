@@ -37,9 +37,9 @@ interface UserProfileStateTypes {
 	personalInfo: Record<string, string>[] | null;
 	isLoading: boolean;
 	links: {
-		icon: React.ReactNode;
-		href: string;
-		label: string;
+		id: string;
+		link: string;
+		platform: string;
 	}[];
 	error: null | string;
 }

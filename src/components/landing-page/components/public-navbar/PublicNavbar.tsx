@@ -24,7 +24,7 @@ const PublicNavbar = () => {
 	if (pathname.includes("auth")) return;
 
 	return (
-		<div className="relative bg-white w-full">
+		<div className="relative bg-white border-b border-[#E0E0E0] w-full">
 			<nav className="relative max-w-[1440px] h-[64px] flex-jb-c mx-auto p-6 lg:px-8 bg-white z-50">
 				<RoadmapLogo />
 				<NavbarLinks links={navbarLinks} />

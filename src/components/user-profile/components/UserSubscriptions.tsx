@@ -8,7 +8,7 @@ import { ARROW_ICON } from "@public/icons/roadmapSteps";
 import Link from "next/link";
 import React from "react";
 
-const UserProfileRoadmaps = () => {
+const UserSubscriptions = () => {
 	const { isLoading } = useAppSelector(state => state.userProfile);
 
 	const roadmaps: RoadmapType[] = [
@@ -300,10 +300,10 @@ const UserProfileRoadmaps = () => {
 	if (isLoading) return <UserProfileRoadmapsLoader />;
 
 	return (
-		<div id="myRoadmaps" className="bg-white sm:rounded-[12px] p-[18px]">
+		<div id="mySubscriptions" className="bg-white sm:rounded-[12px] p-[18px]">
 			<div className="flex-jb-c mb-4">
 				<h3 className="font-inter font-semibold text-[18px] text-[#202020]">
-					My roadmaps
+					My subscriptions
 					<span className="w-[25px] h-[24px] ml-2 rounded-full inline-flex justify-center items-center text-[14px] text-[#79828B] bg-black/5">
 						4
 					</span>
@@ -326,4 +326,4 @@ const UserProfileRoadmaps = () => {
 	);
 };
 
-export default UserProfileRoadmaps;
+export default UserSubscriptions;

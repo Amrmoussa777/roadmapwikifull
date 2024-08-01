@@ -127,7 +127,7 @@ const LatestRoadmaps = () => {
 				</button>
 			</div>
 
-			<ul className="grid grid-col-1 lg:grid-cols-2 gap-[20px] lg:gap-[32px]">
+			<ul className="grid grid-col-1 md:grid-cols-2 gap-[20px] lg:gap-[32px]">
 				{roadmaps.map(roadmap => (
 					<LatestRoadmap key={roadmap.id} {...roadmap} />
 				))}

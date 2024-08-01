@@ -46,14 +46,14 @@ const LatestRoadmap = ({
 					</Link>
 
 					<div className="flex flex-col gap-2">
-						<div className="hidden sm:flex flex-wrap justify-between items-center gap-2 md:gap-3 text-[12px] md:text-[14px] [&>span]:text-[#383838] [&>span]:flex-jc-c [&>span]:gap-1 [&>span>svg]:text-[#ACB5B7]">
-							<span className="min-w-[70px]">
+						<div className="hidden sm:flex flex-wrap items-center gap-2 md:gap-3 text-[12px] md:text-[14px] [&>span]:text-[#383838] [&>span]:flex-jc-c [&>span]:gap-1 [&>span>svg]:text-[#ACB5B7]">
+							<span>
 								{DURATION_ICON} {duration}
 							</span>
-							<span className="min-w-[70px]">
+							<span>
 								{STEPS_ICON} {steps} Steps
 							</span>
-							<span className="min-w-[70px]">{USERS_ICON} 32 Subscribe</span>
+							<span>{USERS_ICON} 32 Subscribe</span>
 							{status === "DRAFT" ? (
 								<div className="h-[20px] text-[12px] text-[#79828B] bg-[#F6F6F6] rounded-full px-[8px]">
 									<p>Not published</p>

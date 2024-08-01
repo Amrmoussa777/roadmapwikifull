@@ -1,12 +1,10 @@
-import { ReactNode } from "react";
-
 export type UserLinkType = {
-	label: string;
-	href: string;
-	icon: ReactNode;
+	id: string;
+	platform: string;
+	link: string;
 };
 
 export type UserLinkProps = {
-	link: UserLinkType;
+	socialMediaLink: UserLinkType;
 	disabled: boolean;
 };

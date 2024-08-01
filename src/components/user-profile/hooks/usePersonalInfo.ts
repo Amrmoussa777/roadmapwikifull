@@ -6,7 +6,7 @@ import {
 	updateUserPersonalInfo,
 } from "@/redux/slices/user-profile/userProfileSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export const usePersonalInfo = () => {
 	const { currentState: isEditEnabled, toggle: toggleEdit } = useToggle(false);

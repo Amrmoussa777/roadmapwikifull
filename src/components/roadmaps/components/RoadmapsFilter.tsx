@@ -12,10 +12,14 @@ const RoadmapsFilter: React.FC = () => {
 		toggleMobileFilter,
 		filterIsOpen,
 		responsive,
-		roadmapTypeList,
+		roadmapCategoryList,
 		searchTypeList,
-		setRoadmapTypeList,
 		setSearchTypeList,
+		showMoreCategories,
+		setRoadmapCategoryList,
+		roadmapDurationList,
+		setRoadmapDurationList,
+		clearFilter,
 	} = useRoadmapsFilter();
 
 	return (
@@ -34,10 +38,17 @@ const RoadmapsFilter: React.FC = () => {
 								responsive={responsive}
 								searchTypeList={searchTypeList}
 								setSearchTypeList={setSearchTypeList}
-								roadmapTypeList={roadmapTypeList}
-								setRoadmapTypeList={setRoadmapTypeList}
+								roadmapCategoryList={roadmapCategoryList}
+								setRoadmapCategoryList={setRoadmapCategoryList}
+								showMoreCategories={showMoreCategories}
+								roadmapDurationList={roadmapDurationList}
+								setRoadmapDurationList={setRoadmapDurationList}
+								toggleMobileFilter={toggleMobileFilter}
 							/>
-							<BottomButtons toggleMobileFilter={toggleMobileFilter} />
+							<BottomButtons
+								toggleMobileFilter={toggleMobileFilter}
+								clearFilter={clearFilter}
+							/>
 						</motion.div>
 					)}
 				</AnimatePresence>
@@ -47,10 +58,13 @@ const RoadmapsFilter: React.FC = () => {
 						responsive={responsive}
 						searchTypeList={searchTypeList}
 						setSearchTypeList={setSearchTypeList}
-						roadmapTypeList={roadmapTypeList}
-						setRoadmapTypeList={setRoadmapTypeList}
+						roadmapCategoryList={roadmapCategoryList}
+						setRoadmapCategoryList={setRoadmapCategoryList}
+						showMoreCategories={showMoreCategories}
+						roadmapDurationList={roadmapDurationList}
+						setRoadmapDurationList={setRoadmapDurationList}
+						clearFilter={clearFilter}
 					/>
-					<BottomButtons toggleMobileFilter={toggleMobileFilter} />
 				</div>
 			)}
 

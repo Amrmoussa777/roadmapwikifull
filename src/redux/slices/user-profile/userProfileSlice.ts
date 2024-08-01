@@ -1,26 +1,9 @@
 import { fetchUserByUsername } from "@/redux/slices/thunks/getUserByUsername";
-import { USER_IG_ICON, X_ICON, YT_ICON } from "@public/icons/userProfile";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: UserProfileStateTypes = {
 	personalInfo: null,
-	links: [
-		{
-			icon: YT_ICON,
-			href: "https://youtube.com/",
-			label: "Youtube Channel",
-		},
-		{
-			icon: X_ICON,
-			href: "https://twitter.com/",
-			label: "X Account",
-		},
-		{
-			icon: USER_IG_ICON,
-			href: "https://instagram.com/",
-			label: "Instagram Account",
-		},
-	],
+	links: [],
 	user: null,
 	isLoading: true,
 	error: null,
@@ -57,9 +40,22 @@ const userProfileSlice = createSlice({
 			}
 		},
 		addNewUserLink: (state, action) => {
-			const newLink = action.payload;
+			const newLinks = action.payload;
 
-			state.links.push(newLink);
+			state.links = newLinks;
+			if (state.user) {
+				state.user.socialMedia = newLinks;
+			}
+		},
+		deleteUserLink: (state, action) => {
+			const linkId = action.payload;
+
+			const updatedLinks = state.links.filter(link => link.id !== linkId);
+
+			state.links = updatedLinks;
+			if (state.user) {
+				state.user.socialMedia = updatedLinks;
+			}
 		},
 	},
 	extraReducers(builder) {
@@ -71,13 +67,13 @@ const userProfileSlice = createSlice({
 			state.isLoading = false;
 			state.user = action.payload;
 
-			const { email, description, userName, occupation, socialMedia } =
+			const { email, description, fullName, occupation, socialMedia } =
 				action.payload;
 
 			state.personalInfo = [
 				{ name: "email", value: email },
 				{ name: "description", value: description },
-				{ name: "userName", value: userName },
+				{ name: "fullName", value: fullName },
 				{ name: "occupation", value: occupation },
 			];
 
@@ -91,6 +87,10 @@ const userProfileSlice = createSlice({
 	},
 });
 
-export const { updateUserData, updateUserPersonalInfo, addNewUserLink } =
-	userProfileSlice.actions;
+export const {
+	updateUserData,
+	updateUserPersonalInfo,
+	addNewUserLink,
+	deleteUserLink,
+} = userProfileSlice.actions;
 export default userProfileSlice.reducer;

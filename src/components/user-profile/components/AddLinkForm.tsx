@@ -1,71 +1,20 @@
-import useInput from "@/components/common/input/hooks/useInput";
-import RoadmapInfoSelect from "@/components/create-roadmap/preview-roadmap/components/RoadmapInfoSelect";
+import DropSelect from "@/components/create-roadmap/preview-roadmap/components/RoadmapInfoSelect";
+import { useAddLinkForm } from "@/components/user-profile/hooks/useAddLinkForm";
 import { SOCIAL_MEDIA_ICONS_OJB } from "@/config/socialMediaIcons";
-import { useFetch } from "@/hooks/useFetch";
-import useToggle from "@/hooks/useToggle";
-import { CurrentUserContext } from "@/providers/CurrentUserContext";
-import { addNewUserLink } from "@/redux/slices/user-profile/userProfileSlice";
-import { useAppDispatch } from "@/redux/store";
 import { ADD_ICON } from "@public/icons/userProfile";
-import { platform } from "os";
-import React, {
-	FormEvent,
-	ReactNode,
-	useContext,
-	useEffect,
-	useState,
-} from "react";
+import React from "react";
 
 const AddLinkForm = () => {
-	const { currentUser } = useContext(CurrentUserContext);
-	const dispatch = useAppDispatch();
-
 	const {
-		value: linkValue,
-		changeValue: changeLinkValue,
-		handleSetError,
-		error: validationError,
-		reset,
-	} = useInput("");
-	const { currentState: isAdding, toggle: toggleAddingLink } = useToggle(false);
-	const { fetchData, loading } = useFetch();
-
-	const defaultIcon = SOCIAL_MEDIA_ICONS_OJB.find(
-		icon => icon.name === "FACEBOOK"
-	);
-
-	const [socialMediaActive, setSocialMediaActive] = useState<{
-		name: string;
-		icon: ReactNode;
-	} | null>({ name: "FACEBOOK", icon: defaultIcon?.icon } || null);
-
-	const handleSubmitSocialMediaLink = async (e: FormEvent) => {
-		e.preventDefault();
-
-		if (!isAdding) return toggleAddingLink();
-
-		if (!linkValue.length)
-			return handleSetError("Social media link is required");
-
-		const bodyData = {
-			platform: socialMediaActive?.name,
-			link: linkValue,
-		};
-
-		const { data } = await fetchData(
-			"POST",
-			`users/${currentUser?.id}/social-media`,
-			bodyData
-		);
-
-		dispatch(addNewUserLink(data));
-		reset();
-		toggleAddingLink();
-	};
-
-	useEffect(() => {
-		if (linkValue.length && validationError) handleSetError("");
-	}, [linkValue]);
+		isAdding,
+		setSocialMediaActive,
+		changeLinkValue,
+		handleSubmitSocialMediaLink,
+		linkValue,
+		validationError,
+		socialMediaActive,
+		loading,
+	} = useAddLinkForm();
 
 	return (
 		<form className="mt-6">
@@ -73,7 +22,7 @@ const AddLinkForm = () => {
 				<>
 					<div className="grid grid-cols-2 gap-4">
 						<div>
-							<RoadmapInfoSelect
+							<DropSelect
 								label={{ id: "socialMediaIcon", name: "Social media icon" }}
 								activeOption={
 									<span className="flex-jc-c gap-1 sm:gap-2 sm:text-[18px] [&>svg]:fill-red-500">
@@ -108,7 +57,7 @@ const AddLinkForm = () => {
 										<span>{item.name.replace("_", " ")}</span>
 									</button>
 								))}
-							</RoadmapInfoSelect>
+							</DropSelect>
 						</div>
 
 						<div>
@@ -118,7 +67,7 @@ const AddLinkForm = () => {
 							<input
 								id="socialMediaLink"
 								type="text"
-								placeholder="e.g https://twitter.com/"
+								placeholder="e.g https://facebook.com/"
 								value={linkValue}
 								onChange={changeLinkValue}
 								className={`roadmap-info-select text-[16px] sm:text-[18px]`}
@@ -134,6 +83,7 @@ const AddLinkForm = () => {
 
 			<button
 				onClick={handleSubmitSocialMediaLink}
+				disabled={loading}
 				className="flex items-center gap-2 mt-8 font-inter text-[16px] text-primary-ultramarineBlue group"
 			>
 				<span className="w-[40px] h-[40px] flex-jc-c bg-primary-ultramarineBlue text-white border border-transparent group-hover:bg-white group-hover:text-primary-ultramarineBlue group-hover:border-primary-ultramarineBlue group-hover:shadow-md rounded-full transition duration-200">

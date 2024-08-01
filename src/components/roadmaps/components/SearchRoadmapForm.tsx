@@ -1,20 +1,25 @@
 "use client";
 
 import VerticalDivider from "@/components/common/divider/components/VerticalDivider";
+import useInput from "@/components/common/input/hooks/useInput";
 import { useOnClickOutside } from "@/hooks/useOnClickOutside";
 import { useSizeScreen } from "@/hooks/useSizeScreen";
 import useToggle from "@/hooks/useToggle";
-import { changeSearchType } from "@/redux/slices/roadmapList/roadmapListSlice";
+import {
+	changeSearchType,
+	changeSearchValue,
+} from "@/redux/slices/roadmapList/roadmapListSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { ARROW_ICON } from "@public/icons/roadmapSteps";
 import { ROADMAP_ICON, SEARCH_ICON } from "@public/icons/roadmaps";
 import { AnimatePresence, motion } from "framer-motion";
-import React, { useEffect } from "react";
+import React, { FormEvent, useEffect } from "react";
 
 const SearchRoadmapForm = () => {
 	const { currentState: isOptionsVisible, toggle: hideOptions } =
 		useToggle(false);
 	const { responsive } = useSizeScreen(640);
+	const { value, changeValue, reset } = useInput("");
 
 	const dispatch = useAppDispatch();
 	const { searchType } = useAppSelector(state => state.roadmapList);
@@ -23,6 +28,13 @@ const SearchRoadmapForm = () => {
 		dispatch(changeSearchType(newSearchType));
 
 		hideOptions();
+	};
+
+	const handleSearchSubmit = (e: FormEvent) => {
+		e.preventDefault();
+
+		dispatch(changeSearchValue(value));
+		reset();
 	};
 
 	useEffect(() => {
@@ -34,7 +46,10 @@ const SearchRoadmapForm = () => {
 	const ref = useOnClickOutside(hideOptions);
 
 	return (
-		<form className="w-full h-[60px] sm:h-[80px] flex items-center mt-[20px] shadow-[0_8px_30px_rgb(0,0,0,0.12)] rounded-[16px] p-[12px] sm:p-[20px] border border-transparent focus-within:border-primary-ultramarineBlue focus-within:shadow-[5px_5px_0px_0px_rgba(80,108,240),0_8px_30px_rgb(0,0,0,0.12)] transition duration-200">
+		<form
+			onSubmit={handleSearchSubmit}
+			className="w-full h-[60px] sm:h-[80px] flex items-center mt-[20px] shadow-[0_8px_30px_rgb(0,0,0,0.12)] rounded-[16px] p-[12px] sm:p-[20px] border border-transparent focus-within:border-primary-ultramarineBlue focus-within:shadow-[5px_5px_0px_0px_rgba(80,108,240),0_8px_30px_rgb(0,0,0,0.12)] transition duration-200"
+		>
 			<div className="flex gap-4 w-full sm:w-2/4">
 				<span className="text-[#C4C4C4]">{ROADMAP_ICON}</span>
 				<input
@@ -44,6 +59,8 @@ const SearchRoadmapForm = () => {
 							? "Search for roadmap"
 							: "Enter field name you want roadmap about"
 					}`}
+					value={value}
+					onChange={changeValue}
 					className="w-full outline-none text-[16px] font-poppins placeholder:font-poppins placeholder:text-[16px]"
 				/>
 			</div>

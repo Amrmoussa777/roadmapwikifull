@@ -35,11 +35,11 @@ const CheckboxWithLabel = ({
 			{
 				<label
 					htmlFor={label.id}
-					className={`pl-2 cursor-pointer font-poppins text-[14px] ${
+					className={`pl-2 cursor-pointer font-poppins text-[14px] capitalize ${
 						checked ? "text-primary-ultramarineBlue" : "text-[#484848]"
 					}`}
 				>
-					{label.name}
+					{label.name.toLowerCase()}
 				</label>
 			}
 		</div>
