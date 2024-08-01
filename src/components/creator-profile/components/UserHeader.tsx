@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import cover from "@public/roadmapCover.png";
 import UserImage from "@/components/creator-profile/components/UserImage";
 import UserDetails from "@/components/creator-profile/components/UserDetails";
@@ -13,12 +13,20 @@ import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { useParams, useRouter } from "next/navigation";
 import { fetchUserByUsername } from "@/redux/slices/thunks/getUserByUsername";
 import UserHeaderLoader from "@/components/user-profile/components/loading/UserHeaderLoader";
+import { CurrentUserContext } from "@/providers/CurrentUserContext";
+import { EDIT_ICON } from "@public/icons/userProfile";
+import useToggle from "@/hooks/useToggle";
+import ChangeCover from "@/components/creator-profile/components/ChangeCover";
 
 const UserHeader = () => {
 	const dispatch = useAppDispatch();
 	const { username } = useParams();
 	const { isLoading, user } = useAppSelector(state => state.userProfile);
 	const { push } = useRouter();
+	const { currentUser } = useContext(CurrentUserContext);
+	const isUserProfile = currentUser?.id === user?.id;
+	const { currentState: uploadModal, toggle: toggleUploadModal } =
+		useToggle(false);
 
 	useEffect(() => {
 		if (!user && !isLoading) push("/");
@@ -49,8 +57,12 @@ const UserHeader = () => {
 				<UserDetails />
 
 				<div className="h-[40px] mr-0 md:mr-4 flex-jc-c gap-2 mt-4">
-					<FollowButton customStyles="!rounded-[5px]" />
-					<DirectMessageButton customStyles="border-[#D8D8D8]" />
+					{!isUserProfile ? (
+						<>
+							<FollowButton customStyles="!rounded-[5px]" />
+							<DirectMessageButton customStyles="border-[#D8D8D8]" />
+						</>
+					) : null}
 
 					<button className="min-w-[40px] min-h-[40px] flex-jc-c rounded-full border-2 border-[#D8D8D8] text-[#898989] hover:-translate-y-[2px] transform transition duration-200">
 						{MENU_ICON}
@@ -59,13 +71,24 @@ const UserHeader = () => {
 			</div>
 
 			<div className="absolute right-4 top-4 flex-jc-c gap-2">
-				{/* <button className="w-[40px] h-[40px] flex-jc-c rounded-full bg-white/20 text-white border border-white/20">
-					{EDIT_ICON}
-				</button> */}
+				{isUserProfile ? (
+					<button
+						onClick={toggleUploadModal}
+						className="w-[40px] h-[40px] flex-jc-c rounded-full bg-white/20 text-white border border-white/20"
+					>
+						{EDIT_ICON}
+					</button>
+				) : null}
+
 				<button className="w-[40px] h-[40px] flex-jc-c rounded-full bg-white text-[#333333]">
 					{SHARE_ICON}
 				</button>
 			</div>
+
+			<ChangeCover
+				uploadModal={uploadModal}
+				toggleUploadModal={toggleUploadModal}
+			/>
 		</div>
 	);
 };

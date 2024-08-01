@@ -16,6 +16,7 @@ const PersonalInfo = () => {
 		isEditEnabled,
 		toggleEdit,
 		onFormValueChange,
+		handleSave,
 	} = usePersonalInfo();
 
 	const { isLoading } = useAppSelector(state => state.userProfile);
@@ -50,8 +51,8 @@ const PersonalInfo = () => {
 
 			{isEditEnabled ? (
 				<UserProfileSaveButton
-					toggleEdit={toggleEdit}
 					handleCancel={handleCancel}
+					handleSave={handleSave}
 				/>
 			) : null}
 		</div>

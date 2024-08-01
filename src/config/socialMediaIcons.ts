@@ -6,7 +6,12 @@ import {
 	YOUTUBE_ICON,
 } from "@public/icons/socialMedia";
 import { SOCIAL_MEDIA_ENUM } from "../enum/socialMediaEnum";
+
 import { ReactNode } from "react";
+export type SocialMediaIconType = {
+	name: SOCIAL_MEDIA_ENUM;
+	icon: ReactNode;
+};
 
 export const SOCIAL_MEDIA_ICONS: Record<string, ReactNode> = {
 	[SOCIAL_MEDIA_ENUM.TWITTER]: TWITTER_ICON,
@@ -15,3 +20,11 @@ export const SOCIAL_MEDIA_ICONS: Record<string, ReactNode> = {
 	[SOCIAL_MEDIA_ENUM.YOUTUBE]: YOUTUBE_ICON,
 	[SOCIAL_MEDIA_ENUM.FACEBOOK]: FACEBOOK_ICON,
 };
+
+export const SOCIAL_MEDIA_ICONS_OJB: SocialMediaIconType[] = [
+	{ name: SOCIAL_MEDIA_ENUM.FACEBOOK, icon: FACEBOOK_ICON },
+	{ name: SOCIAL_MEDIA_ENUM.INSTAGRAM, icon: INSTAGRAM_ICON },
+	{ name: SOCIAL_MEDIA_ENUM.LINKEDIN, icon: LINKEDIN_ICON },
+	{ name: SOCIAL_MEDIA_ENUM.TWITTER, icon: TWITTER_ICON },
+	{ name: SOCIAL_MEDIA_ENUM.YOUTUBE, icon: YOUTUBE_ICON },
+];

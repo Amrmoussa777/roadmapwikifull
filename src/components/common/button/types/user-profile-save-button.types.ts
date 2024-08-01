@@ -1,4 +1,4 @@
 export type UserProfileSaveButtonProps = {
-	toggleEdit: () => void;
 	handleCancel: () => void;
+	handleSave: () => void;
 };

@@ -2,11 +2,12 @@
 
 import UserProfileEditButton from "@/components/common/button/UserProfileEditButton";
 import UserProfileSaveButton from "@/components/common/button/UserProfileSaveButton";
+import NumberStats from "@/components/common/states/NumberStats";
+import AddLinkForm from "@/components/user-profile/components/AddLinkForm";
 import UserLink from "@/components/user-profile/components/UserLink";
 import UserLinksLoader from "@/components/user-profile/components/loading/UserLinksLoader";
 import useToggle from "@/hooks/useToggle";
 import { useAppSelector } from "@/redux/store";
-import { ADD_ICON } from "@public/icons/userProfile";
 import React from "react";
 
 const UserLinks = () => {
@@ -28,23 +29,25 @@ const UserLinks = () => {
 				/>
 			</div>
 
-			<ul className="flex flex-col gap-2">
-				{links.map(link => (
-					<UserLink key={link.href} link={link} disabled={isEditEnabled} />
-				))}
-			</ul>
+			{links.length ? (
+				<ul className="flex flex-col gap-2">
+					{links.map(link => (
+						<UserLink key={link.href} link={link} disabled={isEditEnabled} />
+					))}
+				</ul>
+			) : (
+				<NumberStats
+					text="No social media links yet"
+					customStyles="!text-[14px] text-start"
+				/>
+			)}
 
 			{isEditEnabled ? (
 				<>
-					<button className="flex items-center gap-2 mt-8 font-inter text-[16px] text-primary-ultramarineBlue">
-						<span className="w-[40px] h-[40px] flex-jc-c bg-primary-ultramarineBlue text-white rounded-full">
-							{ADD_ICON}
-						</span>{" "}
-						Add link
-					</button>
+					<AddLinkForm />
 
 					<UserProfileSaveButton
-						toggleEdit={toggleEdit}
+						handleSave={toggleEdit}
 						handleCancel={toggleEdit}
 					/>
 				</>

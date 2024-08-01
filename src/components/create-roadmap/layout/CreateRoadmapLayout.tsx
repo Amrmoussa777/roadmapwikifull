@@ -1,6 +1,5 @@
 "use client";
 
-import ShareModal from "@/components/common/modal/components/ShareModal";
 import CreateRoadmapHeader from "@/components/create-roadmap/navbar/CreateRoadmapHeader";
 import RoadmapPreview from "@/components/create-roadmap/preview-roadmap/components/RoadmapPreview";
 import RoadmapStepPreview from "@/components/create-roadmap/preview-roadmap/components/RoadmapStepPreview";

@@ -29,7 +29,39 @@ const initialState: UserProfileStateTypes = {
 const userProfileSlice = createSlice({
 	initialState,
 	name: "userProfileSlice",
-	reducers: {},
+	reducers: {
+		updateUserData: (state, action) => {
+			const newData: Record<string, string> = action.payload;
+
+			if (state.user) {
+				state.user = {
+					...state.user,
+					...newData,
+				};
+			}
+		},
+		updateUserPersonalInfo: (state, action) => {
+			const newData: Record<string, string> = action.payload;
+			const newDataKeys = Object.keys(newData);
+
+			const updatedPersonalInfo = state.personalInfo?.map(item => {
+				if (newDataKeys.includes(Object.values(item)[0])) {
+					return { name: item.name, value: newData[item.name] };
+				} else {
+					return item;
+				}
+			});
+
+			if (state.personalInfo && updatedPersonalInfo) {
+				state.personalInfo = updatedPersonalInfo;
+			}
+		},
+		addNewUserLink: (state, action) => {
+			const newLink = action.payload;
+
+			state.links.push(newLink);
+		},
+	},
 	extraReducers(builder) {
 		builder.addCase(fetchUserByUsername.pending, (state, action) => {
 			state.isLoading = true;
@@ -39,7 +71,8 @@ const userProfileSlice = createSlice({
 			state.isLoading = false;
 			state.user = action.payload;
 
-			const { email, description, userName, occupation } = action.payload;
+			const { email, description, userName, occupation, socialMedia } =
+				action.payload;
 
 			state.personalInfo = [
 				{ name: "email", value: email },
@@ -47,6 +80,8 @@ const userProfileSlice = createSlice({
 				{ name: "userName", value: userName },
 				{ name: "occupation", value: occupation },
 			];
+
+			state.links = socialMedia;
 		});
 
 		builder.addCase(fetchUserByUsername.rejected, (state, action) => {
@@ -56,5 +91,6 @@ const userProfileSlice = createSlice({
 	},
 });
 
-export const {} = userProfileSlice.actions;
+export const { updateUserData, updateUserPersonalInfo, addNewUserLink } =
+	userProfileSlice.actions;
 export default userProfileSlice.reducer;

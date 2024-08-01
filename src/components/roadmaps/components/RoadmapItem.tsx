@@ -107,7 +107,12 @@ const RoadmapItem = ({
 			</div>
 
 			<div className="sm:hidden flex flex-wrap justify-start items-center gap-2 mt-4 md:gap-3 text-[12px] md:text-[14px] [&>span]:text-[#79828B] [&>span]:flex-jc-c [&>span]:gap-1 [&>span>svg]:text-[#ACB5B7]">
-				<span>{fullName}</span>
+				<Link
+					href={`/roadmap/${id}`}
+					className="text-[#79828B] hover:text-[#202020] transition duration-200"
+				>
+					{fullName}
+				</Link>
 
 				<span>
 					{DURATION_ICON} {duration} Weeks

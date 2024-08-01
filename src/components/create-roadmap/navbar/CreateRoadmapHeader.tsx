@@ -87,6 +87,7 @@ const CreateRoadmapHeader = ({
 
 				<div className="flex-jc-c gap-2">
 					<ShareModal
+						title="Share link"
 						link={`https://roadmapwiki.com/roadmap/${id}`}
 						messageText="Your roadmap has been published"
 						open={shareModal}

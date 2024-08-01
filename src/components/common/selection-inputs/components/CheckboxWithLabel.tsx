@@ -24,6 +24,7 @@ const CheckboxWithLabel = ({
 	return (
 		<div className="flex items-center mt-[16px]">
 			<button
+				type="button"
 				id={label.id}
 				onClick={() => toggle && toggle(label.id)}
 				className={styles}

@@ -24,7 +24,6 @@ const PersonalInfoInput = ({
 
 	useEffect(() => {
 		onFormValueChange({ value, key: name });
-
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [value]);
 
@@ -39,8 +38,8 @@ const PersonalInfoInput = ({
 				</label>
 				{type === "textarea" ? (
 					<textarea
-						className={`w-full h-[100px] font-inter font-medium text-[#383838] bg-background text-[16px] outline-none resize-none hidden-scrollbar rounded-[5px] ${
-							!disabled ? "bg-[#6f6f6f]/5" : "bg-background"
+						className={`w-full h-[100px] p-2 font-inter font-medium text-[#383838] text-[16px] focus:border-primary-ultramarineBlue outline-none resize-none hidden-scrollbar rounded-[5px] ${
+							!disabled ? "bg-[#6f6f6f]/5 border" : "bg-background"
 						}`}
 						value={value}
 						onChange={changeValue}
@@ -49,8 +48,8 @@ const PersonalInfoInput = ({
 					/>
 				) : (
 					<input
-						className={`w-full block font-inter font-medium text-[#383838] text-[16px] outline-none rounded-[5px] ${
-							!disabled ? "bg-[#6f6f6f]/5" : "bg-background"
+						className={`w-full h-[40px] px-2 block font-inter font-medium text-[#383838] text-[16px] focus:border-primary-ultramarineBlue outline-none rounded-[5px] transition duration-200 ${
+							!disabled ? "bg-[#6f6f6f]/5 border" : "bg-background"
 						}`}
 						type={type}
 						value={value}

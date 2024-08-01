@@ -1,4 +1,5 @@
 import HorizontalDivider from "@/components/common/divider/components/HorizontalDivider";
+import { ShareModalProps } from "@/components/common/modal/types/index.types";
 import { DialogContent } from "@/components/ui/dialog";
 import { SOCIAL_MEDIA_ICONS } from "@/config/socialMediaIcons";
 import { useOnClickOutside } from "@/hooks/useOnClickOutside";
@@ -6,20 +7,15 @@ import { useToast } from "@/hooks/useToast";
 import { COPY_ICON } from "@public/icons/roadmapSteps";
 import { CROSS_ICON } from "@public/icons/userProfile";
 import { Dialog } from "@radix-ui/react-dialog";
-import React, { ReactNode } from "react";
+import React from "react";
 const ShareModal = ({
+	title,
 	messageText,
 	link,
 	children,
 	open,
 	toggleShareModal,
-}: {
-	link: string;
-	messageText: string;
-	children: ReactNode;
-	open: boolean;
-	toggleShareModal: () => void;
-}) => {
+}: ShareModalProps) => {
 	const socialMedia = [
 		{ id: 1, link: "https://facebook.com/", platform: "FACEBOOK" },
 		{ id: 2, link: "https://instagram.com/", platform: "INSTAGRAM" },
@@ -48,7 +44,7 @@ const ShareModal = ({
 				>
 					<div className="flex-jb-c">
 						<h3 className="font-inter font-medium text-[24px] text-[#23262F]">
-							Share link
+							{title}
 						</h3>
 
 						<button onClick={toggleShareModal} className="text-[#332626]">

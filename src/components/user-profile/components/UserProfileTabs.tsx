@@ -17,7 +17,7 @@ const UserProfileTabs = () => {
 	const tabs: UserProfileTabType[] = [
 		{ id: "info", name: "Personal Info", icon: USER_ICON },
 		{ id: "links", name: "Links", icon: LINK_ICON },
-		{ id: "subscribes", name: "Subscribes", icon: SUBSCRIBES_ICON },
+		{ id: "subscriptions", name: "Subscriptions", icon: SUBSCRIBES_ICON },
 		{ id: "payments", name: "Payments info", icon: PAYMENTS_ICON },
 	];
 	const { push } = useRouter();

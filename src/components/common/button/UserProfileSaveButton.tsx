@@ -2,19 +2,22 @@ import { UserProfileSaveButtonProps } from "@/components/common/button/types/use
 import React from "react";
 
 const UserProfileSaveButton = ({
-	toggleEdit,
 	handleCancel,
+	handleSave,
 }: UserProfileSaveButtonProps) => {
 	return (
-		<div className="flex-jc-c [&>button]:w-full [&>button]:flex-jc-c [&>button]:gap-2 gap-3 [&>button]:py-[6px] [&>button]:px-[12px] [&>button]:rounded-[5px] text-[#383838] text-[14px] font-inter font-semibold mt-4">
-			<button onClick={handleCancel} className="bg-[#F5F5F5]">
-				Cancel
-			</button>
+		<div className="flex justify-end [&>button]:flex-jc-c [&>button]:gap-2 gap-3 [&>button]:py-[6px] [&>button]:px-[12px] [&>button]:rounded-[5px] text-[#383838] text-[14px] font-inter font-semibold mt-4">
 			<button
-				onClick={toggleEdit}
-				className="bg-primary-ultramarineBlue text-white"
+				onClick={handleSave}
+				className="w-[100px] bg-primary-ultramarineBlue text-white hover:bg-white hover:text-primary-ultramarineBlue border border-transparent hover:border-primary-ultramarineBlue hover:shadow-md transition duration-200"
 			>
 				Save
+			</button>
+			<button
+				onClick={handleCancel}
+				className="w-[100px] bg-[#F5F5F5] hover:shadow-md transition duration-200 border hover:border-primary-ultramarineBlue"
+			>
+				Cancel
 			</button>
 		</div>
 	);

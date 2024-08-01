@@ -13,6 +13,7 @@ import {
 } from "@public/icons/roadmapSteps";
 import React from "react";
 import { RoadmapType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
+import Link from "next/link";
 
 const LatestRoadmap = ({
 	id,
@@ -37,9 +38,12 @@ const LatestRoadmap = ({
 						{DEVOPS_ICON}
 					</div>
 
-					<h3 className="text-[18px] text-[#202020] font-inter font-semibold">
+					<Link
+						href={`/roadmap/${id}`}
+						className="w-fit text-[18px] text-[#202020] font-inter font-semibold hover:text-primary-ultramarineBlue transition duration-200"
+					>
 						{title}
-					</h3>
+					</Link>
 
 					<div className="flex flex-col gap-2">
 						<div className="hidden sm:flex flex-wrap justify-between items-center gap-2 md:gap-3 text-[12px] md:text-[14px] [&>span]:text-[#383838] [&>span]:flex-jc-c [&>span]:gap-1 [&>span>svg]:text-[#ACB5B7]">
