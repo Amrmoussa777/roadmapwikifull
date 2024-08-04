@@ -35,12 +35,17 @@ const FileUploader = ({
 		let formData = new FormData();
 		formData.append("file", selectedFile);
 
-		await fetchData("POST", `media/upload`, formData).then(async ({ data }) => {
-			await fetchUserData("PATCH", `users/${userId}`, {
-				cover: data,
-			});
-			dispatch(updateUserData({ cover: data }));
-		});
+		await fetchData("POST", `media/upload`, formData).then(
+			async ({ data: key }) => {
+				const { data } = await fetchUserData("PATCH", `users/${userId}`, {
+					cover: key,
+				});
+
+				const { cover } = data;
+
+				dispatch(updateUserData({ cover }));
+			}
+		);
 
 		toggleUploadModal();
 	};

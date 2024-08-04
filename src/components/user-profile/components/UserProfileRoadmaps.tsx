@@ -39,7 +39,7 @@ const UserProfileRoadmaps = () => {
 				<h3 className="font-inter font-semibold text-[18px] text-[#202020]">
 					My roadmaps
 					<span className="w-[25px] h-[24px] ml-2 rounded-full inline-flex justify-center items-center text-[14px] text-[#79828B] bg-black/5">
-						4
+						{roadmapList.length}
 					</span>
 				</h3>
 

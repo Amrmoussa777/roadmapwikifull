@@ -58,6 +58,14 @@ const FilterItem = ({
 
 	return (
 		<>
+			{!lastFilterItem ? (
+				<HorizontalDivider
+					height="h-[1px]"
+					bgColor="bg-[#D8D8D8]"
+					customStyles="my-4"
+				/>
+			) : null}
+
 			<li className="mb-[25px]">
 				<h3 className="text-[16px] text-[#484848] font-poppins font-medium">
 					{filterLabel}
@@ -105,14 +113,6 @@ const FilterItem = ({
 					</button>
 				) : null}
 			</li>
-
-			{!lastFilterItem ? (
-				<HorizontalDivider
-					height="h-[1px]"
-					bgColor="bg-[#D8D8D8]"
-					customStyles="my-4"
-				/>
-			) : null}
 		</>
 	);
 };

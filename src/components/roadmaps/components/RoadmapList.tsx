@@ -5,10 +5,19 @@ import { ARROW_ICON } from "@public/icons/roadmapSteps";
 import React from "react";
 import useRoadmapList from "@/components/roadmaps/hooks/useRoadmapList";
 import RoadmapsPagination from "@/components/roadmaps/components/RoadmapsPagination";
+import ShareModal from "@/components/common/modal/components/ShareModal";
 
 const RoadmapList = () => {
-	const { roadmapList, totalItems, loading, handleMoreRoadmaps } =
-		useRoadmapList();
+	const {
+		roadmapList,
+		totalItems,
+		loading,
+		handleMoreRoadmaps,
+		shareModal,
+		handleShareRoadmap,
+		toggleShareModal,
+		roadmapShareId,
+	} = useRoadmapList();
 
 	return (
 		<div className="w-full pb-[90px] sm:pb-[76px]">
@@ -30,9 +39,23 @@ const RoadmapList = () => {
 			</div>
 			<ul>
 				{roadmapList.map(roadmap => (
-					<RoadmapItem key={roadmap.id} {...roadmap} />
+					<RoadmapItem
+						key={roadmap.id}
+						roadmap={roadmap}
+						handleShareRoadmap={handleShareRoadmap}
+					/>
 				))}
 			</ul>
+
+			<ShareModal
+				title="Share link"
+				link={`https://roadmapwiki.com/roadmap/${roadmapShareId}`}
+				messageText="Share this roadmap"
+				open={shareModal}
+				toggleShareModal={toggleShareModal}
+			>
+				<h1>Helo</h1>
+			</ShareModal>
 
 			<RoadmapsPagination
 				handleShowMoreRoadmaps={handleMoreRoadmaps}

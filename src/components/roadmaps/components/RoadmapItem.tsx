@@ -21,16 +21,25 @@ import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import { useFetch } from "@/hooks/useFetch";
 
 const RoadmapItem = ({
-	id,
-	title,
-	icon,
-	user,
-	isSubscribed: initialIsSubscribed,
-	duration,
-	_count,
-	tags,
-	status,
-}: RoadmapType) => {
+	roadmap,
+	handleShareRoadmap,
+}: {
+	roadmap: RoadmapType;
+	handleShareRoadmap: (roadmapId: string) => void;
+}) => {
+	const {
+		id,
+		title,
+		icon,
+		price,
+		user,
+		isSubscribed: initialIsSubscribed,
+		duration,
+		_count,
+		tags,
+		status,
+	} = roadmap;
+
 	const [isSubscribed, setIsSubscribed] = useState(initialIsSubscribed);
 	const { currentUser } = useContext(CurrentUserContext);
 	const { fetchData, loading } = useFetch();
@@ -101,7 +110,7 @@ const RoadmapItem = ({
 				</div>
 
 				<div className="ml-auto md:ml-0 flex-jc-c gap-2 text-[#898989] [&>button]:duration-200 [&>button]:transition [&>button:hover]:text-black [&>button]:w-[24px] [&>button]:h-[24px] [&>button>svg]:w-[24px] [&>button>svg]:h-[24px]">
-					<button>{SHARE_ICON}</button>
+					<button onClick={() => handleShareRoadmap(id)}>{SHARE_ICON}</button>
 					<button>{BOOKMARK_ICON}</button>
 					<button>{MENU_ICON}</button>
 				</div>
@@ -116,7 +125,7 @@ const RoadmapItem = ({
 				</Link>
 
 				<span>
-					{DURATION_ICON} {duration} Weeks
+					{DURATION_ICON} {duration}
 				</span>
 				<span>
 					{STEPS_ICON} {steps} Steps
@@ -132,7 +141,7 @@ const RoadmapItem = ({
 
 			<div className="flex items-center gap-4 justify-between">
 				<h3 className="font-inter font-semibold text-[17px] text-[#979797] mt-auto">
-					Free
+					{price?.amount || "Free"} {price?.currency}
 				</h3>
 
 				<div className="flex-jc-c [&>button]:w-full [&>button]:flex-jc-c [&>button]:gap-2 gap-3 [&>button]:py-[6px] [&>button]:px-[12px] [&>button]:rounded-[5px] text-[#383838] text-[14px] font-inter font-semibold">

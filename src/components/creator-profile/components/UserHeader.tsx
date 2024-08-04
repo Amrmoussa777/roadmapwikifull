@@ -1,8 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { useContext, useEffect, useRef } from "react";
-import cover from "@public/roadmapCover.png";
+import React, { useContext, useEffect } from "react";
 import UserImage from "@/components/creator-profile/components/UserImage";
 import UserDetails from "@/components/creator-profile/components/UserDetails";
 import FollowButton from "@/components/common/profile/FollowButton";
@@ -27,7 +26,6 @@ const UserHeader = () => {
 	const isUserProfile = currentUser?.id === user?.id;
 	const { currentState: uploadModal, toggle: toggleUploadModal } =
 		useToggle(false);
-	const initialized = useRef(false);
 
 	useEffect(() => {
 		if (!user && !isLoading) push("/");
@@ -44,7 +42,7 @@ const UserHeader = () => {
 	return (
 		<div className="relative w-full h-[430px] md:h-[340px] lg:h-[310px] bg-white sm:rounded-[16px] overflow-hidden">
 			<Image
-				src={cover}
+				src={user?.cover || ""}
 				width={400}
 				height={200}
 				alt="cover"
