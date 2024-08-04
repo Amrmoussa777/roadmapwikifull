@@ -32,9 +32,8 @@ const UserHeader = () => {
 	useEffect(() => {
 		if (!user && !isLoading) push("/");
 
-		if (!user && !initialized.current) {
+		if (!user) {
 			dispatch(fetchUserByUsername(username));
-			initialized.current = true;
 		}
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
