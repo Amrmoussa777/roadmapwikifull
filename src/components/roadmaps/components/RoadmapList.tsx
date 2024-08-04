@@ -1,10 +1,10 @@
 "use client";
 
-import RoadmapsPagination from "@/components/creator-profile/components/RoadmapsPagination";
 import RoadmapItem from "@/components/roadmaps/components/RoadmapItem";
 import { ARROW_ICON } from "@public/icons/roadmapSteps";
 import React from "react";
 import useRoadmapList from "@/components/roadmaps/hooks/useRoadmapList";
+import RoadmapsPagination from "@/components/roadmaps/components/RoadmapsPagination";
 
 const RoadmapList = () => {
 	const { roadmapList, totalItems, loading, handleMoreRoadmaps } =

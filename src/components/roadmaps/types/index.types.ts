@@ -43,7 +43,7 @@ export type BottomButtonsProps = {
 };
 
 export type RoadmapsPaginationProps = {
-	handleMoreRoadmaps: () => void;
+	handleShowMoreRoadmaps: () => void;
 	totalItems: number;
 	isLoading: boolean;
 };
