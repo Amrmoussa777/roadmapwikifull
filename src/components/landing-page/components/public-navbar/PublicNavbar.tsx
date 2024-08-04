@@ -20,7 +20,7 @@ const PublicNavbar = () => {
 		useToggle(false);
 	const pathname = usePathname();
 
-	if (pathname.includes("create-roadmap")) return;
+	if (pathname.includes("builder")) return;
 	if (pathname.includes("auth")) return;
 
 	return (

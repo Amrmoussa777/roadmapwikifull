@@ -29,6 +29,7 @@ const RoadmapItem = ({
 	duration,
 	_count,
 	tags,
+	status,
 }: RoadmapType) => {
 	const [isSubscribed, setIsSubscribed] = useState(initialIsSubscribed);
 	const { currentUser } = useContext(CurrentUserContext);
@@ -141,17 +142,13 @@ const RoadmapItem = ({
 					>
 						{PLAY_ICON} Preview
 					</button>
-					{userId !== currentUser?.id ? (
+					{userId !== currentUser?.id && !isSubscribed ? (
 						<button
 							onClick={handleSubscribeRoadmap}
 							disabled={isSubscribed}
 							className="bg-primary-ultramarineBlue text-white border border-transparent disabled:hover:bg-primary-ultramarineBlue disabled:hover:text-white disabled:hover:border disabled:hover:border-transparent hover:border-primary-ultramarineBlue hover:bg-white hover:text-primary-ultramarineBlue transition duration-200"
 						>
-							{loading
-								? "Loading..."
-								: isSubscribed
-								? "Subscribed"
-								: "Subscribe"}
+							{loading ? "Loading..." : "Subscribe"}
 						</button>
 					) : null}
 				</div>

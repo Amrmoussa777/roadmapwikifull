@@ -1,4 +1,4 @@
-import DropSelect from "@/components/create-roadmap/preview-roadmap/components/RoadmapInfoSelect";
+import DropSelect from "@/components/builder/preview-roadmap/components/RoadmapInfoSelect";
 import { useAddLinkForm } from "@/components/user-profile/hooks/useAddLinkForm";
 import { SOCIAL_MEDIA_ICONS_OJB } from "@/config/socialMediaIcons";
 import { ADD_ICON } from "@public/icons/userProfile";

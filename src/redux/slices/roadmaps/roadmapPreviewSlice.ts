@@ -1,5 +1,4 @@
 import { RoadmapPreviewSliceType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
-import { fetchRoadmapById } from "@/redux/slices/thunks/roadmaps/roadmapPreviewAsyncThunks";
 import RoadmapPreviewUtils from "@/redux/slices/utils/roadmapPreviewSliceUtils";
 import { createSlice } from "@reduxjs/toolkit";
 
@@ -38,21 +37,22 @@ const roadmapPreviewSlice = createSlice({
 			);
 			state.roadmap.steps = filteredRoadmapSteps;
 		},
-	},
-	extraReducers(builder) {
-		builder.addCase(fetchRoadmapById.fulfilled, (state, action) => {
+		updateRoadmap: (state, action) => {
+			const roadmap = action.payload;
+
+			state.roadmap = roadmap;
 			state.isLoading = false;
-			state.roadmap = action.payload;
-		});
-		builder.addCase(fetchRoadmapById.pending, state => {
-			state.isLoading = true;
-		});
-		builder.addCase(fetchRoadmapById.rejected, (state, action: any) => {
-			state.error = action.payload;
+		},
+		updateRoadmapError: (state, action) => {
+			const error = action.payload;
+
+			state.error = error;
 			state.roadmap = null;
-		});
+			state.isLoading = false;
+		},
 	},
 });
 
-export const { toggleStep, deleteStep } = roadmapPreviewSlice.actions;
+export const { toggleStep, deleteStep, updateRoadmap, updateRoadmapError } =
+	roadmapPreviewSlice.actions;
 export default roadmapPreviewSlice.reducer;

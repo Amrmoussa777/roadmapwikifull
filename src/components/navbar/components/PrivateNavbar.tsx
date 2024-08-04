@@ -21,7 +21,7 @@ const PrivateNavbar = () => {
 
 	const pathname = usePathname();
 
-	if (pathname.includes("create-roadmap")) return;
+	if (pathname.includes("builder")) return;
 
 	return (
 		<div className="bg-white w-full border-b border-[#E0E0E0]">

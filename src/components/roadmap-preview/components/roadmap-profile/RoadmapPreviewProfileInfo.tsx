@@ -11,15 +11,13 @@ import { SOCIAL_MEDIA_ICONS } from "@/config/socialMediaIcons";
 import NumberStats from "@/components/common/states/NumberStats";
 
 const RoadmapPreviewProfileInfo = () => {
-	useRoadmapPreview();
+	const { loading } = useRoadmapPreview();
 
-	const { roadmap, isLoading, error } = useAppSelector(
-		state => state.roadmapPreview
-	);
+	const { roadmap } = useAppSelector(state => state.roadmapPreview);
 	const { user } = roadmap || {};
 	const { socialMedia, userName, description, occupation, _count } = user || {};
 
-	if (isLoading && !roadmap) return <LoadingRoadmapPreviewProfileInfo />;
+	if (loading && !roadmap) return <LoadingRoadmapPreviewProfileInfo />;
 
 	return (
 		<>
@@ -54,28 +52,28 @@ const RoadmapPreviewProfileInfo = () => {
 					<span className="font-poppins text-[12px] font-normal text-grey-secondary">
 						Followers
 					</span>
-					<p className="font-inter font-normal text-[14px]">
+					<div className="font-inter font-normal text-[14px]">
 						{_count?.followers || (
 							<NumberStats
 								text="No followers"
 								customStyles="!text-[14px] text-start"
 							/>
 						)}
-					</p>
+					</div>
 				</li>
 
 				<li>
 					<span className="font-poppins text-[12px] font-normal text-grey-secondary block">
 						Roadmaps subscribers
 					</span>
-					<p className="font-inter font-normal text-[14px]">
+					<div className="font-inter font-normal text-[14px]">
 						{user?.roadmapsSubscribers || (
 							<NumberStats
 								text="No subscribers"
 								customStyles="!text-[14px] text-start"
 							/>
 						)}
-					</p>
+					</div>
 				</li>
 			</ul>
 

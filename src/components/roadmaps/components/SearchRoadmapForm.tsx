@@ -22,7 +22,7 @@ const SearchRoadmapForm = () => {
 	const { value, changeValue, reset } = useInput("");
 
 	const dispatch = useAppDispatch();
-	const { searchType } = useAppSelector(state => state.roadmapList);
+	const { searchType, filterList } = useAppSelector(state => state.roadmapList);
 
 	const handleChangeSearchType = (newSearchType: "roadmaps" | "creators") => {
 		dispatch(changeSearchType(newSearchType));
@@ -34,7 +34,6 @@ const SearchRoadmapForm = () => {
 		e.preventDefault();
 
 		dispatch(changeSearchValue(value));
-		reset();
 	};
 
 	useEffect(() => {
@@ -42,6 +41,12 @@ const SearchRoadmapForm = () => {
 			hideOptions();
 		}
 	}, [responsive]);
+
+	useEffect(() => {
+		if (Object.values(filterList).length) {
+			reset();
+		}
+	}, [filterList]);
 
 	const ref = useOnClickOutside(hideOptions);
 

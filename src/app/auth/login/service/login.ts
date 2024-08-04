@@ -9,10 +9,17 @@ export const login = async (formData: Record<string, string>) => {
 			body: formData,
 		});
 
-		const { accessToken, refreshToken } = data;
+		const {
+			accessToken,
+			refreshToken,
+			accessTokenExpiresAt,
+			refreshTokenExpiresAt,
+		} = data;
 
 		setCookie("accessToken", accessToken);
 		setCookie("refreshToken", refreshToken);
+		setCookie("accessTokenExpiresAt", accessTokenExpiresAt);
+		setCookie("refreshTokenExpiresAt", refreshTokenExpiresAt);
 
 		return { error: null };
 	} catch (error: any) {

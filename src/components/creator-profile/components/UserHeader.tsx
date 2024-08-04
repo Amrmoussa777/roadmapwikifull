@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import cover from "@public/roadmapCover.png";
 import UserImage from "@/components/creator-profile/components/UserImage";
 import UserDetails from "@/components/creator-profile/components/UserDetails";
@@ -27,17 +27,18 @@ const UserHeader = () => {
 	const isUserProfile = currentUser?.id === user?.id;
 	const { currentState: uploadModal, toggle: toggleUploadModal } =
 		useToggle(false);
+	const initialized = useRef(false);
 
 	useEffect(() => {
 		if (!user && !isLoading) push("/");
 
+		if (!user && !initialized.current) {
+			dispatch(fetchUserByUsername(username));
+			initialized.current = true;
+		}
+
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [user]);
-
-	useEffect(() => {
-		dispatch(fetchUserByUsername(username));
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
 
 	if (isLoading) return <UserHeaderLoader />;
 

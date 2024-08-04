@@ -73,7 +73,7 @@ const Hero = () => {
 
 				<div className="flex items-center justify-center lg:justify-start gap-4 lg:gap-2 xl:gap-6 mt-[40px] md:mt-[40px]">
 					<Link
-						href={"/create-roadmap"}
+						href={"/builder"}
 						className="w-full sm:w-[160px] md:w-[208px] h-[42px] md:h-[56px] flex-jc-c text-[14px] md:text-[16px] text-white font-inter font-semibold bg-primary-ultramarineBlue hover:bg-white hover:text-primary-ultramarineBlue border-2 border-transparent hover:border-primary-ultramarineBlue rounded-[10px] duration-200 transition"
 					>
 						Create Roadmap

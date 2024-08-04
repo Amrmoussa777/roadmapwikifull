@@ -64,10 +64,10 @@ const INSTAGRAM_ICON = (
 				gradientUnits="userSpaceOnUse"
 				gradientTransform="translate(21.7812 32.3864) rotate(-90) scale(17.8393 16.592)"
 			>
-				<stop stop-color="#FFDD55" />
-				<stop offset="0.1" stop-color="#FFDD55" />
-				<stop offset="0.5" stop-color="#FF543E" />
-				<stop offset="1" stop-color="#C837AB" />
+				<stop stopColor="#FFDD55" />
+				<stop offset="0.1" stopColor="#FFDD55" />
+				<stop offset="0.5" stopColor="#FF543E" />
+				<stop offset="1" stopColor="#C837AB" />
 			</radialGradient>
 			<radialGradient
 				id="paint1_radial_111_25343"
@@ -77,9 +77,9 @@ const INSTAGRAM_ICON = (
 				gradientUnits="userSpaceOnUse"
 				gradientTransform="translate(13.9849 14.2966) rotate(78.681) scale(7.97428 32.8702)"
 			>
-				<stop stop-color="#3771C8" />
-				<stop offset="0.128" stop-color="#3771C8" />
-				<stop offset="1" stop-color="#6600FF" stop-opacity="0" />
+				<stop stopColor="#3771C8" />
+				<stop offset="0.128" stopColor="#3771C8" />
+				<stop offset="1" stopColor="#6600FF" stopOpacity="0" />
 			</radialGradient>
 		</defs>
 	</svg>

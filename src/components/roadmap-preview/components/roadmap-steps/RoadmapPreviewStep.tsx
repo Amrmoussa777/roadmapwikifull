@@ -9,7 +9,7 @@ import {
 import { RoadmapPreviewStepProps } from "@/components/roadmap-preview/components/roadmap-steps/types/roadmap-preview-step";
 import Verification from "@/components/roadmap-preview/components/roadmap-steps/Verification";
 import { useAppSelector } from "@/redux/store";
-import PreviewAttachments from "@/components/create-roadmap/roadmap-steps/PreviewAttachments";
+import PreviewAttachments from "@/components/builder/roadmap-steps/PreviewAttachments";
 
 const RoadmapPreviewStep = ({
 	previewStepId,

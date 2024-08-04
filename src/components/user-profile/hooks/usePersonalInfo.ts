@@ -29,7 +29,7 @@ export const usePersonalInfo = () => {
 	};
 
 	const resetDefaultPersonalInfo = () => {
-		if (personalInfo) {
+		if (personalInfo && personalInfo.length > 0) {
 			personalInfo.map(item => {
 				onFormValueChange({ value: item.value, key: item.name });
 			});

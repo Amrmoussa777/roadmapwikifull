@@ -22,7 +22,7 @@ const useRoadmapList = () => {
 	const { fetchData, loading } = useFetch();
 	const [totalItems, setTotalItems] = useState(0);
 	const [params, setParams] = useState("");
-	const initialLoadRef = useRef(true);
+	const initialized = useRef(false);
 	const dispatch = useAppDispatch();
 
 	const { responsive } = useSizeScreen(640);
@@ -37,7 +37,7 @@ const useRoadmapList = () => {
 				?.map(category => `category=${category}`)
 				.join("&") || "";
 
-		return `${durationStr}${categoryStr}`;
+		return `${durationStr}&${categoryStr}`;
 	};
 
 	const getFilteredRoadmaps = async (
@@ -63,7 +63,7 @@ const useRoadmapList = () => {
 		const paramsList = ParamsHelper.getEndpointParams(filterList);
 
 		if (
-			Object.keys(paramsList).length &&
+			Object.values(paramsList).length &&
 			(appliedFilterMobile || !responsive)
 		) {
 			const builtParams = buildParamsString(filterList);
@@ -76,22 +76,19 @@ const useRoadmapList = () => {
 	}, [filterList, responsive, appliedFilterMobile]);
 
 	useEffect(() => {
-		if (initialLoadRef.current) {
-			initialLoadRef.current = false;
+		if (!initialized.current) {
+			initialized.current = true;
 			getFilteredRoadmaps(1, "");
 		}
 	}, []);
 
 	useEffect(() => {
-		if (pageNumber > 1) {
-			getFilteredRoadmaps(pageNumber, params);
-		} else if (pageNumber === 1) {
-			getFilteredRoadmaps(1, params);
-		}
+		getFilteredRoadmaps(pageNumber, params);
 	}, [pageNumber, params]);
 
 	useEffect(() => {
 		if (searchValue) {
+			resetPageNumber();
 			const filterParams = buildParamsString(filterList);
 			if (searchType === "roadmaps") {
 				const newParams = filterParams + `&search=${searchValue}`;

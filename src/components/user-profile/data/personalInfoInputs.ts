@@ -17,7 +17,7 @@ export const personalInfoInputs = [
 		type: "number",
 		label: "Phone",
 		icon: PHONE_ICON,
-		name: "phone",
+		name: "phoneNumber",
 	},
 	{
 		type: "text",

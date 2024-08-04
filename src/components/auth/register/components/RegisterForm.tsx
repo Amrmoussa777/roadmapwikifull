@@ -104,7 +104,7 @@ const RegisterForm = () => {
 
 					<button
 						type="button"
-						onClick={() => push("/create-roadmap")}
+						onClick={() => push("/builder")}
 						className="w-full h-[54px] font-poppins font-medium text-[15px] text-black rounded-[8px] border-[1.6px] border-[#E0E2E9] hover:shadow-lg duration-200 transition"
 					>
 						Create roadmap without register

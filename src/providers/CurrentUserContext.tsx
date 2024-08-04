@@ -9,7 +9,7 @@ import {
 } from "@/providers/types/index.types";
 import { getCookie } from "cookies-next";
 import { redirect, usePathname } from "next/navigation";
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useRef, useState } from "react";
 
 export const CurrentUserContext = createContext<CurrentUserContextType>({
 	currentUser: null,
@@ -18,6 +18,7 @@ export const CurrentUserContext = createContext<CurrentUserContextType>({
 const CurrentUserProvider = ({ children }: ChildrenType) => {
 	const accessToken = getCookie("accessToken");
 	const refreshToken = getCookie("refreshToken");
+	const initialized = useRef(false);
 
 	const [currentUser, setCurrentUser] = useState<
 		CurrentUserType | null | undefined
@@ -26,14 +27,18 @@ const CurrentUserProvider = ({ children }: ChildrenType) => {
 	useRefreshToken();
 
 	useEffect(() => {
-		(async () => {
-			try {
-				const user = await getUser(accessToken, refreshToken);
-				setCurrentUser(user);
-			} catch (error) {
-				console.error(error);
-			}
-		})();
+		if (!currentUser && !initialized.current) {
+			initialized.current = true;
+
+			(async () => {
+				try {
+					const user = await getUser(accessToken, refreshToken);
+					setCurrentUser(user);
+				} catch (error) {
+					console.error(error);
+				}
+			})();
+		}
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [accessToken]);

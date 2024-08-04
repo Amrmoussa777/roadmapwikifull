@@ -9,7 +9,7 @@ const AddRoadmapButton = () => {
 
 	return (
 		<button
-			onClick={() => push("/create-roadmap")}
+			onClick={() => push("/builder")}
 			className="w-[24px] h-[24px] flex-jc-c rounded-full bg-primary-ultramarineBlue text-white hover:bg-white hover:text-primary-ultramarineBlue hover:shadow-csm border border-transparent hover:border-primary-ultramarineBlue transition duration-200"
 		>
 			{ADD_ICON}

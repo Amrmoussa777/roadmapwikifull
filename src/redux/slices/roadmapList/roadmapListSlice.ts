@@ -37,6 +37,7 @@ const roadmapListSlice = createSlice({
 		},
 		clearRoadmapFilter: state => {
 			state.filterList = {};
+			state.searchType = "roadmaps";
 		},
 		changeSearchValue: (state, action) => {
 			const value = action.payload;

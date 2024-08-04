@@ -17,7 +17,7 @@ import { FilterListItem } from "@/components/roadmaps/types/index.types";
 
 const useRoadmapsFilter = () => {
 	const dispatch = useAppDispatch();
-	const { searchType, filterList } = useAppSelector(state => state.roadmapList);
+	const { searchType } = useAppSelector(state => state.roadmapList);
 
 	const [searchTypeList, setSearchTypeList] =
 		useState<FilterListItem[]>(searchTypeListData);
@@ -77,6 +77,12 @@ const useRoadmapsFilter = () => {
 	useEffect(() => {
 		setSelectedItems(roadmapDurationList, "durations");
 	}, [roadmapDurationList]);
+
+	useEffect(() => {
+		if (!responsive && filterIsOpen) {
+			toggleMobileFilter();
+		}
+	}, [responsive]);
 
 	const showMoreCategories = () => {
 		setRoadmapCategoryList(

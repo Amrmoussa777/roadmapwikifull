@@ -4,8 +4,8 @@ import { Toaster } from "@/components/ui/toaster";
 import ReduxProvider from "@/redux/Provider";
 import CheckCurrentUserProvider from "@/providers/CurrentUserContext";
 import Navbar from "@/components/navbar/components/Navbar";
-import CreateRoadmapLayout from "@/components/create-roadmap/layout/CreateRoadmapLayout";
 import { inter, outfit, poppins } from "@/app/fonts";
+import CreateRoadmapLayout from "@/components/builder/layout/CreateRoadmapLayout";
 
 export const metadata: Metadata = {
 	title: "Roadmap",

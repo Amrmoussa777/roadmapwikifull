@@ -41,28 +41,27 @@ const RoadmapDetails = () => {
 						<span>{USERS_ICON}</span>
 						<h3>Subscribers</h3>
 					</div>
-					<p className="font-inter font-normal text-[12px]">
+					<div className="font-inter font-normal text-[12px]">
 						{subscribersCount || (
 							<NumberStats
 								text="No Subscribers"
-								customStyles="!text-[14px] text-start"
+								customStyles="!text-[12px] text-start"
 							/>
 						)}
-					</p>
+					</div>
 				</li>
 				<li>
 					<div>
 						<span>{STEPS_ICON}</span>
 						<h3>Steps</h3>
 					</div>
-					<p>
-						{_count?.steps || (
-							<NumberStats
-								text="No Steps"
-								customStyles="!text-[14px] text-start"
-							/>
-						)}
-					</p>
+					<div>
+						{(
+							<p className="text-[12px] text-start font-inter font-normal">
+								{_count?.steps}
+							</p>
+						) || <NumberStats text="No Steps" customStyles="!text-[12px]" />}
+					</div>
 				</li>
 			</ul>
 

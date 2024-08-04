@@ -61,20 +61,20 @@ const FilterContent: React.FC<FilterContentProps> = ({
 				)}
 
 				<FilterItem
-					filterLabel="Roadmap duration"
-					filterList={roadmapDurationList}
-					setNewList={setRoadmapDurationList}
-					defaultListCount={15}
-					multi={true}
-				/>
-
-				<FilterItem
 					filterLabel="Roadmap category"
 					filterList={roadmapCategoryList}
 					setNewList={setRoadmapCategoryList}
 					showMore={showMoreCategories}
 					defaultListCount={15}
 					lastFilterItem
+					multi={true}
+				/>
+
+				<FilterItem
+					filterLabel="Roadmap duration"
+					filterList={roadmapDurationList}
+					setNewList={setRoadmapDurationList}
+					defaultListCount={15}
 					multi={true}
 				/>
 
