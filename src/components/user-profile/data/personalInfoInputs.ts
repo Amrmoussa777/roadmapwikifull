@@ -14,10 +14,10 @@ export const personalInfoInputs = [
 		name: "email",
 	},
 	{
-		type: "number",
+		type: "string",
 		label: "Phone",
 		icon: PHONE_ICON,
-		name: "phoneNumber",
+		name: "phone",
 	},
 	{
 		type: "text",

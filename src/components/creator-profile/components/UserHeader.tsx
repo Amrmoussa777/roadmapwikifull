@@ -25,7 +25,6 @@ const UserHeader = () => {
 	const { push } = useRouter();
 	const { currentUser } = useContext(CurrentUserContext);
 	const isUserProfile = currentUser?.id === user?.id;
-	console.log(isUserProfile);
 	const { currentState: uploadModal, toggle: toggleUploadModal } =
 		useToggle(false);
 
@@ -85,6 +84,10 @@ const UserHeader = () => {
 			<ChangeCover
 				uploadModal={uploadModal}
 				toggleUploadModal={toggleUploadModal}
+				ratio="1400 X 160px"
+				updateKey="cover"
+				title="Upload cover"
+				imageHeight={148}
 			/>
 		</div>
 	);

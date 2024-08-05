@@ -17,6 +17,9 @@ const FileUploader = ({
 	selectedFile,
 	setSelectedFile,
 	toggleUploadModal,
+	updateKey,
+	ratio,
+	imageHeight,
 }: FileUploaderProps) => {
 	const { handleDrop, handleFileChange } = useHandleFilesChanges({
 		selectedFile,
@@ -39,12 +42,13 @@ const FileUploader = ({
 		await fetchData("POST", `media/upload`, formData).then(
 			async ({ data: key }) => {
 				const { data } = await fetchUserData("PATCH", `users/${userId}`, {
-					cover: key,
+					[updateKey]: key,
 				});
 
-				const { cover } = data;
+				const newData = data[updateKey];
 
-				dispatch(updateUserData({ cover }));
+				dispatch(updateUserData({ [updateKey]: newData }));
+				setSelectedFile(null);
 			}
 		);
 
@@ -53,7 +57,7 @@ const FileUploader = ({
 
 	return (
 		<div className="w-full mt-4">
-			<p className="mb-2">Ratio 1400 X 160px</p>
+			<p className="mb-2">Ratio {ratio}</p>
 			{selectedFile ? (
 				<div>
 					<Image
@@ -61,7 +65,8 @@ const FileUploader = ({
 						height={400}
 						src={URL.createObjectURL(selectedFile)}
 						alt=""
-						className="w-full h-[148px] object-cover object-center rounded-md shadow-csm border border-[#E4E6EC]"
+						className="w-full object-cover object-center rounded-md shadow-csm border border-[#E4E6EC]"
+						style={{ height: imageHeight }}
 					/>
 					<HorizontalDivider
 						height="h-[1px]"
@@ -84,7 +89,8 @@ const FileUploader = ({
 
 			<button
 				onClick={handleUploadCover}
-				className="relative overflow-hidden w-[120px] h-[40px] ml-auto flex-jc-c mt-8 font-inter font-medium border border-transparent hover:border-primary-ultramarineBlue bg-primary-ultramarineBlue text-white hover:bg-white hover:text-primary-ultramarineBlue hover:shadow-csm rounded-md outline-none transition duration-200"
+				disabled={loading}
+				className="relative overflow-hidden w-[120px] h-[40px] ml-auto flex-jc-c mt-8 font-inter font-medium border border-transparent hover:border-primary-ultramarineBlue bg-primary-ultramarineBlue text-white disabled:hover:bg-primary-ultramarineBlue disabled:hover:text-white hover:bg-white hover:text-primary-ultramarineBlue hover:shadow-csm rounded-md outline-none transition duration-200"
 			>
 				{loading || fetchUserDataLoading ? <ButtonDotsLoader /> : "Save"}
 			</button>

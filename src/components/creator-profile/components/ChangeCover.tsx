@@ -5,15 +5,23 @@ import React, { useState } from "react";
 const ChangeCover = ({
 	uploadModal,
 	toggleUploadModal,
+	updateKey,
+	ratio,
+	title,
+	imageHeight,
 }: {
 	uploadModal: boolean;
 	toggleUploadModal: () => void;
+	updateKey: string;
+	ratio: string;
+	title: string;
+	imageHeight?: number;
 }) => {
 	const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
 	return (
 		<EditUserCover
-			title="Upload cover"
+			title={title}
 			open={uploadModal}
 			toggleShareModal={toggleUploadModal}
 		>
@@ -23,6 +31,9 @@ const ChangeCover = ({
 					selectedFile={selectedFile}
 					setSelectedFile={setSelectedFile}
 					toggleUploadModal={toggleUploadModal}
+					updateKey={updateKey}
+					ratio={ratio}
+					imageHeight={imageHeight}
 				/>
 			</div>
 		</EditUserCover>

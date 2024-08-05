@@ -69,7 +69,7 @@ const userProfileSlice = createSlice({
 			state.isLoading = false;
 			state.user = action.payload;
 
-			const { email, description, fullName, occupation, socialMedia } =
+			const { email, description, fullName, occupation, socialMedia, phone } =
 				action.payload;
 
 			state.personalInfo = [
@@ -77,6 +77,7 @@ const userProfileSlice = createSlice({
 				{ name: "description", value: description },
 				{ name: "fullName", value: fullName },
 				{ name: "occupation", value: occupation },
+				{ name: "phone", value: phone },
 			];
 
 			state.links = socialMedia;

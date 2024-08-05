@@ -4,7 +4,8 @@ import ButtonDotsLoader from "@/components/common/button/ButtonDotsLoader";
 import PathnameHelper from "@/helpers/pathname.helper";
 import { useFetch } from "@/hooks/useFetch";
 import { CurrentUserContext } from "@/providers/CurrentUserContext";
-import { useAppSelector } from "@/redux/store";
+import { updateUserData } from "@/redux/slices/user-profile/userProfileSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useContext, useEffect, useRef, useState } from "react";
 
@@ -15,11 +16,12 @@ const FollowButton = ({ customStyles = "" }: { customStyles?: string }) => {
 	const { push } = useRouter();
 	const pathname = usePathname();
 	const [hoverButtonText, setHoverButtonText] = useState("");
-
+	const dispatch = useAppDispatch();
 	const { fetchData, loading } = useFetch();
 
 	const follow = async () => {
 		await fetchData("POST", `users/${id}/follow`);
+		dispatch(updateUserData({ isFollowed: !user?.isFollowed }));
 	};
 
 	const handleClickFollow = () => {
@@ -39,17 +41,15 @@ const FollowButton = ({ customStyles = "" }: { customStyles?: string }) => {
 			PathnameHelper.clearUrlParams();
 		}
 	}, [currentUser, action]);
-	console.log(user?.isFollowed);
 
 	if (id === currentUser?.id) return;
-	console.log(hoverButtonText);
 
 	return (
 		<button
 			onClick={handleClickFollow}
 			disabled={loading}
 			onMouseEnter={() =>
-				setHoverButtonText(user?.isFollowed ? "UnFollow" : "Follow")
+				setHoverButtonText(user?.isFollowed ? "Un follow" : "")
 			}
 			onMouseLeave={() => setHoverButtonText("")}
 			className={`relative w-full h-full px-6 bg-primary-ultramarineBlue text-white rounded-full border-2 border-transparent hover:border-primary-ultramarineBlue disabled:hover:text-white disabled:hover:bg-primary-ultramarineBlue hover:bg-white hover:text-primary-ultramarineBlue transition duration-200 ${customStyles} overflow-hidden`}
