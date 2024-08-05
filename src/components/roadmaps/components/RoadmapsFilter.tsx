@@ -70,7 +70,7 @@ const RoadmapsFilter: React.FC = () => {
 
 			<button
 				onClick={toggleMobileFilter}
-				className="block sm:hidden fixed w-[58px] h-[58px] right-[20px] bottom-[20px] bg-white text-[#42505C] rounded-full flex-jc-c shadow-csm"
+				className="block sm:hidden fixed w-[58px] h-[58px] right-[20px] bottom-[20px] bg-white text-[#42505C] rounded-full flex-jc-c shadow-csm z-40"
 			>
 				{FILTER_ICON}
 			</button>

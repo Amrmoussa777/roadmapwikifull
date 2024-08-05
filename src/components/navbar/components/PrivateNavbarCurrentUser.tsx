@@ -1,5 +1,6 @@
 "use client";
 
+import Avatar from "@/components/common/avatar/components/Avatar";
 import PrivateNavbarCurrentUserLoader from "@/components/navbar/components/loading/PrivateNavbarCurrentUserLoader";
 import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import { UNKNOWN_USER_ICON } from "@public/icons/userProfile";
@@ -28,17 +29,11 @@ const PrivateNavbarCurrentUser = () => {
 				</span>
 			</div>
 
-			{image ? (
-				<Image
-					src={image}
-					width={100}
-					height={100}
-					alt="author-pic"
-					className="w-[32px] h-[32px] object-cover rounded-full"
-				/>
-			) : (
-				UNKNOWN_USER_ICON
-			)}
+			<Avatar
+				image_url={image}
+				name={fullName || ""}
+				customStyles="w-[40px] h-[40px] rounded-full border border-white object-cover !bg-primary-ultramarineBlue text-white"
+			/>
 		</Link>
 	);
 };

@@ -33,6 +33,7 @@ const UserSubscriptions = () => {
 			if (currentUser && !initialized.current) {
 				initialized.current = true;
 				const { data } = await fetchData("GET", `roadmap/mysubscriptions`);
+
 				setRoadmapList(data);
 			}
 		})();

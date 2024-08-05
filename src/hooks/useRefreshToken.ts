@@ -61,14 +61,4 @@ export const useRefreshToken = () => {
 
 		if (isRefreshTokenExpired) return push("/auth/login");
 	}, [refreshToken]);
-
-	useEffect(() => {
-		(async () => {
-			if (!accessToken) {
-				const accessToken = await fetchAnonymousToken();
-
-				setCookie("accessToken", accessToken);
-			}
-		})();
-	}, [currentUser, refreshToken]);
 };

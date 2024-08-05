@@ -64,9 +64,9 @@ const RoadmapDiscussionPost = ({
 				<div className="relative flex justify-between items-start gap-2 bg-white p-2 rounded-md">
 					<div className="w-[32px] h-[32px] object-cover rounded-full text-[#181818]">
 						<Avatar
-							image_url={image}
-							name={fullName || ""}
-							customStyles="w-[32px] h-[32px] rounded-full object-cover !bg-primary-ultramarineBlue text-white"
+							image_url={""}
+							name={fullName}
+							customStyles="w-[32px] h-[32px] rounded-full object-cover !bg-primary-ultramarineBlue !text-white"
 						/>
 					</div>
 

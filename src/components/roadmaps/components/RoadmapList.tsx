@@ -21,15 +21,15 @@ const RoadmapList = () => {
 		roadmapShareId,
 	} = useRoadmapList();
 
-	if (loading)
-		return (
-			<div className="w-full">
-				<UserProfileRoadmapsLoader />
-				<UserProfileRoadmapsLoader />
-				<UserProfileRoadmapsLoader />
-				<UserProfileRoadmapsLoader />
-			</div>
-		);
+	// if (loading)
+	// 	return (
+	// 		<div className="w-full">
+	// 			<UserProfileRoadmapsLoader />
+	// 			<UserProfileRoadmapsLoader />
+	// 			<UserProfileRoadmapsLoader />
+	// 			<UserProfileRoadmapsLoader />
+	// 		</div>
+	// 	);
 
 	return (
 		<div className="w-full pb-[90px] sm:pb-[76px]">

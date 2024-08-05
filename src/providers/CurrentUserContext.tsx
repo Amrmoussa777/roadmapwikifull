@@ -1,12 +1,14 @@
 "use client";
 
 import { getUser } from "@/app/auth/services/getUser";
+import useClearReduxOnNavigation from "@/hooks/useClearReduxOnNavigation";
 import { useRefreshToken } from "@/hooks/useRefreshToken";
 import {
 	ChildrenType,
 	CurrentUserContextType,
 	CurrentUserType,
 } from "@/providers/types/index.types";
+import { useAppSelector } from "@/redux/store";
 import { getCookie } from "cookies-next";
 import { redirect, usePathname } from "next/navigation";
 import React, { createContext, useEffect, useRef, useState } from "react";
@@ -16,9 +18,12 @@ export const CurrentUserContext = createContext<CurrentUserContextType>({
 });
 
 const CurrentUserProvider = ({ children }: ChildrenType) => {
+	useClearReduxOnNavigation();
+
 	const accessToken = getCookie("accessToken");
 	const refreshToken = getCookie("refreshToken");
 	const initialized = useRef(false);
+	const { user } = useAppSelector(state => state.userProfile);
 
 	const [currentUser, setCurrentUser] = useState<
 		CurrentUserType | null | undefined
@@ -50,6 +55,17 @@ const CurrentUserProvider = ({ children }: ChildrenType) => {
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [currentUser]);
+
+	useEffect(() => {
+		if (
+			user &&
+			currentUser &&
+			user.id === currentUser.id &&
+			user.image !== currentUser.image
+		) {
+			setCurrentUser({ ...currentUser, image: user.image });
+		}
+	}, [user]);
 
 	return (
 		<CurrentUserContext.Provider

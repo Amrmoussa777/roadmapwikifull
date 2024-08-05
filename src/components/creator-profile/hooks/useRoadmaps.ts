@@ -9,7 +9,7 @@ export const useRoadmaps = () => {
 	const [roadmaps, setRoadmaps] = useState<RoadmapType[]>([]);
 	const [pageNumber, setPageNumber] = useState(1);
 	const [totalItems, setTotalItems] = useState(0);
-	const { error, loading, fetchData } = useFetch();
+	const { loading, fetchData } = useFetch();
 	const { username } = useParams();
 
 	const handleGetCreatorRoadmaps = async (pageNumber: number) => {

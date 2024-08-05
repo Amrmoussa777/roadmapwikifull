@@ -8,4 +8,6 @@ export type AvatarPropsType = {
 
 export type AvatarImagePropsType = {
 	image_url: string | StaticImageData;
+	onLoadingComplete: () => void;
+	customStyles?: string;
 };

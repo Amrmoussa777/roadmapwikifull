@@ -8,6 +8,7 @@ import { COPY_ICON } from "@public/icons/roadmapSteps";
 import { CROSS_ICON } from "@public/icons/userProfile";
 import { Dialog } from "@radix-ui/react-dialog";
 import React from "react";
+
 const ShareModal = ({
 	title,
 	messageText,

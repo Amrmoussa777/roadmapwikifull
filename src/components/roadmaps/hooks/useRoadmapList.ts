@@ -92,7 +92,9 @@ const useRoadmapList = () => {
 	}, []);
 
 	useEffect(() => {
-		getFilteredRoadmaps(pageNumber, params);
+		if (pageNumber > 1) {
+			getFilteredRoadmaps(pageNumber, params);
+		}
 	}, [pageNumber, params]);
 
 	useEffect(() => {

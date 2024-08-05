@@ -1,10 +1,12 @@
 "use client";
 
 import CreateRoadmapButton from "@/components/common/button/CreateRoadmapButton";
+import ShareModal from "@/components/common/modal/components/ShareModal";
 import NumberStats from "@/components/common/states/NumberStats";
 import RoadmapItem from "@/components/roadmaps/components/RoadmapItem";
 import UserProfileRoadmapsLoader from "@/components/user-profile/components/loading/UserProfileRoadmapsLoader";
 import { useFetch } from "@/hooks/useFetch";
+import useToggle from "@/hooks/useToggle";
 import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import { RoadmapType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
 import { ARROW_ICON } from "@public/icons/roadmapSteps";
@@ -16,6 +18,16 @@ const UserProfileRoadmaps = () => {
 	const { currentUser } = useContext(CurrentUserContext);
 	const { loading, fetchData } = useFetch();
 	const initialized = useRef(false);
+	const [totalMySubscriptionsNumber, setTotalMySubscriptionsNumber] =
+		useState(0);
+	const { currentState: shareModal, toggle: toggleShareModal } =
+		useToggle(false);
+	const [roadmapShareId, setRoadmapShareId] = useState("");
+
+	const handleShareRoadmap = (roadmapId: string) => {
+		setRoadmapShareId(roadmapId);
+		toggleShareModal();
+	};
 
 	useEffect(() => {
 		(async () => {
@@ -25,6 +37,12 @@ const UserProfileRoadmaps = () => {
 					"GET",
 					`roadmap/?userId=${currentUser.id}`
 				);
+				const { data: totalMyRoadmaps } = await fetchData(
+					"GET",
+					`roadmap/?page=1&pageSize=50&userId=${currentUser.id}`
+				);
+
+				setTotalMySubscriptionsNumber(totalMyRoadmaps.length);
 				setRoadmapList(data);
 			}
 		})();
@@ -38,7 +56,7 @@ const UserProfileRoadmaps = () => {
 				<h3 className="font-inter font-semibold text-[18px] text-[#202020]">
 					My roadmaps
 					<span className="w-[25px] h-[24px] ml-2 rounded-full inline-flex justify-center items-center text-[14px] text-[#79828B] bg-black/5">
-						{roadmapList.length}
+						{totalMySubscriptionsNumber || 0}
 					</span>
 				</h3>
 
@@ -51,11 +69,25 @@ const UserProfileRoadmaps = () => {
 			</div>
 
 			{roadmapList.length ? (
-				<ul>
-					{roadmapList.map(roadmap => (
-						<RoadmapItem key={roadmap.id} roadmap={roadmap} />
-					))}
-				</ul>
+				<>
+					<ul>
+						{roadmapList.map(roadmap => (
+							<RoadmapItem
+								key={roadmap.id}
+								roadmap={roadmap}
+								handleShareRoadmap={handleShareRoadmap}
+							/>
+						))}
+					</ul>
+
+					<ShareModal
+						title="Share link"
+						link={`https://roadmapwiki.com/roadmap/${roadmapShareId}`}
+						messageText="Share this roadmap"
+						open={shareModal}
+						toggleShareModal={toggleShareModal}
+					/>
+				</>
 			) : (
 				<div className="flex-jb-c">
 					<NumberStats text="No roadmaps yet" customStyles="!w-fit" />

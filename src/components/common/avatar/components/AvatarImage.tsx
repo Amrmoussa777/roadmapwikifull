@@ -2,14 +2,19 @@ import { AvatarImagePropsType } from "@/components/common/avatar/types/index.typ
 import Image from "next/image";
 import React from "react";
 
-const AvatarImage = ({ image_url }: AvatarImagePropsType) => {
+const AvatarImage = ({
+	image_url,
+	onLoadingComplete,
+	customStyles = "",
+}: AvatarImagePropsType) => {
 	return (
 		<Image
 			src={image_url}
-			alt="avatar image"
+			alt="avatar"
 			width={200}
 			height={200}
-			className="w-full object-cover border-2 border-white rounded-full"
+			onLoadingComplete={onLoadingComplete}
+			className={`w-full h-full object-cover border-2 border-white rounded-full ${customStyles}`}
 		/>
 	);
 };

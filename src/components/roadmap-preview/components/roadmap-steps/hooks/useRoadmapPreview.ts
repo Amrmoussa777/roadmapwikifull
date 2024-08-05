@@ -1,6 +1,7 @@
 import { useFetch } from "@/hooks/useFetch";
 import { useToast } from "@/hooks/useToast";
 import { updateRoadmap } from "@/redux/slices/roadmaps/roadmapPreviewSlice";
+import { fetchUserByUsername } from "@/redux/slices/thunks/getUserByUsername";
 import { getRoadmapPosts } from "@/redux/slices/thunks/roadmaps/getRoadmapPosts";
 import { useAppDispatch } from "@/redux/store";
 import { fetchAnonymousToken } from "@/services/fetchAnonymousToken";
@@ -27,8 +28,8 @@ export const useRoadmapPreview = () => {
 				setCookie("accessToken", AnonymousToken);
 
 				const { data: roadmap } = await fetchData("GET", `roadmap/${id}`);
-
 				dispatch(updateRoadmap(roadmap));
+				dispatch(fetchUserByUsername(roadmap.user.userName));
 				dispatch(
 					getRoadmapPosts({ roadmapId: id, pageNumber: 1, pageSize: 5 })
 				);
@@ -42,7 +43,7 @@ export const useRoadmapPreview = () => {
 		if (!error && accessToken) {
 			(async () => {
 				const { data: roadmap } = await fetchData("GET", `roadmap/${id}`);
-
+				dispatch(fetchUserByUsername(roadmap.user.userName));
 				dispatch(updateRoadmap(roadmap));
 			})();
 		}
