@@ -16,7 +16,6 @@ import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import { EDIT_ICON } from "@public/icons/userProfile";
 import useToggle from "@/hooks/useToggle";
 import ChangeCover from "@/components/creator-profile/components/ChangeCover";
-import { useFetch } from "@/hooks/useFetch";
 
 const UserHeader = () => {
 	const dispatch = useAppDispatch();

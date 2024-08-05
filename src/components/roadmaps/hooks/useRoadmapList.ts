@@ -20,7 +20,7 @@ const useRoadmapList = () => {
 	} = useAppSelector(state => state.roadmapList);
 	const { handleMoreRoadmaps, resetPageNumber, pageNumber } =
 		useRoadmapPagination();
-	const { fetchData, loading } = useFetch();
+	const { fetchData, loading } = useFetch(true);
 	const [totalItems, setTotalItems] = useState(0);
 	const [params, setParams] = useState("");
 	const initialized = useRef(false);

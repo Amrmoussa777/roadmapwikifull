@@ -1,5 +1,6 @@
 import { useFetch } from "@/hooks/useFetch";
 import useHandleFormInputChange from "@/hooks/useHandleFormInputChange";
+import { useToast } from "@/hooks/useToast";
 import useToggle from "@/hooks/useToggle";
 import {
 	updateUserData,
@@ -14,6 +15,7 @@ export const usePersonalInfo = () => {
 	const { formValues, onFormValueChange } = useHandleFormInputChange();
 	const { fetchData } = useFetch();
 	const dispatch = useAppDispatch();
+	const { warningToast } = useToast();
 
 	const { id: userId } = user || {};
 
@@ -57,6 +59,8 @@ export const usePersonalInfo = () => {
 			dispatch(updateUserPersonalInfo(changedInfo));
 			dispatch(updateUserData(changedInfo));
 			toggleEdit();
+		} else {
+			warningToast("Please update the info, and try again.");
 		}
 	};
 

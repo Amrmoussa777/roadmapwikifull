@@ -30,7 +30,7 @@ const UserImage = () => {
 							animate={{ opacity: 1 }}
 							exit={{ opacity: 0 }}
 							transition={{ duration: 0.2 }}
-							className="absolute w-full h-full top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4 rounded-full bg-black/70 transition duration-200 flex-jc-c"
+							className="absolute w-full h-full top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4 border-8 rounded-full bg-black/70 transition duration-200 flex-jc-c z-10"
 						>
 							<button
 								onClick={toggleUploadModal}

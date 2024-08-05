@@ -1,6 +1,7 @@
 import React, { useEffect, useCallback, useRef } from "react";
 import { RoadmapsPaginationProps } from "@/components/roadmaps/types/index.types";
 import ButtonDotsLoader from "@/components/common/button/ButtonDotsLoader";
+import throttle from "lodash/throttle";
 
 const RoadmapsPagination = ({
 	handleShowMoreRoadmaps,
@@ -9,14 +10,18 @@ const RoadmapsPagination = ({
 }: RoadmapsPaginationProps) => {
 	const divRef = useRef<HTMLDivElement>(null);
 
-	const handleScroll = useCallback(() => {
-		if (isLoading || !divRef.current) return;
+	const handleScroll = useCallback(
+		throttle(() => {
+			if (isLoading || !divRef.current) return;
 
-		const rect = divRef.current.getBoundingClientRect();
-		if (rect.top <= window.innerHeight && rect.bottom >= 0) {
-			handleShowMoreRoadmaps();
-		}
-	}, [isLoading, handleShowMoreRoadmaps]);
+			const rect = divRef.current.getBoundingClientRect();
+
+			if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+				handleShowMoreRoadmaps();
+			}
+		}, 300),
+		[isLoading]
+	);
 
 	useEffect(() => {
 		window.addEventListener("scroll", handleScroll);
