@@ -6,6 +6,8 @@ import React from "react";
 import useRoadmapList from "@/components/roadmaps/hooks/useRoadmapList";
 import RoadmapsPagination from "@/components/roadmaps/components/RoadmapsPagination";
 import ShareModal from "@/components/common/modal/components/ShareModal";
+import UserProfileRoadmapsLoader from "@/components/user-profile/components/loading/UserProfileRoadmapsLoader";
+import NumberStats from "@/components/common/states/NumberStats";
 
 const RoadmapList = () => {
 	const {
@@ -18,6 +20,16 @@ const RoadmapList = () => {
 		toggleShareModal,
 		roadmapShareId,
 	} = useRoadmapList();
+
+	if (loading)
+		return (
+			<div className="w-full">
+				<UserProfileRoadmapsLoader />
+				<UserProfileRoadmapsLoader />
+				<UserProfileRoadmapsLoader />
+				<UserProfileRoadmapsLoader />
+			</div>
+		);
 
 	return (
 		<div className="w-full pb-[90px] sm:pb-[76px]">
@@ -37,15 +49,23 @@ const RoadmapList = () => {
 					</div>
 				</div>
 			</div>
-			<ul>
-				{roadmapList.map(roadmap => (
-					<RoadmapItem
-						key={roadmap.id}
-						roadmap={roadmap}
-						handleShareRoadmap={handleShareRoadmap}
-					/>
-				))}
-			</ul>
+
+			{roadmapList.length ? (
+				<ul>
+					{roadmapList.map(roadmap => (
+						<RoadmapItem
+							key={roadmap.id}
+							roadmap={roadmap}
+							handleShareRoadmap={handleShareRoadmap}
+						/>
+					))}
+				</ul>
+			) : (
+				<NumberStats
+					text="No result found; try again"
+					customStyles="!text-[14px] text-center font-inter"
+				/>
+			)}
 
 			<ShareModal
 				title="Share link"
@@ -53,9 +73,7 @@ const RoadmapList = () => {
 				messageText="Share this roadmap"
 				open={shareModal}
 				toggleShareModal={toggleShareModal}
-			>
-				<h1>Helo</h1>
-			</ShareModal>
+			/>
 
 			<RoadmapsPagination
 				handleShowMoreRoadmaps={handleMoreRoadmaps}

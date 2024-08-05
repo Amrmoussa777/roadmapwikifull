@@ -16,6 +16,7 @@ import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import { EDIT_ICON } from "@public/icons/userProfile";
 import useToggle from "@/hooks/useToggle";
 import ChangeCover from "@/components/creator-profile/components/ChangeCover";
+import { useFetch } from "@/hooks/useFetch";
 
 const UserHeader = () => {
 	const dispatch = useAppDispatch();
@@ -24,18 +25,16 @@ const UserHeader = () => {
 	const { push } = useRouter();
 	const { currentUser } = useContext(CurrentUserContext);
 	const isUserProfile = currentUser?.id === user?.id;
+	console.log(isUserProfile);
 	const { currentState: uploadModal, toggle: toggleUploadModal } =
 		useToggle(false);
 
 	useEffect(() => {
 		if (!user && !isLoading) push("/");
-
-		if (!user) {
-			dispatch(fetchUserByUsername(username));
-		}
+		dispatch(fetchUserByUsername(username));
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [user]);
+	}, [username]);
 
 	if (isLoading) return <UserHeaderLoader />;
 

@@ -3,14 +3,14 @@ import { useAppSelector } from "@/redux/store";
 import React from "react";
 
 const PostsPagination = ({ handleMoreComments }: PaginationProps) => {
-	const { list, totalItems, isLoading } = useAppSelector(
+	const { totalItems, isLoading } = useAppSelector(
 		state => state.roadmapPreviewPosts.posts
 	);
 
 	return (
 		<div
 			className={`mt-2 text-center transition-all ml-2 ${
-				totalItems < 2 ? "hidden" : ""
+				totalItems < 5 ? "hidden" : ""
 			}`}
 		>
 			<button

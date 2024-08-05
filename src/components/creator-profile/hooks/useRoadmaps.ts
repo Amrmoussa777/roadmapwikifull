@@ -1,6 +1,7 @@
 import { useFetch } from "@/hooks/useFetch";
 import { RoadmapType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
 import { useAppSelector } from "@/redux/store";
+import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export const useRoadmaps = () => {
@@ -8,15 +9,16 @@ export const useRoadmaps = () => {
 	const [roadmaps, setRoadmaps] = useState<RoadmapType[]>([]);
 	const [pageNumber, setPageNumber] = useState(1);
 	const [totalItems, setTotalItems] = useState(0);
-	const { data, error, loading, fetchData } = useFetch();
+	const { error, loading, fetchData } = useFetch();
+	const { username } = useParams();
 
 	const handleGetCreatorRoadmaps = async (pageNumber: number) => {
-		const { data, error } = await fetchData(
+		const { data } = await fetchData(
 			"GET",
 			`roadmap/?page=${pageNumber}&pageSize=10&userId=${user?.id}`
 		);
 
-		setTotalItems(error ? 0 : data.length);
+		setTotalItems(data.length);
 		setRoadmaps(data);
 
 		return data;
@@ -31,10 +33,10 @@ export const useRoadmaps = () => {
 	};
 
 	useEffect(() => {
-		if (user && !error) {
+		if (user && username === user.userName) {
 			handleGetCreatorRoadmaps(1);
 		}
-	}, [user]);
+	}, [username, user]);
 
 	return {
 		roadmaps,

@@ -10,6 +10,7 @@ import { useAppDispatch } from "@/redux/store";
 import { DURATION_ICON } from "@public/icons/roadmapSteps";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { FormEvent, useState } from "react";
+import ButtonDotsLoader from "@/components/common/button/ButtonDotsLoader";
 
 const RoadmapStepDuration = ({
 	stepId,
@@ -131,9 +132,9 @@ const RoadmapStepDuration = ({
 						<div className="flex-jb-c gap-2 [&>button]:w-full">
 							<button
 								disabled={!duration.length}
-								className="text-[#181818] font-medium hover:text-primary-ultramarineBlue transition duration-200 disabled:hover:text-[#181818]"
+								className="relative overflow-hidden text-[#181818] font-medium hover:text-primary-ultramarineBlue transition duration-200 disabled:hover:text-[#181818]"
 							>
-								{loading ? "Loading..." : "OK"}
+								{loading ? <ButtonDotsLoader /> : "OK"}
 							</button>
 							<button
 								onClick={handleCancelDuration}

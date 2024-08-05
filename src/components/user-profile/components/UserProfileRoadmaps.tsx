@@ -7,7 +7,6 @@ import UserProfileRoadmapsLoader from "@/components/user-profile/components/load
 import { useFetch } from "@/hooks/useFetch";
 import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import { RoadmapType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
-import { useAppSelector } from "@/redux/store";
 import { ARROW_ICON } from "@public/icons/roadmapSteps";
 import Link from "next/link";
 import React, { useContext, useEffect, useRef, useState } from "react";
@@ -54,7 +53,7 @@ const UserProfileRoadmaps = () => {
 			{roadmapList.length ? (
 				<ul>
 					{roadmapList.map(roadmap => (
-						<RoadmapItem key={roadmap.id} {...roadmap} />
+						<RoadmapItem key={roadmap.id} roadmap={roadmap} />
 					))}
 				</ul>
 			) : (

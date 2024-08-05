@@ -1,5 +1,6 @@
 "use client";
 
+import ButtonDotsLoader from "@/components/common/button/ButtonDotsLoader";
 import HorizontalDivider from "@/components/common/divider/components/HorizontalDivider";
 import DragArea from "@/components/user-profile/components/file-upload/components/DragArea";
 import useHandleFilesChanges from "@/components/user-profile/components/file-upload/hooks/useHandleFilesChanges";
@@ -83,9 +84,9 @@ const FileUploader = ({
 
 			<button
 				onClick={handleUploadCover}
-				className="w-[120px] h-[40px] ml-auto flex-jc-c mt-8 font-inter font-medium border border-transparent hover:border-primary-ultramarineBlue bg-primary-ultramarineBlue text-white hover:bg-white hover:text-primary-ultramarineBlue hover:shadow-csm rounded-md outline-none transition duration-200"
+				className="relative overflow-hidden w-[120px] h-[40px] ml-auto flex-jc-c mt-8 font-inter font-medium border border-transparent hover:border-primary-ultramarineBlue bg-primary-ultramarineBlue text-white hover:bg-white hover:text-primary-ultramarineBlue hover:shadow-csm rounded-md outline-none transition duration-200"
 			>
-				{loading || fetchUserDataLoading ? "Loading..." : "Save"}
+				{loading || fetchUserDataLoading ? <ButtonDotsLoader /> : "Save"}
 			</button>
 		</div>
 	);

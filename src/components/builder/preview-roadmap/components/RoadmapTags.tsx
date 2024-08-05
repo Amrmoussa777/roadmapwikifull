@@ -12,6 +12,7 @@ import {
 	addRoadmapTag,
 	deleteRoadmapTag,
 } from "@/redux/slices/create-roadmap/createRoadmapSlice";
+import ButtonDotsLoader from "@/components/common/button/ButtonDotsLoader";
 
 const RoadmapTags = () => {
 	const { value, changeValue, reset, error, handleSetError } = useInput("");
@@ -116,9 +117,9 @@ const RoadmapTags = () => {
 				<button
 					type="submit"
 					disabled={addTagLoading}
-					className="min-w-[60px] w-[60px] md:min-w-[100px] md:w-[100px] text-sm md:text-[16px] font-medium h-full bg-primary-ultramarineBlue text-white rounded-md"
+					className="relative overflow-hidden min-w-[60px] w-[60px] md:min-w-[100px] md:w-[100px] text-sm md:text-[16px] font-medium h-full bg-primary-ultramarineBlue text-white rounded-md"
 				>
-					{addTagLoading ? "Loading..." : "Add tag"}
+					{addTagLoading ? <ButtonDotsLoader /> : "Add tag"}
 				</button>
 			</form>
 			{error ? (

@@ -8,6 +8,7 @@ import { HoverBorderGradient } from "@/components/ui/moving-border";
 import { createRoadmap } from "@/components/builder/create-new-roadmap-steps/services/createRoadmap";
 import { useRouter } from "next/navigation";
 import RoadmapSelectIcon from "@/components/builder/create-new-roadmap-steps/RoadmapSelectIcon";
+import ButtonDotsLoader from "@/components/common/button/ButtonDotsLoader";
 
 const RoadmapDescriptionStep = ({
 	handleBackStep,
@@ -120,10 +121,11 @@ const RoadmapDescriptionStep = ({
 				<HoverBorderGradient
 					containerClassName="rounded-[12px]"
 					as="button"
-					className="w-full md:w-[160px] h-[56px] rounded-[12px] flex-jc-c font-inter text-[18px] font-semibold text-start bg-primary-ultramarineBlue text-white"
+					className="w-full md:w-[160px] h-[56px] rounded-[12px] flex-jc-c font-inter text-[18px] font-semibold text-start bg-primary-ultramarineBlue text-white overflow-hidden"
 				>
-					<span>{isLoading ? "Loading..." : "Create"}</span>
+					{isLoading ? <ButtonDotsLoader /> : <span>Create</span>}
 				</HoverBorderGradient>
+
 				<button
 					className="min-w-[88px] h-[56px] text-[#606060] font-inter semibold text-[18px]"
 					type="button"

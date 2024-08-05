@@ -19,6 +19,7 @@ import HorizontalDivider from "@/components/common/divider/components/Horizontal
 import Link from "next/link";
 import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import { useFetch } from "@/hooks/useFetch";
+import ButtonDotsLoader from "@/components/common/button/ButtonDotsLoader";
 
 const RoadmapItem = ({
 	roadmap,
@@ -140,24 +141,32 @@ const RoadmapItem = ({
 			/>
 
 			<div className="flex items-center gap-4 justify-between">
-				<h3 className="font-inter font-semibold text-[17px] text-[#979797] mt-auto">
-					{price?.amount || "Free"} {price?.currency}
-				</h3>
+				{!isSubscribed ? (
+					<h3 className="font-inter font-semibold text-[17px] text-[#979797] mt-auto">
+						{price?.amount || "Free"} {price?.currency}
+					</h3>
+				) : null}
 
-				<div className="flex-jc-c [&>button]:w-full [&>button]:flex-jc-c [&>button]:gap-2 gap-3 [&>button]:py-[6px] [&>button]:px-[12px] [&>button]:rounded-[5px] text-[#383838] text-[14px] font-inter font-semibold">
+				<div className="flex-jc-c [&>button]:w-full ml-auto [&>button]:flex-jc-c [&>button]:gap-2 gap-3 [&>button]:py-[6px] [&>button]:px-[12px] [&>button]:rounded-[5px] text-[#383838] text-[14px] font-inter font-semibold">
 					<button
 						onClick={() => push(`/roadmap/${id}`)}
 						className="bg-[#F5F5F5] border border-transparent hover:shadow-csm hover:border-[#ACB5B7] hover:bg-white hover:text-primary-ultramarineBlue transition duration-200"
 					>
 						{PLAY_ICON} Preview
 					</button>
+					<button
+						onClick={() => push(`/builder/${id}/steps`)}
+						className="bg-[#F5F5F5] border border-transparent hover:shadow-csm hover:border-[#ACB5B7] hover:bg-white hover:text-primary-ultramarineBlue transition duration-200"
+					>
+						{status === "PUBLISHED" ? "Edit" : "Publish"}
+					</button>
 					{userId !== currentUser?.id && !isSubscribed ? (
 						<button
 							onClick={handleSubscribeRoadmap}
 							disabled={isSubscribed}
-							className="bg-primary-ultramarineBlue text-white border border-transparent disabled:hover:bg-primary-ultramarineBlue disabled:hover:text-white disabled:hover:border disabled:hover:border-transparent hover:border-primary-ultramarineBlue hover:bg-white hover:text-primary-ultramarineBlue transition duration-200"
+							className="relative overflow-hidden bg-primary-ultramarineBlue text-white border border-transparent disabled:hover:bg-primary-ultramarineBlue disabled:hover:text-white disabled:hover:border disabled:hover:border-transparent hover:border-primary-ultramarineBlue hover:bg-white hover:text-primary-ultramarineBlue transition duration-200"
 						>
-							{loading ? "Loading..." : "Subscribe"}
+							{loading ? <ButtonDotsLoader /> : "Subscribe"}
 						</button>
 					) : null}
 				</div>

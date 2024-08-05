@@ -27,7 +27,7 @@ const SubscribeButton = ({
 				) : null}
 			</div>
 			<span className="w-[44px] md:w-[55px] h-[40px] md:h-[44px] flex-jc-c text-md md:text-lg font-semibold bg-black/20 rounded-r-md">
-				{price}$
+				{price?.toFixed(0)}$
 			</span>
 		</button>
 	);

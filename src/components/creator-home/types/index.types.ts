@@ -1,8 +1,8 @@
 import { ReactNode } from "react";
 
 export type SummaryItemProps = {
-	label: string;
-	info: string;
+	name: string;
+	value: number;
 	icon: ReactNode;
 };
 

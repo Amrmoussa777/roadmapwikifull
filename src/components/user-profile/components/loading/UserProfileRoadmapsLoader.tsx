@@ -42,7 +42,7 @@ const UserProfileRoadmapsLoader = () => {
 
 				<hr className="h-[1px] bg-gray-300 my-[16px]" />
 
-				<div className="flex items-center gap-3">
+				<div className="w-full flex items-end gap-3 justify-end">
 					<div className="h-4 w-24 bg-gray-200 rounded"></div>
 					<div className="h-4 w-24 bg-gray-200 rounded"></div>
 					<div className="h-4 w-24 bg-gray-200 rounded"></div>

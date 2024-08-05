@@ -10,6 +10,7 @@ import { DURATION_ICON } from "@public/icons/roadmapSteps";
 import { AnimatePresence, motion } from "framer-motion";
 import { useParams } from "next/navigation";
 import React, { FormEvent, useState } from "react";
+import ButtonDotsLoader from "@/components/common/button/ButtonDotsLoader";
 
 const RoadmapDurationPicker = ({
 	defaultDuration,
@@ -124,9 +125,9 @@ const RoadmapDurationPicker = ({
 							<button
 								disabled={!duration.length}
 								type="submit"
-								className="text-[#181818] font-medium hover:text-primary-ultramarineBlue transition duration-200 disabled:hover:text-[#181818]"
+								className="relative overflow-hidden text-[#181818] font-medium hover:text-primary-ultramarineBlue transition duration-200 disabled:hover:text-[#181818]"
 							>
-								{loading ? "Loading..." : "OK"}
+								{loading ? <ButtonDotsLoader /> : "OK"}
 							</button>
 
 							<button

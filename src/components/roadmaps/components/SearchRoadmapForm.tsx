@@ -60,9 +60,13 @@ const SearchRoadmapForm = () => {
 				<input
 					type="text"
 					placeholder={`${
-						responsive
-							? "Search for roadmap"
-							: "Enter field name you want roadmap about"
+						searchType === "roadmaps"
+							? responsive
+								? "Search for roadmap"
+								: "Enter field name you want roadmap about"
+							: responsive
+							? "Search for creator"
+							: "Enter creator name you want roadmap about"
 					}`}
 					value={value}
 					onChange={changeValue}

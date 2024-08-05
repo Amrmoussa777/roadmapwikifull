@@ -1,6 +1,6 @@
 import GeneralStatistics from "@/components/creator-home/components/GeneralStatistics";
 import Header from "@/components/creator-home/components/Header";
-import LatestRoadmaps from "@/components/creator-home/components/LatestRoadmaps";
+import MyRoadmaps from "@/components/creator-home/components/MyRoadmaps";
 import OnboardingSteps from "@/components/creator-home/components/OnboardingSteps";
 import Summary from "@/components/creator-home/components/Summary";
 import React from "react";
@@ -15,7 +15,7 @@ const CreatorHome = () => {
 
 				<div className="w-full">
 					<Summary />
-					<LatestRoadmaps />
+					<MyRoadmaps />
 					<GeneralStatistics />
 				</div>
 			</div>

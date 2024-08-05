@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 export type ModalProps = {
 	title: string;
-	children: ReactNode;
+	children?: ReactNode;
 	open: boolean;
 	toggleShareModal: () => void;
 };

@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { IApiResponse, IHandleApiRequestArgs } from "./types";
-import { getCookie } from "cookies-next";
+import { getCookie, setCookie } from "cookies-next";
+import { fetchAnonymousToken } from "@/services/fetchAnonymousToken";
 
 class HandleApiRequests {
 	public static handleApiRequest = async <Data>({
@@ -9,7 +10,13 @@ class HandleApiRequests {
 		body,
 		endpoint,
 	}: IHandleApiRequestArgs<Data>) => {
-		const accessToken = getCookie("accessToken");
+		let accessToken = getCookie("accessToken");
+
+		if (!accessToken) {
+			const newAccessToken = await fetchAnonymousToken();
+			setCookie("accessToken", newAccessToken);
+			accessToken = newAccessToken;
+		}
 
 		const { data } = await axios({
 			method,

@@ -12,6 +12,7 @@ import { NAVBAR_MENU_ICON, SHARE_ICON } from "@public/icons/roadmapPreview";
 import { SAVE_ICON } from "@public/icons/roadmapSteps";
 import { useParams, useRouter } from "next/navigation";
 import React, { useContext, useEffect } from "react";
+import ButtonDotsLoader from "@/components/common/button/ButtonDotsLoader";
 
 const CreateRoadmapHeader = ({
 	sidebarMobile,
@@ -95,15 +96,17 @@ const CreateRoadmapHeader = ({
 					>
 						<button
 							onClick={handleClickPublishRoadmap}
-							className="w-[35px] sm:w-[100px] md:w-[132px] h-[35px] md:h-[40px] flex-jc-c gap-2 rounded-full text-white [&>svg]:w-[20px] [&>svg]:fill-white bg-primary-ultramarineBlue hover:-translate-y-1 transform transition duration-200 hover:shadow-md"
+							className="relative overflow-hidden w-[35px] sm:w-[100px] md:w-[132px] h-[35px] md:h-[40px] flex-jc-c gap-2 rounded-full text-white [&>svg]:w-[20px] [&>svg]:fill-white bg-primary-ultramarineBlue hover:-translate-y-1 transform transition duration-200 hover:shadow-md"
 						>
 							{status === "PUBLISHED" ? SHARE_ICON : SAVE_ICON}{" "}
 							<span className="hidden sm:block">
-								{loading
-									? "Loading..."
-									: status === "DRAFT"
-									? "Publish"
-									: "Share"}
+								{loading ? (
+									<ButtonDotsLoader />
+								) : status === "DRAFT" ? (
+									"Publish"
+								) : (
+									"Share"
+								)}
 							</span>
 						</button>
 					</ShareModal>

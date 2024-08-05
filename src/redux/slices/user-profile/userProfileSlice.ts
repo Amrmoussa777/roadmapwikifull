@@ -59,8 +59,10 @@ const userProfileSlice = createSlice({
 		},
 	},
 	extraReducers(builder) {
-		builder.addCase(fetchUserByUsername.pending, (state, action) => {
+		builder.addCase(fetchUserByUsername.pending, state => {
 			state.isLoading = true;
+			state.user = null;
+			state.personalInfo = null;
 		});
 
 		builder.addCase(fetchUserByUsername.fulfilled, (state, action) => {
@@ -83,6 +85,7 @@ const userProfileSlice = createSlice({
 		builder.addCase(fetchUserByUsername.rejected, (state, action) => {
 			state.error = "no user found";
 			state.user = null;
+			state.isLoading = false;
 		});
 	},
 });

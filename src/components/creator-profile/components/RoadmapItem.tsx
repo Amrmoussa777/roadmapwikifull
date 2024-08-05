@@ -18,6 +18,7 @@ import { RoadmapType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice
 import Avatar from "@/components/common/avatar/components/Avatar";
 import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import { useFetch } from "@/hooks/useFetch";
+import ButtonDotsLoader from "@/components/common/button/ButtonDotsLoader";
 
 const RoadmapItem = ({
 	id,
@@ -117,17 +118,13 @@ const RoadmapItem = ({
 						{PLAY_ICON} Preview
 					</button>
 
-					{userId !== currentUser?.id ? (
+					{userId !== currentUser?.id && !isSubscribed ? (
 						<button
 							onClick={handleSubscribeRoadmap}
 							disabled={isSubscribed}
-							className="bg-primary-ultramarineBlue text-white border border-transparent disabled:hover:bg-primary-ultramarineBlue disabled:hover:text-white disabled:hover:border disabled:hover:border-transparent hover:border-primary-ultramarineBlue hover:bg-white hover:text-primary-ultramarineBlue transition duration-200"
+							className="relative overflow-hidden bg-primary-ultramarineBlue text-white border border-transparent disabled:hover:bg-primary-ultramarineBlue disabled:hover:text-white disabled:hover:border disabled:hover:border-transparent hover:border-primary-ultramarineBlue hover:bg-white hover:text-primary-ultramarineBlue transition duration-200"
 						>
-							{loading
-								? "Loading..."
-								: isSubscribed
-								? "Subscribed"
-								: "Subscribe"}
+							{loading ? <ButtonDotsLoader /> : "Subscribe"}
 						</button>
 					) : null}
 				</div>

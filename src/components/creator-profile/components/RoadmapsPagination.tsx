@@ -17,7 +17,7 @@ const RoadmapsPagination = ({
 		>
 			<button
 				onClick={handleShowMoreRoadmaps}
-				className="block text-start text-[#ADAEB5] font-semibold rounded-sm bg-transparent my-3"
+				className="relative overflow-hidden block text-start text-[#ADAEB5] font-semibold rounded-sm bg-transparent my-3"
 			>
 				{isLoading ? "Loading..." : "Show more roadmaps..."}
 			</button>

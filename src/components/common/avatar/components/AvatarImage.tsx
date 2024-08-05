@@ -7,6 +7,8 @@ const AvatarImage = ({ image_url }: AvatarImagePropsType) => {
 		<Image
 			src={image_url}
 			alt="avatar image"
+			width={200}
+			height={200}
 			className="w-full object-cover border-2 border-white rounded-full"
 		/>
 	);

@@ -97,7 +97,10 @@ const useRoadmapsFilter = () => {
 		setSearchTypeList(searchTypeListData);
 		setRoadmapCategoryList(categoriesList.slice(0, 15));
 		setRoadmapDurationList(roadmapDurationListData);
-		toggleMobileFilter();
+
+		if (responsive) {
+			toggleMobileFilter();
+		}
 	};
 
 	return {

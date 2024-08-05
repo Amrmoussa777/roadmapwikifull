@@ -1,18 +1,20 @@
 "use client";
 
+import ButtonDotsLoader from "@/components/common/button/ButtonDotsLoader";
 import PathnameHelper from "@/helpers/pathname.helper";
 import { useFetch } from "@/hooks/useFetch";
 import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import { useAppSelector } from "@/redux/store";
-import { useRouter } from "next/navigation";
-import React, { useContext, useEffect } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import React, { useContext, useEffect, useRef, useState } from "react";
 
 const FollowButton = ({ customStyles = "" }: { customStyles?: string }) => {
-	const { roadmap } = useAppSelector(state => state.roadmapPreview);
-	const { user } = roadmap || {};
+	const { user } = useAppSelector(state => state.userProfile);
 	const { id } = user || {};
 	const { currentUser } = useContext(CurrentUserContext);
 	const { push } = useRouter();
+	const pathname = usePathname();
+	const [hoverButtonText, setHoverButtonText] = useState("");
 
 	const { fetchData, loading } = useFetch();
 
@@ -22,11 +24,9 @@ const FollowButton = ({ customStyles = "" }: { customStyles?: string }) => {
 
 	const handleClickFollow = () => {
 		if (currentUser) {
-			follow;
+			follow();
 		} else {
-			return push(
-				`/auth/login?redirectPath=/roadmap/${roadmap?.id}&action=followUser`
-			);
+			return push(`/auth/login?redirectPath=${pathname}&action=followUser`);
 		}
 	};
 
@@ -39,13 +39,28 @@ const FollowButton = ({ customStyles = "" }: { customStyles?: string }) => {
 			PathnameHelper.clearUrlParams();
 		}
 	}, [currentUser, action]);
+	console.log(user?.isFollowed);
+
+	if (id === currentUser?.id) return;
+	console.log(hoverButtonText);
 
 	return (
 		<button
 			onClick={handleClickFollow}
-			className={`w-full h-full px-6 bg-primary-ultramarineBlue text-white rounded-full border-2 border-transparent hover:border-primary-ultramarineBlue hover:bg-white hover:text-primary-ultramarineBlue transition duration-200 ${customStyles}`}
+			disabled={loading}
+			onMouseEnter={() =>
+				setHoverButtonText(user?.isFollowed ? "UnFollow" : "Follow")
+			}
+			onMouseLeave={() => setHoverButtonText("")}
+			className={`relative w-full h-full px-6 bg-primary-ultramarineBlue text-white rounded-full border-2 border-transparent hover:border-primary-ultramarineBlue disabled:hover:text-white disabled:hover:bg-primary-ultramarineBlue hover:bg-white hover:text-primary-ultramarineBlue transition duration-200 ${customStyles} overflow-hidden`}
 		>
-			{loading ? "Loading..." : "Follow"}
+			{hoverButtonText
+				? hoverButtonText
+				: user?.isFollowed
+				? "Following"
+				: "Follow"}
+
+			{loading ? <ButtonDotsLoader /> : null}
 		</button>
 	);
 };

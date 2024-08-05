@@ -30,6 +30,7 @@ interface User {
 	socialMedia: SocialMedia[];
 	experiences: Experience[];
 	_count: Count;
+	isFollowed: boolean;
 }
 
 interface UserProfileStateTypes {

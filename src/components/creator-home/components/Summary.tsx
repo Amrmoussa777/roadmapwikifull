@@ -1,40 +1,61 @@
 "use client";
 
 import SummaryItem from "@/components/creator-home/components/SummaryItem";
-import { useSizeScreen } from "@/hooks/useSizeScreen";
-import {
-	COMMENTS_ICON,
-	LIKES_ICON,
-	PREVIEWS_ICON,
-	SUBSCRIBES_ICON,
-} from "@public/icons/creatorHome";
-import React from "react";
+import { SummaryItemProps } from "@/components/creator-home/types/index.types";
+import { USER_STATS_ICONS } from "@/config/userStatsIcons";
+import { CurrentUserContext } from "@/providers/CurrentUserContext";
+import React, { useContext, useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 const Summary = () => {
-	const { responsive } = useSizeScreen(768);
+	const [stats, setStats] = useState<SummaryItemProps[]>([]);
+
+	const { currentUser } = useContext(CurrentUserContext);
+	const { stats: statsObj } = currentUser || {};
+
+	useEffect(() => {
+		if (currentUser && statsObj) {
+			const stats: SummaryItemProps[] = Object.entries(statsObj).map(
+				([key, value]) => {
+					return {
+						name: key,
+						value,
+						icon: USER_STATS_ICONS[key],
+					};
+				}
+			);
+
+			setStats(stats);
+		}
+	}, [currentUser]);
 
 	return (
-		<div className="">
+		<div>
 			<Swiper
-				slidesPerView={4}
-				className={`[&>div>div]:!w-[156px] [&>div>div]:lg:!w-[200px] [&>div]:flex-jb-c`}
+				slidesPerView={4.5}
+				spaceBetween={10}
+				className={`[&>div]:flex-jb-c`}
 				breakpoints={{
 					1280: {
-						slidesPerView: 4,
+						slidesPerView: 4.5,
+						spaceBetween: 10,
 					},
 					1150: {
-						slidesPerView: 4,
+						slidesPerView: 4.5,
+						spaceBetween: 10,
 					},
 
 					1024: {
-						slidesPerView: 4,
+						slidesPerView: 4.5,
+						spaceBetween: 10,
 					},
 					876: {
-						slidesPerView: 4,
+						slidesPerView: 4.5,
+						spaceBetween: 10,
 					},
 					768: {
-						slidesPerView: 4,
+						slidesPerView: 4.5,
+						spaceBetween: 10,
 					},
 					640: {
 						slidesPerView: 2.8,
@@ -50,18 +71,11 @@ const Summary = () => {
 					},
 				}}
 			>
-				<SwiperSlide>
-					<SummaryItem label="Subscribes" info="200K" icon={SUBSCRIBES_ICON} />
-				</SwiperSlide>
-				<SwiperSlide>
-					<SummaryItem label="Previews" info="500K" icon={PREVIEWS_ICON} />
-				</SwiperSlide>
-				<SwiperSlide>
-					<SummaryItem label="Comments" info="31,500" icon={COMMENTS_ICON} />
-				</SwiperSlide>
-				<SwiperSlide className="[&>li]:!mr-0">
-					<SummaryItem label="Example" info="100K" icon={LIKES_ICON} />
-				</SwiperSlide>
+				{stats.map(item => (
+					<SwiperSlide key={item.name}>
+						<SummaryItem {...item} />
+					</SwiperSlide>
+				))}
 			</Swiper>
 		</div>
 	);

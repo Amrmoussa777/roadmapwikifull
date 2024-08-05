@@ -7,6 +7,7 @@ import StepVerificationItem from "@/components/builder/roadmap-steps/StepVerific
 import { resetVerificationToUpdate } from "@/redux/slices/create-roadmap/createRoadmapSlice";
 import { useStepVerification } from "@/components/builder/roadmap-steps/hooks/useStepVerification";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
+import ButtonDotsLoader from "@/components/common/button/ButtonDotsLoader";
 
 const StepVerification = ({ stepId, verifications }: StepVerificationProps) => {
 	const {
@@ -89,13 +90,19 @@ const StepVerification = ({ stepId, verifications }: StepVerificationProps) => {
 										}
 										className="w-full flex-jc-c p-2 text-[#383838] border border-[#E0E0E0] mt-2 rounded-md disabled:hover:bg-white disabled:hover:border-[#E0E0E0] disabled:hover:text-[#383838] hover:bg-primary-ultramarineBlue hover:text-white hover:border-transparent transition duration-200"
 									>
-										<p className="text-[16px] font-inter font-medium">
-											{loading
-												? "Loading..."
-												: verificationToUpdate
-												? "Update"
-												: "Add"}
-										</p>
+										<div className="relative overflow-hidden text-[16px] font-inter font-medium">
+											{loading ? (
+												<ButtonDotsLoader />
+											) : verificationToUpdate ? (
+												<p className="text-[16px] font-inter font-medium">
+													Update
+												</p>
+											) : (
+												<p className="text-[16px] font-inter font-medium">
+													Add
+												</p>
+											)}
+										</div>
 									</button>
 
 									{verificationToUpdate ? (
