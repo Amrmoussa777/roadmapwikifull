@@ -1,5 +1,6 @@
 import HorizontalDivider from "@/components/common/divider/components/HorizontalDivider";
 import useInput from "@/components/common/input/hooks/useInput";
+import RoadmapDiscussionAddPostFormLoader from "@/components/roadmap-preview/components/roadmap-discussion/components/RoadmapDiscussionAddPostFormLoader";
 import PathnameHelper from "@/helpers/pathname.helper";
 import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import { addPost } from "@/redux/slices/thunks/roadmaps/addPost";
@@ -88,6 +89,8 @@ const RoadmapDiscussionAddPostForm = () => {
 			}, 1000);
 		}
 	}, [roadmap?.id]);
+
+	if (!roadmap) return <RoadmapDiscussionAddPostFormLoader />;
 
 	return (
 		<>
