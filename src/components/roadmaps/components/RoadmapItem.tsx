@@ -155,7 +155,7 @@ const RoadmapItem = ({
 						{PLAY_ICON} Preview
 					</button>
 
-					{userId !== currentUser?.id && (
+					{userId === currentUser?.id && (
 						<button
 							onClick={() => push(`/builder/${id}/steps`)}
 							className="bg-[#F5F5F5] border border-transparent hover:shadow-csm hover:border-[#ACB5B7] hover:bg-white hover:text-primary-ultramarineBlue transition duration-200"

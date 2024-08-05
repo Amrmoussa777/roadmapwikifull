@@ -7,31 +7,38 @@ import Sidebar from "@/components/builder/sidebar/components/Sidebar";
 import PathnameHelper from "@/helpers/pathname.helper";
 import { useSizeScreen } from "@/hooks/useSizeScreen";
 import useToggle from "@/hooks/useToggle";
+import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import { ChildrenType } from "@/providers/types/index.types";
 import { fetchRoadmapById } from "@/redux/slices/thunks/create-roadmap/fetchRoadmapById";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { GRID_ICON, LAYER_ICON } from "@public/icons/roadmapPreview";
 import { redirect, useParams, usePathname } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 const CreateRoadmapLayout = ({ children }: ChildrenType) => {
 	const pathname = usePathname();
 	const lastPathname = PathnameHelper.getLastPathname(pathname);
 	const createNewRoadmapPaths = ["builder"];
-	const { error } = useAppSelector(state => state.createRoadmap);
+	const { error, roadmap } = useAppSelector(state => state.createRoadmap);
 	const { currentState: sidebarMobile, toggle: toggleSidebarMobile } =
 		useToggle(false);
-
 	const [mobileLayout, setMobileLayout] = useState("grid");
 	const { roadmapId } = useParams();
 	const dispatch = useAppDispatch();
 	const { responsive } = useSizeScreen(1024);
+	const { currentUser } = useContext(CurrentUserContext);
 
 	useEffect(() => {
 		if (roadmapId) {
 			dispatch(fetchRoadmapById(roadmapId));
 		}
 	}, [roadmapId]);
+
+	useEffect(() => {
+		if (roadmap && currentUser && currentUser.id !== roadmap.userId) {
+			redirect("/builder");
+		}
+	}, [currentUser, roadmap]);
 
 	if (
 		!pathname.includes("builder") ||

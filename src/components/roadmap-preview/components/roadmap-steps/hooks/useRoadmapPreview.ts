@@ -12,7 +12,7 @@ import { useEffect } from "react";
 export const useRoadmapPreview = () => {
 	const { id } = useParams();
 	const dispatch = useAppDispatch();
-	const { error, loading, fetchData } = useFetch();
+	const { error, loading, fetchData } = useFetch(true);
 	const { warningToast } = useToast();
 	const accessToken = getCookie("accessToken");
 

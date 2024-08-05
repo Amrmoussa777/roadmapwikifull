@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useContext } from "react";
 import { useAppSelector } from "@/redux/store";
 import { useRoadmapPreview } from "@/components/roadmap-preview/components/roadmap-steps/hooks/useRoadmapPreview";
 import LoadingRoadmapPreviewProfileInfo from "@/components/roadmap-preview/components/loading/LoadingRoadmapPreviewProfileInfo";
@@ -9,16 +9,18 @@ import DirectMessageButton from "@/components/common/profile/DirectMessageButton
 import Link from "next/link";
 import { SOCIAL_MEDIA_ICONS } from "@/config/socialMediaIcons";
 import NumberStats from "@/components/common/states/NumberStats";
+import { CurrentUserContext } from "@/providers/CurrentUserContext";
 
 const RoadmapPreviewProfileInfo = () => {
 	const { loading } = useRoadmapPreview();
 
 	const { roadmap } = useAppSelector(state => state.roadmapPreview);
 	const { user } = roadmap || {};
-	const { socialMedia, userName, description, occupation, _count } = user || {};
+	const { id, socialMedia, userName, description, occupation, _count } =
+		user || {};
+	const { currentUser } = useContext(CurrentUserContext);
 
 	if (loading && !roadmap) return <LoadingRoadmapPreviewProfileInfo />;
-
 	return (
 		<>
 			<div className="w-full">
@@ -38,10 +40,12 @@ const RoadmapPreviewProfileInfo = () => {
 				</p>
 			</div>
 
-			<div className="w-full h-[40px] flex-jc-c gap-2">
-				<FollowButton />
-				<DirectMessageButton />
-			</div>
+			{id && currentUser && id !== currentUser.id ? (
+				<div className="w-full h-[40px] flex-jc-c gap-2">
+					<FollowButton />
+					<DirectMessageButton />
+				</div>
+			) : null}
 
 			<p className="text-grey-secondary text-[12px] font-light">
 				{description}
