@@ -1,3 +1,4 @@
+import CreatorTips from "@/components/creator-home/components/CreatorTips";
 import GeneralStatistics from "@/components/creator-home/components/GeneralStatistics";
 import Header from "@/components/creator-home/components/Header";
 import MyRoadmaps from "@/components/creator-home/components/MyRoadmaps";
@@ -11,9 +12,12 @@ const CreatorHome = () => {
 			<Header />
 
 			<div className="flex justify-between lg:gap-[20px] xl:gap-[40px] mt-[30px]">
-				<OnboardingSteps />
+				<div className="min-w-[300px] w-[300px] hidden xl:flex flex-col gap-[90px]">
+					<OnboardingSteps />
+					<CreatorTips />
+				</div>
 
-				<div className="w-full">
+				<div className="w-full xl:w-[calc(100%-340px)]">
 					<Summary />
 					<MyRoadmaps />
 					<GeneralStatistics />

@@ -10,3 +10,9 @@ export type OnboardingStepProps = {
 	stepText: string;
 	completed: boolean;
 };
+
+export type CreatorTipProps = {
+	image: string;
+	title: string;
+	description: string;
+};

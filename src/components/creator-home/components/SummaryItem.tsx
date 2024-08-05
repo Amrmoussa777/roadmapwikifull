@@ -12,7 +12,7 @@ const SummaryItem = ({ name, value, icon }: SummaryItemProps) => {
 				<button>{MENU_ICON}</button>
 			</div>
 
-			<h3 className="text-[20px] lg:text-[32px] text-[#252424] font-bold leading-[46px] lg:leading-[60px]">
+			<h3 className="text-[20px] lg:text-[32px] text-[#252424] font-bold">
 				{value}
 			</h3>
 		</li>

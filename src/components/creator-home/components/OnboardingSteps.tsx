@@ -12,7 +12,7 @@ const OnboardingSteps = () => {
 	const { fullName, image, userName, occupation } = currentUser || {};
 
 	return (
-		<div className="w-full max-w-[350px] h-full hidden xl:block p-[24px] border border-[#DCDCDC] rounded-[12px]">
+		<div className="w-full max-w-[350px] h-full p-[24px] border border-[#DCDCDC] rounded-[12px]">
 			<Link href={`/user/${userName}`} className="flex justify-start gap-4">
 				<Avatar
 					name={fullName || ""}

@@ -37,7 +37,7 @@ const Summary = () => {
 				className={`[&>div]:flex-jb-c`}
 				breakpoints={{
 					1280: {
-						slidesPerView: 4.5,
+						slidesPerView: 4.2,
 						spaceBetween: 10,
 					},
 					1150: {
@@ -46,15 +46,15 @@ const Summary = () => {
 					},
 
 					1024: {
-						slidesPerView: 4.5,
+						slidesPerView: 4.2,
 						spaceBetween: 10,
 					},
 					876: {
-						slidesPerView: 4.5,
+						slidesPerView: 4.2,
 						spaceBetween: 10,
 					},
 					768: {
-						slidesPerView: 4.5,
+						slidesPerView: 4.2,
 						spaceBetween: 10,
 					},
 					640: {
