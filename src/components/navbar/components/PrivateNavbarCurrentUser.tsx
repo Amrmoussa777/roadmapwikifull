@@ -32,7 +32,7 @@ const PrivateNavbarCurrentUser = () => {
 			<Avatar
 				image_url={image}
 				name={fullName || ""}
-				customStyles="w-[40px] h-[40px] rounded-full border border-white object-cover !bg-primary-ultramarineBlue text-white"
+				customStyles="w-[40px] h-[40px] rounded-full !border-none object-cover [&>img]:border-none !bg-primary-ultramarineBlue text-white"
 			/>
 		</Link>
 	);

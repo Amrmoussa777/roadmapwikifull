@@ -45,7 +45,7 @@ const UserImage = () => {
 				<Avatar
 					image_url={image}
 					name={fullName || ""}
-					customStyles="w-[148px] h-[148px] rounded-full border-8 border-white object-cover !bg-primary-ultramarineBlue text-[3rem] text-white"
+					customStyles="w-[148px] h-[148px] rounded-full border-8 border-white object-cover [&>img]:border-none !bg-primary-ultramarineBlue text-[3rem] text-white"
 				/>
 			</div>
 
@@ -55,6 +55,7 @@ const UserImage = () => {
 				ratio="400 X 400px"
 				updateKey="image"
 				title="Upload image"
+				imageHeight={400}
 			/>
 		</>
 	);

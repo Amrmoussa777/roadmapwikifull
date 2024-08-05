@@ -16,7 +16,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 const UserProfileRoadmaps = () => {
 	const [roadmapList, setRoadmapList] = useState<RoadmapType[]>([]);
 	const { currentUser } = useContext(CurrentUserContext);
-	const { loading, fetchData } = useFetch();
+	const { loading, fetchData } = useFetch(true);
 	const initialized = useRef(false);
 	const [totalMySubscriptionsNumber, setTotalMySubscriptionsNumber] =
 		useState(0);

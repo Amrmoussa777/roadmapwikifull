@@ -17,7 +17,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 const UserSubscriptions = () => {
 	const [roadmapList, setRoadmapList] = useState<RoadmapType[]>([]);
 	const { currentUser } = useContext(CurrentUserContext);
-	const { loading, fetchData } = useFetch();
+	const { loading, fetchData } = useFetch(true);
 	const initialized = useRef(false);
 	const [roadmapShareId, setRoadmapShareId] = useState("");
 	const { currentState: shareModal, toggle: toggleShareModal } =

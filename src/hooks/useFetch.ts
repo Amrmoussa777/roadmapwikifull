@@ -3,9 +3,9 @@ import { IRequestMethods } from "@/helpers/types";
 import { useToast } from "@/hooks/useToast";
 import { useState } from "react";
 
-export const useFetch = <B = any>() => {
+export const useFetch = <B = any>(loadingDefault: boolean = false) => {
 	const [data, setData] = useState(null);
-	const [loading, setLoading] = useState(false);
+	const [loading, setLoading] = useState(loadingDefault);
 	const [error, setError] = useState(null);
 
 	const { errorToast } = useToast();
