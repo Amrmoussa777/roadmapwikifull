@@ -13,7 +13,7 @@ const AvatarImage = ({
 			alt="avatar"
 			width={200}
 			height={200}
-			onLoadingComplete={onLoadingComplete}
+			onLoad={onLoadingComplete}
 			className={`w-full h-full object-cover border-2 border-white rounded-full ${customStyles}`}
 		/>
 	);

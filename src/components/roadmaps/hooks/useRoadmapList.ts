@@ -20,6 +20,7 @@ const useRoadmapList = () => {
 	} = useAppSelector(state => state.roadmapList);
 	const { handleMoreRoadmaps, resetPageNumber, pageNumber } =
 		useRoadmapPagination();
+
 	const { fetchData, loading } = useFetch(true);
 	const [totalItems, setTotalItems] = useState(0);
 	const [params, setParams] = useState("");
@@ -77,11 +78,11 @@ const useRoadmapList = () => {
 		) {
 			const builtParams = buildParamsString(filterList);
 
-			resetPageNumber();
 			setParams(builtParams);
 		} else {
 			setParams("");
 		}
+		resetPageNumber();
 	}, [filterList, responsive, appliedFilterMobile]);
 
 	useEffect(() => {
