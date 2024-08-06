@@ -2,7 +2,7 @@ import { OnboardingStepProps } from "@/components/creator-home/types/index.types
 import { ONBOARDING_STEP_CHECK } from "@public/icons/creatorHome";
 import React from "react";
 
-const OnboardingStep = ({ stepText, completed }: OnboardingStepProps) => {
+const OnboardingStep = ({ tipKey, completed }: OnboardingStepProps) => {
 	return (
 		<li className="mt-[12px]">
 			<button
@@ -19,8 +19,8 @@ const OnboardingStep = ({ stepText, completed }: OnboardingStepProps) => {
 				>
 					{ONBOARDING_STEP_CHECK}
 				</span>
-				<p className="font-inter font-normal text-[#606060] text-[14px]">
-					{stepText}
+				<p className="font-inter font-normal text-[#606060] text-[14px] capitalize">
+					{tipKey.toLowerCase().replaceAll("_", " ")}
 				</p>
 			</button>
 		</li>

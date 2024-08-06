@@ -7,7 +7,7 @@ export type SummaryItemProps = {
 };
 
 export type OnboardingStepProps = {
-	stepText: string;
+	tipKey: string;
 	completed: boolean;
 };
 
