@@ -4,7 +4,6 @@ import OnboardingSteps from "@/components/creator-home/components/OnboardingStep
 import PopularCreators from "@/components/user-home/components/PopularCreators";
 import PopularFields from "@/components/user-home/components/PopularFields";
 import RecommendedRoadmaps from "@/components/user-home/components/RecommendedRoadmaps";
-import UserProfileRoadmaps from "@/components/user-profile/components/UserProfileRoadmaps";
 import UserSubscriptions from "@/components/user-profile/components/UserSubscriptions";
 import React from "react";
 
@@ -14,7 +13,7 @@ const UserHome = () => {
 			<Header />
 
 			<div className="flex justify-between flex-col lg:flex-row lg:gap-[20px] xl:gap-[40px] mt-[30px]">
-				<div className="w-full h-fit grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 lg:min-w-[300px] lg:w-[300px] justify-between lg:flex-col gap-[30px] lg:gap-[90px]">
+				<div className="w-full h-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 lg:min-w-[300px] lg:w-[300px] justify-between lg:flex-col gap-[30px] lg:gap-[90px]">
 					<OnboardingSteps />
 					<UserTips />
 				</div>
@@ -26,7 +25,7 @@ const UserHome = () => {
 					/>
 					<RecommendedRoadmaps />
 
-					<div className="flex flex-col sm:flex-row sm:justify-between gap-8 sm:gap-4 mt-[40px]">
+					<div className="h-full sm:h-[515px] py-8 flex flex-col sm:flex-row sm:justify-between gap-8 sm:gap-4 mt-[40px]">
 						<PopularCreators />
 						<PopularFields />
 					</div>

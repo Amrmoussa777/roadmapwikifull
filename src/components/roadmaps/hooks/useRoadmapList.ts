@@ -4,10 +4,13 @@ import ParamsHelper from "@/helpers/params.helper";
 import { useRoadmapPagination } from "@/components/roadmaps/hooks/useRoadmapsPagination";
 import {
 	pushRoadmapList,
+	updatedFilterList,
 	updateRoadmapList,
 } from "@/redux/slices/roadmapList/roadmapListSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { useSizeScreen } from "@/hooks/useSizeScreen";
+import { useSearchParams } from "next/navigation";
+import PathnameHelper from "@/helpers/pathname.helper";
 
 const useRoadmapList = () => {
 	const {
@@ -25,6 +28,7 @@ const useRoadmapList = () => {
 	const [params, setParams] = useState("");
 	const initialized = useRef(false);
 	const dispatch = useAppDispatch();
+	const urlParams = useSearchParams();
 
 	const { responsive } = useSizeScreen(640);
 
@@ -79,13 +83,22 @@ const useRoadmapList = () => {
 	useEffect(() => {
 		if (!initialized.current) {
 			initialized.current = true;
-			getFilteredRoadmaps(1, "");
+			const category = urlParams.get("category");
+
+			if (category) {
+				getFilteredRoadmaps(1, `&category=${category}`);
+				dispatch(
+					updatedFilterList({ filterKey: "categories", value: [category] })
+				);
+			}
 		}
-	}, []);
+	}, [urlParams]);
 
 	useEffect(() => {
-		getFilteredRoadmaps(pageNumber, params);
-	}, [pageNumber, params]);
+		if (!urlParams.get("category")) {
+			getFilteredRoadmaps(pageNumber, params);
+		}
+	}, [pageNumber, params, urlParams]);
 
 	useEffect(() => {
 		if (searchValue) {

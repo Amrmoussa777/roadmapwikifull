@@ -6,6 +6,8 @@ import {
 	FilterItemProps,
 	FilterListItem,
 } from "@/components/roadmaps/types/index.types";
+import PathnameHelper from "@/helpers/pathname.helper";
+import { useSearchParams } from "next/navigation";
 import React from "react";
 
 const FilterItem = ({
@@ -19,11 +21,19 @@ const FilterItem = ({
 	lastFilterItem,
 	multi,
 }: FilterItemProps) => {
+	const urlCategoryParam = useSearchParams().get("category");
+
 	const handleChangeFilterItemList = (
 		list: FilterListItem[],
 		newItem: FilterListItem,
 		setNewList: (list: FilterListItem[]) => void
 	) => {
+		if (newItem.label.id === urlCategoryParam) {
+			PathnameHelper.clearUrlParams();
+			setNewList(list);
+			return;
+		}
+
 		if (multi) {
 			const updatedList = list.map(item => {
 				if (item.label.id === newItem.label.id && !item.checked) {
@@ -78,23 +88,23 @@ const FilterItem = ({
 							label={item.label}
 							bgColor={
 								circle
-									? item.checked
+									? item.checked || urlCategoryParam === item.label.id
 										? "bg-[#506CF0]"
 										: "bg-white"
 									: "bg-[#506CF0]"
 							}
-							checked={item.checked}
+							checked={item.checked || urlCategoryParam === item.label.id}
 							toggle={() =>
 								handleChangeFilterItemList(filterList, item, setNewList)
 							}
 							customStyles={`${
 								circle
 									? "rounded-full [&>svg]:hidden border-[2px] border-[#DADADA]"
-									: item.checked
+									: item.checked || urlCategoryParam === item.label.id
 									? "bg-[#506CF0]"
 									: "bg-[#F6F6F6]"
 							} ${
-								item.checked && circle
+								item.checked && urlCategoryParam === item.label.id && circle
 									? "border-[8px] bg-white !border-[#506CF0]"
 									: ""
 							}`}

@@ -19,12 +19,12 @@ const PopularCreators = () => {
 	}, []);
 
 	return (
-		<section className="w-full md:w-2/4">
+		<section className="w-full md:w-2/4 h-full">
 			<h3 className="font-inter font-semibold text-[18px] text-[#202020]">
 				Popular creators
 			</h3>
 
-			<ul className="grid grid-cols-1 lg:grid-cols-2 gap-[10px] xl:gap-[20px] mt-[24px]">
+			<ul className="h-full grid grid-cols-1 lg:grid-cols-2 gap-[10px] xl:gap-[20px] mt-[24px] overflow-y-scroll hidden-scrollbar">
 				{creators.map(creator => (
 					<PopularCreator key={creator.id} {...creator} />
 				))}

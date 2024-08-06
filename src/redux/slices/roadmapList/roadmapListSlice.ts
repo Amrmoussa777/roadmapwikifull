@@ -5,7 +5,9 @@ const initialState: RoadmapListSliceType = {
 	roadmapListView: "list",
 	searchType: "roadmaps",
 	searchValue: "",
-	filterList: {},
+	filterList: {
+		categories: [],
+	},
 	sortType: "latest",
 	roadmapList: [],
 	loading: false,
