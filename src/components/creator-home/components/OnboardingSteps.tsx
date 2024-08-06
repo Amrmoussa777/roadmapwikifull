@@ -106,7 +106,7 @@ const OnboardingSteps = () => {
 					customStyles="w-[48px] h-[48px] min-w-[48px] min-h-[48px] text-white"
 				/>
 				<div className="font-inter font-medium">
-					<h4 className="text-[18px] text-[#202020]">{userName}</h4>
+					<h4 className="text-[18px] text-[#202020]">{fullName}</h4>
 					<p className="text-[12px] text-[#898989] mt-[6px]">{occupation}</p>
 				</div>
 			</Link>

@@ -17,10 +17,7 @@ const MyRoadmaps = () => {
 	useEffect(() => {
 		if (currentUser) {
 			(async () => {
-				const { data } = await fetchData(
-					"GET",
-					`roadmap/?page=1&pageSize=2&userId=${currentUser.id}`
-				);
+				const { data } = await fetchData("GET", `roadmap/myroadmaps`);
 
 				setRoadmaps(data);
 			})();
@@ -42,7 +39,7 @@ const MyRoadmaps = () => {
 			</div>
 
 			<ul className="grid grid-col-1 md:grid-cols-2 gap-[20px] lg:gap-[32px]">
-				{roadmaps.map(roadmap => (
+				{roadmaps.slice(0, 2).map(roadmap => (
 					<LatestRoadmap key={roadmap.id} {...roadmap} />
 				))}
 			</ul>

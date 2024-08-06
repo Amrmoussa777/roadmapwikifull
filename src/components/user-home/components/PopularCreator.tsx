@@ -3,6 +3,7 @@ import FollowButton from "@/components/common/profile/FollowButton";
 import PopularCreatorRating from "@/components/user-home/components/PopularCreatorRating";
 import { PopularCreatorType } from "@/components/user-home/types/index.types";
 import { USERS_ICON } from "@public/icons/roadmapPreview";
+import Link from "next/link";
 import React from "react";
 
 const PopularCreator = ({
@@ -10,9 +11,12 @@ const PopularCreator = ({
 	id,
 	image,
 	occupation,
-	rate,
-	tags,
-	subscribers,
+	userName,
+	_count,
+	isFollowed,
+	experiences,
+	averageRating,
+	roadmapsSubscribers,
 }: PopularCreatorType) => {
 	return (
 		<div className="w-full mr-auto p-[10px] border border-[#DCDCDC] rounded-[20px]">
@@ -21,34 +25,43 @@ const PopularCreator = ({
 				<div className="flex-jb-c">
 					<Avatar
 						name={fullName}
-						image_url=""
+						image_url={image}
 						customStyles="w-[36px] h-[36px] text-white"
 					/>
 
-					<FollowButton customStyles="!w-[100px] !h-[35px] font-inter font-normal text-[14px] !p-0" />
+					<FollowButton
+						isFollowed={isFollowed}
+						userId={id}
+						customStyles="!w-[100px] !h-[35px] font-inter font-normal text-[14px] !p-0"
+					/>
 				</div>
 				{/* Info */}
-				<h3 className="font-inter font-semibold text-[16px] text-[#141414] mt-[14px]">
+				<Link
+					href={`user/${userName}`}
+					className="block font-inter font-semibold text-[16px] text-[#141414] hover:text-primary-ultramarineBlue mt-[14px] transition duration-200"
+				>
 					{fullName}
-				</h3>
+				</Link>
 				<p className="font-inter text-[12px] text-[#655F5F]">{occupation}</p>
 
-				<PopularCreatorRating rate={rate} />
+				<PopularCreatorRating
+					rate={{ stars: averageRating, reviews: _count.reviews }}
+				/>
 
-				{/* Tags */}
+				{/* Experiences */}
 				<ul className="flex items-center gap-2 mt-[14px]">
-					{tags.map(tag => (
+					{experiences.slice(0, 2).map(item => (
 						<li
-							key={tag.id}
-							className="w-full md:w-[75px] h-[24px] flex-jc-c text-[10px] font-inter text-[#79828B] border border-[#D8D8D8] rounded-full"
+							key={item.id}
+							className="w-fit h-[24px] px-4 flex-jc-c text-[10px] font-inter text-[#79828B] border border-[#D8D8D8] rounded-full"
 						>
-							{tag.name}
+							{item.title}
 						</li>
 					))}
 				</ul>
 
 				<h3 className="flex items-center gap-2 font-inter font-medium text-[10px] text-[#655F5F] mt-[14px]">
-					{USERS_ICON} {subscribers} Subscribers
+					{USERS_ICON} {roadmapsSubscribers} Subscribers
 				</h3>
 			</div>
 		</div>

@@ -1,4 +1,5 @@
 import { fetchUserByUsername } from "@/redux/slices/thunks/getUserByUsername";
+import { UserProfileStateTypes } from "@/redux/slices/user-profile/types/userProfileSlice.types";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: UserProfileStateTypes = {
@@ -57,7 +58,7 @@ const userProfileSlice = createSlice({
 				state.user.socialMedia = updatedLinks;
 			}
 		},
-		addNewUserExperience: (state, action) => {
+		setUserExperience: (state, action) => {
 			const newExperience = action.payload;
 
 			if (state.user) {
@@ -103,6 +104,6 @@ export const {
 	updateUserPersonalInfo,
 	addNewUserLink,
 	deleteUserLink,
-	addNewUserExperience,
+	setUserExperience,
 } = userProfileSlice.actions;
 export default userProfileSlice.reducer;

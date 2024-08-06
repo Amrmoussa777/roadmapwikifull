@@ -5,7 +5,7 @@ export const roadmapList: LandingRoadmapType[] = [
 		id: "28c6c08b-30cd-4717-8fd0-a47baa4c40fa",
 		description:
 			"Deatiled steps to get you into Harvard class 2025 made by expert",
-		icon: null,
+		category: null,
 		createdAt: "2024-06-26T16:04:11.834Z",
 		userId: "a9522bbf-ea0e-4dbe-a498-dacfbc021acc",
 		title: "Get Into Harvard ",
@@ -21,6 +21,7 @@ export const roadmapList: LandingRoadmapType[] = [
 			amount: 10,
 		},
 		user: {
+			isFollowed: false,
 			id: "a9522bbf-ea0e-4dbe-a498-dacfbc021acc",
 			email: "mohamed.abdsabour@roadmapwiki.com",
 			role: "CREATOR",
@@ -62,6 +63,7 @@ export const roadmapList: LandingRoadmapType[] = [
 			_count: {
 				followers: 0,
 				following: 0,
+				reviews: 0,
 			},
 		},
 		steps: [
@@ -319,7 +321,7 @@ export const roadmapList: LandingRoadmapType[] = [
 	{
 		id: "c6f1878f-fcb3-4068-99e7-33eb6c5742c1",
 		description: "Detailed steps to lose weight in 6 months made by experts",
-		icon: null,
+		category: null,
 		createdAt: "2024-06-30T12:09:05.657Z",
 		userId: "fd0680ea-f918-45f6-9b38-8ef45a16de62",
 		title: "Lose Weight Effectively",
@@ -335,6 +337,7 @@ export const roadmapList: LandingRoadmapType[] = [
 			amount: 15,
 		},
 		user: {
+			isFollowed: false,
 			id: "fd0680ea-f918-45f6-9b38-8ef45a16de62",
 			email: "maximmillian.jones@roadmapwiki.com",
 			role: "USER",
@@ -350,6 +353,8 @@ export const roadmapList: LandingRoadmapType[] = [
 			_count: {
 				followers: 0,
 				following: 0,
+
+				reviews: 0,
 			},
 		},
 		steps: [
@@ -469,7 +474,7 @@ export const roadmapList: LandingRoadmapType[] = [
 		id: "d873a3ea-ef68-483f-8ba8-d11fc36d8074",
 		description:
 			"Deatiled steps to Become a frontend engineer in 2025 made by expert",
-		icon: null,
+		category: null,
 		createdAt: "2024-06-26T16:05:06.631Z",
 		userId: "a9522bbf-ea0e-4dbe-a498-dacfbc021acc",
 		title: "Become Frontend engineer",
@@ -485,6 +490,7 @@ export const roadmapList: LandingRoadmapType[] = [
 			amount: 20,
 		},
 		user: {
+			isFollowed: false,
 			id: "a9522bbf-ea0e-4dbe-a498-dacfbc021acc",
 			email: "mohamed.abdsabour@roadmapwiki.com",
 			role: "CREATOR",
@@ -526,6 +532,8 @@ export const roadmapList: LandingRoadmapType[] = [
 			_count: {
 				followers: 0,
 				following: 0,
+
+				reviews: 0,
 			},
 		},
 		steps: [
@@ -726,7 +734,7 @@ export const roadmapList: LandingRoadmapType[] = [
 		id: "28c6c08b-30cd-4717-8fd0-a47baa4c40fa",
 		description:
 			"Deatiled steps to get you into Harvard class 2025 made by expert",
-		icon: null,
+		category: null,
 		createdAt: "2024-06-26T16:04:11.834Z",
 		userId: "a9522bbf-ea0e-4dbe-a498-dacfbc021acc",
 		title: "Get Into Harvard ",
@@ -742,6 +750,7 @@ export const roadmapList: LandingRoadmapType[] = [
 			amount: 10,
 		},
 		user: {
+			isFollowed: false,
 			id: "a9522bbf-ea0e-4dbe-a498-dacfbc021acc",
 			email: "mohamed.abdsabour@roadmapwiki.com",
 			role: "CREATOR",
@@ -783,6 +792,8 @@ export const roadmapList: LandingRoadmapType[] = [
 			_count: {
 				followers: 0,
 				following: 0,
+
+				reviews: 0,
 			},
 		},
 		steps: [

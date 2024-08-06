@@ -4,6 +4,8 @@ import OnboardingSteps from "@/components/creator-home/components/OnboardingStep
 import PopularCreators from "@/components/user-home/components/PopularCreators";
 import PopularFields from "@/components/user-home/components/PopularFields";
 import RecommendedRoadmaps from "@/components/user-home/components/RecommendedRoadmaps";
+import UserProfileRoadmaps from "@/components/user-profile/components/UserProfileRoadmaps";
+import UserSubscriptions from "@/components/user-profile/components/UserSubscriptions";
 import React from "react";
 
 const UserHome = () => {
@@ -18,6 +20,10 @@ const UserHome = () => {
 				</div>
 
 				<div className="w-full lg:w-[calc(100%-340px)] mt-[30px] lg:mt-0">
+					<UserSubscriptions
+						count={2}
+						customStyles="px-0 [&>ul>li]:!bg-primary-ultramarineBlue/10"
+					/>
 					<RecommendedRoadmaps />
 
 					<div className="flex flex-col sm:flex-row sm:justify-between gap-8 sm:gap-4 mt-[40px]">

@@ -17,7 +17,11 @@ export default async function Home() {
 	const currentUser = await getUser(accessToken?.value, refreshToken?.value);
 
 	return currentUser ? (
-		<UserHome />
+		currentUser.role !== "CREATOR" ? (
+			<CreatorHome />
+		) : (
+			<UserHome />
+		)
 	) : (
 		<main className="relative max-w-[1440px] mx-auto">
 			<Hero />

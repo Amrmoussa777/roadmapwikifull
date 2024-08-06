@@ -33,10 +33,12 @@ const PopularCreatorRating = ({
 						onMouseEnter={() => setHoverStars(index + 1)}
 						onMouseLeave={() => setHoverStars(null)}
 						className={`transition duration-200 ${
+							disabled ? "cursor-auto" : ""
+						} ${
 							index < stars
 								? "text-[#00CF7C]"
 								: disabled
-								? "text-transparent cursor-auto"
+								? "text-transparent"
 								: "text-transparent hover:text-[#00CF7C]"
 						}`}
 					>

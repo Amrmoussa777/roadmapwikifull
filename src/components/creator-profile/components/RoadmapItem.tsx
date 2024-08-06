@@ -23,7 +23,6 @@ import ButtonDotsLoader from "@/components/common/button/ButtonDotsLoader";
 const RoadmapItem = ({
 	id,
 	title,
-	icon,
 	user,
 	isSubscribed: initialIsSubscribed,
 	duration,

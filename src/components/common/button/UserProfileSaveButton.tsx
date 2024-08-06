@@ -10,6 +10,7 @@ const UserProfileSaveButton = ({
 			{handleSave ? (
 				<button
 					onClick={handleSave}
+					type="button"
 					className="w-[100px] bg-primary-ultramarineBlue text-white hover:bg-white hover:text-primary-ultramarineBlue border border-transparent hover:border-primary-ultramarineBlue hover:shadow-md transition duration-200"
 				>
 					Save
@@ -18,6 +19,7 @@ const UserProfileSaveButton = ({
 
 			<button
 				onClick={handleCancel}
+				type="button"
 				className="w-[100px] bg-[#F5F5F5] hover:shadow-md transition duration-200 border hover:border-primary-ultramarineBlue"
 			>
 				Cancel

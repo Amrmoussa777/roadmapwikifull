@@ -8,12 +8,12 @@ interface Experience {
 	id: string;
 	title: string;
 	description: string;
-	userId: string;
 }
 
 interface Count {
 	followers: number;
 	following: number;
+	reviews: number;
 }
 
 interface User {
@@ -33,7 +33,7 @@ interface User {
 	isFollowed: boolean;
 }
 
-interface UserProfileStateTypes {
+export interface UserProfileStateTypes {
 	user: null | User;
 	personalInfo: Record<string, string>[] | null;
 	isLoading: boolean;
@@ -44,3 +44,5 @@ interface UserProfileStateTypes {
 	}[];
 	error: null | string;
 }
+
+export type UserType = User;

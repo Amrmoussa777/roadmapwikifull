@@ -32,7 +32,7 @@ const CreateRoadmapLayout = ({ children }: ChildrenType) => {
 		if (roadmapId) {
 			dispatch(fetchRoadmapById(roadmapId));
 		}
-	}, [roadmapId]);
+	}, [lastPathname]);
 
 	useEffect(() => {
 		if (roadmap && currentUser && currentUser.id !== roadmap.userId) {

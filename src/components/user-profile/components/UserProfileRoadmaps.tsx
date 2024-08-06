@@ -6,28 +6,25 @@ import NumberStats from "@/components/common/states/NumberStats";
 import RoadmapItem from "@/components/roadmaps/components/RoadmapItem";
 import UserProfileRoadmapsLoader from "@/components/user-profile/components/loading/UserProfileRoadmapsLoader";
 import { useFetch } from "@/hooks/useFetch";
-import useToggle from "@/hooks/useToggle";
 import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import { RoadmapType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
 import { ARROW_ICON } from "@public/icons/roadmapSteps";
 import Link from "next/link";
 import React, { useContext, useEffect, useRef, useState } from "react";
 
-const UserProfileRoadmaps = () => {
+const UserProfileRoadmaps = ({
+	customStyles = "",
+	count = 10,
+}: {
+	customStyles?: string;
+	count?: number;
+}) => {
 	const [roadmapList, setRoadmapList] = useState<RoadmapType[]>([]);
 	const { currentUser } = useContext(CurrentUserContext);
 	const { loading, fetchData } = useFetch(true);
 	const initialized = useRef(false);
 	const [totalMySubscriptionsNumber, setTotalMySubscriptionsNumber] =
 		useState(0);
-	const { currentState: shareModal, toggle: toggleShareModal } =
-		useToggle(false);
-	const [roadmapShareId, setRoadmapShareId] = useState("");
-
-	const handleShareRoadmap = (roadmapId: string) => {
-		setRoadmapShareId(roadmapId);
-		toggleShareModal();
-	};
 
 	useEffect(() => {
 		(async () => {
@@ -39,7 +36,7 @@ const UserProfileRoadmaps = () => {
 				);
 				const { data: totalMyRoadmaps } = await fetchData(
 					"GET",
-					`roadmap/?page=1&pageSize=50&userId=${currentUser.id}`
+					`roadmap/myroadmaps`
 				);
 
 				setTotalMySubscriptionsNumber(totalMyRoadmaps.length);
@@ -51,7 +48,10 @@ const UserProfileRoadmaps = () => {
 	if (loading) return <UserProfileRoadmapsLoader />;
 
 	return (
-		<div id="myRoadmaps" className="bg-white sm:rounded-[12px] p-[18px]">
+		<div
+			id="myRoadmaps"
+			className={`bg-white sm:rounded-[12px] p-[18px] ${customStyles}`}
+		>
 			<div className="flex-jb-c mb-4">
 				<h3 className="font-inter font-semibold text-[18px] text-[#202020]">
 					My roadmaps
@@ -68,25 +68,13 @@ const UserProfileRoadmaps = () => {
 				</Link>
 			</div>
 
-			{roadmapList.length ? (
+			{roadmapList.slice(0, count).length ? (
 				<>
 					<ul>
 						{roadmapList.map(roadmap => (
-							<RoadmapItem
-								key={roadmap.id}
-								roadmap={roadmap}
-								handleShareRoadmap={handleShareRoadmap}
-							/>
+							<RoadmapItem key={roadmap.id} roadmap={roadmap} />
 						))}
 					</ul>
-
-					<ShareModal
-						title="Share link"
-						link={`https://roadmapwiki.com/roadmap/${roadmapShareId}`}
-						messageText="Share this roadmap"
-						open={shareModal}
-						toggleShareModal={toggleShareModal}
-					/>
 				</>
 			) : (
 				<div className="flex-jb-c">

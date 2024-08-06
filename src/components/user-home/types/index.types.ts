@@ -1,12 +1,8 @@
-export type PopularCreatorType = {
-	id: string;
-	image: string;
-	fullName: string;
-	occupation: string;
-	rate: CreatorRateType;
-	tags: PopularCreatorTagsType[];
-	subscribers: number;
-};
+import { UserType } from "@/redux/slices/user-profile/types/userProfileSlice.types";
+
+export interface PopularCreatorType extends UserType {
+	averageRating: number;
+}
 
 export type CreatorRateType = {
 	stars: number;

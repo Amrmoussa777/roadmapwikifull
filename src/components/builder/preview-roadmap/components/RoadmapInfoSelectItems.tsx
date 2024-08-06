@@ -11,11 +11,14 @@ const RoadmapInfoSelectItems = () => {
 	const { roadmapId } = useParams();
 
 	const { roadmap } = useAppSelector(state => state.createRoadmap);
-	const { duration: defaultDuration, icon: defaultIconName } = roadmap || {};
+	const { duration: defaultDuration, category: defaultCategoryName } =
+		roadmap || {};
 	const dispatch = useAppDispatch();
 	const { loading, fetchData } = useFetch();
 
-	const defaultIcon = ROADMAP_ICONS.find(icon => icon.name === defaultIconName);
+	const defaultIcon = ROADMAP_ICONS.find(
+		icon => icon.name === defaultCategoryName
+	);
 
 	const [roadmapActiveIcon, setRoadmapActiveIcon] = useState<Record<
 		string,

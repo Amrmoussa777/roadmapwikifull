@@ -8,7 +8,6 @@ import {
 } from "@/redux/slices/roadmapList/roadmapListSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { useSizeScreen } from "@/hooks/useSizeScreen";
-import useToggle from "@/hooks/useToggle";
 
 const useRoadmapList = () => {
 	const {
@@ -26,14 +25,6 @@ const useRoadmapList = () => {
 	const [params, setParams] = useState("");
 	const initialized = useRef(false);
 	const dispatch = useAppDispatch();
-	const [roadmapShareId, setRoadmapShareId] = useState("");
-	const { currentState: shareModal, toggle: toggleShareModal } =
-		useToggle(false);
-
-	const handleShareRoadmap = (roadmapId: string) => {
-		setRoadmapShareId(roadmapId);
-		toggleShareModal();
-	};
 
 	const { responsive } = useSizeScreen(640);
 
@@ -115,10 +106,6 @@ const useRoadmapList = () => {
 		totalItems,
 		loading,
 		handleMoreRoadmaps,
-		shareModal,
-		handleShareRoadmap,
-		roadmapShareId,
-		toggleShareModal,
 	};
 };
 

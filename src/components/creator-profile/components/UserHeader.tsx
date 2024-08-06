@@ -54,7 +54,11 @@ const UserHeader = () => {
 				<div className="h-[40px] mr-0 md:mr-4 flex-jc-c gap-2 mt-4">
 					{!isUserProfile ? (
 						<>
-							<FollowButton customStyles="!rounded-[5px]" />
+							<FollowButton
+								isFollowed={currentUser?.id === user?.id}
+								userId={user?.id || ""}
+								customStyles="!rounded-[5px]"
+							/>
 							<DirectMessageButton customStyles="border-[#D8D8D8]" />
 						</>
 					) : null}

@@ -18,8 +18,6 @@ import Link from "next/link";
 const LatestRoadmap = ({
 	id,
 	title,
-	icon,
-	isSubscribed,
 	duration,
 	status,
 	_count,

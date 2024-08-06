@@ -1,3 +1,5 @@
+import { UserType } from "@/redux/slices/user-profile/types/userProfileSlice.types";
+
 export type RoadmapPreviewSliceType = {
 	roadmap: null | RoadmapType;
 	isLoading: boolean;
@@ -7,25 +9,6 @@ export type RoadmapPreviewSliceType = {
 export interface RoadmapPriceType {
 	amount: number;
 	currency: string;
-}
-
-export interface RoadmapUserType {
-	id: string;
-	email: string;
-	role: string;
-	image: string;
-	occupation: string;
-	roadmapsSubscribers: number;
-	cover: string;
-	fullName: string;
-	userName: string;
-	description: string;
-	experiences: RoadmapUserExperienceType[];
-	socialMedia: any[];
-	_count: {
-		followers: number;
-		following: number;
-	};
 }
 
 export interface RoadmapUserExperienceType {
@@ -77,7 +60,7 @@ export interface RoadmapStepType {
 export interface RoadmapType {
 	id: string;
 	description: string;
-	icon: null | string;
+	category: null | string;
 	createdAt: string;
 	userId: string;
 	title: string;
@@ -92,7 +75,7 @@ export interface RoadmapType {
 		currency: string;
 		amount: number;
 	} | null;
-	user: RoadmapUserType;
+	user: UserType;
 	steps: RoadmapStepType[];
 	tags: RoadmapTagType[];
 	_count: {

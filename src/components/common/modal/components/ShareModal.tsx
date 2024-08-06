@@ -41,7 +41,7 @@ const ShareModal = ({
 			<DialogContent>
 				<div
 					ref={ref}
-					className="w-[80%] md:w-[544px] rounded-[15px] shadow-clg p-8 bg-white"
+					className="w-[80%] md:w-[544px] mx-auto rounded-[15px] shadow-clg p-8 bg-white"
 				>
 					<div className="flex-jb-c">
 						<h3 className="font-inter font-medium text-[24px] text-[#23262F]">
@@ -84,7 +84,7 @@ const ShareModal = ({
 						<a
 							href={link}
 							target="_blank"
-							className="text-[#87898E] font-inter font-normal text-[14px]"
+							className="text-[#87898E] font-inter font-normal text-[14px] line-clamp-1"
 						>
 							{link}
 						</a>
