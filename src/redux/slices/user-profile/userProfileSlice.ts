@@ -57,6 +57,13 @@ const userProfileSlice = createSlice({
 				state.user.socialMedia = updatedLinks;
 			}
 		},
+		addNewUserExperience: (state, action) => {
+			const newExperience = action.payload;
+
+			if (state.user) {
+				state.user.experiences = newExperience;
+			}
+		},
 	},
 	extraReducers(builder) {
 		builder.addCase(fetchUserByUsername.pending, state => {
@@ -96,5 +103,6 @@ export const {
 	updateUserPersonalInfo,
 	addNewUserLink,
 	deleteUserLink,
+	addNewUserExperience,
 } = userProfileSlice.actions;
 export default userProfileSlice.reducer;

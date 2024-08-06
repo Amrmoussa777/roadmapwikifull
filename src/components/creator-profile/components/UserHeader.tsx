@@ -80,14 +80,16 @@ const UserHeader = () => {
 				</button>
 			</div>
 
-			<ChangeCover
-				uploadModal={uploadModal}
-				toggleUploadModal={toggleUploadModal}
-				ratio="1400 X 160px"
-				updateKey="cover"
-				title="Upload cover"
-				imageHeight={148}
-			/>
+			{isUserProfile ? (
+				<ChangeCover
+					uploadModal={uploadModal}
+					toggleUploadModal={toggleUploadModal}
+					ratio="1400 X 160px"
+					updateKey="cover"
+					title="Upload cover"
+					imageHeight={148}
+				/>
+			) : null}
 		</div>
 	);
 };

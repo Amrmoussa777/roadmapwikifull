@@ -18,7 +18,7 @@ const Avatar = ({ name, image_url, customStyles }: AvatarPropsType) => {
 			className={`relative flex-jc-c font-normal bg-primary-ultramarineBlue overflow-hidden rounded-full text-primary-ultramarineBlue border-2 border-primary-ultramarineBlue shadow-static shadow-white ${customStyles}`}
 		>
 			{image_url && !imageLoaded && (
-				<span className="absolute w-full h-full flex-jc-c select-none capitalize">
+				<span className="absolute w-full h-full flex-jc-c select-none uppercase">
 					{avatarName}
 				</span>
 			)}
@@ -31,7 +31,7 @@ const Avatar = ({ name, image_url, customStyles }: AvatarPropsType) => {
 			)}
 
 			{!image_url && (
-				<span className="absolute w-full h-full flex-jc-c select-none capitalize">
+				<span className="absolute w-full h-full flex-jc-c select-none uppercase">
 					{avatarName}
 				</span>
 			)}

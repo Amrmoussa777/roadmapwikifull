@@ -9,10 +9,10 @@ import React, { useContext } from "react";
 
 const OnboardingSteps = () => {
 	const { currentUser } = useContext(CurrentUserContext);
-	const { fullName, image, userName, occupation } = currentUser || {};
+	const { fullName, image, userName, occupation, tips } = currentUser || {};
 
 	return (
-		<div className="w-full max-w-[350px] h-full p-[24px] border border-[#DCDCDC] rounded-[12px]">
+		<div className="w-full max-w-[350px] h-fit p-[24px] border border-[#DCDCDC] rounded-[12px]">
 			<Link href={`/user/${userName}`} className="flex justify-start gap-4">
 				<Avatar
 					name={fullName || ""}

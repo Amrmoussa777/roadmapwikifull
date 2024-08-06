@@ -1,5 +1,6 @@
 import UserHeader from "@/components/creator-profile/components/UserHeader";
 import PersonalInfo from "@/components/user-profile/components/PersonalInfo";
+import UserExperience from "@/components/user-profile/components/UserExperience";
 import UserLinks from "@/components/user-profile/components/UserLinks";
 import UserProfilePayments from "@/components/user-profile/components/UserProfilePayments";
 import UserProfileRoadmaps from "@/components/user-profile/components/UserProfileRoadmaps";
@@ -18,6 +19,7 @@ const UserProfile = () => {
 				<div className="w-full md:w-[calc(100%-296px)] mt-8 md:mt-4 md:pl-4 flex flex-col gap-4">
 					<PersonalInfo />
 					<UserLinks />
+					<UserExperience />
 					<UserSubscriptions />
 					<UserProfileRoadmaps />
 					<UserProfilePayments />

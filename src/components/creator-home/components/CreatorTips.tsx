@@ -26,11 +26,12 @@ const CreatorTips = () => {
 			description: "Lorem Ipsum is simply dummy text of the printing.",
 		},
 	];
+
 	const [activeTip, setActiveTip] = useState(0);
 	const swiperRef = useRef<null | SwiperType>(null);
 
 	return (
-		<div className="w-full max-w-[350px] h-full hidden xl:block p-[24px] border border-[#DCDCDC] rounded-[12px]">
+		<div className="w-full max-w-[350px] h-fit p-[24px] border border-[#DCDCDC] rounded-[12px]">
 			<Swiper
 				onActiveIndexChange={e => setActiveTip(e.realIndex)}
 				onSwiper={swiper => {
@@ -53,7 +54,7 @@ const CreatorTips = () => {
 							<button
 								onClick={() => swiperRef.current?.slideTo(index)}
 								className={`relative w-[8px] h-[8px] bg-[#DCDCDC] hover:bg-[#898989] rounded-full transition duration-200 ${
-									activeTip === index ? "bg-[#898989]" : "bg-[#DCDCDC]"
+									activeTip === index ? "!bg-[#898989]" : "bg-[#DCDCDC]"
 								}`}
 							/>
 						</li>

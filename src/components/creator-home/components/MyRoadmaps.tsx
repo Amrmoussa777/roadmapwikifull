@@ -2,27 +2,30 @@
 
 import LatestRoadmap from "@/components/creator-home/components/LatestRoadmap";
 import { useFetch } from "@/hooks/useFetch";
+import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import { RoadmapType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
 import { useAppSelector } from "@/redux/store";
 import { ARROW_ICON } from "@public/icons/roadmapSteps";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 const MyRoadmaps = () => {
-	const { user } = useAppSelector(state => state.userProfile);
 	const [roadmaps, setRoadmaps] = useState<RoadmapType[]>([]);
+	const { currentUser } = useContext(CurrentUserContext);
 
 	const { fetchData, loading } = useFetch();
 
 	useEffect(() => {
-		(async () => {
-			const { data } = await fetchData(
-				"GET",
-				`roadmap/?page=1&pageSize=2&userId=${user?.id}`
-			);
+		if (currentUser) {
+			(async () => {
+				const { data } = await fetchData(
+					"GET",
+					`roadmap/?page=1&pageSize=2&userId=${currentUser.id}`
+				);
 
-			setRoadmaps(data);
-		})();
-	}, [user]);
+				setRoadmaps(data);
+			})();
+		}
+	}, [currentUser]);
 
 	return (
 		<section className="mt-[40px]">

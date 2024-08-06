@@ -23,14 +23,14 @@ const RoadmapPreviewProfileInfo = () => {
 	if (loading && !roadmap) return <LoadingRoadmapPreviewProfileInfo />;
 	return (
 		<>
-			<div className="w-full">
+			<div className="w-full text-center">
 				<div className="flex-jc-c gap-1 flex-wrap">
 					<Link
 						href={`/user/${user?.userName}`}
 						target="_blank"
-						className="text-2xl font-semibold line-clamp-1 hover:underline"
+						className="text-2xl font-semibold hover:underline"
 					>
-						{user?.userName}
+						{user?.fullName}
 					</Link>
 					<p className="font-thin text-[#898989] text-[16px]">@{userName}</p>
 				</div>

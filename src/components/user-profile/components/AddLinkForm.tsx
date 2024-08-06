@@ -46,7 +46,7 @@ const AddLinkForm = () => {
 										type="button"
 										key={item.name}
 										onClick={() => setSocialMediaActive(item)}
-										className="flex items-center gap-2 !px-4 sm:gap-2 !text-[14px] md:!text-[16px]"
+										className="w-full flex items-center gap-2 !px-4 sm:gap-2 !text-[14px] md:!text-[16px]"
 									>
 										<span
 											style={{ backgroundColor: "" }}

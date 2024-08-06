@@ -37,6 +37,7 @@ export type CurrentUserType = {
 	experiences: CurrentUserExperience[];
 	_count: CurrentUserCount;
 	stats: Record<string, number>;
+	tips: { tip: string; message: string }[];
 };
 
 export type CurrentUserContextType = {
