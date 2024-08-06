@@ -60,7 +60,7 @@ const FollowButton = ({
 		<button
 			onClick={handleClickFollow}
 			disabled={loading}
-			onMouseEnter={() => setHoverButtonText(isFollowed ? "Un follow" : "")}
+			onMouseEnter={() => setHoverButtonText(isFollowed ? "Unfollow" : "")}
 			onMouseLeave={() => setHoverButtonText("")}
 			className={`relative w-full h-full px-6 bg-primary-ultramarineBlue text-white rounded-full border border-transparent hover:border-primary-ultramarineBlue disabled:hover:text-white disabled:hover:bg-primary-ultramarineBlue hover:bg-white hover:text-primary-ultramarineBlue transition duration-200 ${customStyles} overflow-hidden`}
 		>

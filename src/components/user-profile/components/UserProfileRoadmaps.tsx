@@ -68,10 +68,10 @@ const UserProfileRoadmaps = ({
 				</Link>
 			</div>
 
-			{roadmapList.slice(0, count).length ? (
+			{roadmapList.length ? (
 				<>
 					<ul>
-						{roadmapList.map(roadmap => (
+						{roadmapList.slice(0, count).map(roadmap => (
 							<RoadmapItem key={roadmap.id} roadmap={roadmap} />
 						))}
 					</ul>
