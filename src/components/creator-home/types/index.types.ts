@@ -12,7 +12,7 @@ export type OnboardingStepProps = {
 };
 
 export type CreatorTipProps = {
-	image: string;
-	title: string;
-	description: string;
+	key: string;
+	message: string;
+	step: string;
 };

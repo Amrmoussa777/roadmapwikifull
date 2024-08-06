@@ -1,31 +1,13 @@
 "use client";
 
 import CreatorTip from "@/components/creator-home/CreatorTip";
+import OnboardingSteps from "@/config/userTips";
 import React, { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperType } from "swiper/types";
 
 const CreatorTips = () => {
-	const tips = [
-		{
-			id: "1",
-			image: "url",
-			title: "Light tips / guide",
-			description: "Lorem Ipsum is simply dummy text of the printing.",
-		},
-		{
-			id: "2",
-			image: "url",
-			title: "Light tips / guide",
-			description: "Lorem Ipsum is simply dummy text of the printing.",
-		},
-		{
-			id: "3",
-			image: "url",
-			title: "Light tips / guide",
-			description: "Lorem Ipsum is simply dummy text of the printing.",
-		},
-	];
+	const tips = Object.values(OnboardingSteps);
 
 	const [activeTip, setActiveTip] = useState(0);
 	const swiperRef = useRef<null | SwiperType>(null);
@@ -41,7 +23,7 @@ const CreatorTips = () => {
 				className={`[&>div]:flex-jb-c`}
 			>
 				{tips.map(item => (
-					<SwiperSlide key={item.id}>
+					<SwiperSlide key={item.key}>
 						<CreatorTip item={item} />
 					</SwiperSlide>
 				))}
@@ -49,20 +31,27 @@ const CreatorTips = () => {
 
 			<div className="flex-jb-c">
 				<ul className="flex gap-[7px]">
-					{tips.map((tip, index) => (
-						<li key={tip.id}>
-							<button
-								onClick={() => swiperRef.current?.slideTo(index)}
-								className={`relative w-[8px] h-[8px] bg-[#DCDCDC] hover:bg-[#898989] rounded-full transition duration-200 ${
-									activeTip === index ? "!bg-[#898989]" : "bg-[#DCDCDC]"
-								}`}
-							/>
-						</li>
-					))}
+					<button
+						onClick={() => swiperRef.current?.slidePrev()}
+						className={`relative w-[8px] h-[8px] bg-[#DCDCDC] disabled:hover:bg-[#DCDCDC] hover:bg-[#898989] rounded-full transition duration-200`}
+						disabled={activeTip === 0}
+					/>
+					<span
+						className={`relative w-[8px] h-[8px] bg-[#898989] rounded-full transition duration-200`}
+					/>
+					<button
+						onClick={() => swiperRef.current?.slideNext()}
+						disabled={activeTip === tips.length - 1}
+						className={`relative w-[8px] h-[8px] bg-[#DCDCDC] disabled:hover:bg-[#DCDCDC] hover:bg-[#898989] rounded-full transition duration-200`}
+					/>
 				</ul>
 
-				<button className="w-[100px] h-[32px] mt-[29px] bg-white border border-primary-ultramarineBlue rounded-[8px] text-[14px] font-inter font-medium text-primary-ultramarineBlue hover:bg-primary-ultramarineBlue hover:text-white transition duration-200">
-					Get Started
+				<button
+					onClick={() => swiperRef.current?.slideNext()}
+					disabled={activeTip === tips.length - 1}
+					className="w-[100px] h-[32px] mt-[29px] bg-white border border-primary-ultramarineBlue rounded-[8px] text-[14px] font-inter font-medium text-primary-ultramarineBlue hover:bg-primary-ultramarineBlue hover:text-white transition duration-200"
+				>
+					Next tip
 				</button>
 			</div>
 		</div>
