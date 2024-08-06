@@ -11,13 +11,13 @@ const UserHome = () => {
 		<main className="relative max-w-[1440px] mx-auto p-6 lg:px-8 py-[2rem] bg-white">
 			<Header />
 
-			<div className="flex justify-between lg:gap-[20px] xl:gap-[40px] mt-[30px]">
-				<div className="min-w-[300px] w-[300px] hidden lg:flex flex-col gap-[90px]">
+			<div className="flex justify-between flex-col lg:flex-row lg:gap-[20px] xl:gap-[40px] mt-[30px]">
+				<div className="w-full h-fit grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 lg:min-w-[300px] lg:w-[300px] justify-between lg:flex-col gap-[30px] lg:gap-[90px]">
 					<OnboardingSteps />
 					<UserTips />
 				</div>
 
-				<div className="w-full xl:w-[calc(100%-340px)]">
+				<div className="w-full lg:w-[calc(100%-340px)] mt-[30px] lg:mt-0">
 					<RecommendedRoadmaps />
 
 					<div className="flex flex-col sm:flex-row sm:justify-between gap-8 sm:gap-4 mt-[40px]">

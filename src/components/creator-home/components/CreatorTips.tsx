@@ -13,7 +13,7 @@ const CreatorTips = () => {
 	const swiperRef = useRef<null | SwiperType>(null);
 
 	return (
-		<div className="w-full max-w-[350px] h-fit p-[24px] border border-[#DCDCDC] rounded-[12px]">
+		<div className="w-full lg:max-w-[350px] h-[300px] p-[24px] border border-[#DCDCDC] rounded-[12px]">
 			<Swiper
 				onActiveIndexChange={e => setActiveTip(e.realIndex)}
 				onSwiper={swiper => {
@@ -29,7 +29,7 @@ const CreatorTips = () => {
 				))}
 			</Swiper>
 
-			<div className="flex-jb-c">
+			<div className="flex-jb-c mt-[29px]">
 				<ul className="flex gap-[7px]">
 					<button
 						onClick={() => swiperRef.current?.slidePrev()}
@@ -49,7 +49,7 @@ const CreatorTips = () => {
 				<button
 					onClick={() => swiperRef.current?.slideNext()}
 					disabled={activeTip === tips.length - 1}
-					className="w-[100px] h-[32px] mt-[29px] bg-white border border-primary-ultramarineBlue rounded-[8px] text-[14px] font-inter font-medium text-primary-ultramarineBlue hover:bg-primary-ultramarineBlue hover:text-white transition duration-200"
+					className="w-[100px] h-[32px] bg-white border border-primary-ultramarineBlue rounded-[8px] text-[14px] font-inter font-medium text-primary-ultramarineBlue hover:bg-primary-ultramarineBlue hover:text-white transition duration-200"
 				>
 					Next tip
 				</button>

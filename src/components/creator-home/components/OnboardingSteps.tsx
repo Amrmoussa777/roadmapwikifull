@@ -98,7 +98,7 @@ const OnboardingSteps = () => {
 	}, [notCompletedTips, tips]);
 
 	return (
-		<div className="w-full max-w-[350px] h-fit p-[24px] border border-[#DCDCDC] rounded-[12px]">
+		<div className="w-full lg:max-w-[350px] h-[300px] lg:h-fit p-[24px] border border-[#DCDCDC] rounded-[12px]">
 			<Link href={`/user/${userName}`} className="flex justify-start gap-4">
 				<Avatar
 					name={fullName || ""}
@@ -116,10 +116,10 @@ const OnboardingSteps = () => {
 					<HorizontalDivider
 						height="h-[1px]"
 						bgColor="bg-[#DCDCDC]"
-						customStyles="my-[20px]"
+						customStyles="my-[10px] lg:my-[20px]"
 					/>
 
-					<ul className="h-[200px] overflow-y-scroll hidden-scrollbar">
+					<ul className="h-[100px] lg:h-[200px] overflow-y-scroll hidden-scrollbar">
 						{tips.map(tip => (
 							<OnboardingStep
 								key={tip.key}
@@ -132,7 +132,7 @@ const OnboardingSteps = () => {
 					<HorizontalDivider
 						height="h-[1px]"
 						bgColor="bg-[#DCDCDC]"
-						customStyles="my-[20px]"
+						customStyles="my-[10px] lg:my-[20px]"
 					/>
 
 					<button className="h-[37px] block mx-auto px-[20px] rounded-full bg-primary-ultramarineBlue text-white font-inter font-normal hover:shadow-lg transition duration-200">

@@ -6,7 +6,7 @@ const CreatorTip = ({ item }: { item: CreatorTipProps }) => {
 
 	return (
 		<li>
-			<div className="w-full h-[92px]">
+			<div className="w-full h-[92px] [&>svg]:w-full">
 				<svg
 					width="248"
 					height="92"
