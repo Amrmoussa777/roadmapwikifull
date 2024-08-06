@@ -30,17 +30,13 @@ const UserProfileRoadmaps = ({
 		(async () => {
 			if (currentUser && !initialized.current) {
 				initialized.current = true;
-				const { data } = await fetchData(
-					"GET",
-					`roadmap/?userId=${currentUser.id}`
-				);
 				const { data: totalMyRoadmaps } = await fetchData(
 					"GET",
 					`roadmap/myroadmaps`
 				);
 
 				setTotalMySubscriptionsNumber(totalMyRoadmaps.length);
-				setRoadmapList(data);
+				setRoadmapList(totalMyRoadmaps);
 			}
 		})();
 	}, [currentUser]);
