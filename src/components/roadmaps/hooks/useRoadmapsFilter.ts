@@ -14,11 +14,13 @@ import useDisableScroll from "@/hooks/useDisableScrolling";
 import { useSizeScreen } from "@/hooks/useSizeScreen";
 import useToggle from "@/hooks/useToggle";
 import { FilterListItem } from "@/components/roadmaps/types/index.types";
+import { useSearchParams } from "next/navigation";
+import PathnameHelper from "@/helpers/pathname.helper";
 
 const useRoadmapsFilter = () => {
 	const dispatch = useAppDispatch();
 	const { searchType } = useAppSelector(state => state.roadmapList);
-
+	const urlParams = useSearchParams();
 	const [searchTypeList, setSearchTypeList] =
 		useState<FilterListItem[]>(searchTypeListData);
 	const [roadmapCategoryList, setRoadmapCategoryList] = useState<
@@ -97,6 +99,7 @@ const useRoadmapsFilter = () => {
 		setSearchTypeList(searchTypeListData);
 		setRoadmapCategoryList(categoriesList.slice(0, 15));
 		setRoadmapDurationList(roadmapDurationListData);
+		if (urlParams.size) PathnameHelper.clearUrlParams();
 
 		if (responsive) {
 			toggleMobileFilter();
