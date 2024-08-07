@@ -17,7 +17,7 @@ export default async function Home() {
 	const currentUser = await getUser(accessToken?.value, refreshToken?.value);
 
 	return currentUser ? (
-		currentUser.role !== "CREATOR" ? (
+		currentUser.role === "CREATOR" ? (
 			<CreatorHome />
 		) : (
 			<UserHome />
