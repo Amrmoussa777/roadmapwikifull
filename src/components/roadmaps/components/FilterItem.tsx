@@ -28,7 +28,7 @@ const FilterItem = ({
 		newItem: FilterListItem,
 		setNewList: (list: FilterListItem[]) => void
 	) => {
-		if (urlParams.get(filterLabel.id)) PathnameHelper.clearUrlParams();
+		if (urlParams.size) PathnameHelper.clearUrlParams();
 
 		if (multi) {
 			const updatedList = list.map(item => {
