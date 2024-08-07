@@ -112,22 +112,20 @@ const UserExperiences = () => {
 			{experiences ? (
 				<ul className="font-inter">
 					{experiences.map((item, i) => (
-						<>
-							<li>
-								<div key={item.id} className="flex-jb-c mb-4">
-									<h3 className="font-medium">{item.title}</h3>
-									{isEditEnabled ? (
-										<button
-											type="button"
-											onClick={() => handleDeleteExperience(item.id)}
-											className="w-[30px] h-[30px] flex-jc-c rounded-md text-[#666666] bg-[#F5F5F5] hover:shadow-md transition duration-200 border hover:border-primary-ultramarineBlue"
-										>
-											{CROSS_ICON}
-										</button>
-									) : null}
-								</div>
-								<p className="text-[#79828B]">{item.description}</p>
-							</li>
+						<li key={item.id}>
+							<div className="flex-jb-c mb-4">
+								<h3 className="font-medium">{item.title}</h3>
+								{isEditEnabled ? (
+									<button
+										type="button"
+										onClick={() => handleDeleteExperience(item.id)}
+										className="w-[30px] h-[30px] flex-jc-c rounded-md text-[#666666] bg-[#F5F5F5] hover:shadow-md transition duration-200 border hover:border-primary-ultramarineBlue"
+									>
+										{CROSS_ICON}
+									</button>
+								) : null}
+							</div>
+							<p className="text-[#79828B]">{item.description}</p>
 
 							{i + 1 < experiences.length ? (
 								<HorizontalDivider
@@ -136,7 +134,7 @@ const UserExperiences = () => {
 									customStyles="my-4"
 								/>
 							) : null}
-						</>
+						</li>
 					))}
 				</ul>
 			) : (

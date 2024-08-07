@@ -26,7 +26,7 @@ const PopularCreator = ({
 					<Avatar
 						name={fullName}
 						image_url={image}
-						customStyles="w-[36px] h-[36px] text-white"
+						customStyles="w-[36px] min-w-[36px] h-[36px] min-h-[36px] text-white"
 					/>
 
 					<FollowButton

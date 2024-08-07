@@ -1,29 +1,29 @@
 "use client";
 
 import CreatorTip from "@/components/creator-home/CreatorTip";
-import { OnboardingSteps } from "@/config/userTips";
+import { OnboardingTips } from "@/config/userTips";
 import React, { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperType } from "swiper/types";
 
 const CreatorTips = () => {
-	const tips = Object.values(OnboardingSteps);
+	const tips = Object.values(OnboardingTips);
 
 	const [activeTip, setActiveTip] = useState(0);
 	const swiperRef = useRef<null | SwiperType>(null);
 
 	return (
-		<div className="w-full lg:max-w-[350px] h-[300px] p-[24px] border border-[#DCDCDC] rounded-[12px]">
+		<div className="w-full xl:max-w-[350px] h-[416px] xl:h-fit flex flex-col justify-between p-[24px] border border-[#DCDCDC] rounded-[12px]">
 			<Swiper
 				onActiveIndexChange={e => setActiveTip(e.realIndex)}
 				onSwiper={swiper => {
 					swiperRef.current = swiper;
 				}}
 				slidesPerView={1}
-				className={`[&>div]:flex-jb-c`}
+				className={`w-full [&>div]:flex-jb-c`}
 			>
 				{tips.map(item => (
-					<SwiperSlide key={item.key}>
+					<SwiperSlide key={item.tip}>
 						<CreatorTip item={item} />
 					</SwiperSlide>
 				))}

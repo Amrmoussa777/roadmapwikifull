@@ -1,11 +1,28 @@
 import { OnboardingStepProps } from "@/components/creator-home/types/index.types";
+import { RedirectHandler } from "@/helpers/redirectHelper";
+import TextTransformationHelper from "@/helpers/textTransformation";
+import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import { ONBOARDING_STEP_CHECK } from "@public/icons/creatorHome";
-import React from "react";
+import { useRouter } from "next/navigation";
+import React, { useContext } from "react";
 
 const OnboardingStep = ({ tipKey, completed }: OnboardingStepProps) => {
+	const router = useRouter();
+	const redirectHandler = new RedirectHandler();
+	const { currentUser } = useContext(CurrentUserContext);
+
+	const handleRedirect = () => {
+		if (completed) return;
+
+		redirectHandler.redirect(router, tipKey, {
+			userName: currentUser?.userName,
+		});
+	};
+
 	return (
 		<li className="mt-[12px]">
 			<button
+				onClick={handleRedirect}
 				className={`w-full h-[36px] flex items-center gap-3 px-[8px] rounded-full border border-transparent ${
 					completed ? "bg-[#F5F5F5]" : "bg-white !border-[#DCDCDC]"
 				} group`}
@@ -20,7 +37,7 @@ const OnboardingStep = ({ tipKey, completed }: OnboardingStepProps) => {
 					{ONBOARDING_STEP_CHECK}
 				</span>
 				<p className="font-inter font-normal text-[#606060] text-[14px] capitalize">
-					{tipKey.toLowerCase().replaceAll("_", " ")}
+					{TextTransformationHelper.getCapitalizedEnumKey(tipKey)}
 				</p>
 			</button>
 		</li>

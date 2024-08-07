@@ -38,6 +38,7 @@ export type CurrentUserType = {
 	_count: CurrentUserCount;
 	stats: Record<string, number>;
 	tips: { tip: string; message: string }[];
+	onboardingSteps: { key: string; step: string; message: string }[];
 };
 
 export type CurrentUserContextType = {
