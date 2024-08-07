@@ -1,5 +1,5 @@
 import { CreatorTipProps } from "@/components/creator-home/types/index.types";
-import Image from "next/image";
+import Image from "@/components/common/image/CustomImage";
 import React from "react";
 import tip_image_cover from "@public/tip_image_cover.svg";
 

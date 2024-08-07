@@ -1,5 +1,5 @@
 import { NewAraFeatureProps } from "@/components/landing-page/types/new-era-here.types";
-import Image from "next/image";
+import Image from "@/components/common/image/CustomImage";
 import React from "react";
 
 const NewAraFeature = ({ image, title, description }: NewAraFeatureProps) => {

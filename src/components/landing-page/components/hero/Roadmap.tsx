@@ -7,7 +7,7 @@ import {
 } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
 import chairImage from "@public/hero-chair.png";
 import statusImage from "@public/hero-status.svg";
-import Image from "next/image";
+import Image from "@/components/common/image/CustomImage";
 import { motion } from "framer-motion";
 
 const Roadmap = ({

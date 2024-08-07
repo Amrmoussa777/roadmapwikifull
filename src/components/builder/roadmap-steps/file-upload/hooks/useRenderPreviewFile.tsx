@@ -1,6 +1,6 @@
 import { RoadmapStepAttachmentType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
 import { UPLOADED_FILE_ICON } from "@public/icons/roadmapSteps";
-import Image from "next/image";
+import Image from "@/components/common/image/CustomImage";
 
 const useRenderPreviewFile = () => {
 	const renderPreviewFile = (file?: File) => {

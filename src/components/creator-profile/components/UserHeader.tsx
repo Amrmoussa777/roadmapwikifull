@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/common/image/CustomImage";
 import React, { useContext, useEffect } from "react";
 import UserImage from "@/components/creator-profile/components/UserImage";
 import UserDetails from "@/components/creator-profile/components/UserDetails";

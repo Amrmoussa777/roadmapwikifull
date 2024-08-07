@@ -1,5 +1,5 @@
 import useToggle from "@/hooks/useToggle";
-import Image from "next/image";
+import Image from "@/components/common/image/CustomImage";
 import React, { useContext, useState } from "react";
 import AuthorImage from "@public/pp.jpeg";
 import { UP_VOTE_ICON } from "@public/icons/roadmapPreview";

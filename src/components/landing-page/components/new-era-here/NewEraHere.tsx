@@ -3,7 +3,7 @@ import newEraHere from "@public/NEW ERA HERE.svg";
 import newEraHere_1 from "@public/new-era-here-1.svg";
 import newEraHere_2 from "@public/new-era-here-2.svg";
 import newEraHere_3 from "@public/new-era-here-3.svg";
-import Image from "next/image";
+import Image from "@/components/common/image/CustomImage";
 import NewAraFeature from "@/components/landing-page/components/new-era-here/NewAraFeature";
 
 const NewEraHere = () => {

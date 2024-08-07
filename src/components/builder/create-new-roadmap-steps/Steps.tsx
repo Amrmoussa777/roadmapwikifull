@@ -1,7 +1,7 @@
 "use client";
 
 import WelcomeStep from "@/components/builder/create-new-roadmap-steps/WelcomeStep";
-import Image from "next/image";
+import Image from "@/components/common/image/CustomImage";
 import React, { useEffect, useState } from "react";
 import roadmapImage from "@public/auth-left.svg";
 import RoadmapNameStep from "@/components/builder/create-new-roadmap-steps/RoadmapNameStep";

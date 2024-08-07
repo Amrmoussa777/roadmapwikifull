@@ -6,7 +6,7 @@ import { ARROW_ICON } from "@public/icons/roadmapSteps";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { Swiper as SwiperType } from "swiper/types";
-import Image from "next/image";
+import Image from "@/components/common/image/CustomImage";
 
 const SuperRoadmapsSlider = () => {
 	const [activeIndex, setActiveIndex] = useState(0);

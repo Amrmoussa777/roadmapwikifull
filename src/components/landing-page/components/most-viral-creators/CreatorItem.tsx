@@ -2,7 +2,7 @@ import { PROGRAMMING_ICON } from "@public/icons/landingPage";
 import { STEPS_ICON } from "@public/icons/roadmapPreview";
 import React from "react";
 import normalMockup from "@public/Normal-Mockup.svg";
-import Image from "next/image";
+import Image from "@/components/common/image/CustomImage";
 
 const CreatorItem = () => {
 	return (

@@ -4,7 +4,7 @@ import Avatar from "@/components/common/avatar/components/Avatar";
 import PrivateNavbarCurrentUserLoader from "@/components/navbar/components/loading/PrivateNavbarCurrentUserLoader";
 import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import { UNKNOWN_USER_ICON } from "@public/icons/userProfile";
-import Image from "next/image";
+import Image from "@/components/common/image/CustomImage";
 import Link from "next/link";
 import React, { useContext } from "react";
 

@@ -1,7 +1,7 @@
-import Image from "next/image";
 import React from "react";
 import AuthLeftImage from "@public/auth-left.svg";
 import RegisterForm from "@/components/auth/register/components/RegisterForm";
+import Image from "@/components/common/image/CustomImage";
 
 const page = () => {
 	return (

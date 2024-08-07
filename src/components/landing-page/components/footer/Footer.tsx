@@ -7,7 +7,7 @@ import {
 import React from "react";
 import footerTopIcon from "@public/footer-top.svg";
 import statusImage from "@public/hero-status.svg";
-import Image from "next/image";
+import Image from "@/components/common/image/CustomImage";
 import RoadmapLogo from "@/components/landing-page/components/public-navbar/RoadmapLogo";
 import Link from "next/link";
 

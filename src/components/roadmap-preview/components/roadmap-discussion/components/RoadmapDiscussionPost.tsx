@@ -1,6 +1,6 @@
 import { RoadmapPostType } from "@/components/roadmap-preview/components/roadmap-discussion/types/roadmap-discussion-posts";
 import React, { useContext, useEffect, useState } from "react";
-import Image from "next/image";
+import Image from "@/components/common/image/CustomImage";
 import { COMMENT_ICON, UP_VOTE_ICON } from "@public/icons/roadmapPreview";
 import { MENU_ICON } from "@public/icons/roadmapSteps";
 import useToggle from "@/hooks/useToggle";

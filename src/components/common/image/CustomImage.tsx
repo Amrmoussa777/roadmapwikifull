@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import Image, { ImageProps } from "next/image";
 import placeholderImage from "@public/roadmap.svg";
@@ -15,10 +17,7 @@ const CustomImage: React.FC<ValidatedImageProps> = ({
 		placeholderImage
 	);
 
-	const [loading, setLoading] = useState(true); // To track image loading state
-
 	useEffect(() => {
-		let isMounted = true; // To avoid setting state after unmount
 		if (typeof src !== "string") {
 			setValidSrc(src);
 		} else if (isValidUrl(src)) {
@@ -26,14 +25,7 @@ const CustomImage: React.FC<ValidatedImageProps> = ({
 		} else if (!isValidUrl(src)) {
 			setValidSrc(placeholderImage);
 		}
-		setLoading(false);
-
-		return () => {
-			isMounted = false;
-		};
 	}, [src]);
-
-	if (loading) return null; // Optional: You can display a loader here
 
 	return <Image src={validSrc} alt={alt || ""} {...imageProps} />;
 };

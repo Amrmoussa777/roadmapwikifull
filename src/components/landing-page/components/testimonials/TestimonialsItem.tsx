@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/common/image/CustomImage";
 import React, { useEffect, useState } from "react";
 import { TestimonialItem } from "@/components/landing-page/types/testimonials.types";
 import { motion } from "framer-motion";

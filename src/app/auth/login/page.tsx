@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/common/image/CustomImage";
 import React from "react";
 import AuthLeftImage from "@public/auth-left.svg";
 import LoginForm from "@/components/auth/login/components/LoginForm";

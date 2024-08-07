@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/common/image/CustomImage";
 import React, { useContext, useEffect, useState } from "react";
 import RoadmapCover from "@public/roadmapCover.png";
 import SubscribeButton from "@/components/common/button/SubscribeButton";

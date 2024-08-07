@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/common/image/CustomImage";
 import React, { useState } from "react";
 import questionsImage from "@public/landing-questions.svg";
 import FAQItem from "@/components/landing-page/components/faq/FAQItem";

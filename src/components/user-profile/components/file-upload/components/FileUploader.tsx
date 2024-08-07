@@ -9,7 +9,7 @@ import { useFetch } from "@/hooks/useFetch";
 import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import { updateUserData } from "@/redux/slices/user-profile/userProfileSlice";
 import { useAppDispatch } from "@/redux/store";
-import Image from "next/image";
+import Image from "@/components/common/image/CustomImage";
 import React, { useContext } from "react";
 
 const FileUploader = ({
