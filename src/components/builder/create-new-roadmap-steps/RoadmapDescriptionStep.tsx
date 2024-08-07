@@ -38,7 +38,7 @@ const RoadmapDescriptionStep = ({
 		const newRoadmapData = {
 			title: draftRoadmap.title,
 			duration: "1 week",
-			icon: iconKey,
+			category: iconKey,
 			description,
 		};
 

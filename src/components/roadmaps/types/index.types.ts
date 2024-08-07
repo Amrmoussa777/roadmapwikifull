@@ -22,6 +22,7 @@ export type FilterItemProps = {
 	defaultListCount?: number;
 	lastFilterItem?: boolean;
 	multi?: boolean;
+	isShowMore?: boolean;
 };
 
 export type FilterContentProps = {
@@ -35,6 +36,7 @@ export type FilterContentProps = {
 	setRoadmapDurationList: (list: FilterListItem[]) => void;
 	clearFilter?: () => void;
 	toggleMobileFilter?: () => void;
+	isShowMore: boolean;
 };
 
 export type BottomButtonsProps = {

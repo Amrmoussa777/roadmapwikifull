@@ -15,6 +15,7 @@ const FilterContent: React.FC<FilterContentProps> = ({
 	setRoadmapDurationList,
 	clearFilter,
 	toggleMobileFilter,
+	isShowMore,
 }) => {
 	const { filterList } = useAppSelector(state => state.roadmapList);
 
@@ -65,6 +66,7 @@ const FilterContent: React.FC<FilterContentProps> = ({
 					filterList={roadmapCategoryList}
 					setNewList={setRoadmapCategoryList}
 					showMore={showMoreCategories}
+					isShowMore={isShowMore}
 					defaultListCount={15}
 					lastFilterItem
 					multi={true}

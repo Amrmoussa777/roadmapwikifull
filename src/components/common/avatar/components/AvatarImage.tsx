@@ -1,5 +1,5 @@
 import { AvatarImagePropsType } from "@/components/common/avatar/types/index.types";
-import Image from "next/image";
+import Image from "@/components/common/image/CustomImage";
 import React from "react";
 
 const AvatarImage = ({

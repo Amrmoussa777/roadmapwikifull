@@ -2,7 +2,7 @@ import { StaticImageData } from "next/image";
 
 export type AvatarPropsType = {
 	name: string;
-	image_url?: string | StaticImageData;
+	image_url?: string;
 	customStyles?: string;
 };
 

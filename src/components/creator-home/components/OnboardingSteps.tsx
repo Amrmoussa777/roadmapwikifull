@@ -4,9 +4,11 @@ import Avatar from "@/components/common/avatar/components/Avatar";
 import HorizontalDivider from "@/components/common/divider/components/HorizontalDivider";
 import OnboardingStep from "@/components/creator-home/components/OnboardingStep";
 import { OnboardingSteps as OnboardingStepsData } from "@/config/userTips";
+import { RedirectHandler } from "@/helpers/redirectHelper";
 import TextTransformationHelper from "@/helpers/textTransformation";
 import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useContext, useEffect, useState } from "react";
 
 const OnboardingSteps = () => {
@@ -20,6 +22,14 @@ const OnboardingSteps = () => {
 	} = currentUser || {};
 	const fullSteps = OnboardingStepsData;
 	const [steps, setSteps] = useState<Record<string, string[]> | null>(null);
+	const router = useRouter();
+	const redirectHandler = new RedirectHandler();
+
+	const handleRedirect = () => {
+		redirectHandler.redirect(router, steps?.notCompleted[0] || "", {
+			userName: currentUser?.userName,
+		});
+	};
 
 	useEffect(() => {
 		if (notCompletedSteps && !steps) {
@@ -45,7 +55,7 @@ const OnboardingSteps = () => {
 	}, [notCompletedSteps, steps]);
 
 	return (
-		<div className="w-full xl:max-w-[350px] h-[416px] xl:h-fit p-[24px] border border-[#DCDCDC] rounded-[12px]">
+		<div className="w-full xl:max-w-[350px] h-[416px] lg:h-fit p-[24px] border border-[#DCDCDC] rounded-[12px]">
 			<Link href={`/user/${userName}`} className="flex justify-start gap-4">
 				<Avatar
 					name={fullName || ""}
@@ -66,7 +76,7 @@ const OnboardingSteps = () => {
 						customStyles="my-[10px] lg:my-[20px]"
 					/>
 
-					<ul className="h-[100px] lg:h-[200px] overflow-y-scroll hidden-scrollbar">
+					<ul className="h-[250px] overflow-y-scroll hidden-scrollbar">
 						{steps.notCompleted.map(key => (
 							<OnboardingStep key={key} tipKey={key} completed={false} />
 						))}
@@ -81,7 +91,10 @@ const OnboardingSteps = () => {
 						customStyles="my-[10px] lg:my-[20px]"
 					/>
 
-					<button className="h-[37px] block mx-auto px-[20px] rounded-full bg-primary-ultramarineBlue text-white font-inter font-normal hover:shadow-lg transition duration-200 capitalize">
+					<button
+						onClick={handleRedirect}
+						className="h-[37px] mt-2 block mx-auto px-[20px] rounded-full bg-primary-ultramarineBlue text-white font-inter font-normal hover:shadow-lg transition duration-200 capitalize"
+					>
 						{TextTransformationHelper.getCapitalizedEnumKey(
 							steps.notCompleted[0]
 						)}

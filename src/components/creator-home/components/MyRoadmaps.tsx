@@ -1,10 +1,10 @@
 "use client";
 
+import NumberStats from "@/components/common/states/NumberStats";
 import LatestRoadmap from "@/components/creator-home/components/LatestRoadmap";
 import { useFetch } from "@/hooks/useFetch";
 import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import { RoadmapType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
-import { useAppSelector } from "@/redux/store";
 import { ARROW_ICON } from "@public/icons/roadmapSteps";
 import React, { useContext, useEffect, useState } from "react";
 
@@ -38,11 +38,15 @@ const MyRoadmaps = () => {
 				</button>
 			</div>
 
-			<ul className="grid grid-col-1 md:grid-cols-2 gap-[20px] lg:gap-[32px]">
-				{roadmaps.slice(0, 2).map(roadmap => (
-					<LatestRoadmap key={roadmap.id} {...roadmap} />
-				))}
-			</ul>
+			{roadmaps.length ? (
+				<ul className="grid grid-col-1 md:grid-cols-2 gap-[20px] lg:gap-[32px]">
+					{roadmaps.slice(0, 2).map(roadmap => (
+						<LatestRoadmap key={roadmap.id} {...roadmap} />
+					))}
+				</ul>
+			) : (
+				<NumberStats text="No roadmaps yet" />
+			)}
 		</section>
 	);
 };

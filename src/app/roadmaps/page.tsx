@@ -1,6 +1,6 @@
 import SearchRoadmapForm from "@/components/roadmaps/components/SearchRoadmapForm";
 import Header from "@/components/roadmaps/components/Header";
-import React from "react";
+import React, { Suspense } from "react";
 import RoadmapsFilter from "@/components/roadmaps/components/RoadmapsFilter";
 import RoadmapList from "@/components/roadmaps/components/RoadmapList";
 
@@ -12,9 +12,10 @@ const page = () => {
 			<SearchRoadmapForm />
 
 			<div className="flex mt-[32px]">
-				<RoadmapsFilter />
-
-				<RoadmapList />
+				<Suspense>
+					<RoadmapsFilter />
+					<RoadmapList />
+				</Suspense>
 			</div>
 		</main>
 	);

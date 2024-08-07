@@ -13,7 +13,7 @@ const CreatorTips = () => {
 	const swiperRef = useRef<null | SwiperType>(null);
 
 	return (
-		<div className="w-full xl:max-w-[350px] h-[416px] xl:h-fit flex flex-col justify-between p-[24px] border border-[#DCDCDC] rounded-[12px]">
+		<div className="w-full xl:max-w-[350px] h-[416px] lg:h-fit flex-col justify-between p-[24px] border border-[#DCDCDC] rounded-[12px]">
 			<Swiper
 				onActiveIndexChange={e => setActiveTip(e.realIndex)}
 				onSwiper={swiper => {
@@ -37,7 +37,7 @@ const CreatorTips = () => {
 						disabled={activeTip === 0}
 					/>
 					<span
-						className={`relative w-[8px] h-[8px] bg-[#898989] rounded-full transition duration-200`}
+						className={`relative w-[16px] h-[8px] bg-[#898989] rounded-md transition duration-200`}
 					/>
 					<button
 						onClick={() => swiperRef.current?.slideNext()}

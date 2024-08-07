@@ -97,7 +97,7 @@ const UserExperiences = () => {
 	if (isLoading) return <UserLinksLoader />;
 
 	return (
-		<div id="links" className="bg-white sm:rounded-[12px] p-[18px]">
+		<div id="experiences" className="bg-white sm:rounded-[12px] p-[18px]">
 			<div className="flex-jb-c mb-4">
 				<h3 className="font-inter font-semibold text-[18px] text-[#202020]">
 					Experience

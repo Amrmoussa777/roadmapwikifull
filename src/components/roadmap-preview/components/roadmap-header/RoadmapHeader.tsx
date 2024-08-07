@@ -13,7 +13,13 @@ import { useFetch } from "@/hooks/useFetch";
 
 const RoadmapHeader = () => {
 	const { roadmap, isLoading } = useAppSelector(state => state.roadmapPreview);
-	const { id, title, price, isSubscribed: initialIsSubscribed } = roadmap || {};
+	const {
+		id,
+		title,
+		price,
+		isSubscribed: initialIsSubscribed,
+		userId,
+	} = roadmap || {};
 	const [isSubscribed, setIsSubscribed] = useState(initialIsSubscribed);
 	const { currentUser } = useContext(CurrentUserContext);
 	const { push } = useRouter();
@@ -52,11 +58,13 @@ const RoadmapHeader = () => {
 				</h2>
 
 				<div className="flex-jc-c gap-2">
-					<SubscribeButton
-						price={price?.amount}
-						onClick={handleSubscribeRoadmap}
-						isSubscribed={isSubscribed}
-					/>
+					{currentUser?.id !== userId ? (
+						<SubscribeButton
+							price={price}
+							onClick={handleSubscribeRoadmap}
+							isSubscribed={isSubscribed}
+						/>
+					) : null}
 
 					<button className="w-[35px] h-[35px] md:w-[40px] md:h-[40px] flex-jc-c border border-grey-iconBorder rounded-full text-[#898989] hover:-translate-y-[2px] transform transition duration-200">
 						{SHARE_ICON}

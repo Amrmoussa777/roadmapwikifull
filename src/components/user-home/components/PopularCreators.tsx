@@ -24,7 +24,7 @@ const PopularCreators = () => {
 				Popular creators
 			</h3>
 
-			<ul className="h-full grid grid-cols-1 lg:grid-cols-2 gap-[10px] xl:gap-[20px] mt-[24px] overflow-y-scroll hidden-scrollbar pb-[140px]">
+			<ul className="h-full grid grid-cols-1 lg:grid-cols-2 gap-[10px] xl:gap-[20px] mt-[24px] overflow-y-scroll hidden-scrollbar pb-[120px]">
 				{creators.map(creator => (
 					<PopularCreator key={creator.id} {...creator} />
 				))}

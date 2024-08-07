@@ -7,7 +7,7 @@ import { useRoadmapsFilter } from "@/components/roadmaps/hooks/useRoadmapsFilter
 import FilterContent from "@/components/roadmaps/components/FilterContent";
 import BottomButtons from "@/components/roadmaps/components/BottomButtons";
 
-const RoadmapsFilter: React.FC = () => {
+const RoadmapsFilter = () => {
 	const {
 		toggleMobileFilter,
 		filterIsOpen,
@@ -20,6 +20,7 @@ const RoadmapsFilter: React.FC = () => {
 		roadmapDurationList,
 		setRoadmapDurationList,
 		clearFilter,
+		isShowMore,
 	} = useRoadmapsFilter();
 
 	return (
@@ -44,6 +45,7 @@ const RoadmapsFilter: React.FC = () => {
 								roadmapDurationList={roadmapDurationList}
 								setRoadmapDurationList={setRoadmapDurationList}
 								toggleMobileFilter={toggleMobileFilter}
+								isShowMore={isShowMore}
 							/>
 							<BottomButtons
 								toggleMobileFilter={toggleMobileFilter}
@@ -64,6 +66,7 @@ const RoadmapsFilter: React.FC = () => {
 						roadmapDurationList={roadmapDurationList}
 						setRoadmapDurationList={setRoadmapDurationList}
 						clearFilter={clearFilter}
+						isShowMore={isShowMore}
 					/>
 				</div>
 			)}

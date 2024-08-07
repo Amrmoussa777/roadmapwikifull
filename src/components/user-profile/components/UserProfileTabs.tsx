@@ -17,6 +17,7 @@ const UserProfileTabs = () => {
 	const tabs: UserProfileTabType[] = [
 		{ id: "info", name: "Personal Info", icon: USER_ICON },
 		{ id: "links", name: "Links", icon: LINK_ICON },
+		{ id: "experiences", name: "Experiences", icon: LINK_ICON },
 		{ id: "mySubscriptions", name: "My subscriptions", icon: SUBSCRIBES_ICON },
 		{ id: "myRoadmaps", name: "My roadmaps", icon: SUBSCRIBES_ICON },
 		{ id: "payments", name: "Payments info", icon: PAYMENTS_ICON },

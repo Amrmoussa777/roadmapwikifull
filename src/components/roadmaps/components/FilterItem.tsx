@@ -20,6 +20,7 @@ const FilterItem = ({
 	defaultListCount,
 	lastFilterItem,
 	multi,
+	isShowMore,
 }: FilterItemProps) => {
 	const urlParams = useSearchParams();
 
@@ -97,7 +98,7 @@ const FilterItem = ({
 				</h3>
 
 				<div className={row ? "flex items-center gap-[24px]" : ""}>
-					{filterList.map(item => (
+					{filterList.slice(0, isShowMore ? -1 : 15).map(item => (
 						<CheckboxWithLabel
 							key={item.label.id}
 							label={item.label}

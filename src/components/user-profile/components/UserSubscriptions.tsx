@@ -39,7 +39,7 @@ const UserSubscriptions = ({
 	return (
 		<div
 			id="mySubscriptions"
-			className={`bg-white sm:rounded-[12px] p-[18px] ${customStyles}`}
+			className={`bg-white sm:rounded-[12px] mt-[18px] ${customStyles}`}
 		>
 			<div className="flex-jb-c mb-4">
 				<h3 className="font-inter font-semibold text-[18px] text-[#202020]">
@@ -64,7 +64,7 @@ const UserSubscriptions = ({
 					))}
 				</ul>
 			) : (
-				<NumberStats text="No roadmaps yet" />
+				<NumberStats text="No subscribed roadmaps yet" />
 			)}
 		</div>
 	);

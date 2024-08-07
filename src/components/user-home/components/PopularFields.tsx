@@ -13,7 +13,7 @@ const PopularFields = () => {
 				Popular categories
 			</h3>
 
-			<ul className="mt-[24px] h-full overflow-y-scroll hidden-scrollbar pb-[140px]">
+			<ul className="mt-[24px] h-full overflow-y-scroll hidden-scrollbar pb-[120px]">
 				{categories.map(field => (
 					<Link
 						href={`/roadmaps?category=${field.name}`}

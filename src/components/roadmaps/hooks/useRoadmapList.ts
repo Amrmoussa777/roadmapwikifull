@@ -103,16 +103,14 @@ const useRoadmapList = () => {
 	}, [pageNumber, params, urlParams]);
 
 	useEffect(() => {
-		if (searchValue) {
-			resetPageNumber();
-			const filterParams = buildParamsString(filterList);
-			if (searchType === "roadmaps") {
-				const newParams = filterParams + `&search=${searchValue}`;
-				setParams(newParams);
-			} else {
-				const newParams = filterParams + `&search_creator=${searchValue}`;
-				setParams(newParams);
-			}
+		resetPageNumber();
+		const filterParams = buildParamsString(filterList);
+		if (searchType === "roadmaps") {
+			const newParams = filterParams + `&search=${searchValue}`;
+			setParams(newParams);
+		} else {
+			const newParams = filterParams + `&search_creator=${searchValue}`;
+			setParams(newParams);
 		}
 	}, [searchValue]);
 

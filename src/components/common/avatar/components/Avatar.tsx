@@ -3,6 +3,7 @@
 import AvatarImage from "@/components/common/avatar/components/AvatarImage";
 import useGetAvatarName from "@/components/common/avatar/hook/useGetAvatarName";
 import { AvatarPropsType } from "@/components/common/avatar/types/index.types";
+import { isValidUrl } from "@/helpers/isValidUrl";
 import React, { useState } from "react";
 
 const Avatar = ({ name, image_url, customStyles }: AvatarPropsType) => {
@@ -23,7 +24,7 @@ const Avatar = ({ name, image_url, customStyles }: AvatarPropsType) => {
 				</span>
 			)}
 
-			{image_url && (
+			{image_url && isValidUrl(image_url) && (
 				<AvatarImage
 					image_url={image_url}
 					onLoadingComplete={handleImageLoadComplete}

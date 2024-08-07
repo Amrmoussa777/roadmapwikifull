@@ -23,12 +23,12 @@ const useRoadmapsFilter = () => {
 	const urlParams = useSearchParams();
 	const [searchTypeList, setSearchTypeList] =
 		useState<FilterListItem[]>(searchTypeListData);
-	const [roadmapCategoryList, setRoadmapCategoryList] = useState<
-		FilterListItem[]
-	>(categoriesList.slice(0, 15));
+	const [roadmapCategoryList, setRoadmapCategoryList] =
+		useState<FilterListItem[]>(categoriesList);
 	const [roadmapDurationList, setRoadmapDurationList] = useState<
 		FilterListItem[]
 	>(roadmapDurationListData);
+	const [isShowMore, setIsShowMore] = useState(false);
 
 	const { currentState: filterIsOpen, toggle: toggleMobileFilter } =
 		useToggle(false);
@@ -87,11 +87,7 @@ const useRoadmapsFilter = () => {
 	}, [responsive]);
 
 	const showMoreCategories = () => {
-		setRoadmapCategoryList(
-			roadmapCategoryList.length > 15
-				? categoriesList.slice(0, 15)
-				: categoriesList
-		);
+		setIsShowMore(prev => !prev);
 	};
 
 	const clearFilter = () => {
@@ -119,6 +115,7 @@ const useRoadmapsFilter = () => {
 		roadmapDurationList,
 		setRoadmapDurationList,
 		clearFilter,
+		isShowMore,
 	};
 };
 

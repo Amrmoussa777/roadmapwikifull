@@ -2,6 +2,7 @@
 
 import VerticalDivider from "@/components/common/divider/components/VerticalDivider";
 import useInput from "@/components/common/input/hooks/useInput";
+import { ITarget } from "@/components/common/input/types";
 import { useOnClickOutside } from "@/hooks/useOnClickOutside";
 import { useSizeScreen } from "@/hooks/useSizeScreen";
 import useToggle from "@/hooks/useToggle";
@@ -22,7 +23,9 @@ const SearchRoadmapForm = () => {
 	const { value, changeValue, reset } = useInput("");
 
 	const dispatch = useAppDispatch();
-	const { searchType, filterList } = useAppSelector(state => state.roadmapList);
+	const { searchType, filterList, searchValue } = useAppSelector(
+		state => state.roadmapList
+	);
 
 	const handleChangeSearchType = (newSearchType: "roadmaps" | "creators") => {
 		dispatch(changeSearchType(newSearchType));
@@ -34,6 +37,16 @@ const SearchRoadmapForm = () => {
 		e.preventDefault();
 
 		dispatch(changeSearchValue(value));
+	};
+
+	const handleChangeValue = (e: ITarget | string) => {
+		const newValue = typeof e === "string" ? e : e.target.value;
+
+		changeValue(e);
+
+		if (!newValue && searchValue.length) {
+			dispatch(changeSearchValue(newValue));
+		}
 	};
 
 	useEffect(() => {
@@ -69,7 +82,7 @@ const SearchRoadmapForm = () => {
 							: "Enter creator name you want roadmap about"
 					}`}
 					value={value}
-					onChange={changeValue}
+					onChange={handleChangeValue}
 					className="w-full outline-none text-[16px] font-poppins placeholder:font-poppins placeholder:text-[16px]"
 				/>
 			</div>

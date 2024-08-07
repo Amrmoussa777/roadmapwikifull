@@ -1,6 +1,12 @@
 export type SubscribeButtonProps = {
 	offer?: string;
-	price: number | undefined;
+	price:
+		| {
+				currency: string;
+				amount: number;
+		  }
+		| null
+		| undefined;
 	details?: string;
 	onClick: () => void;
 	isSubscribed?: boolean;
