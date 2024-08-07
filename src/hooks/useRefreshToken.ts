@@ -1,9 +1,7 @@
-import { CurrentUserContext } from "@/providers/CurrentUserContext";
-import { fetchAnonymousToken } from "@/services/fetchAnonymousToken";
 import axios from "axios";
 import { getCookie, setCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 
 export const fetchNewAccessToken = async (refreshToken: string | undefined) => {
 	const res = await axios({
@@ -21,10 +19,8 @@ export const fetchNewAccessToken = async (refreshToken: string | undefined) => {
 
 export const useRefreshToken = () => {
 	const refreshToken = getCookie("refreshToken");
-	const accessToken = getCookie("accessToken");
 	const accessTokenExpiresAt = getCookie("accessTokenExpiresAt");
 	const refreshTokenExpiresAt = getCookie("refreshTokenExpiresAt");
-	const { currentUser } = useContext(CurrentUserContext);
 	const { push } = useRouter();
 
 	function isTimeExpired(timestamp: number) {
@@ -33,20 +29,16 @@ export const useRefreshToken = () => {
 	}
 
 	useEffect(() => {
-		if (!refreshToken) return;
-
 		const isAccessTokenExpired = isTimeExpired(Number(accessTokenExpiresAt));
 
 		if (isAccessTokenExpired) {
 			(async () => {
-				const data = await fetchNewAccessToken(refreshToken);
-
 				const {
-					newAccessToken,
-					newRefreshToken,
-					newAccessTokenExpiresAt,
-					newRefreshTokenExpiresAt,
-				} = data;
+					accessToken: newAccessToken,
+					refreshToken: newRefreshToken,
+					accessTokenExpiresAt: newAccessTokenExpiresAt,
+					refreshTokenExpiresAt: newRefreshTokenExpiresAt,
+				} = await fetchNewAccessToken(refreshToken);
 
 				setCookie("accessToken", newAccessToken);
 				setCookie("refreshToken", newRefreshToken);

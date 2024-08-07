@@ -10,7 +10,6 @@ import {
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { useSizeScreen } from "@/hooks/useSizeScreen";
 import { useSearchParams } from "next/navigation";
-import PathnameHelper from "@/helpers/pathname.helper";
 
 const useRoadmapList = () => {
 	const {
@@ -81,17 +80,20 @@ const useRoadmapList = () => {
 	}, [filterList, responsive, appliedFilterMobile]);
 
 	useEffect(() => {
-		if (!initialized.current) {
-			initialized.current = true;
-			const category = urlParams.get("category");
+		(async () => {
+			if (!initialized.current) {
+				initialized.current = true;
+				const category = urlParams.get("category");
 
-			if (category) {
-				getFilteredRoadmaps(1, `&category=${category}`);
-				dispatch(
-					updatedFilterList({ filterKey: "categories", value: [category] })
-				);
+				if (category) {
+					setParams(`&category=${category}`);
+					await getFilteredRoadmaps(1, `&category=${category}`);
+					dispatch(
+						updatedFilterList({ filterKey: "categories", value: [category] })
+					);
+				}
 			}
-		}
+		})();
 	}, [urlParams]);
 
 	useEffect(() => {

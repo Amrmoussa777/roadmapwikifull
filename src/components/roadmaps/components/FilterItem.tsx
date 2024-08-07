@@ -8,7 +8,7 @@ import {
 } from "@/components/roadmaps/types/index.types";
 import PathnameHelper from "@/helpers/pathname.helper";
 import { useSearchParams } from "next/navigation";
-import React from "react";
+import React, { useEffect } from "react";
 
 const FilterItem = ({
 	filterLabel,
@@ -21,18 +21,14 @@ const FilterItem = ({
 	lastFilterItem,
 	multi,
 }: FilterItemProps) => {
-	const urlCategoryParam = useSearchParams().get("category");
+	const urlParams = useSearchParams();
 
 	const handleChangeFilterItemList = (
 		list: FilterListItem[],
 		newItem: FilterListItem,
 		setNewList: (list: FilterListItem[]) => void
 	) => {
-		if (newItem.label.id === urlCategoryParam) {
-			PathnameHelper.clearUrlParams();
-			setNewList(list);
-			return;
-		}
+		if (urlParams.size) PathnameHelper.clearUrlParams();
 
 		if (multi) {
 			const updatedList = list.map(item => {
@@ -66,6 +62,25 @@ const FilterItem = ({
 		setNewList(updatedList);
 	};
 
+	useEffect(() => {
+		const categoryParam = urlParams.get("category");
+
+		if (categoryParam) {
+			const updatedList = filterList.map(item => {
+				if (item.label.id === categoryParam) {
+					return {
+						...item,
+						checked: true,
+					};
+				} else {
+					return { ...item, checked: false };
+				}
+			});
+
+			setNewList(updatedList);
+		}
+	}, []);
+
 	return (
 		<>
 			{!lastFilterItem ? (
@@ -88,23 +103,23 @@ const FilterItem = ({
 							label={item.label}
 							bgColor={
 								circle
-									? item.checked || urlCategoryParam === item.label.id
+									? item.checked
 										? "bg-[#506CF0]"
 										: "bg-white"
 									: "bg-[#506CF0]"
 							}
-							checked={item.checked || urlCategoryParam === item.label.id}
+							checked={item.checked}
 							toggle={() =>
 								handleChangeFilterItemList(filterList, item, setNewList)
 							}
 							customStyles={`${
 								circle
 									? "rounded-full [&>svg]:hidden border-[2px] border-[#DADADA]"
-									: item.checked || urlCategoryParam === item.label.id
+									: item.checked
 									? "bg-[#506CF0]"
 									: "bg-[#F6F6F6]"
 							} ${
-								item.checked && urlCategoryParam === item.label.id && circle
+								item.checked && circle
 									? "border-[8px] bg-white !border-[#506CF0]"
 									: ""
 							}`}
