@@ -8,7 +8,7 @@ import { RedirectHandler } from "@/helpers/redirectHelper";
 import TextTransformationHelper from "@/helpers/textTransformation";
 import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useContext, useEffect, useState } from "react";
 
 const OnboardingSteps = () => {
@@ -55,7 +55,7 @@ const OnboardingSteps = () => {
 	}, [notCompletedSteps, steps]);
 
 	return (
-		<div className="w-full xl:max-w-[350px] h-[416px] lg:h-fit p-[24px] border border-[#DCDCDC] rounded-[12px]">
+		<div className="w-full xl:max-w-[350px] xl:h-fit p-[24px] border border-[#DCDCDC] rounded-[12px]">
 			<Link href={`/user/${userName}`} className="flex justify-start gap-4">
 				<Avatar
 					name={fullName || ""}
@@ -76,7 +76,7 @@ const OnboardingSteps = () => {
 						customStyles="my-[10px] lg:my-[20px]"
 					/>
 
-					<ul className="h-[250px] overflow-y-scroll hidden-scrollbar">
+					<ul className="h-[250px] xl:h-[200px] overflow-y-scroll hidden-scrollbar">
 						{steps.notCompleted.map(key => (
 							<OnboardingStep key={key} tipKey={key} completed={false} />
 						))}
@@ -93,7 +93,7 @@ const OnboardingSteps = () => {
 
 					<button
 						onClick={handleRedirect}
-						className="h-[37px] mt-2 block mx-auto px-[20px] rounded-full bg-primary-ultramarineBlue text-white font-inter font-normal hover:shadow-lg transition duration-200 capitalize"
+						className="h-[37px] block mx-auto px-[20px] rounded-full bg-primary-ultramarineBlue text-white font-inter font-normal hover:shadow-lg transition duration-200 capitalize"
 					>
 						{TextTransformationHelper.getCapitalizedEnumKey(
 							steps.notCompleted[0]

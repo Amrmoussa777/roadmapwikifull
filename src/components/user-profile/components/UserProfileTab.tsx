@@ -12,7 +12,7 @@ const UserProfileTab = ({
 		<li className="h-[44px]">
 			<button
 				onClick={() => handleChangeHash(id)}
-				className={`flex items-center gap-2 w-full px-[12px] h-full group text-[#606060] ${
+				className={`flex items-center gap-2 w-full px-[12px] h-full group text-[#606060] [&>svg]:w-[25px] [&>svg]:h-[25px] ${
 					id === currentId
 						? "bg-[#F5F5F5] [&>svg]:text-primary-ultramarineBlue"
 						: "hover:bg-[#F5F5F5] [&>svg]:hover:text-primary-ultramarineBlue"

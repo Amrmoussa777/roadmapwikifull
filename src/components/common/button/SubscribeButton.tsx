@@ -28,7 +28,7 @@ const SubscribeButton = ({
 			</div>
 
 			{!isSubscribed ? (
-				<span className="w-[44px] md:w-[55px] h-[40px] md:h-[44px] flex-jc-c text-md md:text-lg font-semibold bg-black/20 rounded-r-md">
+				<span className="w-fit px-2 h-[40px] md:h-[44px] flex-jc-c text-md md:text-lg font-semibold bg-black/20 rounded-r-md">
 					{price ? price.amount + price.currency : "Free"}
 				</span>
 			) : null}

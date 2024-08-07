@@ -34,7 +34,7 @@ const UserHome = () => {
 				<div className="w-full xl:w-[calc(100%-340px)] mt-[30px] lg:mt-0">
 					<UserSubscriptions
 						count={2}
-						customStyles="px-0 [&>ul>li]:!bg-primary-ultramarineBlue/10"
+						customStyles="px-0 [&>ul>li]:!bg-primary-ultramarineBlue/10 pb-[18px] pt-0"
 					/>
 					<MyRoadmaps />
 					<RecommendedRoadmaps />

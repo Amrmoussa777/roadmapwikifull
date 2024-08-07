@@ -20,7 +20,7 @@ const PopularCreator = ({
 }: PopularCreatorType) => {
 	return (
 		<div className="w-full mr-auto p-[10px] border border-[#DCDCDC] rounded-[20px]">
-			<div className="w-full h-full p-[12px] rounded-[10px] bg-primary-ultramarineBlue/10">
+			<div className="w-full h-full p-[12px] flex flex-col rounded-[10px] bg-primary-ultramarineBlue/10">
 				{/* Header */}
 				<div className="flex-jb-c">
 					<Avatar
@@ -49,18 +49,18 @@ const PopularCreator = ({
 				/>
 
 				{/* Experiences */}
-				<ul className="flex items-center gap-2 mt-[14px]">
-					{experiences.slice(0, 2).map(item => (
+				<ul className="w-full h-[24px] flex items-center gap-2 my-[14px] overflow-x-scroll hidden-scrollbar">
+					{experiences.map(item => (
 						<li
 							key={item.id}
-							className="w-fit h-[24px] px-4 flex-jc-c text-[10px] font-inter text-[#79828B] border border-[#D8D8D8] rounded-full"
+							className="w-fit h-[24px] px-4 flex-jc-c text-[10px] whitespace-nowrap font-inter text-[#79828B] border border-[#D8D8D8] rounded-full"
 						>
-							{item.title}
+							<span>{item.title}</span>
 						</li>
 					))}
 				</ul>
 
-				<h3 className="flex items-center gap-2 font-inter font-medium text-[10px] text-[#655F5F] mt-[14px]">
+				<h3 className="flex items-center gap-2 font-inter font-medium text-[10px] text-[#655F5F] mt-auto">
 					{USERS_ICON} {roadmapsSubscribers} Subscribers
 				</h3>
 			</div>

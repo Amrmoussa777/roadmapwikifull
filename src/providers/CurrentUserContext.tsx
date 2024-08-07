@@ -11,7 +11,7 @@ import {
 import { useAppSelector } from "@/redux/store";
 import { getCookie } from "cookies-next";
 import { redirect, usePathname } from "next/navigation";
-import React, { createContext, useEffect, useRef, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 
 export const CurrentUserContext = createContext<CurrentUserContextType>({
 	currentUser: null,
@@ -22,7 +22,6 @@ const CurrentUserProvider = ({ children }: ChildrenType) => {
 
 	const accessToken = getCookie("accessToken");
 	const refreshToken = getCookie("refreshToken");
-	const initialized = useRef(false);
 	const { user } = useAppSelector(state => state.userProfile);
 
 	const [currentUser, setCurrentUser] = useState<
@@ -32,21 +31,17 @@ const CurrentUserProvider = ({ children }: ChildrenType) => {
 	useRefreshToken();
 
 	useEffect(() => {
-		if (!currentUser && !initialized.current) {
-			initialized.current = true;
-
-			(async () => {
-				try {
-					const user = await getUser(accessToken, refreshToken);
-					setCurrentUser(user);
-				} catch (error) {
-					console.error(error);
-				}
-			})();
-		}
+		(async () => {
+			try {
+				const user = await getUser(accessToken, refreshToken);
+				setCurrentUser(user);
+			} catch (error) {
+				console.error(error);
+			}
+		})();
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [accessToken]);
+	}, [accessToken, user]);
 
 	useEffect(() => {
 		if (pathname.includes("auth") && currentUser) {

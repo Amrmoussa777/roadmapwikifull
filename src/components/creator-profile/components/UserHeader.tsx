@@ -73,7 +73,9 @@ const UserHeader = () => {
 				{isUserProfile ? (
 					<button
 						onClick={toggleUploadModal}
-						className="w-[40px] h-[40px] flex-jc-c rounded-full bg-white/20 text-white border border-white/20"
+						className={`w-[40px] h-[40px] flex-jc-c rounded-full ${
+							user?.cover ? "bg-white/20 text-white" : "bg-white text-[#333333]"
+						} border border-white/20`}
 					>
 						{EDIT_ICON}
 					</button>
