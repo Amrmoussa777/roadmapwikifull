@@ -28,7 +28,7 @@ const FilterItem = ({
 		newItem: FilterListItem,
 		setNewList: (list: FilterListItem[]) => void
 	) => {
-		if (urlParams.size) PathnameHelper.clearUrlParams();
+		if (urlParams.get(filterLabel.id)) PathnameHelper.clearUrlParams();
 
 		if (multi) {
 			const updatedList = list.map(item => {
@@ -93,7 +93,7 @@ const FilterItem = ({
 
 			<li className="mb-[25px]">
 				<h3 className="text-[16px] text-[#484848] font-poppins font-medium">
-					{filterLabel}
+					{filterLabel.name}
 				</h3>
 
 				<div className={row ? "flex items-center gap-[24px]" : ""}>

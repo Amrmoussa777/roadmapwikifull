@@ -52,7 +52,7 @@ const FilterContent: React.FC<FilterContentProps> = ({
 			<ul>
 				{responsive && (
 					<FilterItem
-						filterLabel="Search for"
+						filterLabel={{ id: "search", name: "Search for" }}
 						filterList={searchTypeList}
 						setNewList={setSearchTypeList}
 						row
@@ -61,7 +61,7 @@ const FilterContent: React.FC<FilterContentProps> = ({
 				)}
 
 				<FilterItem
-					filterLabel="Roadmap category"
+					filterLabel={{ id: "category", name: "Roadmap category" }}
 					filterList={roadmapCategoryList}
 					setNewList={setRoadmapCategoryList}
 					showMore={showMoreCategories}
@@ -71,7 +71,7 @@ const FilterContent: React.FC<FilterContentProps> = ({
 				/>
 
 				<FilterItem
-					filterLabel="Roadmap duration"
+					filterLabel={{ id: "category", name: "Roadmap duration" }}
 					filterList={roadmapDurationList}
 					setNewList={setRoadmapDurationList}
 					defaultListCount={15}

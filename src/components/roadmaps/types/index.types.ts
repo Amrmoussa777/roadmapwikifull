@@ -13,7 +13,7 @@ export type handleChangeFilterItemListArgs = {
 };
 
 export type FilterItemProps = {
-	filterLabel: string;
+	filterLabel: Record<string, string>;
 	filterList: FilterListItem[];
 	setNewList: (list: FilterListItem[]) => void;
 	row?: boolean;
