@@ -1,15 +1,12 @@
-import { deleteCookie } from "cookies-next";
+import { clearCookies } from "@/services/clearCookies";
 import { useState } from "react";
 
 export const useLogout = () => {
 	const [loading, setLoading] = useState(false);
-	const logout = () => {
+	const logout = async () => {
 		setLoading(true);
 
-		deleteCookie("accessToken");
-		deleteCookie("refreshToken");
-		deleteCookie("accessTokenExpiresAt");
-		deleteCookie("refreshTokenExpiresAt");
+		await clearCookies();
 
 		setTimeout(() => {
 			setLoading(false);

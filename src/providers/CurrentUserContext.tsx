@@ -1,6 +1,7 @@
 "use client";
 
 import { getUser } from "@/app/auth/services/getUser";
+import TokensHelper from "@/helpers/tokensHelper";
 import useClearReduxOnNavigation from "@/hooks/useClearReduxOnNavigation";
 import { useRefreshToken } from "@/hooks/useRefreshToken";
 import {
@@ -9,7 +10,8 @@ import {
 	CurrentUserType,
 } from "@/providers/types/index.types";
 import { useAppSelector } from "@/redux/store";
-import { getCookie } from "cookies-next";
+import { fetchAnonymousToken } from "@/services/fetchAnonymousToken";
+import { setCookies } from "@/services/setCookies";
 import { redirect, usePathname } from "next/navigation";
 import React, { createContext, useEffect, useState } from "react";
 
@@ -21,8 +23,6 @@ export const CurrentUserContext = createContext<CurrentUserContextType>({
 const CurrentUserProvider = ({ children }: ChildrenType) => {
 	useClearReduxOnNavigation();
 
-	const accessToken = getCookie("accessToken");
-	const refreshToken = getCookie("refreshToken");
 	const { user } = useAppSelector(state => state.userProfile);
 	const [currentUserLoading, setCurrentUserLoading] = useState(true);
 	const [currentUser, setCurrentUser] = useState<
@@ -34,18 +34,26 @@ const CurrentUserProvider = ({ children }: ChildrenType) => {
 	useEffect(() => {
 		(async () => {
 			setCurrentUserLoading(true);
-			try {
-				const user = await getUser(accessToken, refreshToken);
-				setCurrentUser(user);
-			} catch (error) {
-				console.error(error);
-			} finally {
-				setCurrentUserLoading(false);
+			const { accessToken: fetchedAccessToken, refreshToken } =
+				TokensHelper.getTokens();
+
+			console.log(TokensHelper.getTokens());
+			let accessToken = fetchedAccessToken;
+
+			if (!refreshToken) return;
+
+			if (!fetchedAccessToken) {
+				accessToken = await fetchAnonymousToken();
+
+				await setCookies({ accessToken });
 			}
+
+			const user = await getUser(accessToken);
+			setCurrentUser(user);
 		})();
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [accessToken, user]);
+	}, [user]);
 
 	useEffect(() => {
 		if (pathname.includes("auth") && currentUser) {

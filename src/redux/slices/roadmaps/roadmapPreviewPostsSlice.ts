@@ -41,6 +41,7 @@ export const roadmapPreviewPostsSlice = createSlice({
 
 			state.posts.list = [...state.posts.list, ...newPosts];
 			state.posts.isLoading = false;
+			state.isLoading = true;
 			state.error = null;
 		});
 

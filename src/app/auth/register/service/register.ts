@@ -1,5 +1,5 @@
 import HandleApiRequests from "@/helpers/handleApiRequests";
-import { setCookie } from "cookies-next";
+import { setCookies } from "@/services/setCookies";
 
 export const register = async (formData: Record<string, string>) => {
 	try {
@@ -9,17 +9,7 @@ export const register = async (formData: Record<string, string>) => {
 			body: formData,
 		});
 
-		const {
-			accessToken,
-			refreshToken,
-			accessTokenExpiresAt,
-			refreshTokenExpiresAt,
-		} = data;
-
-		setCookie("accessToken", accessToken);
-		setCookie("refreshToken", refreshToken);
-		setCookie("accessTokenExpiresAt", accessTokenExpiresAt);
-		setCookie("refreshTokenExpiresAt", refreshTokenExpiresAt);
+		await setCookies(data);
 
 		return { error: null };
 	} catch (error: any) {

@@ -2,7 +2,6 @@ import LogoutButton from "@/components/auth/logout/components/LogoutButton";
 import PrivateMobileNavbarButton from "@/components/navbar/components/PrivateMobileNavbarButton";
 import PrivateNavbarCurrentUser from "@/components/navbar/components/PrivateNavbarCurrentUser";
 import {
-	DARK_MODE_ICON,
 	HELP_CENTER_ICON,
 	SETTINGS_ICON,
 	UPGRADE_PLAN_ICON,
@@ -50,9 +49,9 @@ const PrivateMobileNavbarButtons = () => {
 			<motion.li variants={liVariant} className="mb-4 overflow-hidden">
 				<PrivateNavbarCurrentUser />
 			</motion.li>
-			<motion.li variants={liVariant} className="overflow-hidden">
+			{/* <motion.li variants={liVariant} className="overflow-hidden">
 				<PrivateMobileNavbarButton text="Dark Mode" icon={DARK_MODE_ICON} />
-			</motion.li>
+			</motion.li> */}
 			<motion.li variants={liVariant}>
 				<PrivateMobileNavbarButton
 					text="Help Center"

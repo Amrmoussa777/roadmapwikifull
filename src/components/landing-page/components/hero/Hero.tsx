@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React from "react";
 import { PLAY_ICON } from "@public/icons/landingPage";
 import Roadmap from "@/components/landing-page/components/hero/Roadmap";
 import { roadmapList } from "@/components/landing-page/data/roadmapList";
@@ -8,8 +8,7 @@ import { useHero } from "@/components/landing-page/hooks/useHero";
 import Link from "next/link";
 
 const Hero = () => {
-	const roadmapRef = useRef(null);
-	const { activeRoadmapIndex } = useHero(roadmapRef);
+	const { activeRoadmapIndex, roadmapRef } = useHero();
 
 	return (
 		<section className="relative px-6 lg:px-[4.5rem] py-[2rem] flex-jc-c lg:gap-12 xl:gap-24 flex-col lg:flex-row z-10">

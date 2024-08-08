@@ -8,9 +8,9 @@ import useDisableScroll from "@/hooks/useDisableScrolling";
 import { CROSS_ICON } from "@public/icons/roadmapSteps";
 import { useAppSelector } from "@/redux/store";
 import PostsPagination from "@/components/roadmap-preview/components/pagination/components/PostsPagination";
-import { useRoadmapDiscussion } from "@/components/roadmap-preview/components/roadmap-discussion/hooks/useRoadmapDiscussion";
 import RoadmapDiscussionAddPostForm from "@/components/roadmap-preview/components/roadmap-discussion/components/RoadmapDiscussionAddPostForm";
 import NumberStats from "@/components/common/states/NumberStats";
+import { useRoadmapDiscussion } from "@/components/roadmap-preview/components/roadmap-discussion/hooks/useRoadmapDiscussion";
 
 const RoadmapDiscussion = () => {
 	const { isExpandedDiscussion, handleMoreComments, toggleDiscussion } =

@@ -2,10 +2,7 @@ import { useFetch } from "@/hooks/useFetch";
 import { useToast } from "@/hooks/useToast";
 import { updateRoadmap } from "@/redux/slices/roadmaps/roadmapPreviewSlice";
 import { fetchUserByUsername } from "@/redux/slices/thunks/getUserByUsername";
-import { getRoadmapPosts } from "@/redux/slices/thunks/roadmaps/getRoadmapPosts";
 import { useAppDispatch } from "@/redux/store";
-import { fetchAnonymousToken } from "@/services/fetchAnonymousToken";
-import { getCookie, setCookie } from "cookies-next";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
 
@@ -14,41 +11,23 @@ export const useRoadmapPreview = () => {
 	const dispatch = useAppDispatch();
 	const { error, loading, fetchData } = useFetch(true);
 	const { warningToast } = useToast();
-	const accessToken = getCookie("accessToken");
-
 	const { push } = useRouter();
 
 	useEffect(() => {
-		(async () => {
+		const fetchRoadmapData = async () => {
 			if (error && error !== "Unauthorized") {
 				push("/");
 				warningToast(error);
-			} else if (!accessToken) {
-				const AnonymousToken = await fetchAnonymousToken();
-				setCookie("accessToken", AnonymousToken);
-
-				const { data: roadmap } = await fetchData("GET", `roadmap/${id}`);
-				dispatch(updateRoadmap(roadmap));
-				dispatch(fetchUserByUsername(roadmap.user.userName));
-				dispatch(
-					getRoadmapPosts({ roadmapId: id, pageNumber: 1, pageSize: 5 })
-				);
+				return;
 			}
-		})();
 
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [id]);
+			const { data: roadmap } = await fetchData("GET", `roadmap/${id}`);
 
-	useEffect(() => {
-		if (!error && accessToken) {
-			(async () => {
-				const { data: roadmap } = await fetchData("GET", `roadmap/${id}`);
-				dispatch(fetchUserByUsername(roadmap.user.userName));
-				dispatch(updateRoadmap(roadmap));
-			})();
-		}
+			dispatch(updateRoadmap(roadmap));
+			dispatch(fetchUserByUsername(roadmap.user.userName));
+		};
 
-		// eslint-disable-next-line react-hooks/exhaustive-deps
+		fetchRoadmapData();
 	}, [id]);
 
 	return { loading, error };

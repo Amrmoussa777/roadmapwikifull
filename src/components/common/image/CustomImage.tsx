@@ -13,7 +13,6 @@ const CustomImage: React.FC<ValidatedImageProps> = ({
 	...imageProps
 }) => {
 	const [validSrc, setValidSrc] = useState<string | StaticImport | null>(src);
-	console.log(src);
 
 	useEffect(() => {
 		if (typeof src !== "string") {

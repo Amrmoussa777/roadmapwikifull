@@ -1,5 +1,5 @@
 import { roadmapList } from "@/components/landing-page/data/roadmapList";
-import { MutableRefObject, useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 
 /**
  * Custom hook to manage the hero section's roadmap behavior.
@@ -8,11 +8,13 @@ import { MutableRefObject, useEffect, useState, useRef } from "react";
  * @returns {Object} - An object containing the active roadmap index.
  */
 
-const useHero = (roadmapRef: MutableRefObject<null | HTMLDivElement>) => {
+const useHero = () => {
 	const [activeRoadmapIndex, setActiveRoadmapIndex] = useState(0);
 	const [intervalDuration, setIntervalDuration] = useState(1500);
 	const [isPaused, setIsPaused] = useState(false);
 	const scrollTimeoutRef = useRef<null | ReturnType<typeof setTimeout>>(null);
+
+	const roadmapRef = useRef<HTMLDivElement>(null);
 
 	// Add event listeners to pause/resume the roadmap on mouseover/mouseout, scroll, mousedown, and mouseup
 	useEffect(() => {
@@ -101,6 +103,7 @@ const useHero = (roadmapRef: MutableRefObject<null | HTMLDivElement>) => {
 
 	return {
 		activeRoadmapIndex,
+		roadmapRef,
 	};
 };
 

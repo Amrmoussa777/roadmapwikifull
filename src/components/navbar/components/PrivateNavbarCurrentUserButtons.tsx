@@ -47,10 +47,10 @@ const PrivateNavbarCurrentUserButtons = () => {
 				bgColor="bg-[#D8D8D8]"
 				customStyles="my-4"
 			/>
-
+			{/* 
 			<li className="overflow-hidden">
 				<PrivateMobileNavbarButton text="Dark Mode" icon={DARK_MODE_ICON} />
-			</li>
+			</li> */}
 			<li>
 				<PrivateMobileNavbarButton
 					text="Help Center"

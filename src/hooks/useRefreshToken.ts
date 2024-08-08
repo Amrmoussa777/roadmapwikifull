@@ -1,7 +1,8 @@
+import TokensHelper from "@/helpers/tokensHelper";
+import { setCookies } from "@/services/setCookies";
 import axios from "axios";
-import { getCookie, setCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 export const fetchNewAccessToken = async (refreshToken: string | undefined) => {
 	const res = await axios({
@@ -18,39 +19,36 @@ export const fetchNewAccessToken = async (refreshToken: string | undefined) => {
 };
 
 export const useRefreshToken = () => {
-	const refreshToken = getCookie("refreshToken");
-	const accessTokenExpiresAt = getCookie("accessTokenExpiresAt");
-	const refreshTokenExpiresAt = getCookie("refreshTokenExpiresAt");
 	const { push } = useRouter();
 
-	function isTimeExpired(timestamp: number) {
-		const currentTime = Math.floor(Date.now() / 1000);
-		return currentTime > timestamp;
-	}
+	const refreshAccessToken = useCallback(async () => {
+		const { refreshToken } = TokensHelper.getTokens();
+
+		const data = await fetchNewAccessToken(refreshToken);
+		await setCookies(data);
+	}, [push]);
 
 	useEffect(() => {
-		const isAccessTokenExpired = isTimeExpired(Number(accessTokenExpiresAt));
+		const checkTokenExpiration = async () => {
+			const { accessTokenExpiresAt, refreshTokenExpiresAt, refreshToken } =
+				TokensHelper.getTokens();
 
-		if (isAccessTokenExpired) {
-			(async () => {
-				const {
-					accessToken: newAccessToken,
-					refreshToken: newRefreshToken,
-					accessTokenExpiresAt: newAccessTokenExpiresAt,
-					refreshTokenExpiresAt: newRefreshTokenExpiresAt,
-				} = await fetchNewAccessToken(refreshToken);
+			if (!refreshToken) return;
 
-				setCookie("accessToken", newAccessToken);
-				setCookie("refreshToken", newRefreshToken);
-				setCookie("accessTokenExpiresAt", newAccessTokenExpiresAt);
-				setCookie("refreshTokenExpiresAt", newRefreshTokenExpiresAt);
-			})();
-		}
-	}, [accessTokenExpiresAt, refreshToken]);
+			const currentTime = Math.floor(Date.now() / 1000);
 
-	useEffect(() => {
-		const isRefreshTokenExpired = isTimeExpired(Number(refreshTokenExpiresAt));
+			if (currentTime > Number(refreshTokenExpiresAt)) {
+				push("/auth/login");
+			} else if (currentTime > Number(accessTokenExpiresAt)) {
+				refreshAccessToken();
+			}
+		};
 
-		if (isRefreshTokenExpired) return push("/auth/login");
-	}, [refreshToken]);
+		checkTokenExpiration();
+		const intervalId = setInterval(checkTokenExpiration, 60000);
+
+		return () => clearInterval(intervalId);
+	}, [refreshAccessToken, push]);
+
+	return refreshAccessToken;
 };

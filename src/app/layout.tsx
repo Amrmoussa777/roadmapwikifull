@@ -6,6 +6,7 @@ import CheckCurrentUserProvider from "@/providers/CurrentUserContext";
 import Navbar from "@/components/navbar/components/Navbar";
 import { inter, outfit, poppins } from "@/app/fonts";
 import CreateRoadmapLayout from "@/components/builder/layout/CreateRoadmapLayout";
+import TokensProvider from "@/providers/TokensProvider";
 
 export const metadata: Metadata = {
 	title: "Roadmap",
@@ -36,13 +37,15 @@ export default async function RootLayout({
 			<body
 				className={`${outfit.className} ${inter.variable} ${poppins.variable}`}
 			>
-				<Toaster />
-				<ReduxProvider>
-					<CheckCurrentUserProvider>
-						<Navbar />
-						<CreateRoadmapLayout>{children}</CreateRoadmapLayout>
-					</CheckCurrentUserProvider>
-				</ReduxProvider>
+				<TokensProvider>
+					<Toaster />
+					<ReduxProvider>
+						<CheckCurrentUserProvider>
+							<Navbar />
+							<CreateRoadmapLayout>{children}</CreateRoadmapLayout>
+						</CheckCurrentUserProvider>
+					</ReduxProvider>
+				</TokensProvider>
 			</body>
 		</html>
 	);
