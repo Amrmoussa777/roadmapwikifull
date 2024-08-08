@@ -18,7 +18,6 @@ const RoadmapSteps = () => {
 	const { roadmap, isLoading, stepIdToPreview } = useAppSelector(
 		state => state.createRoadmap
 	);
-
 	const { handleReOrderRoadmapSteps } = useRoadmapSteps();
 	const dispatch = useAppDispatch();
 	const { roadmapId } = useParams();
@@ -28,8 +27,6 @@ const RoadmapSteps = () => {
 		dispatch(
 			addRoadmapStep({
 				roadmapId,
-				title: "Step default title",
-				description: "Step default description",
 				duration: "1 day",
 			})
 		).then(({ payload }) => {

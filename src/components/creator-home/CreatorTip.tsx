@@ -9,7 +9,13 @@ const CreatorTip = ({ item }: { item: CreatorTipProps }) => {
 	return (
 		<li>
 			<div className="w-full h-full [&>svg]:w-full">
-				<Image src={tip_image_cover} width={400} height={200} alt="cover" />
+				<Image
+					src={tip_image_cover}
+					width={400}
+					height={200}
+					alt="cover"
+					className="w-full"
+				/>
 			</div>
 
 			<h3 className="font-inter font-medium text-[16px] text-[#202020] mt-[27px]">

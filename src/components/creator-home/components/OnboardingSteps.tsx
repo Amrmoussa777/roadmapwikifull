@@ -2,17 +2,18 @@
 
 import Avatar from "@/components/common/avatar/components/Avatar";
 import HorizontalDivider from "@/components/common/divider/components/HorizontalDivider";
+import OnboardingStepsLoader from "@/components/creator-home/components/loaders/OnboardingStepsLoader";
 import OnboardingStep from "@/components/creator-home/components/OnboardingStep";
 import { OnboardingSteps as OnboardingStepsData } from "@/config/userTips";
 import { RedirectHandler } from "@/helpers/redirectHelper";
 import TextTransformationHelper from "@/helpers/textTransformation";
 import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import React, { useContext, useEffect, useState } from "react";
 
 const OnboardingSteps = () => {
-	const { currentUser } = useContext(CurrentUserContext);
+	const { currentUser, currentUserLoading } = useContext(CurrentUserContext);
 	const {
 		fullName,
 		image,
@@ -53,6 +54,10 @@ const OnboardingSteps = () => {
 			setSteps(updatedSteps);
 		}
 	}, [notCompletedSteps, steps]);
+
+	if (currentUserLoading) return <OnboardingStepsLoader />;
+
+	if (!notCompletedSteps?.length) return;
 
 	return (
 		<div className="w-full xl:max-w-[350px] xl:h-fit p-[24px] border border-[#DCDCDC] rounded-[12px]">

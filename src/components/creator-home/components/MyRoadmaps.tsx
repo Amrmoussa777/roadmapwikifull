@@ -2,6 +2,7 @@
 
 import NumberStats from "@/components/common/states/NumberStats";
 import LatestRoadmap from "@/components/creator-home/components/LatestRoadmap";
+import MyRoadmapsLoader from "@/components/creator-home/components/MyRoadmapsLoader";
 import { useFetch } from "@/hooks/useFetch";
 import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import { RoadmapType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
@@ -10,7 +11,7 @@ import React, { useContext, useEffect, useState } from "react";
 
 const MyRoadmaps = () => {
 	const [roadmaps, setRoadmaps] = useState<RoadmapType[]>([]);
-	const { currentUser } = useContext(CurrentUserContext);
+	const { currentUser, currentUserLoading } = useContext(CurrentUserContext);
 
 	const { fetchData, loading } = useFetch();
 
@@ -23,6 +24,8 @@ const MyRoadmaps = () => {
 			})();
 		}
 	}, [currentUser]);
+
+	if (currentUserLoading || loading) return <MyRoadmapsLoader />;
 
 	return (
 		<section className="mt-[40px]">

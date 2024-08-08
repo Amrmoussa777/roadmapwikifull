@@ -13,7 +13,7 @@ const CreatorTips = () => {
 	const swiperRef = useRef<null | SwiperType>(null);
 
 	return (
-		<div className="w-full xl:max-w-[350px] h-full flex flex-col justify-between gap-4 p-[24px] border border-[#DCDCDC] rounded-[12px]">
+		<div className="w-full xl:max-w-[350px] h-full xl:h-fit flex flex-col justify-between gap-4 p-[24px] border border-[#DCDCDC] rounded-[12px]">
 			<Swiper
 				onActiveIndexChange={e => setActiveTip(e.realIndex)}
 				onSwiper={swiper => {
@@ -29,7 +29,7 @@ const CreatorTips = () => {
 				))}
 			</Swiper>
 
-			<div className="flex-jb-c  mt-auto">
+			<div className="flex-jb-c mt-auto">
 				<ul className="flex gap-[7px]">
 					<button
 						onClick={() => swiperRef.current?.slidePrev()}

@@ -15,6 +15,7 @@ import React, { createContext, useEffect, useState } from "react";
 
 export const CurrentUserContext = createContext<CurrentUserContextType>({
 	currentUser: null,
+	currentUserLoading: true,
 });
 
 const CurrentUserProvider = ({ children }: ChildrenType) => {
@@ -23,7 +24,7 @@ const CurrentUserProvider = ({ children }: ChildrenType) => {
 	const accessToken = getCookie("accessToken");
 	const refreshToken = getCookie("refreshToken");
 	const { user } = useAppSelector(state => state.userProfile);
-
+	const [currentUserLoading, setCurrentUserLoading] = useState(true);
 	const [currentUser, setCurrentUser] = useState<
 		CurrentUserType | null | undefined
 	>(null);
@@ -32,11 +33,14 @@ const CurrentUserProvider = ({ children }: ChildrenType) => {
 
 	useEffect(() => {
 		(async () => {
+			setCurrentUserLoading(true);
 			try {
 				const user = await getUser(accessToken, refreshToken);
 				setCurrentUser(user);
 			} catch (error) {
 				console.error(error);
+			} finally {
+				setCurrentUserLoading(false);
 			}
 		})();
 
@@ -66,6 +70,7 @@ const CurrentUserProvider = ({ children }: ChildrenType) => {
 		<CurrentUserContext.Provider
 			value={{
 				currentUser,
+				currentUserLoading,
 			}}
 		>
 			{children}

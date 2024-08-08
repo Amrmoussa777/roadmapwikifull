@@ -1,3 +1,4 @@
+import CreatorSlidersOnboardingSteps from "@/components/creator-home/components/CreatorSlidersOnboardingSteps";
 import CreatorTips from "@/components/creator-home/components/CreatorTips";
 import GeneralStatistics from "@/components/creator-home/components/GeneralStatistics";
 import Header from "@/components/creator-home/components/Header";
@@ -11,7 +12,8 @@ const CreatorHome = () => {
 		<main className="relative max-w-[1440px] mx-auto p-6 lg:px-8 py-[2rem] bg-white">
 			<Header />
 
-			<div className="flex justify-between lg:gap-[20px] xl:gap-[40px] mt-[30px]">
+			<div className="flex justify-between flex-col xl:flex-row gap-[20px] xl:gap-[40px] mt-[30px]">
+				<CreatorSlidersOnboardingSteps />
 				<div className="min-w-[300px] w-[300px] hidden xl:flex flex-col gap-[90px]">
 					<OnboardingSteps />
 					<CreatorTips />
