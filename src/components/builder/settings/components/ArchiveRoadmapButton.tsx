@@ -3,14 +3,14 @@ import { useFetch } from "@/hooks/useFetch";
 import { useParams, useRouter } from "next/navigation";
 import React from "react";
 
-const DeleteRoadmapButton = () => {
+const ArchiveRoadmapButton = () => {
 	const { roadmapId } = useParams();
 	const { fetchData, loading } = useFetch();
 	const { push } = useRouter();
 
 	const handleDeleteRoadmap = async () => {
-		await fetchData("DELETE", `roadmap/${roadmapId}`).then(() => {
-			push("/create-roadmap");
+		await fetchData("POST", `roadmap/${roadmapId}/archive`).then(() => {
+			push("/builder");
 		});
 	};
 
@@ -20,9 +20,9 @@ const DeleteRoadmapButton = () => {
 			disabled={loading}
 			className="relative overflow-hidden w-full md:w-[160px] h-[56px] rounded-[12px] flex-jc-c font-inter text-[18px] font-semibold text-start bg-[#A72C32] text-white mt-8"
 		>
-			{loading ? <ButtonDotsLoader /> : "Delete"}
+			{loading ? <ButtonDotsLoader /> : "Draft"}
 		</button>
 	);
 };
 
-export default DeleteRoadmapButton;
+export default ArchiveRoadmapButton;
