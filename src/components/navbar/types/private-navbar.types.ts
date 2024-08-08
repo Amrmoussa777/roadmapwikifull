@@ -19,4 +19,6 @@ export type PrivateNavbarButtonProps = {
 	text: string;
 	icon: ReactNode;
 	customStyles?: string;
+	onClick?: () => void;
+	href?: string;
 };

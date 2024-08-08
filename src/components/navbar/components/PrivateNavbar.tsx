@@ -11,7 +11,7 @@ import useDisableScroll from "@/hooks/useDisableScrolling";
 import { useSizeScreen } from "@/hooks/useSizeScreen";
 import useToggle from "@/hooks/useToggle";
 import { usePathname } from "next/navigation";
-import React from "react";
+import React, { useEffect } from "react";
 
 const PrivateNavbar = () => {
 	const { currentState: isMenuOpen, toggle } = useToggle(false);
@@ -20,6 +20,12 @@ const PrivateNavbar = () => {
 	const { responsive } = useSizeScreen(768);
 
 	const pathname = usePathname();
+
+	useEffect(() => {
+		if (isMenuOpen && responsive) {
+			toggle();
+		}
+	}, [pathname]);
 
 	if (pathname.includes("builder")) return;
 

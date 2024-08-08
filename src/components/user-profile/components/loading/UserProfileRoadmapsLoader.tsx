@@ -4,9 +4,9 @@ const UserProfileRoadmapsLoader = () => {
 	return (
 		<div
 			id="subscribes"
-			className="bg-white sm:rounded-[12px] p-[18px] animate-pulse"
+			className="bg-white sm:rounded-[12px] mb-4 animate-pulse"
 		>
-			<div className="flex-jb-c mb-4">
+			<div className="flex-jb-c mb-[25px]">
 				<div className="h-5 bg-gray-200 rounded w-1/2"></div>
 				<div className="h-6 bg-gray-200 rounded w-1/4"></div>
 			</div>
@@ -14,7 +14,7 @@ const UserProfileRoadmapsLoader = () => {
 			<div className="bg-white rounded-[12px] p-[12px] lg:p-[24px] mt-4 border border-gray-300 animate-pulse">
 				<div className="flex justify-between items-start gap-2">
 					<div className="flex gap-2">
-						<div className="h-10 w-10 bg-gray-200 rounded"></div>
+						<div className="h-10 w-10 bg-gray-200 rounded-full"></div>
 
 						<div className="flex flex-col gap-2">
 							<div className="h-5 w-24 bg-gray-200 rounded"></div>

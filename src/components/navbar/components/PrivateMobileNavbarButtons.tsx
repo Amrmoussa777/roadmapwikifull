@@ -1,10 +1,10 @@
+import LogoutButton from "@/components/auth/logout/components/LogoutButton";
 import PrivateMobileNavbarButton from "@/components/navbar/components/PrivateMobileNavbarButton";
 import PrivateNavbarCurrentUser from "@/components/navbar/components/PrivateNavbarCurrentUser";
 import {
 	DARK_MODE_ICON,
 	HELP_CENTER_ICON,
 	SETTINGS_ICON,
-	SIGN_OUT_ICON,
 	UPGRADE_PLAN_ICON,
 } from "@public/icons/navbar";
 import { motion } from "framer-motion";
@@ -54,24 +54,29 @@ const PrivateMobileNavbarButtons = () => {
 				<PrivateMobileNavbarButton text="Dark Mode" icon={DARK_MODE_ICON} />
 			</motion.li>
 			<motion.li variants={liVariant}>
-				<PrivateMobileNavbarButton text="Help Center" icon={HELP_CENTER_ICON} />
+				<PrivateMobileNavbarButton
+					text="Help Center"
+					icon={HELP_CENTER_ICON}
+					key={"/help"}
+				/>
 			</motion.li>
 			<motion.li variants={liVariant}>
-				<PrivateMobileNavbarButton text="Settings" icon={SETTINGS_ICON} />
+				<PrivateMobileNavbarButton
+					text="Settings"
+					icon={SETTINGS_ICON}
+					href="/settings"
+				/>
 			</motion.li>
 			<motion.li variants={liVariant}>
 				<PrivateMobileNavbarButton
 					text="Upgrade Plan"
 					icon={UPGRADE_PLAN_ICON}
+					href="/plans"
 				/>
 			</motion.li>
 
 			<motion.li variants={liVariant}>
-				<PrivateMobileNavbarButton
-					text="Sign Out"
-					icon={SIGN_OUT_ICON}
-					customStyles="mt-4"
-				/>
+				<LogoutButton />
 			</motion.li>
 		</motion.ul>
 	);
