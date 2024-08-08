@@ -9,7 +9,6 @@ const getCookies = async () => {
 	});
 
 	const { data } = response;
-	console.log(data);
 	return data;
 };
 

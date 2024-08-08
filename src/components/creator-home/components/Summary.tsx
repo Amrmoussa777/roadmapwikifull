@@ -34,29 +34,29 @@ const Summary = () => {
 
 	return (
 		<Swiper
-			slidesPerView={4.5}
+			slidesPerView={4}
 			spaceBetween={10}
 			className={`[&>div]:flex-jb-c`}
 			breakpoints={{
 				1280: {
-					slidesPerView: 4.2,
+					slidesPerView: 4,
 					spaceBetween: 10,
 				},
 				1150: {
-					slidesPerView: 4.5,
+					slidesPerView: 4,
 					spaceBetween: 10,
 				},
 
 				1024: {
-					slidesPerView: 4.2,
+					slidesPerView: 4,
 					spaceBetween: 10,
 				},
 				876: {
-					slidesPerView: 4.2,
+					slidesPerView: 4,
 					spaceBetween: 10,
 				},
 				768: {
-					slidesPerView: 4.2,
+					slidesPerView: 4,
 					spaceBetween: 10,
 				},
 				640: {
