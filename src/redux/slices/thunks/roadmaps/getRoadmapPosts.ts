@@ -5,6 +5,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 export const getRoadmapPosts = createAsyncThunk(
 	"roadmapPreviewPostsSlice/getRoadmapPosts",
 	async ({ roadmapId, pageNumber, pageSize }: getRoadmapPostsThunkArgs) => {
+		console.log(pageNumber);
 		const data = await HandleApiRequests.handleApiRequest({
 			method: "GET",
 			endpoint: `posts/?roadmapId=${roadmapId}&page=${pageNumber}&pageSize=${pageSize}`,

@@ -18,8 +18,9 @@ const MyRoadmaps = () => {
 	useEffect(() => {
 		if (currentUser) {
 			(async () => {
+				
 				const { data } = await fetchData("GET", `roadmap/myroadmaps`);
-
+				
 				setRoadmaps(data);
 			})();
 		}

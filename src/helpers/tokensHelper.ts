@@ -23,7 +23,6 @@ class TokensHelper {
 						const newAccessToken: string = await fetchAnonymousToken();
 						await setCookies({ accessToken: newAccessToken });
 						TokensHelper.tokens.accessToken = newAccessToken;
-						console.log("Generated and set new access token:", newAccessToken);
 					} else {
 						TokensHelper.tokens = tokens;
 					}

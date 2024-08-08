@@ -29,11 +29,15 @@ class HandleApiRequests {
 		body,
 		endpoint,
 	}: IHandleApiRequestArgs<Data>) => {
+		const { accessToken } = TokensHelper.getTokens();
 		const { data } = await axios({
 			method,
 			url: `${process.env.NEXT_PUBLIC_BASE_URL}/${endpoint}`,
 			data: body,
-			headers,
+			headers: {
+				Authorization: `Bearer ${accessToken}`,
+				...headers,
+			},
 		});
 
 		return data;

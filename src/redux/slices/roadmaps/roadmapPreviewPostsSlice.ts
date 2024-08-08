@@ -28,7 +28,6 @@ export const roadmapPreviewPostsSlice = createSlice({
 		builder.addCase(getRoadmapPosts.pending, state => {
 			state.isLoading = true;
 			state.posts.isLoading = true;
-			state.posts.list = [];
 		});
 
 		builder.addCase(getRoadmapPosts.fulfilled, (state, action) => {
@@ -36,7 +35,6 @@ export const roadmapPreviewPostsSlice = createSlice({
 				(post: RoadmapPostType) =>
 					!state.posts.list.some(existingPost => existingPost.id === post.id)
 			);
-
 			state.posts.totalItems = action.payload.length;
 
 			state.posts.list = [...state.posts.list, ...newPosts];

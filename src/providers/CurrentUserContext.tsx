@@ -37,10 +37,13 @@ const CurrentUserProvider = ({ children }: ChildrenType) => {
 			const { accessToken: fetchedAccessToken, refreshToken } =
 				TokensHelper.getTokens();
 
-			console.log(TokensHelper.getTokens());
+			
 			let accessToken = fetchedAccessToken;
 
-			if (!refreshToken) return;
+			if (!refreshToken) {
+				setCurrentUserLoading(false);
+				return;
+			}
 
 			if (!fetchedAccessToken) {
 				accessToken = await fetchAnonymousToken();
@@ -50,6 +53,7 @@ const CurrentUserProvider = ({ children }: ChildrenType) => {
 
 			const user = await getUser(accessToken);
 			setCurrentUser(user);
+			setCurrentUserLoading(false);
 		})();
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
