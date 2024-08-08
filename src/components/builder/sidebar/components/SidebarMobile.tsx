@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { ROADMAP_LOGO } from "@public/icons/landingPage";
@@ -27,14 +27,16 @@ const SidebarMobile = ({
 	const { responsive } = useSizeScreen(640);
 	useDisableScroll(sidebarMobile && responsive);
 
-	const ref = useOnClickOutside(toggleSidebarMobile);
+	const divRef = useRef<HTMLDivElement>(null);
+
+	useOnClickOutside(toggleSidebarMobile, [divRef]);
 
 	return (
 		<>
 			<AnimatePresence>
 				{sidebarMobile && responsive ? (
 					<motion.div
-						ref={ref}
+						ref={divRef}
 						initial={{ x: -100 }}
 						animate={{ x: 0 }}
 						exit={{ x: -100 }}

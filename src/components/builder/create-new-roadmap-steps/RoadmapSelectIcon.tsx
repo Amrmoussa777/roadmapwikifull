@@ -4,12 +4,17 @@ import useToggle from "@/hooks/useToggle";
 import { updateDraftRoadmap } from "@/redux/slices/create-roadmap/createRoadmapSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { ARROW_ICON } from "@public/icons/roadmapSteps";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 
 const RoadmapSelectIcon = () => {
 	const { currentState: isOptionsHidden, toggle: hideOptions } =
 		useToggle(false);
-	const ref = useOnClickOutside(hideOptions);
+
+	const buttonRef = useRef<HTMLButtonElement>(null);
+	const divRef = useRef<HTMLDivElement>(null);
+
+	useOnClickOutside(hideOptions, [buttonRef, divRef]);
+
 	const { draftRoadmap } = useAppSelector(state => state.createRoadmap);
 	const { icon } = draftRoadmap;
 
@@ -31,6 +36,7 @@ const RoadmapSelectIcon = () => {
 				onClick={hideOptions}
 				id="roadmapDuration"
 				type="button"
+				ref={buttonRef}
 				className="flex-jb-c roadmap-info-select text-[16px] sm:text-[18px]"
 			>
 				<span className="flex-jc-c gap-1 sm:gap-2 sm:text-[18px] [&>svg]:fill-red-500">
@@ -55,7 +61,7 @@ const RoadmapSelectIcon = () => {
 
 			{isOptionsHidden ? (
 				<div
-					ref={ref}
+					ref={divRef}
 					className="absolute w-full h-[250px] overflow-y-scroll hidden-scrollbar top-[55px] bg-white mt-1 border border-[#E0E0E0] rounded-xl flex flex-col gap-2 [&>button]:font-normal [&>button]:text-[18px] [&>:first-child]:rounded-t-xl [&>:last-child]:rounded-b-xl [&>button]:p-2 [&>button:hover]:bg-[#E0E0E0]/20"
 				>
 					{ROADMAP_ICONS.map(item => (

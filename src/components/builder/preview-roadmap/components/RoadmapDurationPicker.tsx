@@ -9,7 +9,7 @@ import { useAppDispatch } from "@/redux/store";
 import { DURATION_ICON } from "@public/icons/roadmapSteps";
 import { AnimatePresence, motion } from "framer-motion";
 import { useParams } from "next/navigation";
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useRef, useState } from "react";
 import ButtonDotsLoader from "@/components/common/button/ButtonDotsLoader";
 
 const RoadmapDurationPicker = ({
@@ -58,7 +58,10 @@ const RoadmapDurationPicker = ({
 		toggleDuration();
 	};
 
-	const ref = useOnClickOutside(handleCancelDuration);
+	const buttonRef = useRef<HTMLButtonElement>(null);
+	const formRef = useRef<HTMLFormElement>(null);
+
+	useOnClickOutside(handleCancelDuration, [buttonRef, formRef]);
 
 	return (
 		<div className="relative col-span-2">
@@ -68,6 +71,7 @@ const RoadmapDurationPicker = ({
 					onClick={toggleDuration}
 					id="roadmapDuration"
 					type="button"
+					ref={buttonRef}
 					className="flex-jb-c roadmap-info-select text-[16px] sm:text-[18px] capitalize"
 				>
 					{defaultDuration ? `${duration} ${durationType}` : "Duration"}
@@ -87,7 +91,7 @@ const RoadmapDurationPicker = ({
 						animate={{ y: 0, opacity: 1 }}
 						exit={{ y: -10, opacity: 0 }}
 						transition={{ duration: 0.1 }}
-						ref={ref}
+						ref={formRef}
 						className="absolute w-[300px] sm:w-full left-0 top-[90px] flex flex-col p-4 bg-white shadow-clg border border-primary-ultramarineBlue/20 rounded-xl z-10"
 					>
 						<div className="flex-jb-c gap-2 [&>button]:rounded-md [&>button]:border-primary-ultramarineBlue/20 [&>button]:border [&>button]:w-full">

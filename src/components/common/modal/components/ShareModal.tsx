@@ -7,7 +7,7 @@ import { useToast } from "@/hooks/useToast";
 import { COPY_ICON } from "@public/icons/roadmapSteps";
 import { CROSS_ICON } from "@public/icons/userProfile";
 import { Dialog } from "@radix-ui/react-dialog";
-import React from "react";
+import React, { useRef } from "react";
 
 const ShareModal = ({
 	title,
@@ -32,15 +32,16 @@ const ShareModal = ({
 		successToast("Link copied to clipboard");
 	};
 
-	const ref = useOnClickOutside(toggleShareModal);
+	const divRef = useRef<HTMLDivElement>(null);
 
+	useOnClickOutside(toggleShareModal, [divRef]);
 	return (
 		<Dialog open={open}>
 			{children}
 
 			<DialogContent>
 				<div
-					ref={ref}
+					ref={divRef}
 					className="w-[80%] md:w-[544px] mx-auto rounded-[15px] shadow-clg p-8 bg-white"
 				>
 					<div className="flex-jb-c">

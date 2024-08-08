@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect } from "react";
+import React, { ReactNode, useEffect, useRef } from "react";
 import useToggle from "@/hooks/useToggle";
 import { ARROW_ICON } from "@public/icons/roadmapSteps";
 import { useOnClickOutside } from "@/hooks/useOnClickOutside";
@@ -16,7 +16,10 @@ const DropSelect = ({
 	const { currentState: isOptionsHidden, toggle: hideOptions } =
 		useToggle(false);
 
-	const ref = useOnClickOutside(hideOptions);
+	const buttonRef = useRef<HTMLButtonElement>(null);
+	const divRef = useRef<HTMLDivElement>(null);
+
+	useOnClickOutside(hideOptions, [buttonRef, divRef]);
 
 	useEffect(() => {
 		if (isOptionsHidden) {
@@ -34,6 +37,7 @@ const DropSelect = ({
 				onClick={hideOptions}
 				id="roadmapDuration"
 				type="button"
+				ref={buttonRef}
 				className="flex-jb-c roadmap-info-select text-[16px] sm:text-[18px]"
 			>
 				{activeOption}
@@ -53,7 +57,7 @@ const DropSelect = ({
 						animate={{ y: 0, opacity: 1 }}
 						exit={{ y: -10, opacity: 0 }}
 						transition={{ duration: 0.1 }}
-						ref={ref}
+						ref={divRef}
 						className="absolute right-0 w-[calc(100vw-80px)] sm:w-full h-[250px] overflow-y-scroll hidden-scrollbar top-[83px] bg-white mt-1 border border-[#E0E0E0] rounded-xl flex flex-col gap-2 [&>button]:font-normal [&>button]:text-[18px] [&>:first-child]:rounded-t-xl [&>:last-child]:rounded-b-xl [&>button]:p-2 [&>button:hover]:bg-[#E0E0E0]/20"
 					>
 						{children}

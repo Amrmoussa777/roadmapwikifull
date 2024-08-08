@@ -9,7 +9,7 @@ import { updateStepDuration } from "@/redux/slices/create-roadmap/createRoadmapS
 import { useAppDispatch } from "@/redux/store";
 import { DURATION_ICON } from "@public/icons/roadmapSteps";
 import { AnimatePresence, motion } from "framer-motion";
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useRef, useState } from "react";
 import ButtonDotsLoader from "@/components/common/button/ButtonDotsLoader";
 
 const RoadmapStepDuration = ({
@@ -36,7 +36,11 @@ const RoadmapStepDuration = ({
 		toggleDuration();
 	};
 
-	const ref = useOnClickOutside(handleCancelDuration);
+	const buttonRef = useRef<HTMLButtonElement>(null);
+	const dropdownRef = useRef<HTMLFormElement>(null);
+
+	useOnClickOutside(handleCancelDuration, [buttonRef, dropdownRef]);
+
 	const dispatch = useAppDispatch();
 	const { loading, fetchData } = useFetch();
 
@@ -79,6 +83,7 @@ const RoadmapStepDuration = ({
 			<button
 				onClick={toggleDuration}
 				type="button"
+				ref={buttonRef}
 				className="flex-jc-c gap-1 text-[#383838]"
 			>
 				<span className="text-primary-ultramarineBlue">{DURATION_ICON}</span>
@@ -95,7 +100,7 @@ const RoadmapStepDuration = ({
 						animate={{ y: 0, opacity: 1 }}
 						exit={{ y: -10, opacity: 0 }}
 						transition={{ duration: 0.1 }}
-						ref={ref}
+						ref={dropdownRef}
 						className="absolute w-[300px] right-0 lg:right-[-240px] flex flex-col p-4 bg-white shadow-clg border border-primary-ultramarineBlue/20 rounded-xl z-10"
 					>
 						<div className="flex-jb-c gap-2 [&>button]:rounded-md [&>button]:border-primary-ultramarineBlue/20 [&>button]:border [&>button]:w-full">

@@ -1,26 +1,26 @@
-import { useRef, useEffect } from "react";
+import { useEffect } from "react";
 
 export const useOnClickOutside = (
 	callback: Function,
-	screenSize: boolean = true
+	refs: React.RefObject<HTMLElement>[]
 ) => {
-	const ref: any = useRef<HTMLElement>(null);
-
 	useEffect(() => {
-		const handleClick = (event: any) => {
-			if (ref.current && !ref.current.contains(event.target) && screenSize) {
+		const handleClick = (event: MouseEvent) => {
+			if (
+				refs &&
+				refs.length &&
+				refs.every(
+					ref => ref.current && !ref.current.contains(event.target as Node)
+				)
+			) {
 				callback();
 			}
 		};
 
-		document.addEventListener("click", handleClick, true);
+		document.addEventListener("mousedown", handleClick);
 
 		return () => {
-			document.removeEventListener("click", handleClick, true);
+			document.removeEventListener("mousedown", handleClick);
 		};
-
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [ref, screenSize]);
-
-	return ref;
+	}, [refs, callback]);
 };

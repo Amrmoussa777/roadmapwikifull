@@ -14,7 +14,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { ARROW_ICON } from "@public/icons/roadmapSteps";
 import { ROADMAP_ICON, SEARCH_ICON } from "@public/icons/roadmaps";
 import { AnimatePresence, motion } from "framer-motion";
-import React, { FormEvent, useEffect } from "react";
+import React, { FormEvent, useEffect, useRef } from "react";
 
 const SearchRoadmapForm = () => {
 	const { currentState: isOptionsVisible, toggle: hideOptions } =
@@ -61,7 +61,10 @@ const SearchRoadmapForm = () => {
 		}
 	}, [filterList]);
 
-	const ref = useOnClickOutside(hideOptions);
+	const buttonRef = useRef<HTMLButtonElement>(null);
+	const divRef = useRef<HTMLDivElement>(null);
+
+	useOnClickOutside(hideOptions, [buttonRef, divRef]);
 
 	return (
 		<form
@@ -98,6 +101,7 @@ const SearchRoadmapForm = () => {
 					id="roadmapDuration"
 					type="button"
 					onClick={hideOptions}
+					ref={buttonRef}
 					className="w-fit roadmap-info-select capitalize font-poppins text-[16px] border-none sm:text-[18px] text-[#383838] hidden sm:flex-jb-c"
 				>
 					{searchType}
@@ -117,7 +121,7 @@ const SearchRoadmapForm = () => {
 							animate={{ y: 0, opacity: 1 }}
 							exit={{ y: -10, opacity: 0 }}
 							transition={{ duration: 0.1 }}
-							ref={ref}
+							ref={divRef}
 							className="absolute top-[60px] bg-white rounded-xl shadow-xl"
 						>
 							<button

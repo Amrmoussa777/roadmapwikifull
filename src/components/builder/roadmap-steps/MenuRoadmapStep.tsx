@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import useToggle from "@/hooks/useToggle";
 import { MENU_ICON } from "@public/icons/roadmapSteps";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
@@ -12,7 +12,10 @@ const MenuRoadmapStep = ({ stepId }: { stepId: string }) => {
 
 	const dispatch = useAppDispatch();
 
-	const ref = useOnClickOutside(openMenu);
+	const buttonRef = useRef<HTMLButtonElement>(null);
+	const divRef = useRef<HTMLDivElement>(null);
+
+	useOnClickOutside(openMenu, [buttonRef, divRef]);
 
 	const handleRemoveStep = async () => {
 		await HandleApiRequests.handleApiRequest({
@@ -27,7 +30,7 @@ const MenuRoadmapStep = ({ stepId }: { stepId: string }) => {
 		<div className="relative h-[24px] z-10">
 			{menuOpen ? (
 				<div
-					ref={ref}
+					ref={divRef}
 					className="absolute -left-32 top-4 flex flex-col gap-2 bg-white border border-grey-primary p-2 shadow-lg rounded-md font-inter font-medium"
 				>
 					<button
@@ -40,7 +43,9 @@ const MenuRoadmapStep = ({ stepId }: { stepId: string }) => {
 				</div>
 			) : null}
 
-			<button onClick={openMenu}>{MENU_ICON}</button>
+			<button onClick={openMenu} ref={buttonRef}>
+				{MENU_ICON}
+			</button>
 		</div>
 	);
 };
