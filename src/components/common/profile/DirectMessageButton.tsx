@@ -20,7 +20,7 @@ const DirectMessageButton = ({
 		return (
 			<button
 				onClick={() => push("/auth/login")}
-				className={`min-w-[40px] h-full flex-jc-c border-2 border-grey-iconBorder rounded-full [&>svg]:fill-grey-secondary hover:-translate-y-[2px] transform transition duration-200 ${customStyles}`}
+				className={`min-w-[40px] h-full flex-jc-c border-2 border-grey-iconBorder rounded-full [&>svg]:fill-grey-secondary hover:scale-105 transform transition duration-200 ${customStyles}`}
 			>
 				{DIRECT_MESSAGE}
 			</button>

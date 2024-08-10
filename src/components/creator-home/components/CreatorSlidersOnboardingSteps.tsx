@@ -13,7 +13,7 @@ const CreatorSlidersOnboardingSteps = () => {
 		<Swiper
 			slidesPerView={responsive ? 1 : 2}
 			spaceBetween={20}
-			className={`w-full flex-jc-c xl:hidden`}
+			className={`w-full !flex-jc-c xl:!hidden`}
 		>
 			<SwiperSlide>
 				<OnboardingSteps />

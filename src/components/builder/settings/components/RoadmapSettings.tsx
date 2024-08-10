@@ -1,6 +1,6 @@
 "use client";
 
-import DeleteRoadmapButton from "@/components/builder/settings/components/DeleteRoadmapButton";
+import ArchiveRoadmapButton from "@/components/builder/settings/components/ArchiveRoadmapButton";
 import RoadmapSettingsLoader from "@/components/builder/settings/components/RoadmapSettingsLoader";
 import { useAppSelector } from "@/redux/store";
 import React from "react";
@@ -16,7 +16,7 @@ const RoadmapSettings = () => {
 				{roadmap?.title || "-"} roadmap?
 			</h3>
 
-			<DeleteRoadmapButton />
+			<ArchiveRoadmapButton />
 		</div>
 	);
 };

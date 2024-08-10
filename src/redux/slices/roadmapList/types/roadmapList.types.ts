@@ -4,7 +4,7 @@ export type FilterListType = Record<string, string[]>;
 export type RoadmapListSliceType = {
 	roadmapListView: "list" | "grid";
 	searchType: "roadmaps" | "creators";
-	searchValue: string;
+	searchValue: string | undefined;
 	filterList: FilterListType;
 	sortType: "latest";
 	roadmapList: RoadmapType[];

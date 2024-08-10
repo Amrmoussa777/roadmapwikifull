@@ -4,7 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState: RoadmapListSliceType = {
 	roadmapListView: "list",
 	searchType: "roadmaps",
-	searchValue: "",
+	searchValue: undefined,
 	filterList: {
 		categories: [],
 	},

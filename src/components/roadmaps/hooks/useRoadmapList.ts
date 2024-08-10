@@ -103,6 +103,8 @@ const useRoadmapList = () => {
 	}, [pageNumber, params, urlParams]);
 
 	useEffect(() => {
+		if (typeof searchValue === "undefined") return;
+
 		resetPageNumber();
 		const filterParams = buildParamsString(filterList);
 		if (searchType === "roadmaps") {
