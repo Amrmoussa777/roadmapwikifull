@@ -55,7 +55,7 @@ const UserHeader = () => {
 					{!isUserProfile ? (
 						<>
 							<FollowButton
-								isFollowed={currentUser?.id === user?.id}
+								isFollowed={user?.isFollowed ?? false}
 								userId={user?.id || ""}
 								customStyles="!rounded-[5px]"
 							/>
