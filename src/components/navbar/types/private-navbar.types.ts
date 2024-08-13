@@ -6,10 +6,6 @@ export type PrivateNavbarLinkTypes = {
 	icon: ReactNode;
 };
 
-export interface PrivateNavbarLinkProps extends PrivateNavbarLinkTypes {
-	activeLink: string;
-}
-
 export type PrivateNavbarMenuButtonProps = {
 	isMenuOpen: boolean;
 	toggle: () => void;

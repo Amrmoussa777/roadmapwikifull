@@ -1,16 +1,16 @@
-import { PrivateNavbarLinkProps } from "@/components/navbar/types/private-navbar.types";
 import { ARROW_ICON } from "@public/icons/roadmapSteps";
 import Link from "next/link";
 import React from "react";
 import { motion } from "framer-motion";
+import { PrivateNavbarLinkTypes } from "@/components/navbar/types/private-navbar.types";
+import { usePathname } from "next/navigation";
 
-const PrivateNavbarLink = ({
-	href,
-	icon,
-	name,
-	activeLink,
-}: PrivateNavbarLinkProps) => {
-	const isActive = activeLink === href.split("/")[1];
+const PrivateNavbarLink = ({ href, icon, name }: PrivateNavbarLinkTypes) => {
+	const pathname = usePathname();
+
+	const isHome = href === "/" && pathname === "/";
+	const isActive = isHome || (pathname.includes(href) && href !== "/");
+
 	const liVariant = {
 		opened: {
 			opacity: 1,

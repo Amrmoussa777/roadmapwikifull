@@ -43,7 +43,7 @@
 		@apply text-sm font-normal leading-[140%];
 	}
 	button {
-		@apply font-semibold;
+		@apply font-semibold outline-none;
 	}
 	::placeholder {
 		@apply text-lg font-normal;
@@ -57,6 +57,24 @@
 	/* Chrome, Safari and Opera */
 	.hidden-scrollbar::-webkit-scrollbar {
 		display: none;
+	}
+
+	.message-list-container {
+		display: flex;
+		flex-direction: column;
+		overflow-y: auto;
+		scroll-behavior: smooth;
+		height: 100%;
+	}
+
+	.last-date-container {
+		flex-shrink: 0;
+	}
+
+	.message-list {
+		display: flex;
+		flex-direction: column-reverse;
+		flex-grow: 1;
 	}
 
 	.hidden-scrollbar {

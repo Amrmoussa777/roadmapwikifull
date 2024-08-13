@@ -46,9 +46,9 @@ export const useLoginForm = () => {
 		}
 
 		// Clear previous errors
-		const { message } = await login(formData);
+		const { error } = await login(formData);
 
-		if (!message) {
+		if (!error) {
 			successToast("Logged in successfully");
 
 			const urlParams = new URLSearchParams(location.search);
@@ -71,7 +71,7 @@ export const useLoginForm = () => {
 				}
 			}, 1000);
 		} else {
-			errorToast(message);
+			errorToast(error);
 		}
 
 		setIsLoading(false);

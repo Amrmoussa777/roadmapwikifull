@@ -18,11 +18,11 @@ const ShareModal = ({
 	toggleShareModal,
 }: ShareModalProps) => {
 	const socialMedia = [
-		{ id: 1, link: "https://facebook.com/", platform: "FACEBOOK" },
-		{ id: 2, link: "https://instagram.com/", platform: "INSTAGRAM" },
-		{ id: 1, link: "https://x.com/", platform: "TWITTER" },
-		{ id: 1, link: "https://youtube.com/", platform: "YOUTUBE" },
-		{ id: 1, link: "https://www.linkedin.com/", platform: "LINKEDIN" },
+		{ id: "facebook", link: "https://facebook.com/", platform: "FACEBOOK" },
+		{ id: "instagram", link: "https://instagram.com/", platform: "INSTAGRAM" },
+		{ id: "twitter", link: "https://x.com/", platform: "TWITTER" },
+		{ id: "youtube", link: "https://youtube.com/", platform: "YOUTUBE" },
+		{ id: "linkedin", link: "https://www.linkedin.com/", platform: "LINKEDIN" },
 	];
 
 	const { successToast } = useToast();

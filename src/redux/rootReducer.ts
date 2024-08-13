@@ -5,6 +5,7 @@ import roadmapPreviewSlice from "@/redux/slices/roadmaps/roadmapPreviewSlice";
 import roadmapListSlice from "@/redux/slices/roadmapList/roadmapListSlice";
 import userProfileSlice from "@/redux/slices/user-profile/userProfileSlice";
 import createRoadmapSlice from "@/redux/slices/create-roadmap/createRoadmapSlice";
+import conversationSlice from "@/redux/slices/conversation/conversationSlice";
 
 const appReducer = combineReducers({
 	roadmapPreview: roadmapPreviewSlice,
@@ -13,6 +14,7 @@ const appReducer = combineReducers({
 	roadmapPreviewReplies: roadmapPreviewRepliesSlice,
 	createRoadmap: createRoadmapSlice,
 	roadmapList: roadmapListSlice,
+	conversation: conversationSlice,
 });
 
 const rootReducer = (state: any, action: any) => {

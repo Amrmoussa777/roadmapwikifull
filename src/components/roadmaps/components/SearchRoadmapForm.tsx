@@ -44,7 +44,7 @@ const SearchRoadmapForm = () => {
 
 		changeValue(e);
 
-		if (!newValue && searchValue.length) {
+		if (!newValue && searchValue?.length) {
 			dispatch(changeSearchValue(newValue));
 		}
 	};

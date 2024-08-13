@@ -2,7 +2,6 @@
 
 import PrivateNavbarLink from "@/components/navbar/components/PrivateNavbarLink";
 import { PrivateNavbarLinkTypes } from "@/components/navbar/types/private-navbar.types";
-import PathnameHelper from "@/helpers/pathname.helper";
 import { motion } from "framer-motion";
 import {
 	CONVERSATION_ICON,
@@ -21,9 +20,6 @@ const navbarLinks: PrivateNavbarLinkTypes[] = [
 ];
 
 const PrivateNavbarLinks = () => {
-	const pathname = usePathname();
-	const activeLink = PathnameHelper.getLastPathname(pathname);
-
 	const ulVariant = {
 		opened: {
 			transition: {
@@ -42,7 +38,7 @@ const PrivateNavbarLinks = () => {
 	return (
 		<motion.ul className="w-full xl:mr-8 md:flex" variants={ulVariant}>
 			{navbarLinks.map(link => (
-				<PrivateNavbarLink key={link.href} {...link} activeLink={activeLink} />
+				<PrivateNavbarLink key={link.href} {...link} />
 			))}
 		</motion.ul>
 	);

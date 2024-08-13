@@ -1,10 +1,8 @@
-// return comming soon dev centered
+import ConversationPage from "@/components/conversation/components/ConversationPage";
+import React from "react";
+
 const page = () => {
-	return (
-		<main className="flex-jc-c h-screen">
-            <div>coming soon...</div>
-		</main>
-	);
+	return <ConversationPage />;
 };
 
 export default page;

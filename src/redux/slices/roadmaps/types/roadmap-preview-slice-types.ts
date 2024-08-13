@@ -29,7 +29,7 @@ export interface RoadmapStepAttachmentType {
 	type: string;
 	key: string;
 	url: string;
-	roadmapStepId: string;
+	roadmapStepId?: string;
 	localFile?: File;
 }
 

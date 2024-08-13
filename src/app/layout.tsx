@@ -7,6 +7,7 @@ import Navbar from "@/components/navbar/components/Navbar";
 import { inter, outfit, poppins } from "@/app/fonts";
 import CreateRoadmapLayout from "@/components/builder/layout/CreateRoadmapLayout";
 import TokensProvider from "@/providers/TokensProvider";
+import ConversationLayout from "@/components/conversation/components/ConversationLayout";
 
 export const metadata: Metadata = {
 	title: "Roadmap",
@@ -42,7 +43,9 @@ export default async function RootLayout({
 					<ReduxProvider>
 						<CheckCurrentUserProvider>
 							<Navbar />
-							<CreateRoadmapLayout>{children}</CreateRoadmapLayout>
+							<CreateRoadmapLayout>
+								<ConversationLayout>{children}</ConversationLayout>
+							</CreateRoadmapLayout>
 						</CheckCurrentUserProvider>
 					</ReduxProvider>
 				</TokensProvider>

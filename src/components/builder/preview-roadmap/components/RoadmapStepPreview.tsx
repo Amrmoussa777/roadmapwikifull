@@ -113,11 +113,7 @@ const RoadmapStepPreview = () => {
 						{attachments?.length ? (
 							<>
 								<p className="text-[#5A5A5A] text-[12px]">Attachments</p>
-								<PreviewAttachments
-									attachments={attachments}
-									stepId={id || ""}
-									readOnly={true}
-								/>
+								<PreviewAttachments attachments={attachments} readOnly={true} />
 							</>
 						) : null}
 					</motion.div>

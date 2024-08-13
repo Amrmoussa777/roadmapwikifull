@@ -6,8 +6,7 @@ import { getUser } from "@/app/auth/services/getUser";
 
 const page = async ({ params }: { params: { username: string } }) => {
 	const accessToken = cookies().get("accessToken");
-	const refreshToken = cookies().get("refreshToken");
-	const currentUser = await getUser(accessToken?.value, refreshToken?.value);
+	const currentUser = await getUser(accessToken?.value);
 
 	const { username } = params;
 

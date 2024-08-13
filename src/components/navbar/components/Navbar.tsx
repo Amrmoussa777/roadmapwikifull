@@ -5,8 +5,7 @@ import { cookies } from "next/headers";
 
 const Navbar = async () => {
 	const accessToken = cookies().get("accessToken");
-	const refreshToken = cookies().get("refreshToken");
-	const currentUser = await getUser(accessToken?.value, refreshToken?.value);
+	const currentUser = await getUser(accessToken?.value);
 
 	return currentUser ? <PrivateNavbar /> : <PublicNavbar />;
 };

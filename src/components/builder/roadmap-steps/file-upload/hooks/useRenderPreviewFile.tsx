@@ -1,19 +1,21 @@
+import { LocalAttachmentTypes } from "@/components/conversation/types/index.types";
 import { RoadmapStepAttachmentType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
 import { UPLOADED_FILE_ICON } from "@public/icons/roadmapSteps";
-import Image from "@/components/common/image/CustomImage";
+import Image from "next/image";
 
 const useRenderPreviewFile = () => {
 	const renderPreviewFile = (file?: File) => {
 		if (!file) return;
 
 		const fileType = file.type.split("/")[0];
+		const objectURL = URL.createObjectURL(file);
 
 		if (fileType === "image") {
 			return (
 				<Image
 					width={200}
 					height={200}
-					src={URL.createObjectURL(file)}
+					src={objectURL}
 					alt={file.name}
 					className="w-full h-full object-cover rounded-md shadow-md"
 				/>
@@ -24,14 +26,14 @@ const useRenderPreviewFile = () => {
 					controls
 					className="w-full h-full object-cover rounded-md shadow-md"
 				>
-					<source src={URL.createObjectURL(file)} type={file.type} />
+					<source src={objectURL} type={file.type} />
 				</video>
 			);
 		} else {
 			return (
 				<div className="w-full h-full flex flex-col justify-center items-center gap-2 rounded-md shadow-md border">
 					{UPLOADED_FILE_ICON}
-					<span className="w-full text-[12px] text-center line-clamp-1 text-ellipsis overflow-hidden">
+					<span className="w-full text-[12px] text-center text-primary-ultramarineBlue line-clamp-1 text-ellipsis overflow-hidden">
 						{file.name}
 					</span>
 				</div>
@@ -39,19 +41,21 @@ const useRenderPreviewFile = () => {
 		}
 	};
 
-	const renderUploadedFile = (uploadedFile?: RoadmapStepAttachmentType) => {
+	const renderUploadedFile = (
+		uploadedFile?: RoadmapStepAttachmentType | LocalAttachmentTypes
+	) => {
 		if (!uploadedFile) return;
+
+		const objectURL = uploadedFile.localFile
+			? URL.createObjectURL(uploadedFile.localFile)
+			: uploadedFile.url;
 
 		if (uploadedFile.type === "IMAGE") {
 			return (
 				<Image
 					width={200}
 					height={200}
-					src={
-						uploadedFile.localFile
-							? URL.createObjectURL(uploadedFile.localFile)
-							: uploadedFile.url
-					}
+					src={objectURL}
 					alt={uploadedFile.key}
 					loading="eager"
 					className="w-full h-full object-cover rounded-md shadow-md"
@@ -64,14 +68,7 @@ const useRenderPreviewFile = () => {
 						className="w-full h-full object-cover rounded-md shadow-md"
 						controls={false}
 					>
-						<source
-							src={
-								uploadedFile.localFile
-									? URL.createObjectURL(uploadedFile.localFile)
-									: uploadedFile.url
-							}
-							type="video/mp4"
-						/>
+						<source src={objectURL} type="video/mp4" />
 					</video>
 				</>
 			);
@@ -79,7 +76,7 @@ const useRenderPreviewFile = () => {
 			return (
 				<div className="w-full h-full flex flex-col justify-center items-center gap-2 rounded-md shadow-md border">
 					{UPLOADED_FILE_ICON}
-					<span className="w-full text-[12px] text-center line-clamp-1 text-ellipsis overflow-hidden">
+					<span className="w-full text-[12px] text-center text-primary-ultramarineBlue line-clamp-1 text-ellipsis overflow-hidden">
 						{uploadedFile.key}
 					</span>
 				</div>

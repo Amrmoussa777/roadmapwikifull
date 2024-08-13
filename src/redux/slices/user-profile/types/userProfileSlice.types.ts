@@ -31,6 +31,7 @@ interface User {
 	experiences: Experience[];
 	_count: Count;
 	isFollowed: boolean;
+	phone: string;
 }
 
 export interface UserProfileStateTypes {
