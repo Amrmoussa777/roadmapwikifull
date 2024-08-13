@@ -2,12 +2,12 @@ import { UserType } from "@/redux/slices/user-profile/types/userProfileSlice.typ
 
 export type ConversationSliceState = {
 	conversationType: "messages" | "comments";
-	messages: [];
+	conversationList: ConversationTypes[];
 	comments: [];
 	activeConversation: {
 		loading: boolean;
 		conversation: ConversationTypes | null;
-		user: ConversationUser | null;
+		receiver: ConversationUser | null;
 	};
 	formContent: ConversationFormContent;
 };

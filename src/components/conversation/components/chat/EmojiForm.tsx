@@ -6,9 +6,13 @@ import React, { useRef, useEffect } from "react";
 
 interface EmojiFormProps {
 	textInputRef: React.RefObject<HTMLInputElement>;
+	handleChangeEmoji: (emoji: string) => void;
 }
 
-const EmojiForm: React.FC<EmojiFormProps> = ({ textInputRef }) => {
+const EmojiForm: React.FC<EmojiFormProps> = ({
+	textInputRef,
+	handleChangeEmoji,
+}) => {
 	const { currentState: isEmojiOpen, toggle: toggleEmoji } = useToggle(false);
 	const buttonRef = useRef<HTMLButtonElement>(null);
 	const divRef = useRef<HTMLDivElement>(null);
@@ -36,7 +40,10 @@ const EmojiForm: React.FC<EmojiFormProps> = ({ textInputRef }) => {
 					ref={divRef}
 					className="absolute left-0 top-[-410px] w-[300px] h-[400px]"
 				>
-					<EmojiPicker className="!w-full !h-full" />
+					<EmojiPicker
+						onEmojiClick={({ emoji }) => handleChangeEmoji(emoji)}
+						className="!w-full !h-full"
+					/>
 				</div>
 			) : null}
 		</div>

@@ -37,7 +37,6 @@ const CurrentUserProvider = ({ children }: ChildrenType) => {
 			const { accessToken: fetchedAccessToken, refreshToken } =
 				TokensHelper.getTokens();
 
-			
 			let accessToken = fetchedAccessToken;
 
 			if (!refreshToken) {
@@ -78,7 +77,7 @@ const CurrentUserProvider = ({ children }: ChildrenType) => {
 		}
 	}, [user]);
 
-	return (
+	return !currentUserLoading ? (
 		<CurrentUserContext.Provider
 			value={{
 				currentUser,
@@ -87,6 +86,8 @@ const CurrentUserProvider = ({ children }: ChildrenType) => {
 		>
 			{children}
 		</CurrentUserContext.Provider>
+	) : (
+		<></>
 	);
 };
 

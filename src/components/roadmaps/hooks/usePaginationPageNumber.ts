@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-export const useRoadmapPagination = () => {
+export const usePaginationPageNumber = () => {
 	const [pageNumber, setPageNumber] = useState(1);
 
-	const handleMoreRoadmaps = async () => {
+	const handleMore = async () => {
 		setPageNumber(prev => prev + 1);
 	};
 
@@ -12,7 +12,7 @@ export const useRoadmapPagination = () => {
 	};
 
 	return {
-		handleMoreRoadmaps,
+		handleMore,
 		pageNumber,
 		resetPageNumber,
 	};

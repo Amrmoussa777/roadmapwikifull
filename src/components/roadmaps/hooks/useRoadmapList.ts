@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useFetch } from "@/hooks/useFetch";
 import ParamsHelper from "@/helpers/params.helper";
-import { useRoadmapPagination } from "@/components/roadmaps/hooks/useRoadmapsPagination";
+import { usePaginationPageNumber } from "@/components/roadmaps/hooks/usePaginationPageNumber";
 import {
 	pushRoadmapList,
 	updatedFilterList,
@@ -19,8 +19,7 @@ const useRoadmapList = () => {
 		searchValue,
 		searchType,
 	} = useAppSelector(state => state.roadmapList);
-	const { handleMoreRoadmaps, resetPageNumber, pageNumber } =
-		useRoadmapPagination();
+	const { handleMore, resetPageNumber, pageNumber } = usePaginationPageNumber();
 
 	const { fetchData, loading } = useFetch(true);
 	const [totalItems, setTotalItems] = useState(0);
@@ -120,7 +119,7 @@ const useRoadmapList = () => {
 		roadmapList,
 		totalItems,
 		loading,
-		handleMoreRoadmaps,
+		handleMore,
 	};
 };
 

@@ -34,11 +34,15 @@ export const useHandleActiveConversation = () => {
 				messages: conversationMessages,
 			};
 
-			const user = activeConversation.users?.find(
+			console.log({ currentUser });
+
+			const receiver = activeConversation.users?.find(
 				(item: ConversationUser) => item.id !== currentUser?.id
 			);
 
-			dispatch(setActiveConversation({ activeConversation, user }));
+			console.log({ receiver });
+
+			dispatch(setActiveConversation({ activeConversation, receiver }));
 		} catch (error) {
 			push(`/conversation`);
 			dispatch(setActiveConversation(null));

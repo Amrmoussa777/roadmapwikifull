@@ -9,9 +9,7 @@ import UserProfileRoadmapsLoader from "@/components/user-profile/components/load
 import NumberStats from "@/components/common/states/NumberStats";
 
 const RoadmapList = () => {
-	const { roadmapList, totalItems, loading, handleMoreRoadmaps } =
-		useRoadmapList();
-
+	const { roadmapList, totalItems, loading, handleMore } = useRoadmapList();
 	if (loading && !roadmapList.length)
 		return (
 			<div className="w-full">
@@ -55,7 +53,7 @@ const RoadmapList = () => {
 			)}
 
 			<RoadmapsPagination
-				handleShowMoreRoadmaps={handleMoreRoadmaps}
+				handleShowMoreRoadmaps={handleMore}
 				totalItems={totalItems}
 				isLoading={loading}
 			/>

@@ -7,19 +7,19 @@ import Link from "next/link";
 import React from "react";
 
 const ChatHeader = () => {
-	const { conversation, user } = useAppSelector(
+	const { conversation, receiver } = useAppSelector(
 		state => state.conversation.activeConversation
 	);
-	const { fullName, occupation, userName } = user || {};
+	const { fullName, occupation, userName } = receiver || {};
 
-	if (!conversation && !user) return;
+	if (!conversation && !receiver) return;
 
 	return (
 		<div className="flex-jb-c gap-2 mb-[16px]">
 			<div className="flex-ic-c gap-2">
 				<Avatar
-					name={user ? user.fullName : ""}
-					image_url={user ? user.image : ""}
+					name={receiver ? receiver.fullName : ""}
+					image_url={receiver ? receiver.image : ""}
 					customStyles="min-w-[48px] w-[48px] min-h-[48px] h-[48px] text-primary-ultramarineBlue bg-primary-ultramarineBlue/10 border-white"
 				/>
 

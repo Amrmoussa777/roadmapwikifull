@@ -1,7 +1,7 @@
 "use client";
 
 import VerticalDivider from "@/components/common/divider/components/VerticalDivider";
-import NumberStats from "@/components/common/states/NumberStats";
+import ConversationMessagesPagaination from "@/components/conversation/components/chat/ConversationMessagesPagaination";
 import Message from "@/components/conversation/components/chat/Message";
 import { useAppSelector } from "@/redux/store";
 import { CHAT_PLACEHOLDER } from "@public/icons/conversation";
@@ -23,7 +23,7 @@ const MessageList = () => {
 					<div className="last-date-container flex-jc-c font-inter [&>p]:text-[11px] text-[#979797] py-4">
 						<p>
 							{
-								moment(conversation.messages[0].createdAt)
+								moment(conversation?.messages[0].createdAt)
 									.calendar()
 									.split("at")[0]
 							}
@@ -34,7 +34,7 @@ const MessageList = () => {
 							bgColor="bg-[#979797]"
 							customStyles="mx-[8px] h-[12px]"
 						/>
-						<p>{moment(conversation.messages[0].createdAt).format("LT")}</p>
+						<p>{moment(conversation?.messages[0].createdAt).format("LT")}</p>
 					</div>
 
 					{/* Message list */}
@@ -45,6 +45,7 @@ const MessageList = () => {
 								<Message key={message.id} message={message} />
 							))}
 						</ul>
+						<ConversationMessagesPagaination />
 					</div>
 				</div>
 			) : (

@@ -2,13 +2,13 @@ import { ConversationSliceState } from "@/redux/slices/conversation/types/index.
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: ConversationSliceState = {
-	messages: [],
+	conversationList: [],
 	comments: [],
 	conversationType: "messages",
 	activeConversation: {
 		loading: true,
 		conversation: null,
-		user: null,
+		receiver: null,
 	},
 	formContent: {},
 };
@@ -23,7 +23,7 @@ const conversationSlice = createSlice({
 			if (!payload) {
 				state.activeConversation = {
 					conversation: null,
-					user: null,
+					receiver: null,
 					loading: false,
 				};
 				return;
@@ -32,16 +32,16 @@ const conversationSlice = createSlice({
 			if (payload === "loading") {
 				state.activeConversation = {
 					conversation: null,
-					user: null,
+					receiver: null,
 					loading: true,
 				};
 				return;
 			}
 
-			const { activeConversation, user } = payload;
+			const { activeConversation, receiver } = payload;
 			state.activeConversation = {
 				conversation: activeConversation,
-				user,
+				receiver,
 				loading: false,
 			};
 		},
@@ -68,6 +68,35 @@ const conversationSlice = createSlice({
 			const newMessage = action.payload;
 
 			state.activeConversation.conversation.messages.unshift(newMessage);
+
+			const updatedConversationList = state.conversationList.map(item => {
+				if (item.id === newMessage.conversationId) {
+					const messages = [
+						{ ...item.messages[0], content: newMessage.content },
+					];
+
+					const newData = {
+						...item,
+						messages,
+					};
+
+					return newData;
+				} else {
+					return item;
+				}
+			});
+
+			state.conversationList = updatedConversationList;
+		},
+		pushMoreMessages: (state, action) => {
+			const newMessages = action.payload;
+
+			state.activeConversation.conversation?.messages.push(newMessages);
+		},
+		setConversationList: (state, action) => {
+			const conversationList = action.payload;
+
+			state.conversationList = conversationList;
 		},
 	},
 });
@@ -77,5 +106,7 @@ export const {
 	toggleConversationType,
 	updateFormChatContent,
 	pushMessage,
+	pushMoreMessages,
+	setConversationList,
 } = conversationSlice.actions;
 export default conversationSlice.reducer;

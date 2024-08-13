@@ -94,6 +94,14 @@ const MessageForm = () => {
 		setIsRecording(status);
 	};
 
+	const handleChangeEmoji = (emoji: string) => {
+		const newValue = textForm + emoji;
+
+		changeTextForm(newValue);
+
+		dispatch(updateFormChatContent({ key: "textForm", value: newValue }));
+	};
+
 	return (
 		<form onSubmit={handleSubmitMessage} className="mt-auto">
 			<div className="flex-jb-c gap-2">
@@ -105,7 +113,10 @@ const MessageForm = () => {
 					</div>
 				) : (
 					<div className="w-full h-[52px] flex-jc-c px-4 bg-white rounded-[8px] border border-[#E5EAFF] focus-within:border-primary-ultramarineBlue hover:border-primary-ultramarineBlue transition duration-200">
-						<EmojiForm textInputRef={textInputRef} />
+						<EmojiForm
+							textInputRef={textInputRef}
+							handleChangeEmoji={handleChangeEmoji}
+						/>
 
 						<input
 							ref={textInputRef}

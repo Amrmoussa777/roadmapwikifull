@@ -4,15 +4,13 @@ import SidebarButtons from "@/components/conversation/components/sidebar/Sidebar
 import SidebarConversationItem from "@/components/conversation/components/sidebar/SidebarConversationItem";
 import { useFetch } from "@/hooks/useFetch";
 import { useSizeScreen } from "@/hooks/useSizeScreen";
-import { ConversationTypes } from "@/redux/slices/conversation/types/index.types";
-import { useParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import { setConversationList } from "@/redux/slices/conversation/conversationSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
+import React, { useEffect } from "react";
 
 const ConversationSidebar = ({ hidden }: { hidden?: boolean }) => {
-	const [conversations, setConversations] = useState<
-		ConversationTypes[] | null
-	>(null);
-	const { id } = useParams();
+	const { conversationList } = useAppSelector(state => state.conversation);
+	const dispatch = useAppDispatch();
 	const { fetchData: fetchConversations } = useFetch();
 	const { responsive } = useSizeScreen(768);
 
@@ -22,7 +20,7 @@ const ConversationSidebar = ({ hidden }: { hidden?: boolean }) => {
 				"GET",
 				`conversations/?page=1&pageSize=10`
 			);
-			setConversations(data);
+			dispatch(setConversationList(data));
 		})();
 	}, []);
 
@@ -38,9 +36,9 @@ const ConversationSidebar = ({ hidden }: { hidden?: boolean }) => {
 
 			<SearchConversationForm />
 
-			{conversations ? (
+			{conversationList ? (
 				<ul className="flex flex-col gap-[10px]">
-					{conversations.map(conversation => (
+					{conversationList.map(conversation => (
 						<SidebarConversationItem
 							key={conversation.id}
 							conversation={conversation}
