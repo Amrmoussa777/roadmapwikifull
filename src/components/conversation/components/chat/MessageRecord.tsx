@@ -58,8 +58,8 @@ const MessageRecord = ({ message }: MessageProps) => {
 				{VISUALIZER_SVG}
 			</span>
 			<span>{formatTime(currentTime ? currentTime : duration)}</span>
-			<audio ref={audioRef} controls className="hidden">
-				<source src={url} type="audio/mpeg" />
+			<audio ref={audioRef} controls className="hidden" >
+				<source src={url} type="audio/webm" />
 			</audio>
 		</div>
 	);
