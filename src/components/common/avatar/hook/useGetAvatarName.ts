@@ -1,4 +1,4 @@
-const useGetAvatarName = (name: string) => {
+const useGetAvatarName = (name: string = "") => {
 	const avatarName = name.split(" ").map(str => str.charAt(0));
 
 	return avatarName;

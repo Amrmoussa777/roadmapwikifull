@@ -66,32 +66,28 @@ const conversationSlice = createSlice({
 			if (!state.activeConversation.conversation) return;
 			const newMessage = action.payload;
 
-			// Push conversation if theres is no messages at all
+			// Push conversation if there are no messages at all
 			const noMessages =
 				state.activeConversation.conversation.messages.length < 1;
 			if (noMessages)
 				state.conversationList.unshift(state.activeConversation.conversation);
 
-			// Push new message
+			// Push new message to the active conversation
 			state.activeConversation.conversation.messages.unshift(newMessage);
 
-			// Update the last message for the conversation list
-			const updatedConversationList = state.conversationList.map(item => {
-				if (item.id === newMessage.conversationId) {
-					const messages = [
-						{ ...item.messages[0], content: newMessage.content },
-					];
-
-					const newData = {
-						...item,
-						messages,
-					};
-
-					return newData;
-				} else {
-					return item;
-				}
-			});
+			// Update the last message for the conversation list and move the conversation to the top
+			const updatedConversationList = state.conversationList
+				.map(item => {
+					if (item.id === newMessage.conversationId) {
+						return {
+							...item,
+							messages: [{ ...item.messages[0], content: newMessage.content }],
+						};
+					} else {
+						return item;
+					}
+				})
+				.sort((a, b) => (a.id === newMessage.conversationId ? -1 : 1)); // Move updated conversation to top
 
 			state.conversationList = updatedConversationList;
 		},

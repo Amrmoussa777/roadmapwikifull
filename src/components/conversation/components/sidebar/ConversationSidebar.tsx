@@ -43,11 +43,15 @@ const ConversationSidebar = ({ hidden }: { hidden?: boolean }) => {
 					<Reorder.Group
 						className="flex flex-col gap-[10px]"
 						axis="y"
-						onReorder={newOrder => console.log(newOrder)}
+						onReorder={() => {}}
 						values={conversationList}
 					>
 						{conversationList.map(conversation => (
-							<Reorder.Item key={conversation.id} value={conversation}>
+							<Reorder.Item
+								key={conversation.id}
+								value={conversation}
+								dragListener={false}
+							>
 								<SidebarConversationItem conversation={conversation} />
 							</Reorder.Item>
 						))}
