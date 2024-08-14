@@ -1,5 +1,4 @@
-"use client";
-
+import React, { useContext, useEffect, useState } from "react";
 import useAudioPlayer from "@/components/conversation/hooks/useAudioPlayer";
 import { MessageProps } from "@/components/conversation/types/index.types";
 import { CurrentUserContext } from "@/providers/CurrentUserContext";
@@ -8,7 +7,6 @@ import {
 	STOP_RECORD_ICON,
 	VISUALIZER_SVG,
 } from "@public/icons/conversation";
-import React, { useContext, useEffect, useState } from "react";
 
 const MessageRecord = ({ message }: MessageProps) => {
 	const { currentUser } = useContext(CurrentUserContext);
@@ -16,7 +14,8 @@ const MessageRecord = ({ message }: MessageProps) => {
 	const url = attachments[0].url;
 	const { isPlaying, currentTime, audioRef, play, stop } = useAudioPlayer(url);
 	const [duration, setDuration] = useState(0);
-
+	const [visualizerWidth, setVisualizerWidth] = useState(0);
+	console.log(Number());
 	const formatTime = (time: number) => {
 		const minutes = Math.floor(time / 60);
 		const seconds = Math.floor(time % 60)
@@ -34,6 +33,13 @@ const MessageRecord = ({ message }: MessageProps) => {
 			});
 		}
 	}, [audioRef]);
+
+	useEffect(() => {
+		if (duration > 0) {
+			const percentage = (currentTime / duration) * 100;
+			setVisualizerWidth(percentage);
+		}
+	}, [currentTime, duration]);
 
 	return (
 		<div
@@ -56,20 +62,21 @@ const MessageRecord = ({ message }: MessageProps) => {
 			</button>
 			<div className="relative [&>span>svg]:w-[160px] [&>span>svg]:md:w-full">
 				<div
-					style={{ width: "50px" }}
-					className="absolute w-full h-full top-0 left-0 text-red-600 z-10"
+					style={{ width: visualizerWidth + "%" }}
+					className="absolute w-full h-full overflow-hidden top-0 left-0 text-white z-10 transition-all duration-300 ease-linear"
 				>
 					<span className="[&>svg]:object-fill">{VISUALIZER_SVG}</span>
 				</div>
 
 				<span>{VISUALIZER_SVG}</span>
 			</div>
-			<span>{formatTime(currentTime ? currentTime : duration)}</span>
+			<span className="w-[40px] text-center">
+				{isNaN(duration) || duration === Infinity
+					? "0:00"
+					: formatTime(currentTime ? currentTime : duration)}
+			</span>
 			<audio ref={audioRef} controls className="hidden">
-				<source
-					src={"https://www.computerhope.com/jargon/m/example.mp3"}
-					type="audio/mpeg"
-				/>
+				<source src={url} type="audio/webm" />
 			</audio>
 		</div>
 	);

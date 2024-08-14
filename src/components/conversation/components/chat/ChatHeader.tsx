@@ -15,7 +15,7 @@ const ChatHeader = () => {
 	if (!conversation && !receiver) return;
 
 	return (
-		<div className="flex-jb-c gap-2 mb-[16px]">
+		<div className="flex-jb-c gap-2 mb-[8px]">
 			<div className="flex-ic-c gap-2">
 				<Avatar
 					name={receiver ? receiver.fullName : ""}

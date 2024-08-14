@@ -10,7 +10,7 @@ const page = () => {
 			<HorizontalDivider
 				height="h-[1px]"
 				bgColor="bg-[#AFB8CF]"
-				customStyles="my-0"
+				customStyles="!my-0"
 			/>
 			<MessageList />
 			<MessageForm />

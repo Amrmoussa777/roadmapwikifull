@@ -15,6 +15,8 @@ import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { ATTACHMENTS_ICON } from "@public/icons/conversation";
 import { DIRECT_MESSAGE } from "@public/icons/roadmapPreview";
 import EmojiForm from "@/components/conversation/components/chat/EmojiForm";
+import getBlobDuration from "get-blob-duration";
+import fixWebmDuration from "fix-webm-duration";
 
 const MessageForm = () => {
 	const fileInputRef = useRef<HTMLInputElement>(null);
@@ -70,9 +72,11 @@ const MessageForm = () => {
 	};
 
 	const handleSendRecord = async (audioFile: Blob) => {
-		const formData = new FormData();
-		formData.append("file", audioFile);
+		const duration = await getBlobDuration(audioFile);
+		const newAudioFile = await fixWebmDuration(audioFile, duration * 1000);
 
+		const formData = new FormData();
+		formData.append("file", newAudioFile);
 		const { data: key } = await fetchUploadFile(
 			"POST",
 			`media/upload`,
