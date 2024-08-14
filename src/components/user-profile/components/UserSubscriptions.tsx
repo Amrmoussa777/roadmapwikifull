@@ -64,7 +64,10 @@ const UserSubscriptions = ({
 					))}
 				</ul>
 			) : (
-				<NumberStats text="No subscribed roadmaps yet" />
+				<NumberStats
+					text="No subscribed roadmaps yet"
+					customStyles="!text-[14px] text-start"
+				/>
 			)}
 		</div>
 	);

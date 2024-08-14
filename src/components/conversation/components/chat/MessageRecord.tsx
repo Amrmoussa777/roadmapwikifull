@@ -8,15 +8,14 @@ import {
 	STOP_RECORD_ICON,
 	VISUALIZER_SVG,
 } from "@public/icons/conversation";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 const MessageRecord = ({ message }: MessageProps) => {
 	const { currentUser } = useContext(CurrentUserContext);
 	const { userId, attachments } = message;
-
-	const { isPlaying, currentTime, audioRef, play, stop } = useAudioPlayer(
-		attachments[0].url
-	);
+	const url = attachments[0].url;
+	const { isPlaying, currentTime, audioRef, play, stop } = useAudioPlayer(url);
+	const [duration, setDuration] = useState(0);
 
 	const formatTime = (time: number) => {
 		const minutes = Math.floor(time / 60);
@@ -25,6 +24,16 @@ const MessageRecord = ({ message }: MessageProps) => {
 			.padStart(2, "0");
 		return `${minutes}:${seconds}`;
 	};
+
+	useEffect(() => {
+		const audio = audioRef.current;
+
+		if (audio) {
+			audio.addEventListener("loadedmetadata", () => {
+				setDuration(audio.duration);
+			});
+		}
+	}, [audioRef]);
 
 	return (
 		<div
@@ -48,9 +57,9 @@ const MessageRecord = ({ message }: MessageProps) => {
 			<span className="[&>svg]:w-[160px] [&>svg]:md:w-full">
 				{VISUALIZER_SVG}
 			</span>
-			<span>{formatTime(currentTime)}</span>
+			<span>{formatTime(currentTime ? currentTime : duration)}</span>
 			<audio ref={audioRef} controls className="hidden">
-				<source src={attachments[0].url} type="audio/wav" />
+				<source src={url} type="audio/mpeg" />
 			</audio>
 		</div>
 	);

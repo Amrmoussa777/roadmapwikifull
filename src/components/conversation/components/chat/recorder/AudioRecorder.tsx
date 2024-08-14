@@ -27,7 +27,8 @@ const AudioRecorder = ({
 		);
 
 		mediaRecorder.current.addEventListener("stop", () => {
-			const audioBlob = new Blob(audioChunks.current, { type: "audio/wav" });
+			const audioBlob = new Blob(audioChunks.current, { type: "audio/mpeg" });
+			console.log(audioBlob);
 			handleSendRecord(audioBlob);
 		});
 

@@ -17,7 +17,7 @@ const LogoutButton = () => {
 			/>
 
 			{loading ? (
-				<ButtonDotsLoader customStyles="bg-white/80 [&>div]:bg-primary-ultramarineBlue" />
+				<ButtonDotsLoader customStyles="bg-white/80 [&>div]:!bg-primary-ultramarineBlue" />
 			) : null}
 		</div>
 	);

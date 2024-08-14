@@ -20,7 +20,7 @@ const ConversationSidebar = ({ hidden }: { hidden?: boolean }) => {
 		(async () => {
 			const { data } = await fetchConversations(
 				"GET",
-				`conversations/?page=1&pageSize=10`
+				`conversations/?page=1&pageSize=5`
 			);
 			dispatch(setConversationList(data));
 		})();
@@ -32,7 +32,7 @@ const ConversationSidebar = ({ hidden }: { hidden?: boolean }) => {
 				responsive
 					? "absolute w-full h-full left-0 top-0 border-none bg-white"
 					: ""
-			} md:min-w-[300px] lg:min-w-[330px] py-[24px] px-[16px] border border-[#DCDCDC] rounded-[12px]`}
+			} overflow-y-scroll hidden-scrollbar md:min-w-[300px] lg:min-w-[330px] py-[24px] px-[16px] border border-[#DCDCDC] rounded-[12px]`}
 		>
 			<SidebarButtons />
 
@@ -41,7 +41,7 @@ const ConversationSidebar = ({ hidden }: { hidden?: boolean }) => {
 			{conversationList ? (
 				<>
 					<Reorder.Group
-						className="flex flex-col gap-[10px]"
+						className="h-1/4 flex flex-col gap-[10px]"
 						axis="y"
 						onReorder={() => {}}
 						values={conversationList}
@@ -56,7 +56,6 @@ const ConversationSidebar = ({ hidden }: { hidden?: boolean }) => {
 							</Reorder.Item>
 						))}
 					</Reorder.Group>
-
 					<ConversationListPagination />
 				</>
 			) : (

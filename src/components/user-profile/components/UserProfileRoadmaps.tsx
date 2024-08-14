@@ -74,7 +74,10 @@ const UserProfileRoadmaps = ({
 				</>
 			) : (
 				<div className="flex-jb-c">
-					<NumberStats text="No roadmaps yet" customStyles="!w-fit" />
+					<NumberStats
+						text="No roadmaps yet"
+						customStyles="!w-fit !text-[14px] text-start"
+					/>
 					<CreateRoadmapButton />
 				</div>
 			)}

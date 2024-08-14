@@ -21,10 +21,10 @@ export const useConversationMessagesPagination = () => {
 	const dispatch = useAppDispatch();
 
 	const handleShowMoreMessages = async (pageNumber: number) => {
-		if (conversation) {
+		if (conversation && !loading) {
 			const { data: newMessages } = await fetchData(
 				"GET",
-				`conversations/${conversation.id}/messages?page=${pageNumber}&pageSize=10`
+				`conversations/${conversation.id}/messages?page=${pageNumber}&pageSize=5`
 			);
 			setTotalItems(newMessages.length);
 			dispatch(pushMoreMessages(newMessages));

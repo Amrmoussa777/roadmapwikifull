@@ -15,11 +15,13 @@ export const useConversationListPagination = () => {
 	const dispatch = useAppDispatch();
 
 	const handleShowMoreConversations = async (pageNumber: number) => {
+		if (loading) return;
+
 		const { data: newConversations } = await fetchConversations(
 			"GET",
 			`conversations/?page=${pageNumber}&pageSize=10`
 		);
-		setTotalItems(newConversations);
+		setTotalItems(newConversations.length);
 		dispatch(setConversationList([...conversationList, ...newConversations]));
 	};
 
@@ -34,6 +36,12 @@ export const useConversationListPagination = () => {
 			handleShowMoreConversations(pageNumber);
 		}
 	}, [pageNumber]);
+
+	useEffect(() => {
+		if (pageNumber === 1 && conversationList.length) {
+			setTotalItems(conversationList.length);
+		}
+	}, [conversationList]);
 
 	return {
 		divRef,
