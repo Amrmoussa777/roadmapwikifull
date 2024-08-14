@@ -3,7 +3,7 @@ import { useState } from "react";
 export const usePaginationPageNumber = () => {
 	const [pageNumber, setPageNumber] = useState(1);
 
-	const handleMore = async () => {
+	const handleMore = () => {
 		setPageNumber(prev => prev + 1);
 	};
 

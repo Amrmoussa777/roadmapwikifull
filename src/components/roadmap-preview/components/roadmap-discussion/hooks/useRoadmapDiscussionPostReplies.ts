@@ -30,7 +30,6 @@ export const useRoadmapDiscussionPostReplies = (postId: string) => {
 			initialLoad.current = false;
 			handleMoreReplies();
 		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return {

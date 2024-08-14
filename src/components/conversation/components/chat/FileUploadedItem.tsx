@@ -43,8 +43,6 @@ const FileUploadedItem: React.FC<FileUploadedItemProps> = ({
 		}
 	};
 
-	console.log("Hello");
-
 	useEffect(() => {
 		if (!initialized.current) {
 			initialized.current = true;

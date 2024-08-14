@@ -2,7 +2,7 @@ import { useFetch } from "@/hooks/useFetch";
 import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import { setActiveConversation } from "@/redux/slices/conversation/conversationSlice";
 import { ConversationUser } from "@/redux/slices/conversation/types/index.types";
-import { useAppDispatch } from "@/redux/store";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { useParams, useRouter } from "next/navigation";
 import { useCallback, useContext, useEffect } from "react";
 
@@ -13,9 +13,17 @@ export const useHandleActiveConversation = () => {
 	const { fetchData: fetchConversationMessages } = useFetch();
 	const { push } = useRouter();
 	const { currentUser } = useContext(CurrentUserContext);
+	const { conversation } = useAppSelector(
+		state => state.conversation.activeConversation
+	);
 
 	const setConversationAsActive = useCallback(async () => {
-		if (!conversationId) return;
+		if (!conversationId || currentUser === null) return;
+
+		if (conversation && !conversationId) {
+			dispatch(setActiveConversation(null));
+			return;
+		}
 
 		dispatch(setActiveConversation("loading"));
 
@@ -34,22 +42,20 @@ export const useHandleActiveConversation = () => {
 				messages: conversationMessages,
 			};
 
-			console.log({ currentUser });
-
 			const receiver = activeConversation.users?.find(
 				(item: ConversationUser) => item.id !== currentUser?.id
 			);
-
-			console.log({ receiver });
 
 			dispatch(setActiveConversation({ activeConversation, receiver }));
 		} catch (error) {
 			push(`/conversation`);
 			dispatch(setActiveConversation(null));
 		}
-	}, [conversationId]);
+	}, [conversationId, currentUser]);
 
 	useEffect(() => {
-		setConversationAsActive();
-	}, [setConversationAsActive]);
+		if (currentUser !== null) {
+			setConversationAsActive();
+		}
+	}, [setConversationAsActive, currentUser]);
 };

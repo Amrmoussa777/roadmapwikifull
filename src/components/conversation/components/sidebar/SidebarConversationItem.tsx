@@ -18,7 +18,7 @@ const SidebarConversationItem = ({
 	};
 
 	return (
-		<li>
+		<div>
 			<button
 				onClick={handleOpenConversation}
 				className={`w-full h-full flex items-center gap-[8px] py-[8px] px-[20px] font-inter font-semibold hover:bg-primary-ultramarineBlue/10 transition duration-200 ${
@@ -39,7 +39,7 @@ const SidebarConversationItem = ({
 					</p>
 				</div>
 			</button>
-		</li>
+		</div>
 	);
 };
 

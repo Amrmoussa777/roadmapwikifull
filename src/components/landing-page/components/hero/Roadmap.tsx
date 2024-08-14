@@ -30,8 +30,6 @@ const Roadmap = ({
 				setCurrentRoadmap(roadmap);
 			}, 500);
 		}
-
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [roadmap]);
 
 	return (

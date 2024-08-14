@@ -15,8 +15,6 @@ export const useRoadmapDiscussion = () => {
 
 	useEffect(() => {
 		dispatch(getRoadmapPosts({ roadmapId: id, pageNumber: 1, pageSize: 5 }));
-
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [id]);
 
 	const handleMoreComments = () => {

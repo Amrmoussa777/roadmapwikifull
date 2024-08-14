@@ -45,7 +45,6 @@ const conversationSlice = createSlice({
 				loading: false,
 			};
 		},
-
 		toggleConversationType: state => {
 			state.conversationType =
 				state.conversationType === "comments" ? "messages" : "comments";
@@ -67,8 +66,16 @@ const conversationSlice = createSlice({
 			if (!state.activeConversation.conversation) return;
 			const newMessage = action.payload;
 
+			// Push conversation if theres is no messages at all
+			const noMessages =
+				state.activeConversation.conversation.messages.length < 1;
+			if (noMessages)
+				state.conversationList.unshift(state.activeConversation.conversation);
+
+			// Push new message
 			state.activeConversation.conversation.messages.unshift(newMessage);
 
+			// Update the last message for the conversation list
 			const updatedConversationList = state.conversationList.map(item => {
 				if (item.id === newMessage.conversationId) {
 					const messages = [
@@ -91,7 +98,7 @@ const conversationSlice = createSlice({
 		pushMoreMessages: (state, action) => {
 			const newMessages = action.payload;
 
-			state.activeConversation.conversation?.messages.push(newMessages);
+			state.activeConversation.conversation?.messages.push(...newMessages);
 		},
 		setConversationList: (state, action) => {
 			const conversationList = action.payload;

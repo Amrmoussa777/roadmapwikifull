@@ -1,3 +1,4 @@
+import ConversationListPagination from "@/components/conversation/components/sidebar/ConversationListPagination";
 import ConversationSidebarLoader from "@/components/conversation/components/sidebar/ConversationSidebarLoader";
 import SearchConversationForm from "@/components/conversation/components/sidebar/SearchConversationForm";
 import SidebarButtons from "@/components/conversation/components/sidebar/SidebarButtons";
@@ -6,6 +7,7 @@ import { useFetch } from "@/hooks/useFetch";
 import { useSizeScreen } from "@/hooks/useSizeScreen";
 import { setConversationList } from "@/redux/slices/conversation/conversationSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
+import { Reorder } from "framer-motion";
 import React, { useEffect } from "react";
 
 const ConversationSidebar = ({ hidden }: { hidden?: boolean }) => {
@@ -37,14 +39,22 @@ const ConversationSidebar = ({ hidden }: { hidden?: boolean }) => {
 			<SearchConversationForm />
 
 			{conversationList ? (
-				<ul className="flex flex-col gap-[10px]">
-					{conversationList.map(conversation => (
-						<SidebarConversationItem
-							key={conversation.id}
-							conversation={conversation}
-						/>
-					))}
-				</ul>
+				<>
+					<Reorder.Group
+						className="flex flex-col gap-[10px]"
+						axis="y"
+						onReorder={newOrder => console.log(newOrder)}
+						values={conversationList}
+					>
+						{conversationList.map(conversation => (
+							<Reorder.Item key={conversation.id} value={conversation}>
+								<SidebarConversationItem conversation={conversation} />
+							</Reorder.Item>
+						))}
+					</Reorder.Group>
+
+					<ConversationListPagination />
+				</>
 			) : (
 				<ConversationSidebarLoader />
 			)}

@@ -42,8 +42,6 @@ const RoadmapDiscussionPost = ({
 
 	useEffect(() => {
 		dispatch(setInitialPostReplies(id));
-
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const handleToggleVote = async () => {

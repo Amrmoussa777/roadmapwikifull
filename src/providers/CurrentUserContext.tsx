@@ -32,39 +32,44 @@ const CurrentUserProvider = ({ children }: ChildrenType) => {
 	useRefreshToken();
 
 	useEffect(() => {
-		(async () => {
+		const fetchCurrentUser = async () => {
 			setCurrentUserLoading(true);
-			const { accessToken: fetchedAccessToken, refreshToken } =
-				TokensHelper.getTokens();
 
-			let accessToken = fetchedAccessToken;
+			try {
+				const { accessToken: fetchedAccessToken, refreshToken } =
+					TokensHelper.getTokens();
 
-			if (!refreshToken) {
+				let accessToken = fetchedAccessToken;
+
+				if (!refreshToken) {
+					setCurrentUser(null);
+					setCurrentUserLoading(false);
+					return;
+				}
+
+				if (!accessToken) {
+					accessToken = await fetchAnonymousToken();
+					await setCookies({ accessToken });
+				}
+
+				const user = await getUser(accessToken);
+				setCurrentUser(user);
+			} catch (error) {
+				console.error("Error fetching current user:", error);
+				setCurrentUser(null);
+			} finally {
 				setCurrentUserLoading(false);
-				return;
 			}
+		};
 
-			if (!fetchedAccessToken) {
-				accessToken = await fetchAnonymousToken();
-
-				await setCookies({ accessToken });
-			}
-
-			const user = await getUser(accessToken);
-			setCurrentUser(user);
-			setCurrentUserLoading(false);
-		})();
-
-		// eslint-disable-next-line react-hooks/exhaustive-deps
+		fetchCurrentUser();
 	}, [user]);
 
 	useEffect(() => {
 		if (pathname.includes("auth") && currentUser) {
 			redirect("/");
 		}
-
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [currentUser]);
+	}, [pathname, currentUser]);
 
 	useEffect(() => {
 		if (
@@ -75,9 +80,9 @@ const CurrentUserProvider = ({ children }: ChildrenType) => {
 		) {
 			setCurrentUser({ ...currentUser, image: user.image });
 		}
-	}, [user]);
+	}, [user, currentUser]);
 
-	return !currentUserLoading ? (
+	return (
 		<CurrentUserContext.Provider
 			value={{
 				currentUser,
@@ -86,8 +91,6 @@ const CurrentUserProvider = ({ children }: ChildrenType) => {
 		>
 			{children}
 		</CurrentUserContext.Provider>
-	) : (
-		<></>
 	);
 };
 

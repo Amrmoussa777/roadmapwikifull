@@ -1,7 +1,7 @@
 "use client";
 
 import VerticalDivider from "@/components/common/divider/components/VerticalDivider";
-import ConversationMessagesPagaination from "@/components/conversation/components/chat/ConversationMessagesPagaination";
+import ConversationMessagesPagination from "@/components/conversation/components/chat/ConversationMessagesPagination";
 import Message from "@/components/conversation/components/chat/Message";
 import { useAppSelector } from "@/redux/store";
 import { CHAT_PLACEHOLDER } from "@public/icons/conversation";
@@ -45,7 +45,7 @@ const MessageList = () => {
 								<Message key={message.id} message={message} />
 							))}
 						</ul>
-						<ConversationMessagesPagaination />
+						<ConversationMessagesPagination />
 					</div>
 				</div>
 			) : (
