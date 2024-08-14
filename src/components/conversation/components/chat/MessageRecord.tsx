@@ -63,9 +63,13 @@ const MessageRecord = ({ message }: MessageProps) => {
 			<div className="relative [&>span>svg]:w-[160px] [&>span>svg]:md:w-full">
 				<div
 					style={{ width: visualizerWidth + "%" }}
-					className="absolute w-full h-full overflow-hidden top-0 left-0 text-white z-10 transition-all duration-300 ease-linear"
+					className={`absolute w-full h-full overflow-hidden top-0 left-0 ${
+						currentUser?.id === userId
+							? "text-white"
+							: "text-primary-ultramarineBlue"
+					} z-10 transition-all duration-300 ease-linear`}
 				>
-					<span className="[&>svg]:object-fill">{VISUALIZER_SVG}</span>
+					<span>{VISUALIZER_SVG}</span>
 				</div>
 
 				<span>{VISUALIZER_SVG}</span>
