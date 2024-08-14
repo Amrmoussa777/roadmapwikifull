@@ -37,12 +37,6 @@ export const useConversationListPagination = () => {
 		}
 	}, [pageNumber]);
 
-	useEffect(() => {
-		if (pageNumber === 1 && conversationList.length) {
-			setTotalItems(conversationList.length);
-		}
-	}, [conversationList]);
-
 	return {
 		divRef,
 		totalItems,

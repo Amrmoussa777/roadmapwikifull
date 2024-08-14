@@ -54,12 +54,22 @@ const MessageRecord = ({ message }: MessageProps) => {
 			>
 				{isPlaying ? STOP_RECORD_ICON : PLAY_RECORD_ICON}
 			</button>
-			<span className="[&>svg]:w-[160px] [&>svg]:md:w-full">
-				{VISUALIZER_SVG}
-			</span>
+			<div className="relative [&>span>svg]:w-[160px] [&>span>svg]:md:w-full">
+				<div
+					style={{ width: "50px" }}
+					className="absolute w-full h-full top-0 left-0 text-red-600 z-10"
+				>
+					<span className="[&>svg]:object-fill">{VISUALIZER_SVG}</span>
+				</div>
+
+				<span>{VISUALIZER_SVG}</span>
+			</div>
 			<span>{formatTime(currentTime ? currentTime : duration)}</span>
 			<audio ref={audioRef} controls className="hidden">
-				<source src={url} type="audio/mpeg" />
+				<source
+					src={"https://www.computerhope.com/jargon/m/example.mp3"}
+					type="audio/mpeg"
+				/>
 			</audio>
 		</div>
 	);

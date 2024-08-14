@@ -20,7 +20,7 @@ const ConversationSidebar = ({ hidden }: { hidden?: boolean }) => {
 		(async () => {
 			const { data } = await fetchConversations(
 				"GET",
-				`conversations/?page=1&pageSize=5`
+				`conversations/?page=1&pageSize=10`
 			);
 			dispatch(setConversationList(data));
 		})();
@@ -38,26 +38,25 @@ const ConversationSidebar = ({ hidden }: { hidden?: boolean }) => {
 
 			<SearchConversationForm />
 
-			{conversationList ? (
-				<>
-					<Reorder.Group
-						className="h-1/4 flex flex-col gap-[10px]"
-						axis="y"
-						onReorder={() => {}}
-						values={conversationList}
-					>
-						{conversationList.map(conversation => (
-							<Reorder.Item
-								key={conversation.id}
-								value={conversation}
-								dragListener={false}
-							>
-								<SidebarConversationItem conversation={conversation} />
-							</Reorder.Item>
-						))}
-					</Reorder.Group>
+			{conversationList.length ? (
+				<Reorder.Group
+					className="h-1/4 flex flex-col gap-[10px]"
+					axis="y"
+					onReorder={() => {}}
+					values={conversationList}
+				>
+					{conversationList.map(conversation => (
+						<Reorder.Item
+							key={conversation.id}
+							value={conversation}
+							dragListener={false}
+						>
+							<SidebarConversationItem conversation={conversation} />
+						</Reorder.Item>
+					))}
+
 					<ConversationListPagination />
-				</>
+				</Reorder.Group>
 			) : (
 				<ConversationSidebarLoader />
 			)}
