@@ -1,8 +1,11 @@
 import { useOnClickOutside } from "@/hooks/useOnClickOutside";
 import useToggle from "@/hooks/useToggle";
 import { EMOJI_ICON } from "@public/icons/conversation";
-import EmojiPicker from "emoji-picker-react";
+import dynamic from "next/dynamic";
 import React, { useRef, useEffect } from "react";
+const EmojiPicker = dynamic(() => import("emoji-picker-react"), {
+	ssr: false,
+});
 
 interface EmojiFormProps {
 	textInputRef: React.RefObject<HTMLInputElement>;

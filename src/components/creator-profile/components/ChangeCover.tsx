@@ -1,6 +1,11 @@
-import EditUserCover from "@/components/common/modal/components/EditUserCover";
 import FileUploader from "@/components/user-profile/components/file-upload/components/FileUploader";
+import dynamic from "next/dynamic";
 import React, { useState } from "react";
+
+const EditUserCover = dynamic(
+	() => import("@/components/common/modal/components/EditUserCover"),
+	{ ssr: false }
+);
 
 const ChangeCover = ({
 	uploadModal,

@@ -16,10 +16,15 @@ import { RoadmapType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice
 import Link from "next/link";
 import { ROADMAP_ICONS } from "@/config/roadmapIcons";
 import { ROADMAP_ICON } from "@public/icons/landingPage";
-import ShareModal from "@/components/common/modal/components/ShareModal";
 import useToggle from "@/hooks/useToggle";
 import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import { useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
+
+const ShareModal = dynamic(
+	() => import("@/components/common/modal/components/ShareModal"),
+	{ ssr: false }
+);
 
 const LatestRoadmap = ({
 	id,

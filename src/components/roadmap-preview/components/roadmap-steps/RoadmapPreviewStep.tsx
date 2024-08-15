@@ -1,4 +1,3 @@
-import Editor from "@/components/common/Editor/components/Editor";
 import React, { useEffect, useRef } from "react";
 import {
 	CHECK_ICON,
@@ -9,7 +8,19 @@ import {
 import { RoadmapPreviewStepProps } from "@/components/roadmap-preview/components/roadmap-steps/types/roadmap-preview-step";
 import Verification from "@/components/roadmap-preview/components/roadmap-steps/Verification";
 import { useAppSelector } from "@/redux/store";
-import PreviewAttachments from "@/components/builder/roadmap-steps/PreviewAttachments";
+import dynamic from "next/dynamic";
+const Editor = dynamic(
+	() => import("@/components/common/Editor/components/Editor"),
+	{
+		ssr: false,
+	}
+);
+const PreviewAttachments = dynamic(
+	() => import("@/components/builder/roadmap-steps/PreviewAttachments"),
+	{
+		ssr: false,
+	}
+);
 
 const RoadmapPreviewStep = ({
 	previewStepId,

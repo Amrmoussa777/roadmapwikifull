@@ -2,16 +2,24 @@
 
 import React, { lazy } from "react";
 import { PARK_ICON } from "@public/icons/roadmapPreview";
-import RoadmapStepItem from "@/components/roadmap-preview/components/roadmap-steps/RoadmapStepItem";
 import { useRoadmapPreviewSteps } from "@/components/roadmap-preview/components/roadmap-steps/hooks/useRoadmapPreviewSteps";
 import { useAppSelector } from "@/redux/store";
 import LoadingRoadmapPreviewSteps from "@/components/roadmap-preview/components/loading/LoadingRoadmapPreviewSteps";
 import { AnimatePresence, motion } from "framer-motion";
-const RoadmapPreviewStep = lazy(
+import dynamic from "next/dynamic";
+const RoadmapStepItem = dynamic(
+	() =>
+		import(
+			"@/components/roadmap-preview/components/roadmap-steps/RoadmapStepItem"
+		),
+	{ ssr: false }
+);
+const RoadmapPreviewStep = dynamic(
 	() =>
 		import(
 			"@/components/roadmap-preview/components/roadmap-steps/RoadmapPreviewStep"
-		)
+		),
+	{ ssr: false }
 );
 
 const RoadmapPreviewSteps = () => {

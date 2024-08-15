@@ -1,34 +1,29 @@
 import React, { PointerEvent, useEffect, useRef } from "react";
 import useInput from "@/components/common/input/hooks/useInput";
-import HorizontalDivider from "@/components/common/divider/components/HorizontalDivider";
 import { ARROW_ICON, DRAG_ICON } from "@public/icons/roadmapSteps";
 import MenuRoadmapStep from "@/components/builder/roadmap-steps/MenuRoadmapStep";
-import RoadmapTags from "@/components/builder/roadmap-steps/RoadmapTags";
-import {
-	AnimatePresence,
-	Reorder,
-	motion,
-	useDragControls,
-} from "framer-motion";
-import Attachments from "@/components/builder/roadmap-steps/Attachments";
-import StepVerification from "@/components/builder/roadmap-steps/StepVerification";
+import { Reorder, useDragControls } from "framer-motion";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import {
 	expandRoadmapStep,
 	updateRoadmapStepData,
 } from "@/redux/slices/create-roadmap/createRoadmapSlice";
-import RoadmapStepDuration from "@/components/builder/roadmap-steps/RoadmapStepDuration";
-import RoadmapStepDescription from "@/components/builder/roadmap-steps/RoadmapStepDescription";
+
 import { CreateRoadmapStepItemProps } from "@/components/builder/roadmap-steps/types/index.types";
 import { useFetch } from "@/hooks/useFetch";
+import dynamic from "next/dynamic";
+const RoadmapActiveStep = dynamic(
+	() =>
+		import("@/components/builder/preview-roadmap/components/RoadmapActiveStep"),
+	{ ssr: false }
+);
 
 const RoadmapStepItem = ({
 	step,
 	isDragging,
 	setIsDragging,
 }: CreateRoadmapStepItemProps) => {
-	const { id, description, title, tags, duration, verifications, attachments } =
-		step;
+	const { id, title } = step;
 	const { value, changeValue } = useInput(title);
 	const dispatch = useAppDispatch();
 	const { roadmap } = useAppSelector(state => state.createRoadmap);
@@ -143,40 +138,7 @@ const RoadmapStepItem = ({
 					</div>
 				</div>
 
-				<AnimatePresence>
-					{activeRoadmapStepId === id && (
-						<motion.div
-							initial={{ y: -10, opacity: 0 }}
-							animate={{ y: 0, opacity: 1 }}
-							exit={{ y: -10, opacity: 0 }}
-							transition={{ duration: 0.1 }}
-						>
-							<div className="flex-jb-c flex-wrap gap-2">
-								<RoadmapTags stepId={id} tags={tags} />
-
-								<RoadmapStepDuration
-									stepId={id}
-									description={description}
-									title={title}
-									defaultDuration={duration}
-								/>
-							</div>
-
-							<RoadmapStepDescription
-								defaultDescription={description}
-								stepId={id}
-								title={value}
-								duration={duration}
-							/>
-
-							<StepVerification stepId={id} verifications={verifications} />
-
-							<HorizontalDivider height="h-[1px]" bgColor="bg-[#E0E0E0]" />
-
-							<Attachments stepId={id} attachments={attachments} />
-						</motion.div>
-					)}
-				</AnimatePresence>
+				<RoadmapActiveStep step={step} value={value} />
 			</div>
 		</Reorder.Item>
 	);

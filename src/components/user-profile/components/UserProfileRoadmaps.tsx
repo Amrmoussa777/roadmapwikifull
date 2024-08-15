@@ -1,16 +1,19 @@
 "use client";
 
 import CreateRoadmapButton from "@/components/common/button/CreateRoadmapButton";
-import ShareModal from "@/components/common/modal/components/ShareModal";
 import NumberStats from "@/components/common/states/NumberStats";
-import RoadmapItem from "@/components/roadmaps/components/RoadmapItem";
 import UserProfileRoadmapsLoader from "@/components/user-profile/components/loading/UserProfileRoadmapsLoader";
 import { useFetch } from "@/hooks/useFetch";
 import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import { RoadmapType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
 import { ARROW_ICON } from "@public/icons/roadmapSteps";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import React, { useContext, useEffect, useRef, useState } from "react";
+const RoadmapItem = dynamic(
+	() => import("@/components/roadmaps/components/RoadmapItem"),
+	{ ssr: false }
+);
 
 const UserProfileRoadmaps = ({
 	customStyles = "",

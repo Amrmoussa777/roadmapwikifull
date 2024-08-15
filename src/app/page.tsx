@@ -1,8 +1,17 @@
 import { getUser } from "@/app/auth/services/getUser";
-import CreatorHome from "@/components/creator-home/components/CreatorHome";
-import LandingPage from "@/components/landing-page/components/landing-page/LandingPage";
-import UserHome from "@/components/user-home/components/UserHome";
+import FullPageLoader from "@/components/common/loader/FullPageLoader";
 import { cookies } from "next/headers";
+import React, { Suspense, lazy } from "react";
+
+const CreatorHome = lazy(
+	() => import("@/components/creator-home/components/CreatorHome")
+);
+const UserHome = lazy(
+	() => import("@/components/user-home/components/UserHome")
+);
+const LandingPage = lazy(
+	() => import("@/components/landing-page/components/landing-page/LandingPage")
+);
 
 export default async function Home() {
 	const cookieStore = cookies();
@@ -10,9 +19,17 @@ export default async function Home() {
 
 	const currentUser = await getUser(accessToken);
 
-	if (currentUser) {
-		return currentUser.role === "CREATOR" ? <CreatorHome /> : <UserHome />;
-	}
-
-	return <LandingPage />;
+	return (
+		<Suspense fallback={<FullPageLoader />}>
+			{currentUser ? (
+				currentUser.role === "CREATOR" ? (
+					<CreatorHome />
+				) : (
+					<UserHome />
+				)
+			) : (
+				<LandingPage />
+			)}
+		</Suspense>
+	);
 }

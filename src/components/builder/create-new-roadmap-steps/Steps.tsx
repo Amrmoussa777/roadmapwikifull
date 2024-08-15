@@ -1,11 +1,24 @@
 "use client";
 
-import WelcomeStep from "@/components/builder/create-new-roadmap-steps/WelcomeStep";
 import Image from "@/components/common/image/CustomImage";
 import React, { useEffect, useState } from "react";
 import roadmapImage from "@public/auth-left.svg";
-import RoadmapNameStep from "@/components/builder/create-new-roadmap-steps/RoadmapNameStep";
-import RoadmapDescriptionStep from "@/components/builder/create-new-roadmap-steps/RoadmapDescriptionStep";
+import dynamic from "next/dynamic";
+const WelcomeStep = dynamic(
+	() => import("@/components/builder/create-new-roadmap-steps/WelcomeStep"),
+	{ ssr: false }
+);
+const RoadmapNameStep = dynamic(
+	() => import("@/components/builder/create-new-roadmap-steps/RoadmapNameStep"),
+	{ ssr: false }
+);
+const RoadmapDescriptionStep = dynamic(
+	() =>
+		import(
+			"@/components/builder/create-new-roadmap-steps/RoadmapDescriptionStep"
+		),
+	{ ssr: false }
+);
 
 const Steps = () => {
 	const [stepNumber, setStepNumber] = useState(0);

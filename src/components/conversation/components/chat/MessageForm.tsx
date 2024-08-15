@@ -2,8 +2,6 @@
 
 import React, { FormEvent, useRef, useState } from "react";
 import useInput from "@/components/common/input/hooks/useInput";
-import ChatAttachments from "@/components/conversation/components/chat/ChatAttachments";
-import AudioRecorder from "@/components/conversation/components/chat/recorder/AudioRecorder";
 import { LocalAttachmentTypes } from "@/components/conversation/types/index.types";
 import { ITarget } from "@/hooks/types/index.types";
 import { useFetch } from "@/hooks/useFetch";
@@ -14,9 +12,28 @@ import {
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { ATTACHMENTS_ICON } from "@public/icons/conversation";
 import { DIRECT_MESSAGE } from "@public/icons/roadmapPreview";
-import EmojiForm from "@/components/conversation/components/chat/EmojiForm";
 import getBlobDuration from "get-blob-duration";
 import fixWebmDuration from "fix-webm-duration";
+import dynamic from "next/dynamic";
+const AudioRecorder = dynamic(
+	() =>
+		import("@/components/conversation/components/chat/recorder/AudioRecorder"),
+	{
+		ssr: false,
+	}
+);
+const ChatAttachments = dynamic(
+	() => import("@/components/conversation/components/chat/ChatAttachments"),
+	{
+		ssr: false,
+	}
+);
+const EmojiForm = dynamic(
+	() => import("@/components/conversation/components/chat/EmojiForm"),
+	{
+		ssr: false,
+	}
+);
 
 const MessageForm = () => {
 	const fileInputRef = useRef<HTMLInputElement>(null);

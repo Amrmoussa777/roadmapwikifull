@@ -53,7 +53,7 @@ const PrivateNavbarCurrentUser = () => {
 					<h3 className="font-medium text-black text-[14px] leading-[1]">
 						HI, {firstName}
 					</h3>
-					<span className="text-[12px] text-[#79828B] leading-[1]">
+					<span className="font-normal text-[12px] text-[#79828B] leading-[1]">
 						{userName}
 					</span>
 				</div>

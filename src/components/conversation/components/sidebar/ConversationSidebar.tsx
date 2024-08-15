@@ -2,13 +2,20 @@ import ConversationListPagination from "@/components/conversation/components/sid
 import ConversationSidebarLoader from "@/components/conversation/components/sidebar/ConversationSidebarLoader";
 import SearchConversationForm from "@/components/conversation/components/sidebar/SearchConversationForm";
 import SidebarButtons from "@/components/conversation/components/sidebar/SidebarButtons";
-import SidebarConversationItem from "@/components/conversation/components/sidebar/SidebarConversationItem";
 import { useFetch } from "@/hooks/useFetch";
 import { useSizeScreen } from "@/hooks/useSizeScreen";
 import { setConversationList } from "@/redux/slices/conversation/conversationSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { Reorder } from "framer-motion";
+import dynamic from "next/dynamic";
 import React, { useEffect } from "react";
+const SidebarConversationItem = dynamic(
+	() =>
+		import(
+			"@/components/conversation/components/sidebar/SidebarConversationItem"
+		),
+	{ ssr: false }
+);
 
 const ConversationSidebar = ({ hidden }: { hidden?: boolean }) => {
 	const { conversationList } = useAppSelector(state => state.conversation);

@@ -2,10 +2,14 @@
 
 import ConversationLastMessageData from "@/components/conversation/components/chat/ConversationLastMessageData";
 import ConversationMessagesPagination from "@/components/conversation/components/chat/ConversationMessagesPagination";
-import Message from "@/components/conversation/components/chat/Message";
 import { useAppSelector } from "@/redux/store";
 import { CHAT_PLACEHOLDER } from "@public/icons/conversation";
+import dynamic from "next/dynamic";
 import React from "react";
+const Message = dynamic(
+	() => import("@/components/conversation/components/chat/Message"),
+	{ ssr: false }
+);
 
 const MessageList = () => {
 	const { conversation } = useAppSelector(

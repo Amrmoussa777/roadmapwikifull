@@ -20,8 +20,13 @@ import Link from "next/link";
 import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import { useFetch } from "@/hooks/useFetch";
 import ButtonDotsLoader from "@/components/common/button/ButtonDotsLoader";
-import ShareModal from "@/components/common/modal/components/ShareModal";
 import useToggle from "@/hooks/useToggle";
+import dynamic from "next/dynamic";
+
+const ShareModal = dynamic(
+	() => import("@/components/common/modal/components/ShareModal"),
+	{ ssr: false }
+);
 
 const RoadmapItem = ({ roadmap }: { roadmap: RoadmapType }) => {
 	const {

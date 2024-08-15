@@ -3,13 +3,23 @@
 import FormInput from "@/components/common/input/FormInput";
 import useInput from "@/components/common/input/hooks/useInput";
 import RoadmapInfoLoader from "@/components/builder/preview-roadmap/components/RoadmapInfoLoader";
-import RoadmapInfoSelectItems from "@/components/builder/preview-roadmap/components/RoadmapInfoSelectItems";
 import RoadmapStyle from "@/components/builder/preview-roadmap/components/RoadmapStyle";
-import RoadmapTags from "@/components/builder/preview-roadmap/components/RoadmapTags";
 import { useFetch } from "@/hooks/useFetch";
 import { updateRoadmapData } from "@/redux/slices/create-roadmap/createRoadmapSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import React, { useEffect } from "react";
+import dynamic from "next/dynamic";
+const RoadmapTags = dynamic(
+	() => import("@/components/builder/preview-roadmap/components/RoadmapTags"),
+	{ ssr: false }
+);
+const RoadmapInfoSelectItems = dynamic(
+	() =>
+		import(
+			"@/components/builder/preview-roadmap/components/RoadmapInfoSelectItems"
+		),
+	{ ssr: false }
+);
 
 const RoadmapInfo = () => {
 	const { roadmap, isLoading } = useAppSelector(state => state.createRoadmap);

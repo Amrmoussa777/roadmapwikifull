@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import { Reorder } from "framer-motion";
 import { ADD_STEP_ICON } from "@public/icons/roadmapSteps";
 import { useRoadmapSteps } from "@/components/builder/preview-roadmap/hooks/useRoadmapSteps";
-import RoadmapStepItem from "@/components/builder/roadmap-steps/RoadmapStepItem";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { addRoadmapStep } from "@/redux/slices/thunks/create-roadmap/addRoadmapStep";
 import { useParams } from "next/navigation";
@@ -13,6 +12,11 @@ import {
 	expandRoadmapStep,
 	toggleStepToPreview,
 } from "@/redux/slices/create-roadmap/createRoadmapSlice";
+import dynamic from "next/dynamic";
+const RoadmapStepItem = dynamic(
+	() => import("@/components/builder/roadmap-steps/RoadmapStepItem"),
+	{ ssr: false }
+);
 
 const RoadmapSteps = () => {
 	const { roadmap, isLoading, stepIdToPreview } = useAppSelector(

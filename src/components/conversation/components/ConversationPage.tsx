@@ -1,10 +1,14 @@
 "use client";
 
-import ConversationSidebar from "@/components/conversation/components/sidebar/ConversationSidebar";
 import { useSizeScreen } from "@/hooks/useSizeScreen";
 import { CHAT_PLACEHOLDER } from "@public/icons/conversation";
+import dynamic from "next/dynamic";
 import React from "react";
-
+const ConversationSidebar = dynamic(
+	() =>
+		import("@/components/conversation/components/sidebar/ConversationSidebar"),
+	{ ssr: false }
+);
 const ConversationPage = () => {
 	const { responsive } = useSizeScreen(768);
 

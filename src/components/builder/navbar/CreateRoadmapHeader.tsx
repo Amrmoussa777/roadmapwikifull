@@ -1,5 +1,4 @@
 import VerticalDivider from "@/components/common/divider/components/VerticalDivider";
-import ShareModal from "@/components/common/modal/components/ShareModal";
 import CreateRoadmapHeaderLoader from "@/components/builder/navbar/CreateRoadmapHeaderLoader";
 import MenuButton from "@/components/landing-page/components/public-navbar/MenuButton";
 import PathnameHelper from "@/helpers/pathname.helper";
@@ -13,6 +12,12 @@ import { SAVE_ICON } from "@public/icons/roadmapSteps";
 import { useParams, useRouter } from "next/navigation";
 import React, { useContext, useEffect } from "react";
 import ButtonDotsLoader from "@/components/common/button/ButtonDotsLoader";
+import dynamic from "next/dynamic";
+
+const ShareModal = dynamic(
+	() => import("@/components/common/modal/components/ShareModal"),
+	{ ssr: false }
+);
 
 const CreateRoadmapHeader = ({
 	sidebarMobile,

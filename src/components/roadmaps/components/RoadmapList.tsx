@@ -1,15 +1,23 @@
 "use client";
 
-import RoadmapItem from "@/components/roadmaps/components/RoadmapItem";
 import { ARROW_ICON } from "@public/icons/roadmapSteps";
 import React from "react";
 import useRoadmapList from "@/components/roadmaps/hooks/useRoadmapList";
-import RoadmapsPagination from "@/components/roadmaps/components/RoadmapsPagination";
 import UserProfileRoadmapsLoader from "@/components/user-profile/components/loading/UserProfileRoadmapsLoader";
 import NumberStats from "@/components/common/states/NumberStats";
+import dynamic from "next/dynamic";
+const RoadmapItem = dynamic(
+	() => import("@/components/roadmaps/components/RoadmapItem"),
+	{ ssr: false }
+);
+const RoadmapsPagination = dynamic(
+	() => import("@/components/roadmaps/components/RoadmapsPagination"),
+	{ ssr: false }
+);
 
 const RoadmapList = () => {
 	const { roadmapList, totalItems, loading, handleMore } = useRoadmapList();
+
 	if (loading && !roadmapList.length)
 		return (
 			<div className="w-full">

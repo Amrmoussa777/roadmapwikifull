@@ -1,9 +1,16 @@
-import PreviewAttachments from "@/components/builder/roadmap-steps/PreviewAttachments";
-import MessageRecord from "@/components/conversation/components/chat/MessageRecord";
 import { MessageProps } from "@/components/conversation/types/index.types";
 import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import moment from "moment";
+import dynamic from "next/dynamic";
 import React, { useContext } from "react";
+const PreviewAttachments = dynamic(
+	() => import("@/components/builder/roadmap-steps/PreviewAttachments"),
+	{ ssr: false }
+);
+const MessageRecord = dynamic(
+	() => import("@/components/conversation/components/chat/MessageRecord"),
+	{ ssr: false }
+);
 
 const Message = ({ message }: MessageProps) => {
 	const { currentUser } = useContext(CurrentUserContext);

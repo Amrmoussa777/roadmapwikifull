@@ -1,10 +1,16 @@
 "use client";
 
-import Avatar from "@/components/common/avatar/components/Avatar";
 import { useAppSelector } from "@/redux/store";
 import { MENU_ICON } from "@public/icons/roadmapSteps";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import React from "react";
+const Avatar = dynamic(
+	() => import("@/components/common/avatar/components/Avatar"),
+	{
+		ssr: false,
+	}
+);
 
 const ChatHeader = () => {
 	const { conversation, receiver } = useAppSelector(

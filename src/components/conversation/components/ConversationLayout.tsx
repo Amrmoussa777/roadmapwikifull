@@ -1,17 +1,22 @@
 "use client";
 
 import ConversationLoader from "@/components/conversation/components/chat/ConversationLoader";
-import ConversationSidebar from "@/components/conversation/components/sidebar/ConversationSidebar";
 import { useSizeScreen } from "@/hooks/useSizeScreen";
 import { ChildrenType } from "@/providers/types/index.types";
 import { useAppSelector } from "@/redux/store";
 import { useParams, usePathname } from "next/navigation";
 import React from "react";
 import { useHandleActiveConversation } from "@/components/conversation/hooks/useHandleActiveConversation";
+import dynamic from "next/dynamic";
+const ConversationSidebar = dynamic(
+	() =>
+		import("@/components/conversation/components/sidebar/ConversationSidebar"),
+	{ ssr: false }
+);
 
 const ConversationLayout = ({ children }: ChildrenType) => {
 	const pathname = usePathname();
-	const isConversationPage = pathname.includes("conversation");
+	const isConversationPage = /\/conversation/.test(pathname);
 	const { responsive } = useSizeScreen(768);
 	const { loading } = useAppSelector(
 		state => state.conversation.activeConversation

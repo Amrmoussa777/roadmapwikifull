@@ -40,12 +40,13 @@ const RoadmapPreviewProfileInfo = () => {
 				</p>
 			</div>
 
-			{id &&  id !== currentUser?.id ? (
+			{id && id !== currentUser?.id ? (
 				<div className="w-full h-[40px] flex-jc-c gap-2">
 					<FollowButton
 						isFollowed={user?.isFollowed || false}
 						userId={user?.id || ""}
 					/>
+
 					<DirectMessageButton />
 				</div>
 			) : null}
