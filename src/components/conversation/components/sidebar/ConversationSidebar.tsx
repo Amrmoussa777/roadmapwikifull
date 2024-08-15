@@ -9,7 +9,7 @@ import { setConversationList } from "@/redux/slices/conversation/conversationSli
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { Reorder } from "framer-motion";
 import dynamic from "next/dynamic";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 const SidebarConversationItem = dynamic(
 	() =>
 		import(
@@ -23,10 +23,14 @@ const ConversationSidebar = ({ hidden }: { hidden?: boolean }) => {
 		state => state.conversation
 	);
 	const dispatch = useAppDispatch();
-	const { fetchData: fetchConversations } = useFetch();
+	const { fetchData: fetchConversations, loading } = useFetch(true);
 	const { responsive } = useSizeScreen(768);
+	const initialized = useRef(false);
 
 	useEffect(() => {
+		if (initialized.current) return;
+		initialized.current = true;
+
 		(async () => {
 			const { data } = await fetchConversations(
 				"GET",
@@ -50,7 +54,7 @@ const ConversationSidebar = ({ hidden }: { hidden?: boolean }) => {
 
 			<SearchConversationForm />
 
-			{conversationList.length ? (
+			{conversationList.length && !loading ? (
 				<Reorder.Group
 					className="h-1/4 flex flex-col gap-[10px]"
 					axis="y"
@@ -71,9 +75,11 @@ const ConversationSidebar = ({ hidden }: { hidden?: boolean }) => {
 				</Reorder.Group>
 			) : searchResultCount === 0 ? (
 				<TextStats text="No search results" />
-			) : (
-				<ConversationSidebarLoader />
-			)}
+			) : searchResultCount === null && !loading ? (
+				<TextStats text="No conversations yet" />
+			) : null}
+
+			{loading ? <ConversationSidebarLoader /> : null}
 		</div>
 	) : null;
 };

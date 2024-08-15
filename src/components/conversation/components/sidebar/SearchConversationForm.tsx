@@ -14,25 +14,27 @@ const SearchConversationForm = () => {
 	const { fetchData: fetchConversations } = useFetch();
 	const dispatch = useAppDispatch();
 
-	const handleFetchSearchConversationList = async (e: ITarget | string) => {
+	const handleFetchSearchConversationList = (e: ITarget | string) => {
 		const newValue = typeof e === "string" ? e : e.target.value;
 		changeSearchValue(e);
 
-		const { data } = await fetchConversations(
-			"GET",
-			newValue
-				? `conversations?search=${newValue}`
-				: `conversations/?page=1&pageSize=10`
-		);
+		setTimeout(async () => {
+			const { data } = await fetchConversations(
+				"GET",
+				newValue
+					? `conversations?search=${newValue}`
+					: `conversations/?page=1&pageSize=10`
+			);
 
-		dispatch(setConversationTotalItem(data.length));
+			dispatch(setConversationTotalItem(data.length));
 
-		dispatch(
-			setConversationList({
-				conversationList: data,
-				searchResultCount: !newValue ? null : data.length,
-			})
-		);
+			dispatch(
+				setConversationList({
+					conversationList: data,
+					searchResultCount: !newValue ? null : data.length,
+				})
+			);
+		}, 300);
 	};
 
 	return (
