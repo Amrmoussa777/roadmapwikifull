@@ -1,8 +1,10 @@
 import ButtonDotsLoader from "@/components/common/button/ButtonDotsLoader";
 import { useConversationListPagination } from "@/components/conversation/hooks/useConversationListPagination";
+import { useAppSelector } from "@/redux/store";
 
 const ConversationListPagination = () => {
-	const { divRef, totalItems } = useConversationListPagination();
+	const { divRef } = useConversationListPagination();
+	const { totalItems } = useAppSelector(state => state.conversation);
 
 	return (
 		<div

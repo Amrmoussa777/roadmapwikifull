@@ -1,15 +1,19 @@
 import { usePaginationPageNumber } from "@/components/roadmaps/hooks/usePaginationPageNumber";
 import { useFetch } from "@/hooks/useFetch";
 import { useIsInViewport } from "@/hooks/useIsInViewport";
-import { setConversationList } from "@/redux/slices/conversation/conversationSlice";
+import {
+	setConversationList,
+	setConversationTotalItem,
+} from "@/redux/slices/conversation/conversationSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 export const useConversationListPagination = () => {
 	const { fetchData: fetchConversations, loading } = useFetch();
 	const divRef = useRef<HTMLDivElement>(null);
-	const { conversationList } = useAppSelector(state => state.conversation);
-	const [totalItems, setTotalItems] = useState(conversationList.length);
+	const { conversationList, searchResultCount } = useAppSelector(
+		state => state.conversation
+	);
 	const { isInViewport } = useIsInViewport(divRef, loading);
 	const { handleMore, pageNumber } = usePaginationPageNumber();
 	const dispatch = useAppDispatch();
@@ -21,8 +25,15 @@ export const useConversationListPagination = () => {
 			"GET",
 			`conversations/?page=${pageNumber}&pageSize=10`
 		);
-		setTotalItems(newConversations.length);
-		dispatch(setConversationList([...conversationList, ...newConversations]));
+
+		dispatch(setConversationTotalItem(newConversations.length));
+
+		dispatch(
+			setConversationList({
+				conversationList: [...conversationList, ...newConversations],
+				searchResultCount: null,
+			})
+		);
 	};
 
 	useEffect(() => {
@@ -37,8 +48,15 @@ export const useConversationListPagination = () => {
 		}
 	}, [pageNumber]);
 
+	useEffect(() => {
+		if (conversationList.length) {
+			setTimeout(() => {
+				dispatch(setConversationTotalItem(conversationList.length));
+			}, 300);
+		}
+	}, []);
+
 	return {
 		divRef,
-		totalItems,
 	};
 };

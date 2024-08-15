@@ -11,6 +11,8 @@ const initialState: ConversationSliceState = {
 		receiver: null,
 	},
 	formContent: {},
+	searchResultCount: null,
+	totalItems: 0,
 };
 
 const conversationSlice = createSlice({
@@ -97,9 +99,14 @@ const conversationSlice = createSlice({
 			state.activeConversation.conversation?.messages.push(...newMessages);
 		},
 		setConversationList: (state, action) => {
-			const conversationList = action.payload;
+			const { conversationList, searchResultCount } = action.payload;
 
 			state.conversationList = conversationList;
+			state.searchResultCount = searchResultCount;
+		},
+		setConversationTotalItem: (state, action) => {
+			const newItems = action.payload;
+			state.totalItems = newItems;
 		},
 	},
 });
@@ -111,5 +118,6 @@ export const {
 	pushMessage,
 	pushMoreMessages,
 	setConversationList,
+	setConversationTotalItem,
 } = conversationSlice.actions;
 export default conversationSlice.reducer;

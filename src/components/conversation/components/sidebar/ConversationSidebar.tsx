@@ -1,3 +1,4 @@
+import TextStats from "@/components/common/states/NumberStats";
 import ConversationListPagination from "@/components/conversation/components/sidebar/ConversationListPagination";
 import ConversationSidebarLoader from "@/components/conversation/components/sidebar/ConversationSidebarLoader";
 import SearchConversationForm from "@/components/conversation/components/sidebar/SearchConversationForm";
@@ -18,7 +19,9 @@ const SidebarConversationItem = dynamic(
 );
 
 const ConversationSidebar = ({ hidden }: { hidden?: boolean }) => {
-	const { conversationList } = useAppSelector(state => state.conversation);
+	const { conversationList, searchResultCount } = useAppSelector(
+		state => state.conversation
+	);
 	const dispatch = useAppDispatch();
 	const { fetchData: fetchConversations } = useFetch();
 	const { responsive } = useSizeScreen(768);
@@ -29,7 +32,9 @@ const ConversationSidebar = ({ hidden }: { hidden?: boolean }) => {
 				"GET",
 				`conversations/?page=1&pageSize=10`
 			);
-			dispatch(setConversationList(data));
+			dispatch(
+				setConversationList({ conversationList: data, searchResultCount: null })
+			);
 		})();
 	}, []);
 
@@ -64,6 +69,8 @@ const ConversationSidebar = ({ hidden }: { hidden?: boolean }) => {
 
 					<ConversationListPagination />
 				</Reorder.Group>
+			) : searchResultCount === 0 ? (
+				<TextStats text="No search results" />
 			) : (
 				<ConversationSidebarLoader />
 			)}

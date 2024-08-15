@@ -10,6 +10,8 @@ export type ConversationSliceState = {
 		receiver: ConversationUser | null;
 	};
 	formContent: ConversationFormContent;
+	searchResultCount: number | null;
+	totalItems: number;
 };
 
 export type ConversationFormContent =
