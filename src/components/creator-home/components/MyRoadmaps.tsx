@@ -16,11 +16,10 @@ const MyRoadmaps = () => {
 	const { fetchData, loading } = useFetch();
 
 	useEffect(() => {
-		if (currentUser) {
+		if (currentUser && !roadmaps.length) {
 			(async () => {
-				
 				const { data } = await fetchData("GET", `roadmap/myroadmaps`);
-				
+
 				setRoadmaps(data);
 			})();
 		}

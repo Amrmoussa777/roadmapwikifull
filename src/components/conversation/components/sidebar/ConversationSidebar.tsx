@@ -56,7 +56,7 @@ const ConversationSidebar = ({ hidden }: { hidden?: boolean }) => {
 
 			{conversationList.length && !loading ? (
 				<Reorder.Group
-					className="h-1/4 flex flex-col gap-[10px]"
+					className="h-1/4 flex flex-col [&>li]:!pb-[10px]"
 					axis="y"
 					onReorder={() => {}}
 					values={conversationList}
