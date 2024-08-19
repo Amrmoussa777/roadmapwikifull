@@ -33,7 +33,7 @@ export const useMessageForm = () => {
 	useEffect(() => {
 		const newSocket = io("https://api.roadmapwiki.com", {
 			auth: {
-				Authorization: `Bearer ${accessToken}`,
+				accessToken: `Bearer ${accessToken}`,
 			},
 			transports: ["websocket"],
 		});
