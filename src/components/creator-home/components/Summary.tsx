@@ -37,7 +37,7 @@ const Summary = () => {
 		<Swiper
 			slidesPerView={4}
 			spaceBetween={10}
-			className={`[&>div]:flex-jb-c`}
+			className={`w-full [&>div]:flex-jb-c`}
 			breakpoints={{
 				1280: {
 					slidesPerView: 4,
