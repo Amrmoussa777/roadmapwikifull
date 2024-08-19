@@ -75,6 +75,15 @@ const GeneralStatisticsPreview = () => {
 			legend: {
 				display: false,
 			},
+			tooltip: {
+				displayColors: false,
+				backgroundColor: "white",
+				titleColor: "#0C0B0B",
+				bodyColor: "#0C0B0B",
+				footerColor: "#0C0B0B",
+				borderWidth: 1,
+				borderColor: "rgba(0, 0, 0, 0.052)",
+			},
 		},
 		hoverBackgroundColor: "#506CF0",
 		backgroundColor: "#DCDCDC",

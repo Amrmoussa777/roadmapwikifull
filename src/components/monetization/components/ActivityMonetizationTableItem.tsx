@@ -18,7 +18,7 @@ const ActivityMonetizationTableItem = () => {
 				</Link>
 			</td>
 			<td>
-				<div className="flex-jc-c gap-2">
+				<div className="flex-ic-c gap-2">
 					<Avatar
 						name={"Mohamed AbdSabour"}
 						customStyles="w-[30px] h-[30px] rounded-full !border-none object-cover [&>img]:border-none !bg-primary-ultramarineBlue text-white"

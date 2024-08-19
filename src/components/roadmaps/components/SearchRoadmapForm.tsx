@@ -71,7 +71,7 @@ const SearchRoadmapForm = () => {
 			onSubmit={handleSearchSubmit}
 			className="w-full h-[60px] sm:h-[80px] flex items-center mt-[20px] shadow-[0_8px_30px_rgb(0,0,0,0.12)] rounded-[16px] p-[12px] sm:p-[20px] border border-transparent focus-within:border-primary-ultramarineBlue focus-within:shadow-[5px_5px_0px_0px_rgba(80,108,240),0_8px_30px_rgb(0,0,0,0.12)] transition duration-200"
 		>
-			<div className="flex gap-4 w-full sm:w-2/4">
+			<div className="flex items-center gap-4 w-full sm:w-2/4">
 				<span className="text-[#C4C4C4]">{ROADMAP_ICON}</span>
 				<input
 					type="text"
@@ -86,7 +86,7 @@ const SearchRoadmapForm = () => {
 					}`}
 					value={value}
 					onChange={handleChangeValue}
-					className="w-full outline-none text-[16px] font-poppins placeholder:font-poppins placeholder:text-[16px]"
+					className="w-full h-[50px] sm:h-[70px] outline-none text-[16px] font-poppins placeholder:font-poppins placeholder:text-[16px]"
 				/>
 			</div>
 
