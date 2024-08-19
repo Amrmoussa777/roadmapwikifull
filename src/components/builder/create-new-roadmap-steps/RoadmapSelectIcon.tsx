@@ -34,7 +34,7 @@ const RoadmapSelectIcon = () => {
 		<div className="w-full relative mb-8">
 			<button
 				onClick={hideOptions}
-				id="roadmapDuration"
+				id="roadmapIcon"
 				type="button"
 				ref={buttonRef}
 				className="flex-jb-c roadmap-info-select text-[16px] sm:text-[18px]"

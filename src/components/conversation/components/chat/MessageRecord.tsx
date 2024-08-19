@@ -15,7 +15,6 @@ const MessageRecord = ({ message }: MessageProps) => {
 	const { isPlaying, currentTime, audioRef, play, stop } = useAudioPlayer(url);
 	const [duration, setDuration] = useState(0);
 	const [visualizerWidth, setVisualizerWidth] = useState(0);
-	console.log(Number());
 	const formatTime = (time: number) => {
 		const minutes = Math.floor(time / 60);
 		const seconds = Math.floor(time % 60)

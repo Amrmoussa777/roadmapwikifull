@@ -1,7 +1,7 @@
 "use client";
 
+import SummaryMonetizationItem from "@/components/monetization/components/SummaryMonetizationItem";
 import SummaryLoader from "@/components/creator-home/components/loaders/SummaryLoader";
-import SummaryItem from "@/components/creator-home/components/SummaryItem";
 import { SummaryItemProps } from "@/components/creator-home/types/index.types";
 import { USER_STATS_ICONS } from "@/config/userStatsIcons";
 import { CurrentUserContext } from "@/providers/CurrentUserContext";
@@ -9,7 +9,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-const Summary = () => {
+
+const SummaryMonetization = () => {
 	const [stats, setStats] = useState<SummaryItemProps[]>([]);
 
 	const { currentUser, currentUserLoading } = useContext(CurrentUserContext);
@@ -35,52 +36,52 @@ const Summary = () => {
 
 	return (
 		<Swiper
-			slidesPerView={4}
-			spaceBetween={10}
-			className={`[&>div]:flex-jb-c`}
+			slidesPerView={2}
+			spaceBetween={24}
+			className={`w-full [&>div]:flex-jb-c`}
 			breakpoints={{
 				1280: {
-					slidesPerView: 4,
-					spaceBetween: 10,
+					slidesPerView: 3,
+					spaceBetween: 24,
 				},
 				1150: {
-					slidesPerView: 4,
-					spaceBetween: 10,
+					slidesPerView: 3,
+					spaceBetween: 24,
 				},
 
 				1024: {
-					slidesPerView: 4,
-					spaceBetween: 10,
+					slidesPerView: 3,
+					spaceBetween: 24,
 				},
 				876: {
-					slidesPerView: 4,
-					spaceBetween: 10,
+					slidesPerView: 2.5,
+					spaceBetween: 24,
 				},
 				768: {
-					slidesPerView: 4,
-					spaceBetween: 10,
+					slidesPerView: 2,
+					spaceBetween: 24,
 				},
 				640: {
-					slidesPerView: 2.8,
-					spaceBetween: 10,
+					slidesPerView: 1.5,
+					spaceBetween: 24,
 				},
 				400: {
-					slidesPerView: 2.8,
-					spaceBetween: 10,
+					slidesPerView: 1.5,
+					spaceBetween: 24,
 				},
 				100: {
 					slidesPerView: 1.4,
-					spaceBetween: 10,
+					spaceBetween: 24,
 				},
 			}}
 		>
 			{stats.map(item => (
 				<SwiperSlide key={item.name}>
-					<SummaryItem {...item} />
+					<SummaryMonetizationItem {...item} />
 				</SwiperSlide>
 			))}
 		</Swiper>
 	);
 };
 
-export default Summary;
+export default SummaryMonetization;
