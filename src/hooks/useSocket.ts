@@ -20,6 +20,7 @@ export const useSocket = () => {
 	const dispatch = useDispatch();
 	const initialized = useRef(false);
 	const { conversationId: paramConversationId } = useParams();
+	const conversationIdRef = useRef(paramConversationId);
 
 	useEffect(() => {
 		if (currentUser) {
@@ -53,7 +54,7 @@ export const useSocket = () => {
 
 					dispatch(pushMessage(data.message));
 
-					if (conversationId === paramConversationId) break;
+					if (conversationId === conversationIdRef.current) break;
 
 					dispatch(
 						increaseUnseenMessages({
@@ -84,7 +85,11 @@ export const useSocket = () => {
 		return () => {
 			newSocket.close();
 		};
-	}, [initialized, paramConversationId, currentUser, dispatch]);
+	}, []);
+
+	useEffect(() => {
+		conversationIdRef.current = paramConversationId;
+	}, [paramConversationId]);
 
 	return socket;
 };
