@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
 import useInput from "@/components/common/input/hooks/useInput";
 import { LocalAttachmentTypes } from "@/components/conversation/types/index.types";
 import { ITarget } from "@/hooks/types/index.types";
@@ -10,9 +10,6 @@ import {
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import getBlobDuration from "get-blob-duration";
 import fixWebmDuration from "fix-webm-duration";
-import io, { Socket } from "socket.io-client";
-import TokensHelper from "@/helpers/tokensHelper";
-import dynamic from "next/dynamic";
 
 export const useMessageForm = () => {
 	const fileInputRef = useRef<HTMLInputElement>(null);
@@ -26,36 +23,6 @@ export const useMessageForm = () => {
 	const { fetchData: fetchCreateMessage } = useFetch();
 	const { fetchData: fetchUploadFile } = useFetch();
 	const [isRecording, setIsRecording] = useState(false);
-	const [socket, setSocket] = useState<Socket | null>(null);
-
-	const { accessToken } = TokensHelper.getTokens();
-
-	useEffect(() => {
-		const newSocket = io("https://api.roadmapwiki.com", {
-			auth: {
-				accessToken: `Bearer ${accessToken}`,
-			},
-			transports: ["websocket"],
-		});
-
-		newSocket.on("connect", () => {
-			console.log("Connected to the WebSocket server.");
-		});
-
-		newSocket.on("error", err => {
-			console.error("Socket Error:", err);
-		});
-
-		newSocket.on("disconnect", reason => {
-			console.log("Disconnected from WebSocket:", reason);
-		});
-
-		setSocket(newSocket);
-
-		return () => {
-			newSocket.close();
-		};
-	}, []);
 
 	const handleChangeText = (e: ITarget | string) => {
 		const newValue = typeof e !== "string" ? e.target.value.toString() : e;
@@ -82,7 +49,6 @@ export const useMessageForm = () => {
 				messageContent
 			);
 
-			socket?.emit("newMessage", newMessage);
 			dispatch(pushMessage(newMessage));
 			dispatch(updateFormChatContent({ key: "text", value: "" }));
 			setAttachments([]);

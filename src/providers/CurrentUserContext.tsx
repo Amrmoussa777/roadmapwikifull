@@ -4,6 +4,7 @@ import { getUser } from "@/app/auth/services/getUser";
 import TokensHelper from "@/helpers/tokensHelper";
 import useClearReduxOnNavigation from "@/hooks/useClearReduxOnNavigation";
 import { useRefreshToken } from "@/hooks/useRefreshToken";
+import { useSocket } from "@/hooks/useSocket";
 import {
 	ChildrenType,
 	CurrentUserContextType,
@@ -22,6 +23,7 @@ export const CurrentUserContext = createContext<CurrentUserContextType>({
 
 const CurrentUserProvider = ({ children }: ChildrenType) => {
 	useClearReduxOnNavigation();
+	useSocket();
 
 	const { user } = useAppSelector(state => state.userProfile);
 	const [currentUserLoading, setCurrentUserLoading] = useState(true);
