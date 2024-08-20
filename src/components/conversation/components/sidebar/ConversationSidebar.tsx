@@ -48,7 +48,7 @@ const ConversationSidebar = ({ hidden }: { hidden?: boolean }) => {
 				responsive
 					? "absolute w-full h-full left-0 top-0 border-none bg-white"
 					: ""
-			} overflow-y-scroll hidden-scrollbar md:min-w-[300px] lg:min-w-[330px] py-[24px] px-[16px] border border-[#DCDCDC] rounded-[12px]`}
+			} overflow-y-scroll hidden-scrollbar md:min-w-[300px] lg:min-w-[330px] py-[24px] px-[16px] border border-[#DCDCDC] md:rounded-[12px]`}
 		>
 			<SidebarButtons />
 

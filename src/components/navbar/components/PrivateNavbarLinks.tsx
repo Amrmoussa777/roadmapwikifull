@@ -9,7 +9,6 @@ import {
 	MONETIZATION_ICON,
 	ROADMAP_ICON,
 } from "@public/icons/landingPage";
-import { usePathname } from "next/navigation";
 import React from "react";
 
 const navbarLinks: PrivateNavbarLinkTypes[] = [

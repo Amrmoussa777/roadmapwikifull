@@ -13,6 +13,7 @@ const initialState: ConversationSliceState = {
 	formContent: {},
 	searchResultCount: null,
 	totalItems: 0,
+	unseenMessages: [],
 };
 
 const conversationSlice = createSlice({
@@ -46,6 +47,12 @@ const conversationSlice = createSlice({
 				receiver,
 				loading: false,
 			};
+
+			const updatedUnseenMessages = state.unseenMessages.filter(
+				item => item !== activeConversation.id
+			);
+
+			state.unseenMessages = updatedUnseenMessages;
 		},
 		toggleConversationType: state => {
 			state.conversationType =
@@ -67,6 +74,15 @@ const conversationSlice = createSlice({
 		pushMessage: (state, action) => {
 			if (!state.activeConversation.conversation) return;
 			const newMessage = action.payload;
+			const { id: newMessageId } = newMessage;
+
+			// Filters message if exists
+			if (
+				state.activeConversation.conversation.messages.find(
+					msg => msg.id === newMessageId
+				)
+			)
+				return;
 
 			// Push conversation if there are no messages at all
 			const noMessages =
@@ -108,6 +124,13 @@ const conversationSlice = createSlice({
 			const newItems = action.payload;
 			state.totalItems = newItems;
 		},
+		increaseUnseenMessages: (state, action) => {
+			const { conversationId, sender } = action.payload;
+
+			if (sender) return;
+
+			state.unseenMessages.push(conversationId);
+		},
 	},
 });
 
@@ -119,5 +142,6 @@ export const {
 	pushMoreMessages,
 	setConversationList,
 	setConversationTotalItem,
+	increaseUnseenMessages,
 } = conversationSlice.actions;
 export default conversationSlice.reducer;

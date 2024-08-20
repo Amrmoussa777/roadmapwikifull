@@ -7,6 +7,6 @@ export type SummaryMonetizationItemProps = {
 };
 
 export type DropButtonProps = {
-	text: string;
+	active: string;
 	children: ReactNode;
 };

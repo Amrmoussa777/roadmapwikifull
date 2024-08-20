@@ -8,6 +8,7 @@ import { inter, outfit, poppins } from "@/app/fonts";
 import CreateRoadmapLayout from "@/components/builder/layout/CreateRoadmapLayout";
 import TokensProvider from "@/providers/TokensProvider";
 import ConversationLayout from "@/components/conversation/components/ConversationLayout";
+import SocketProvider from "@/providers/SocketProvider";
 
 export const metadata: Metadata = {
 	title: "Roadmap",
@@ -42,10 +43,12 @@ export default async function RootLayout({
 					<Toaster />
 					<ReduxProvider>
 						<CheckCurrentUserProvider>
-							<Navbar />
-							<CreateRoadmapLayout>
-								<ConversationLayout>{children}</ConversationLayout>
-							</CreateRoadmapLayout>
+							<SocketProvider>
+								<CreateRoadmapLayout>
+									<Navbar />
+									<ConversationLayout>{children}</ConversationLayout>
+								</CreateRoadmapLayout>
+							</SocketProvider>
 						</CheckCurrentUserProvider>
 					</ReduxProvider>
 				</TokensProvider>

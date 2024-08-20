@@ -4,9 +4,11 @@ import React from "react";
 import { motion } from "framer-motion";
 import { PrivateNavbarLinkTypes } from "@/components/navbar/types/private-navbar.types";
 import { usePathname } from "next/navigation";
+import { useAppSelector } from "@/redux/store";
 
 const PrivateNavbarLink = ({ href, icon, name }: PrivateNavbarLinkTypes) => {
 	const pathname = usePathname();
+	const { unseenMessages } = useAppSelector(state => state.conversation);
 
 	const isHome = href === "/" && pathname === "/";
 	const isActive = isHome || (pathname.includes(href) && href !== "/");
@@ -33,7 +35,7 @@ const PrivateNavbarLink = ({ href, icon, name }: PrivateNavbarLinkTypes) => {
 
 	return (
 		<motion.li
-			className={`my-[24px] md:py-[7px] lg:py-[10px] px-[10px] lg:px-[14px] overflow-hidden ${
+			className={`relative my-[24px] md:py-[7px] lg:py-[10px] px-[10px] lg:px-[14px] ${
 				isActive
 					? "md:bg-primary-ultramarineBlue/5 xl:bg-transparent rounded-full"
 					: ""
@@ -58,6 +60,14 @@ const PrivateNavbarLink = ({ href, icon, name }: PrivateNavbarLinkTypes) => {
 					>
 						{name}
 					</p>
+
+					{name === "Conversation" &&
+					unseenMessages.length &&
+					unseenMessages.length > 0 ? (
+						<span className="md:absolute xl:relative -top-2 xl:top-0 -right-1 xl:right-0 w-[20px] h-[20px] flex-jc-c text-[11px] text-white bg-red-500 rounded-full px-2 py-1">
+							{unseenMessages.length}
+						</span>
+					) : null}
 
 					<span className="block md:hidden ml-auto rotate-90">
 						{ARROW_ICON}

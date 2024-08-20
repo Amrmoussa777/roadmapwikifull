@@ -23,7 +23,6 @@ export const CurrentUserContext = createContext<CurrentUserContextType>({
 
 const CurrentUserProvider = ({ children }: ChildrenType) => {
 	useClearReduxOnNavigation();
-	useSocket();
 
 	const { user } = useAppSelector(state => state.userProfile);
 	const [currentUserLoading, setCurrentUserLoading] = useState(true);
@@ -65,7 +64,7 @@ const CurrentUserProvider = ({ children }: ChildrenType) => {
 		};
 
 		fetchCurrentUser();
-	}, [user]);
+	}, []);
 
 	useEffect(() => {
 		if (pathname.includes("auth") && currentUser) {
@@ -91,7 +90,7 @@ const CurrentUserProvider = ({ children }: ChildrenType) => {
 				currentUserLoading,
 			}}
 		>
-			{children}
+			{!currentUserLoading ? children : null}
 		</CurrentUserContext.Provider>
 	);
 };

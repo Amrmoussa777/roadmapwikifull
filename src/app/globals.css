@@ -179,6 +179,10 @@
 	.create-new-roadmap-input {
 		@apply w-full h-[55px] outline-none placeholder:text-[18px] md:placeholder:text-[24px] text-[18px] md:text-[24px] bg-white rounded-[12px] px-4 border border-[#E0E0E0] focus:border-primary-ultramarineBlue hover:border-primary-ultramarineBlue/60 transition duration-200 placeholder:font-normal placeholder:text-[#92929D] text-[#202020];
 	}
+
+	.monetization-statistics-filters-drop-button {
+		@apply w-full !h-[37px] !min-h-[37px] flex-jb-c roadmap-info-select m-0 border-none text-[12px] md:text-[14px] text-[#696969] hover:bg-primary-ultramarineBlue/10 rounded-none gap-1;
+	}
 }
 
 /* Editor */

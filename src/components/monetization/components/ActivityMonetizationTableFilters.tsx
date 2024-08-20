@@ -5,10 +5,10 @@ const ActivityMonetizationTableFilters = () => {
 	return (
 		<div className="flex-grow w-full md:w-fit">
 			<div className="flex gap-[15px]">
-				<ActivityMonetizationDropButton text="All roadmaps">
+				<ActivityMonetizationDropButton active="All roadmaps">
 					<h2>Roadmap</h2>
 				</ActivityMonetizationDropButton>
-				<ActivityMonetizationDropButton text="Last month">
+				<ActivityMonetizationDropButton active="Last month">
 					<h2>August</h2>
 				</ActivityMonetizationDropButton>
 			</div>

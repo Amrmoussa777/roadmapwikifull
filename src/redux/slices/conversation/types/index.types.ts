@@ -12,6 +12,7 @@ export type ConversationSliceState = {
 	formContent: ConversationFormContent;
 	searchResultCount: number | null;
 	totalItems: number;
+	unseenMessages: string[];
 };
 
 export type ConversationFormContent =

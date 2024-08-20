@@ -15,7 +15,7 @@ const ActivityMonetizationTable = () => {
 						<th className="md:min-w-[120px] min-w-[150px]">Status</th>
 					</tr>
 				</thead>
-				<tbody className="[&>tr>td]:px-[24px] [&>tr>td]:py-[14px] font-medium text-[#606060]">
+				<tbody className="[&>tr>td]:px-[24px] [&>tr>td]:h-[64px] font-medium text-[#606060]">
 					{Array.from(Array(10)).map((_, i) => (
 						<ActivityMonetizationTableItem key={i} />
 					))}
