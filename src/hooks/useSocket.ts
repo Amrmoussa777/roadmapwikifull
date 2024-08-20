@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState, useCallback } from "react";
 import { io, Socket } from "socket.io-client";
 import { useDispatch } from "react-redux";
 import { NotificationType } from "@/enum/notificationType";
@@ -9,6 +9,7 @@ import {
 } from "@/redux/slices/conversation/conversationSlice";
 import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import { useAppSelector } from "@/redux/store";
+import { useParams } from "next/navigation";
 
 export const useSocket = () => {
 	const [socket, setSocket] = useState<Socket | null>(null);
@@ -18,6 +19,7 @@ export const useSocket = () => {
 	);
 	const dispatch = useDispatch();
 	const initialized = useRef(false);
+	const { conversationId: paramConversationId } = useParams();
 
 	useEffect(() => {
 		if (currentUser) {
@@ -26,7 +28,7 @@ export const useSocket = () => {
 	}, [currentUser]);
 
 	useEffect(() => {
-		if (!initialized) return;
+		if (!initialized.current) return;
 
 		const { accessToken } = TokensHelper.getTokens();
 
@@ -41,19 +43,17 @@ export const useSocket = () => {
 			console.log("Connected to the WebSocket server.");
 		});
 
+		// Define handleEvent inside useEffect to access latest paramConversationId
 		const handleEvent = (event: NotificationType, data: any) => {
 			switch (event) {
 				case NotificationType.NEW_MESSAGE:
-					const userId = data.message.userId;
+					const { userId, conversationId } = data.message;
 
 					const sender = userId === currentUser?.id;
 
 					dispatch(pushMessage(data.message));
-					console.log({ data });
 
-					console.log({ conversation });
-
-					if (data.message.conversationId === conversation?.id) return;
+					if (conversationId === paramConversationId) break;
 
 					dispatch(
 						increaseUnseenMessages({
@@ -84,7 +84,7 @@ export const useSocket = () => {
 		return () => {
 			newSocket.close();
 		};
-	}, [initialized]);
+	}, [initialized, paramConversationId, currentUser, dispatch]);
 
 	return socket;
 };
