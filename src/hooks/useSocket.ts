@@ -8,15 +8,11 @@ import {
 	pushMessage,
 } from "@/redux/slices/conversation/conversationSlice";
 import { CurrentUserContext } from "@/providers/CurrentUserContext";
-import { useAppSelector } from "@/redux/store";
 import { useParams } from "next/navigation";
 
 export const useSocket = () => {
 	const [socket, setSocket] = useState<Socket | null>(null);
 	const { currentUser } = useContext(CurrentUserContext);
-	const { conversation } = useAppSelector(
-		state => state.conversation.activeConversation
-	);
 	const dispatch = useDispatch();
 	const initialized = useRef(false);
 	const { conversationId: paramConversationId } = useParams();
