@@ -10,6 +10,7 @@ import LoadingRoadmapHeader from "@/components/roadmap-preview/components/loadin
 import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import { useRouter } from "next/navigation";
 import { useFetch } from "@/hooks/useFetch";
+import roadmapPlaceholderCover from "@public/roadmap.svg";
 
 const RoadmapHeader = () => {
 	const { roadmap, isLoading } = useAppSelector(state => state.roadmapPreview);
@@ -17,6 +18,7 @@ const RoadmapHeader = () => {
 		id,
 		title,
 		price,
+		cover,
 		isSubscribed: initialIsSubscribed,
 		userId,
 	} = roadmap || {};
@@ -44,12 +46,14 @@ const RoadmapHeader = () => {
 	return (
 		<div className="h-[150px]">
 			<Image
-				src={RoadmapCover}
+				src={cover || roadmapPlaceholderCover}
 				width={400}
 				height={200}
 				quality={100}
 				alt="roadmap-cover"
-				className="w-full h-2/4 object-cover rounded-t-md"
+				className={`w-full h-2/4 object-cover rounded-t-md ${
+					!cover ? "opacity-5" : ""
+				}`}
 			/>
 
 			<div className="w-full h-2/4 bg-white rounded-b-md flex-jb-c px-2 md:px-4 lg:px-6">

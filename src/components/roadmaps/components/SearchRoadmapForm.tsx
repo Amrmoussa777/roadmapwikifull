@@ -86,6 +86,7 @@ const SearchRoadmapForm = () => {
 					}`}
 					value={value}
 					onChange={handleChangeValue}
+					autoFocus
 					className="w-full h-[50px] sm:h-[70px] outline-none text-[16px] font-poppins placeholder:font-poppins placeholder:text-[16px]"
 				/>
 			</div>

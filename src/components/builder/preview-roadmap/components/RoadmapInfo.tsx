@@ -9,6 +9,7 @@ import { updateRoadmapData } from "@/redux/slices/create-roadmap/createRoadmapSl
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import React, { useEffect } from "react";
 import dynamic from "next/dynamic";
+import RoadmapCover from "@/components/builder/preview-roadmap/components/RoadmapCover";
 const RoadmapTags = dynamic(
 	() => import("@/components/builder/preview-roadmap/components/RoadmapTags"),
 	{ ssr: false }
@@ -53,6 +54,11 @@ const RoadmapInfo = () => {
 			</h2>
 
 			<div className="grid grid-cols-4 gap-1 sm:gap-4 mt-6">
+				<RoadmapCover
+					roadmapId={roadmap?.id}
+					defaultCover={roadmap?.cover || ""}
+				/>
+
 				<FormInput
 					type="text"
 					name="roadmapName"

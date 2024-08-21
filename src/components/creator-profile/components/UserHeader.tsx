@@ -16,6 +16,8 @@ import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import { EDIT_ICON } from "@public/icons/userProfile";
 import useToggle from "@/hooks/useToggle";
 import ChangeCover from "@/components/creator-profile/components/ChangeCover";
+import { updateUserData } from "@/redux/slices/user-profile/userProfileSlice";
+import { useFetch } from "@/hooks/useFetch";
 
 const UserHeader = () => {
 	const dispatch = useAppDispatch();
@@ -26,12 +28,23 @@ const UserHeader = () => {
 	const isUserProfile = currentUser?.id === user?.id;
 	const { currentState: uploadModal, toggle: toggleUploadModal } =
 		useToggle(false);
+	const { fetchData: fetchUserData } = useFetch();
 
 	useEffect(() => {
 		if (!user && !isLoading) push("/");
 
 		dispatch(fetchUserByUsername(username));
 	}, [username]);
+
+	const handleSaveCover = async (key: string) => {
+		const { data } = await fetchUserData("PATCH", `users/${currentUser?.id}`, {
+			["cover"]: key,
+		});
+
+		const newData = data["cover"];
+
+		dispatch(updateUserData({ ["cover"]: newData }));
+	};
 
 	if (isLoading) return <UserHeaderLoader />;
 
@@ -90,7 +103,7 @@ const UserHeader = () => {
 					uploadModal={uploadModal}
 					toggleUploadModal={toggleUploadModal}
 					ratio="1400 X 160px"
-					updateKey="cover"
+					handleSaveCover={handleSaveCover}
 					title="Upload cover"
 					imageHeight={148}
 				/>

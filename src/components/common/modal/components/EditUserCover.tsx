@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 import { ModalProps } from "@/components/common/modal/types/index.types";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-
 import { useOnClickOutside } from "@/hooks/useOnClickOutside";
 import { CROSS_ICON } from "@public/icons/roadmapSteps";
 

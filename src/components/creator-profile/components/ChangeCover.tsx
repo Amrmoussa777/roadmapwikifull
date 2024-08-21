@@ -10,14 +10,14 @@ const EditUserCover = dynamic(
 const ChangeCover = ({
 	uploadModal,
 	toggleUploadModal,
-	updateKey,
+	handleSaveCover,
 	ratio,
 	title,
 	imageHeight,
 }: {
 	uploadModal: boolean;
 	toggleUploadModal: () => void;
-	updateKey: string;
+	handleSaveCover: (key: string) => void;
 	ratio: string;
 	title: string;
 	imageHeight?: number;
@@ -36,7 +36,7 @@ const ChangeCover = ({
 					selectedFile={selectedFile}
 					setSelectedFile={setSelectedFile}
 					toggleUploadModal={toggleUploadModal}
-					updateKey={updateKey}
+					handleSaveCover={handleSaveCover}
 					ratio={ratio}
 					imageHeight={imageHeight}
 				/>

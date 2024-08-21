@@ -1,11 +1,13 @@
 import React, { useContext, useState } from "react";
 import Avatar from "@/components/common/avatar/components/Avatar";
-import { useAppSelector } from "@/redux/store";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import { EDIT_ICON } from "@public/icons/userProfile";
 import { AnimatePresence, motion } from "framer-motion";
 import ChangeUserImage from "@/components/creator-profile/components/ChangeCover";
 import useToggle from "@/hooks/useToggle";
+import { useFetch } from "@/hooks/useFetch";
+import { updateUserData } from "@/redux/slices/user-profile/userProfileSlice";
 
 const UserImage = () => {
 	const { user } = useAppSelector(state => state.userProfile);
@@ -15,6 +17,18 @@ const UserImage = () => {
 		useToggle(false);
 	const { currentUser } = useContext(CurrentUserContext);
 	const isUserProfile = currentUser?.id === user?.id;
+	const { fetchData: fetchUserData } = useFetch();
+	const dispatch = useAppDispatch();
+
+	const handleSaveCover = async (key: string) => {
+		const { data } = await fetchUserData("PATCH", `users/${currentUser?.id}`, {
+			["image"]: key,
+		});
+
+		const newData = data["image"];
+
+		dispatch(updateUserData({ ["image"]: newData }));
+	};
 
 	return (
 		<>
@@ -53,9 +67,9 @@ const UserImage = () => {
 				uploadModal={uploadModal}
 				toggleUploadModal={toggleUploadModal}
 				ratio="400 X 400px"
-				updateKey="image"
 				title="Upload image"
 				imageHeight={400}
+				handleSaveCover={handleSaveCover}
 			/>
 		</>
 	);

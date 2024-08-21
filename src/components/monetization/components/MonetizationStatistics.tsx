@@ -18,6 +18,7 @@ import {
 	LineElement,
 } from "chart.js";
 import MonetizationStatisticsFilters from "@/components/monetization/components/MonetizationStatisticsFilters";
+import MonetizationStatisticsPlaceholder from "@/components/monetization/components/MonetizationStatisticsPlaceholder";
 
 ChartJS.register(
 	CategoryScale,
@@ -76,8 +77,8 @@ const MonetizationStatistics = () => {
 			</div>
 
 			<div className="w-full h-full flex-jc-c flex-col gap-[16px]">
-				{/* <MonetizationStatisticsPlaceholder /> */}
-				<Line data={data} options={options} />
+				<MonetizationStatisticsPlaceholder />
+				{/* <Line data={data} options={options} /> */}
 			</div>
 		</div>
 	);

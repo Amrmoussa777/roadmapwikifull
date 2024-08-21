@@ -1,8 +1,5 @@
-import {
-	ARROW_PLAN_ICON,
-	CHECK_PLAN,
-	EURO_CURRENCY_ICON,
-} from "@public/icons/plans";
+import SetRoadmapPrice from "@/components/builder/plans/SetRoadmapPrice";
+import { CHECK_PLAN } from "@public/icons/plans";
 import React from "react";
 
 const CustomizeRoadmapPlan = () => {
@@ -14,20 +11,7 @@ const CustomizeRoadmapPlan = () => {
 						Standard Plan
 					</h3>
 
-					<div className="mt-6 mb-4 sm:mb-16 flex items-center gap-2">
-						<span className="text-[#4D4D4D] inline-block">
-							{EURO_CURRENCY_ICON}
-						</span>
-						<input
-							type="number"
-							className="max-w-[40px] text-[#4D4D4D] text-[18px] font-inter font-bold outline-none border-b-2 border-[#A6A6A6] hidden-input-number-arrows"
-						/>
-						<span className="text-[#4D4D4D] font-inter">/user</span>
-					</div>
-
-					<button className="w-[120px] flex-jc-c gap-2 font-semibold mt-auto bg-primary-ultramarineBlue text-white p-[10px] rounded-[8px]">
-						Set price {ARROW_PLAN_ICON}
-					</button>
+					<SetRoadmapPrice />
 				</div>
 
 				<ul className="flex flex-col gap-[16px] mt-8 sm:mt-0 text-[#AEAEAE] font-normal font-sans text-[14px]">

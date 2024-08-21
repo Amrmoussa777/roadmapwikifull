@@ -4,7 +4,6 @@ import { getUser } from "@/app/auth/services/getUser";
 import TokensHelper from "@/helpers/tokensHelper";
 import useClearReduxOnNavigation from "@/hooks/useClearReduxOnNavigation";
 import { useRefreshToken } from "@/hooks/useRefreshToken";
-import { useSocket } from "@/hooks/useSocket";
 import {
 	ChildrenType,
 	CurrentUserContextType,

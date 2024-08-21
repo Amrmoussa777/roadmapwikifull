@@ -9,6 +9,7 @@ const ConversationSidebar = dynamic(
 		import("@/components/conversation/components/sidebar/ConversationSidebar"),
 	{ ssr: false }
 );
+
 const ConversationPage = () => {
 	const { responsive } = useSizeScreen(768);
 

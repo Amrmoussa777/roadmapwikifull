@@ -5,7 +5,7 @@ export type FileUploaderProps = {
 	selectedFile: File | null;
 	setSelectedFile: (file: File | null) => void;
 	toggleUploadModal: () => void;
-	updateKey: string;
+	handleSaveCover: (key: string) => void;
 	ratio: string;
 	imageHeight?: number;
 };

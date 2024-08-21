@@ -1,6 +1,7 @@
 "use client";
 
 import Avatar from "@/components/common/avatar/components/Avatar";
+import { useUnseenMessage } from "@/components/conversation/hooks/useUnseenMessage";
 import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import { ConversationTypes } from "@/redux/slices/conversation/types/index.types";
 import { useParams, useRouter } from "next/navigation";
@@ -17,6 +18,8 @@ const SidebarConversationItem = ({
 	const { currentUser } = useContext(CurrentUserContext);
 	const receiverUser = users.find(user => user.id !== currentUser?.id);
 
+	const isUnseenMessage = useUnseenMessage(id);
+
 	const handleOpenConversation = () => {
 		push(`/conversation/messages/${id}`);
 	};
@@ -25,9 +28,11 @@ const SidebarConversationItem = ({
 		<div>
 			<button
 				onClick={handleOpenConversation}
-				className={`w-full h-full flex items-center gap-[8px] py-[8px] px-[20px] font-inter font-semibold hover:bg-primary-ultramarineBlue/10 transition duration-200 ${
-					paramId === id ? "bg-primary-ultramarineBlue/10" : ""
-				}`}
+				className={`w-full h-full flex items-center gap-[8px] py-[8px] px-[20px] font-inter font-semibold border border-transparent hover:bg-primary-ultramarineBlue/10 transition duration-200 ${
+					receiverUser && isUnseenMessage
+						? "!border-primary-ultramarineBlue/20 bg-primary-ultramarineBlue/15"
+						: ""
+				} ${paramId === id ? "bg-primary-ultramarineBlue/10" : ""}`}
 			>
 				<Avatar
 					name={receiverUser?.fullName}
