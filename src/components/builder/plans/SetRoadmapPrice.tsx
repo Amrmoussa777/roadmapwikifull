@@ -28,6 +28,7 @@ const SetRoadmapPrice = () => {
 		const newRoadmapData = {
 			amount: Number(price),
 			currency: "USD",
+			perks: ["feature 1", "fetaure 2"],
 		};
 
 		const { data } = await fetchData(
@@ -65,7 +66,7 @@ const SetRoadmapPrice = () => {
 				disabled={`${oldPrice?.amount}` === price}
 				className="w-[120px] flex-jc-c gap-2 font-semibold mt-auto bg-primary-ultramarineBlue text-white p-[10px] rounded-[8px]"
 			>
-				Set price {ARROW_PLAN_ICON}
+				Set Plan {ARROW_PLAN_ICON}
 			</button>
 		</div>
 	);

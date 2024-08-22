@@ -12,13 +12,7 @@ export const useNotificationSound = (url: string) => {
 		const audio = messageSound.current;
 
 		if (audio) {
-			try {
-				// Await the promise returned by play()
-				await audio.play();
-				console.log("Audio played successfully");
-			} catch (error) {
-				console.error("Failed to play audio:", error);
-			}
+			await audio.play();
 		}
 	};
 

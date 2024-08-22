@@ -3,7 +3,7 @@ import React from "react";
 
 const CurrentRoadmapPlan = () => {
 	return (
-		<div className="w-full lg:max-w-[610px] flex flex-col sm:flex-row justify-between mt-8 rounded-[16px] bg-white p-6 lg:p-[32px]">
+		<div className="w-full flex flex-col sm:flex-row justify-between mt-8 rounded-[16px] bg-white p-6 lg:p-[32px]">
 			<div className="flex flex-col">
 				<h3 className="text-[30px] font-semibold text-black">Free Plan</h3>
 
