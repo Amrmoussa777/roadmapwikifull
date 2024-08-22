@@ -3,47 +3,65 @@
 import FormInput from "@/components/common/input/FormInput";
 import useInput from "@/components/common/input/hooks/useInput";
 import { useToast } from "@/hooks/useToast";
+import { updateRoadmapData } from "@/redux/slices/create-roadmap/createRoadmapSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { CHECK_PLAN } from "@public/icons/plans";
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent } from "react";
 
 const CustomizeRoadmapPlanPerks = () => {
-	const [perks, setPerks] = useState([
-		"Lorem Ipsum is simply dummy text.",
-		"User can view full roadmap.",
-		"Lorem Ipsum is simply dummy text Example.",
-		"User can contact with admin.",
-	]);
+	const { roadmap } = useAppSelector(state => state.createRoadmap);
+	const { price } = roadmap || {};
+	const { perks } = price || {};
 
 	const {
-		value: perksValue,
-		changeValue: changeNewPerksValue,
-		reset: resetNewPerksValue,
+		value: perkValue,
+		changeValue: changeNewPerkValue,
+		reset: resetNewPerkValue,
 	} = useInput("");
 	const { errorToast } = useToast();
+	const dispatch = useAppDispatch();
 
 	const handleDeletePerks = (perk: string) => {
-		const filteredPerk = perks.filter(item => item !== perk);
+		const filteredPerk = perks?.filter(item => item !== perk);
 
-		setPerks(filteredPerk);
+		dispatch(
+			updateRoadmapData({
+				price: {
+					...price,
+					perks: filteredPerk,
+				},
+			})
+		);
 	};
 
 	const handleAddPerks = (e: FormEvent) => {
 		e.preventDefault();
 
-		const duplicated = perks.find(item => item === perksValue);
-
-		console.log({ duplicated });
+		const duplicated = perks?.find(item => item === perkValue);
 
 		if (duplicated) return errorToast("This feature is already exists");
 
-		setPerks(prev => [...prev, perksValue]);
-		resetNewPerksValue();
+		const newPerks = [...(perks || []), perkValue];
+
+		const newPrice = {
+			amount: Number(price?.amount) || 0,
+			currency: price?.currency,
+			perks: newPerks || [],
+		};
+
+		dispatch(
+			updateRoadmapData({
+				price: newPrice,
+			})
+		);
+
+		resetNewPerkValue();
 	};
 
 	return (
-		<div>
+		<div className="mb-10">
 			<ul className="flex flex-col gap-[16px] mt-8 sm:mt-0 text-[#AEAEAE] font-normal font-sans text-[14px]">
-				{perks.map(item => (
+				{perks?.map(item => (
 					<li key={item} className="flex gap-2 group">
 						<button
 							onClick={() => handleDeletePerks(item)}
@@ -65,14 +83,12 @@ const CustomizeRoadmapPlanPerks = () => {
 					label="Feature name"
 					placeholder="Feature"
 					required={true}
-					value={perksValue}
-					handleChangeValue={changeNewPerksValue}
-					onBlur={resetNewPerksValue}
+					value={perkValue}
+					handleChangeValue={changeNewPerkValue}
 				/>
 
 				<button
-					onClick={handleAddPerks}
-					disabled={!perksValue.length}
+					disabled={!perkValue.length}
 					type="submit"
 					className="w-[100px] my-2 flex-jc-c gap-2 font-semibold bg-[#AEAEAE] text-white p-[6px] rounded-[8px]"
 				>

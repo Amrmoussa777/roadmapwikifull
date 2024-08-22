@@ -1,61 +1,72 @@
 "use client";
 
+import CustomizeRoadmapCurrency from "@/components/builder/plans/CustomizeRoadmapCurrency";
+import ButtonDotsLoader from "@/components/common/button/ButtonDotsLoader";
 import useInput from "@/components/common/input/hooks/useInput";
+import { ITarget } from "@/hooks/types/index.types";
 import { useFetch } from "@/hooks/useFetch";
 import { updateRoadmapData } from "@/redux/slices/create-roadmap/createRoadmapSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
-import { ARROW_PLAN_ICON, EURO_CURRENCY_ICON } from "@public/icons/plans";
+import { ARROW_PLAN_ICON } from "@public/icons/plans";
 import { useParams } from "next/navigation";
 import React, { useEffect } from "react";
 
 const SetRoadmapPrice = () => {
 	const { roadmapId } = useParams();
-	const { fetchData } = useFetch();
+	const { fetchData, loading } = useFetch();
 	const dispatch = useAppDispatch();
 	const { roadmap } = useAppSelector(state => state.createRoadmap);
-	const { price: oldPrice } = roadmap || {};
-	const { value: price, changeValue: changePrice } = useInput(
-		`${oldPrice?.amount}` || "0"
+	const { price } = roadmap || {};
+	const { value: priceValue, changeValue: changePriceValue } = useInput(
+		price?.amount ? `${price?.amount}` : "0"
 	);
 
 	useEffect(() => {
-		if (oldPrice) {
-			changePrice(`${oldPrice.amount}`);
+		if (price) {
+			changePriceValue(`${price.amount}`);
 		}
-	}, [oldPrice]);
+	}, [price]);
+
+	const handleChangePriceValue = (e: ITarget | string) => {
+		changePriceValue(e);
+	};
 
 	const handleUpdateRoadmapData = async () => {
 		const newRoadmapData = {
-			amount: Number(price),
-			currency: "USD",
-			perks: ["feature 1", "fetaure 2"],
+			amount: Number(priceValue),
+			currency: price?.currency,
+			perks: price?.perks,
 		};
 
-		const { data } = await fetchData(
+		const { data: newPrice } = await fetchData(
 			"POST",
 			`roadmap/${roadmapId}/price`,
 			newRoadmapData
 		);
 
-		const { amount, currency } = data;
-
 		dispatch(
 			updateRoadmapData({
-				price: { amount, currency },
+				price: newPrice,
 			})
 		);
 	};
 
 	return (
-		<div>
+		<>
 			<div className="mt-6 mb-4 sm:mb-16 flex items-center gap-2">
-				<span className="text-[#4D4D4D] inline-block">
-					{EURO_CURRENCY_ICON}
-				</span>
+				<CustomizeRoadmapCurrency />
+
 				<input
 					type="number"
-					value={price}
-					onChange={changePrice}
+					value={priceValue}
+					onChange={handleChangePriceValue}
+					onBlur={() =>
+						dispatch(
+							updateRoadmapData({
+								price: { ...price, amount: priceValue },
+							})
+						)
+					}
 					className="w-[40px] text-[#4D4D4D] text-[18px] font-inter font-bold outline-none border-b-2 border-[#A6A6A6] hidden-input-number-arrows"
 				/>
 				<span className="text-[#4D4D4D] font-inter">/user</span>
@@ -63,12 +74,13 @@ const SetRoadmapPrice = () => {
 
 			<button
 				onClick={handleUpdateRoadmapData}
-				disabled={`${oldPrice?.amount}` === price}
-				className="w-[120px] flex-jc-c gap-2 font-semibold mt-auto bg-primary-ultramarineBlue text-white p-[10px] rounded-[8px]"
+				disabled={loading}
+				type="button"
+				className="relative overflow-hidden w-[120px] h-[44px] flex-jc-c mt-auto gap-2 font-semibold bg-primary-ultramarineBlue text-white p-[10px] rounded-[8px]"
 			>
-				Set Plan {ARROW_PLAN_ICON}
+				{loading ? <ButtonDotsLoader /> : <>Set Plan {ARROW_PLAN_ICON}</>}
 			</button>
-		</div>
+		</>
 	);
 };
 

@@ -74,6 +74,7 @@ export interface RoadmapType {
 	price: {
 		currency: string;
 		amount: number;
+		perks: string[];
 	} | null;
 	user: UserType;
 	steps: RoadmapStepType[];

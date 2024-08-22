@@ -33,8 +33,8 @@ export const useFetch = <B = any>(loadingDefault: boolean = false) => {
 
 			const message = error?.response?.data?.message || "An error occurred";
 
-			setError(message);
-			errorToast(message);
+			setError(message.join(" - "));
+			errorToast(message.join(" - "));
 			throw { data: null, error: message };
 		}
 	};
