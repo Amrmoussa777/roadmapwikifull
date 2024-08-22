@@ -60,23 +60,25 @@ const CustomizeRoadmapPlanPerks = () => {
 
 	return (
 		<div className="mb-10">
-			<ul className="flex flex-col gap-[16px] mt-8 sm:mt-0 text-[#AEAEAE] font-normal font-sans text-[14px]">
-				{perks?.map(item => (
-					<li key={item} className="flex gap-2 group">
-						<button
-							onClick={() => handleDeletePerks(item)}
-							className="flex-ic-c gap-2"
-						>
-							<span className="group-hover:[&>svg>path]:stroke-white transition duration-200">
-								{CHECK_PLAN}
-							</span>{" "}
-							<p className="group-hover:line-through">{item}</p>
-						</button>
-					</li>
-				))}
-			</ul>
+			{perks?.length ? (
+				<ul className="flex flex-col gap-[16px] sm:mt-0 text-[#AEAEAE] font-normal font-sans text-[14px] mb-4">
+					{perks?.map(item => (
+						<li key={item} className="flex gap-2 group">
+							<button
+								onClick={() => handleDeletePerks(item)}
+								className="flex-ic-c gap-2"
+							>
+								<span className="group-hover:[&>svg>path]:stroke-white transition duration-200">
+									{CHECK_PLAN}
+								</span>{" "}
+								<p className="group-hover:line-through">{item}</p>
+							</button>
+						</li>
+					))}
+				</ul>
+			) : null}
 
-			<form onSubmit={handleAddPerks} className="w-full mt-4">
+			<form onSubmit={handleAddPerks} className="w-full">
 				<FormInput
 					type="text"
 					name="featureName"

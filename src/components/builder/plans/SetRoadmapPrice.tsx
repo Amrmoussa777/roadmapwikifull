@@ -10,6 +10,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { ARROW_PLAN_ICON } from "@public/icons/plans";
 import { useParams } from "next/navigation";
 import React, { useEffect } from "react";
+import CustomizeRoadmapPlanFeatures from "@/components/builder/plans/CustomizeRoadmapPlanFeatures";
 
 const SetRoadmapPrice = () => {
 	const { roadmapId } = useParams();
@@ -53,23 +54,27 @@ const SetRoadmapPrice = () => {
 
 	return (
 		<>
-			<div className="mt-6 mb-4 sm:mb-16 flex items-center gap-2">
-				<CustomizeRoadmapCurrency />
+			<div className="flex items-start mt-4 justify-between">
+				<div className="flex items-center gap-2">
+					<CustomizeRoadmapCurrency />
 
-				<input
-					type="number"
-					value={priceValue}
-					onChange={handleChangePriceValue}
-					onBlur={() =>
-						dispatch(
-							updateRoadmapData({
-								price: { ...price, amount: priceValue },
-							})
-						)
-					}
-					className="w-[40px] text-[#4D4D4D] text-[18px] font-inter font-bold outline-none border-b-2 border-[#A6A6A6] hidden-input-number-arrows"
-				/>
-				<span className="text-[#4D4D4D] font-inter">/user</span>
+					<input
+						type="number"
+						value={priceValue}
+						onChange={handleChangePriceValue}
+						onBlur={() =>
+							dispatch(
+								updateRoadmapData({
+									price: { ...price, amount: priceValue },
+								})
+							)
+						}
+						className="w-[40px] text-[#4D4D4D] text-[18px] font-inter font-bold outline-none border-b-2 border-[#A6A6A6] hidden-input-number-arrows"
+					/>
+					<span className="text-[#4D4D4D] font-inter">/user</span>
+				</div>
+
+				<CustomizeRoadmapPlanFeatures />
 			</div>
 
 			<button
