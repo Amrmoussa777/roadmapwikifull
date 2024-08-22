@@ -9,8 +9,8 @@ import {
 } from "@/redux/slices/conversation/conversationSlice";
 import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import { useParams } from "next/navigation";
-import { useNotificationSound } from "@/hooks/useNofificationSound";
 import { useToast } from "@/hooks/useToast";
+import useNotificationSound from "@/hooks/useNofificationSound";
 
 export const useSocket = () => {
 	const [socket, setSocket] = useState<Socket | null>(null);
@@ -19,7 +19,8 @@ export const useSocket = () => {
 	const initialized = useRef(false);
 	const { conversationId: paramConversationId } = useParams();
 	const conversationIdRef = useRef(paramConversationId);
-	const { play } = useNotificationSound("/new-message-sound.wav");
+	const playNotification = useNotificationSound();
+
 	const { successToast } = useToast();
 
 	useEffect(() => {
@@ -48,16 +49,16 @@ export const useSocket = () => {
 		const handleEvent = (event: NotificationType, data: any) => {
 			switch (event) {
 				case NotificationType.NEW_MESSAGE:
-					const { userId, conversationId } = data.message;
-
+					const { userId, user, conversationId } = data.message;
+					const { fullName } = user;
 					const sender = userId === currentUser?.id;
 
 					dispatch(pushMessage(data.message));
 
 					if (conversationId === conversationIdRef.current) break;
 
-					play();
-					successToast("New message");
+					playNotification("/new-message-sound.wav");
+					successToast(`New message from ${fullName}`);
 					dispatch(
 						increaseUnseenMessages({
 							conversationId: data.conversationId,

@@ -1,20 +1,12 @@
-import { useEffect, useRef } from "react";
+import { useCallback } from "react";
 
-export const useNotificationSound = (url: string) => {
-	const messageSound = useRef<HTMLAudioElement | null>(null);
+const useNotificationSound = () => {
+	const playNotification = useCallback((url: string) => {
+		const audio = new Audio(url);
+		audio.play();
+	}, []);
 
-	useEffect(() => {
-		// Initialize the audio element with the new URL
-		messageSound.current = new Audio(url);
-	}, [url]);
-
-	const play = async () => {
-		const audio = messageSound.current;
-
-		if (audio) {
-			await audio.play();
-		}
-	};
-
-	return { play };
+	return playNotification;
 };
+
+export default useNotificationSound;

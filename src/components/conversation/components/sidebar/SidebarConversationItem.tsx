@@ -1,6 +1,7 @@
 "use client";
 
 import Avatar from "@/components/common/avatar/components/Avatar";
+import { previewSentAttachmentMessage } from "@/components/conversation/helpers/previewSentAttachmentMessage";
 import { useUnseenMessage } from "@/components/conversation/hooks/useUnseenMessage";
 import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import { ConversationTypes } from "@/redux/slices/conversation/types/index.types";
@@ -17,6 +18,7 @@ const SidebarConversationItem = ({
 	const { id, users, messages } = conversation;
 	const { currentUser } = useContext(CurrentUserContext);
 	const receiverUser = users.find(user => user.id !== currentUser?.id);
+	const { attachments, content } = messages[0];
 
 	const isUnseenMessage = useUnseenMessage(id);
 
@@ -44,7 +46,11 @@ const SidebarConversationItem = ({
 					<h3 className="line-clamp-1">{receiverUser?.fullName}</h3>
 
 					<p className="line-clamp-1 text-[12px] text-[#79828B] font-medium">
-						{messages.length ? messages[0].content : ""}
+						{messages.length
+							? !content && attachments.length
+								? previewSentAttachmentMessage(attachments)
+								: content
+							: ""}
 					</p>
 				</div>
 			</button>
