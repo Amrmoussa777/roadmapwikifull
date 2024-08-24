@@ -17,7 +17,7 @@ import React, { useContext, useEffect, useState } from "react";
 
 const CreateRoadmapLayout = ({ children }: ChildrenType) => {
 	const pathname = usePathname();
-	const lastPathname = PathnameHelper.getLastPathname(pathname);
+	const lastPathname = PathnameHelper.getLastPathname(pathname ?? "");
 	const createNewRoadmapPaths = ["builder"];
 	const { error, roadmap } = useAppSelector(state => state.createRoadmap);
 	const { currentState: sidebarMobile, toggle: toggleSidebarMobile } =
