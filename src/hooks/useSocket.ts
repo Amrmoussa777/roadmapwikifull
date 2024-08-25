@@ -57,7 +57,6 @@ export const useSocket = () => {
 
 					if (conversationId === conversationIdRef.current) break;
 
-					playNotification("/new-message-sound.wav");
 					successToast(`New message from ${fullName}`);
 					dispatch(
 						increaseUnseenMessages({
@@ -65,6 +64,7 @@ export const useSocket = () => {
 							sender,
 						})
 					);
+					playNotification("/new-message-sound.wav");
 					break;
 				default:
 					console.warn(`Unhandled event type: ${event}`);

@@ -1,10 +1,8 @@
-import { useCallback } from "react";
-
 const useNotificationSound = () => {
-	const playNotification = useCallback((url: string) => {
+	const playNotification = (url: string) => {
 		const audio = new Audio(url);
 		audio.play();
-	}, []);
+	};
 
 	return playNotification;
 };
