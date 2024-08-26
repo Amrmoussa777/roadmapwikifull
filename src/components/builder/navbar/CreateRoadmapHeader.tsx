@@ -103,10 +103,10 @@ const CreateRoadmapHeader = ({
 							onClick={handleClickPublishRoadmap}
 							className="relative overflow-hidden w-[35px] sm:w-[100px] md:w-[132px] h-[35px] md:h-[40px] flex-jc-c gap-2 rounded-full text-white [&>svg]:w-[20px] [&>svg]:fill-white bg-primary-ultramarineBlue hover:-translate-y-1 transform transition duration-200 hover:shadow-md"
 						>
-							{status === "PUBLISHED" ? SHARE_ICON : SAVE_ICON}{" "}
+							{loading ? null : status === "PUBLISHED" ? SHARE_ICON : SAVE_ICON}{" "}
 							<span className="hidden sm:block">
 								{loading ? (
-									<ButtonDotsLoader />
+									<ButtonDotsLoader customStyles="[&>div]:bg-white" />
 								) : status === "DRAFT" ? (
 									"Publish"
 								) : (

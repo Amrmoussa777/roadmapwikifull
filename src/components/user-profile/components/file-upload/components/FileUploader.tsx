@@ -81,7 +81,11 @@ const FileUploader = ({
 				disabled={loading}
 				className="relative overflow-hidden w-[120px] h-[40px] ml-auto flex-jc-c mt-8 font-inter font-medium border border-transparent hover:border-primary-ultramarineBlue bg-primary-ultramarineBlue text-white disabled:hover:bg-primary-ultramarineBlue disabled:hover:text-white hover:bg-white hover:text-primary-ultramarineBlue hover:shadow-csm rounded-md outline-none transition duration-200"
 			>
-				{loading || updatingLoading ? <ButtonDotsLoader /> : "Save"}
+				{loading || updatingLoading ? (
+					<ButtonDotsLoader customStyles="[&>div]:bg-white" />
+				) : (
+					"Save"
+				)}
 			</button>
 		</div>
 	);

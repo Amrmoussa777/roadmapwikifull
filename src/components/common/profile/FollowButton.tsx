@@ -5,8 +5,6 @@ import PathnameHelper from "@/helpers/pathname.helper";
 import { useFetch } from "@/hooks/useFetch";
 import useToggle from "@/hooks/useToggle";
 import { CurrentUserContext } from "@/providers/CurrentUserContext";
-import { updateUserData } from "@/redux/slices/user-profile/userProfileSlice";
-import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useContext, useEffect, useState } from "react";
 
@@ -23,7 +21,6 @@ const FollowButton = ({
 	const { push } = useRouter();
 	const pathname = usePathname();
 	const [hoverButtonText, setHoverButtonText] = useState("");
-	const dispatch = useAppDispatch();
 	const { fetchData, loading } = useFetch();
 	const { currentState: isFollowed, toggle: toggleFollow } =
 		useToggle(initialIsFollowed);
@@ -62,11 +59,17 @@ const FollowButton = ({
 			disabled={loading}
 			onMouseEnter={() => setHoverButtonText(isFollowed ? "Unfollow" : "")}
 			onMouseLeave={() => setHoverButtonText("")}
-			className={`relative w-full h-full px-6 bg-primary-ultramarineBlue text-white rounded-full border border-transparent hover:border-primary-ultramarineBlue disabled:hover:text-white disabled:hover:bg-primary-ultramarineBlue hover:bg-white hover:text-primary-ultramarineBlue transition duration-200 ${customStyles} overflow-hidden`}
+			className={`relative w-[120px] h-full px-6 bg-primary-ultramarineBlue text-white rounded-full border border-transparent hover:border-primary-ultramarineBlue disabled:hover:text-white disabled:hover:bg-primary-ultramarineBlue hover:bg-white hover:text-primary-ultramarineBlue transition duration-200 ${customStyles} overflow-hidden`}
 		>
-			{hoverButtonText ? hoverButtonText : isFollowed ? "Following" : "Follow"}
-
-			{loading ? <ButtonDotsLoader /> : null}
+			{loading ? (
+				<ButtonDotsLoader customStyles="[&>div]:bg-white" />
+			) : hoverButtonText ? (
+				hoverButtonText
+			) : isFollowed ? (
+				"Following"
+			) : (
+				"Follow"
+			)}
 		</button>
 	);
 };

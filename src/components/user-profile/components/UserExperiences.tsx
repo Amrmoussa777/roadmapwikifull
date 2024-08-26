@@ -120,7 +120,7 @@ const UserExperiences = () => {
 						className="relative overflow-hidden font-inter font-semibold text-[14px] w-[140px] h-[34px] mt-4 py-[6px] rounded-[5px] bg-primary-ultramarineBlue text-white hover:bg-white hover:text-primary-ultramarineBlue border border-transparent hover:border-primary-ultramarineBlue hover:shadow-md disabled:bg-primary-ultramarineBlue/90 disabled:hover:shadow-none transition duration-200"
 					>
 						{setExperienceLoading ? (
-							<ButtonDotsLoader />
+							<ButtonDotsLoader customStyles="[&>div]:bg-white" />
 						) : isAdding ? (
 							"Save experience"
 						) : (

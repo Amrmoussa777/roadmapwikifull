@@ -88,11 +88,11 @@ const StepVerification = ({ stepId, verifications }: StepVerificationProps) => {
 												? handleUpdateVerification
 												: handleAddVerification
 										}
-										className="w-full flex-jc-c p-2 text-[#383838] border border-[#E0E0E0] mt-2 rounded-md disabled:hover:bg-white disabled:hover:border-[#E0E0E0] disabled:hover:text-[#383838] hover:bg-primary-ultramarineBlue hover:text-white hover:border-transparent transition duration-200"
+										className="w-full h-[40px] flex-jc-c p-2 text-[#383838] border border-[#E0E0E0] mt-2 rounded-md disabled:hover:bg-white disabled:hover:border-[#E0E0E0] disabled:hover:text-[#383838] hover:bg-primary-ultramarineBlue hover:text-white hover:border-transparent transition duration-200"
 									>
-										<div className="relative overflow-hidden text-[16px] font-inter font-medium">
+										<div className="w-full h-full relative overflow-hidden text-[16px] font-inter font-medium">
 											{loading ? (
-												<ButtonDotsLoader />
+												<ButtonDotsLoader customStyles="[&>div]:bg-white" />
 											) : verificationToUpdate ? (
 												<p className="text-[16px] font-inter font-medium">
 													Update

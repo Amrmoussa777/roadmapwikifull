@@ -11,6 +11,7 @@ import { ARROW_PLAN_ICON } from "@public/icons/plans";
 import { useParams } from "next/navigation";
 import React, { useEffect } from "react";
 import CustomizeRoadmapPlanFeatures from "@/components/builder/plans/CustomizeRoadmapPlanFeatures";
+import { useToast } from "@/hooks/useToast";
 
 const SetRoadmapPrice = () => {
 	const { roadmapId } = useParams();
@@ -19,11 +20,12 @@ const SetRoadmapPrice = () => {
 	const { roadmap } = useAppSelector(state => state.createRoadmap);
 	const { price } = roadmap || {};
 	const { value: priceValue, changeValue: changePriceValue } = useInput(
-		price?.amount ? `${price?.amount}` : "0"
+		price?.amount ? `${price?.amount}` : 0
 	);
+	const { successToast } = useToast();
 
 	useEffect(() => {
-		if (price) {
+		if (price && !priceValue) {
 			changePriceValue(`${price.amount}`);
 		}
 	}, [price]);
@@ -34,8 +36,8 @@ const SetRoadmapPrice = () => {
 
 	const handleUpdateRoadmapData = async () => {
 		const newRoadmapData = {
-			amount: Number(priceValue),
-			currency: price?.currency,
+			amount: Number(priceValue) || 0,
+			currency: price?.currency || "USD",
 			perks: price?.perks,
 		};
 
@@ -45,6 +47,7 @@ const SetRoadmapPrice = () => {
 			newRoadmapData
 		);
 
+		successToast("Successfully set plan");
 		dispatch(
 			updateRoadmapData({
 				price: newPrice,
@@ -83,7 +86,11 @@ const SetRoadmapPrice = () => {
 				type="button"
 				className="relative overflow-hidden w-[120px] h-[44px] flex-jc-c mt-auto gap-2 font-semibold bg-primary-ultramarineBlue text-white p-[10px] rounded-[8px]"
 			>
-				{loading ? <ButtonDotsLoader /> : <>Set Plan {ARROW_PLAN_ICON}</>}
+				{loading ? (
+					<ButtonDotsLoader customStyles="[&>div]:bg-white" />
+				) : (
+					<>Edit Plan {ARROW_PLAN_ICON}</>
+				)}
 			</button>
 		</>
 	);

@@ -123,7 +123,11 @@ const RoadmapDescriptionStep = ({
 					as="button"
 					className="w-full md:w-[160px] h-[56px] rounded-[12px] flex-jc-c font-inter text-[18px] font-semibold text-start bg-primary-ultramarineBlue text-white overflow-hidden"
 				>
-					{isLoading ? <ButtonDotsLoader /> : <span>Create</span>}
+					{isLoading ? (
+						<ButtonDotsLoader customStyles="[&>div]:bg-white" />
+					) : (
+						<span>Create</span>
+					)}
 				</HoverBorderGradient>
 
 				<button

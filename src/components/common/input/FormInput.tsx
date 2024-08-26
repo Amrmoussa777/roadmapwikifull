@@ -16,13 +16,14 @@ const FormInput = ({
 	inputRef,
 	icon,
 	onBlur,
+	validationError,
 }: IFormInput) => {
 	return (
 		<div className={`${customStyles}`}>
 			{label ? (
 				<label
 					htmlFor={name}
-					className="text-[14px] font-poppins text-[#666666]"
+					className="text-[14px] font-poppins text-[#666666] font-normal"
 				>{`${label}${required ? "*" : ""}`}</label>
 			) : null}
 
@@ -50,6 +51,10 @@ const FormInput = ({
 					onBlur={onBlur}
 				/>
 			)}
+
+			{validationError ? (
+				<p className="text-red-500 text-xs mt-1">{validationError}</p>
+			) : null}
 
 			{icon}
 		</div>

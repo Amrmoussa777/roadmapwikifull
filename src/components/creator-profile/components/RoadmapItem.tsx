@@ -123,7 +123,11 @@ const RoadmapItem = ({
 							disabled={isSubscribed}
 							className="relative overflow-hidden bg-primary-ultramarineBlue text-white border border-transparent disabled:hover:bg-primary-ultramarineBlue disabled:hover:text-white disabled:hover:border disabled:hover:border-transparent hover:border-primary-ultramarineBlue hover:bg-white hover:text-primary-ultramarineBlue transition duration-200"
 						>
-							{loading ? <ButtonDotsLoader /> : "Subscribe"}
+							{loading ? (
+								<ButtonDotsLoader customStyles="[&>div]:bg-white" />
+							) : (
+								"Subscribe"
+							)}
 						</button>
 					) : null}
 				</div>

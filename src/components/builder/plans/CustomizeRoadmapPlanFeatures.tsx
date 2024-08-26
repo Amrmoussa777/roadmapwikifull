@@ -85,12 +85,12 @@ const CustomizeRoadmapPlanPerks = () => {
 					label="Feature name"
 					placeholder="Feature"
 					required={true}
-					value={perkValue}
+					value={perkValue || ""}
 					handleChangeValue={changeNewPerkValue}
 				/>
 
 				<button
-					disabled={!perkValue.length}
+					disabled={!perkValue}
 					type="submit"
 					className="w-[100px] my-2 flex-jc-c gap-2 font-semibold bg-[#AEAEAE] text-white p-[6px] rounded-[8px]"
 				>

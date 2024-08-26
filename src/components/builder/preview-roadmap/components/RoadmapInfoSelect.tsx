@@ -1,3 +1,5 @@
+"use client";
+
 import React, { ReactNode, useEffect, useRef } from "react";
 import useToggle from "@/hooks/useToggle";
 import { ARROW_ICON } from "@public/icons/roadmapSteps";
@@ -8,10 +10,12 @@ const DropSelect = ({
 	children,
 	label,
 	activeOption,
+	customStyles = "",
 }: {
 	children: ReactNode;
 	label: { id: string; name: string };
 	activeOption: ReactNode;
+	customStyles?: string;
 }) => {
 	const { currentState: isOptionsHidden, toggle: hideOptions } =
 		useToggle(false);
@@ -28,9 +32,9 @@ const DropSelect = ({
 	}, [activeOption]);
 
 	return (
-		<div className="relative col-span-2">
+		<div className={`relative col-span-2 ${customStyles}`}>
 			<label htmlFor={label.id} className="text-[#666666]">
-				{label.name}*
+				{label.name}
 			</label>
 
 			<button
@@ -58,7 +62,7 @@ const DropSelect = ({
 						exit={{ y: -10, opacity: 0 }}
 						transition={{ duration: 0.1 }}
 						ref={divRef}
-						className="absolute right-0 w-[calc(100vw-80px)] sm:w-full h-[250px] overflow-y-scroll hidden-scrollbar top-[83px] bg-white mt-1 border border-[#E0E0E0] rounded-xl flex flex-col gap-2 [&>button]:font-normal [&>button]:text-[18px] [&>:first-child]:rounded-t-xl [&>:last-child]:rounded-b-xl [&>button]:p-2 [&>button:hover]:bg-[#E0E0E0]/20"
+						className="absolute right-0 w-[calc(100vw-80px)] sm:w-full h-[250px] overflow-y-scroll hidden-scrollbar top-[83px] bg-white mt-1 border border-[#E0E0E0] rounded-xl flex flex-col gap-2 [&>button]:font-normal [&>button]:text-[18px] [&>:first-child]:rounded-t-xl [&>:last-child]:rounded-b-xl [&>button]:p-2 [&>button:hover]:bg-[#E0E0E0]/20 z-10"
 					>
 						{children}
 					</motion.div>

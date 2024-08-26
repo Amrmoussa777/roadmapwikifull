@@ -1,13 +1,13 @@
 import { CurrentUserType } from "@/providers/types/index.types";
 import axios from "axios";
 
-export const getUser = async (accessToken: string | undefined) => {
+export const getUser = async (token: string | undefined) => {
 	try {
 		const res = await axios({
 			method: "GET",
 			url: `https://api.roadmapwiki.com/users/me`,
 			headers: {
-				Authorization: `Bearer ${accessToken}`,
+				Authorization: `Bearer ${token}`,
 			},
 		});
 

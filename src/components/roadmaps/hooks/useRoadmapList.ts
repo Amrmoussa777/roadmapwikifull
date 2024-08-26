@@ -20,14 +20,12 @@ const useRoadmapList = () => {
 		searchType,
 	} = useAppSelector(state => state.roadmapList);
 	const { handleMore, resetPageNumber, pageNumber } = usePaginationPageNumber();
-
 	const { fetchData, loading } = useFetch(true);
 	const [totalItems, setTotalItems] = useState(0);
 	const [params, setParams] = useState("");
 	const initialized = useRef(false);
 	const dispatch = useAppDispatch();
 	const urlParams = useSearchParams();
-
 	const { responsive } = useSizeScreen(640);
 
 	const buildParamsString = (filterList: Record<string, string[]>) => {

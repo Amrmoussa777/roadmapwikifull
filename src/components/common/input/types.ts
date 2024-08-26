@@ -9,11 +9,12 @@ export interface IFormInput {
 	autoFocus?: boolean;
 	handleChangeValue?: (e: ITarget) => void;
 	min?: number;
-	value?: string;
+	value?: string | number;
 	label?: string;
 	inputRef?: MutableRefObject<null | HTMLInputElement> | undefined;
 	icon?: ReactNode;
 	onBlur?: () => void;
+	validationError?: string | null;
 }
 export interface ITarget {
 	target: { value: React.SetStateAction<string | number> };

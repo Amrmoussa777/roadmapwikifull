@@ -14,9 +14,9 @@ const CustomizeRoadmapCurrency = () => {
 	const { price } = roadmap || {};
 	const { currentState: isCurrencyListOpen, toggle: toggleCurrencyList } =
 		useToggle(false);
-	const [selectedCurrency, setSelectedCurrency] = useState(
-		price?.currency || "USD"
-	);
+	const [selectedCurrency, setSelectedCurrency] = useState<
+		"USD" | "EUR" | "RUB"
+	>(price?.currency || "USD");
 	const dispatch = useAppDispatch();
 
 	const buttonRef = useRef<HTMLButtonElement>(null);
@@ -24,7 +24,7 @@ const CustomizeRoadmapCurrency = () => {
 
 	useOnClickOutside(toggleCurrencyList, [buttonRef, divRef]);
 
-	const handleChangeCurrency = (currencyName: string) => {
+	const handleChangeCurrency = (currencyName: "USD" | "EUR" | "RUB") => {
 		const newPrice = {
 			amount: Number(price?.amount) || 0,
 			currency: selectedCurrency,

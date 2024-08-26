@@ -12,7 +12,7 @@ const RoadmapsPagination = ({
 
 	const handleScroll = useCallback(
 		throttle(() => {
-			if (isLoading || !divRef.current) return;
+			if (isLoading || !divRef.current || totalItems < 10) return;
 
 			const rect = divRef.current.getBoundingClientRect();
 
@@ -34,7 +34,7 @@ const RoadmapsPagination = ({
 			className={`text-center transition-all ${totalItems < 5 ? "hidden" : ""}`}
 		>
 			{isLoading && (
-				<div className="relative overflow-hidden w-[148px] h-[40px] flex-jc-c gap-2 mx-auto my-4 px-[12px] font-inter font-normal text-[14px] rounded-full bg-primary-ultramarineBlue text-white">
+				<div className="relative overflow-hidden w-[148px] h-[40px] flex-jc-c gap-2 mx-auto my-4 px-[12px] font-inter font-normal text-[14px] rounded-full">
 					<ButtonDotsLoader />
 				</div>
 			)}

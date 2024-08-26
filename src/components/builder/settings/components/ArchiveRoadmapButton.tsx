@@ -20,7 +20,7 @@ const ArchiveRoadmapButton = () => {
 			disabled={loading}
 			className="relative overflow-hidden w-full md:w-[160px] h-[56px] rounded-[12px] flex-jc-c font-inter text-[18px] font-semibold text-start bg-[#A72C32] text-white mt-8"
 		>
-			{loading ? <ButtonDotsLoader /> : "Draft"}
+			{loading ? <ButtonDotsLoader customStyles="[&>div]:bg-white" /> : "Draft"}
 		</button>
 	);
 };

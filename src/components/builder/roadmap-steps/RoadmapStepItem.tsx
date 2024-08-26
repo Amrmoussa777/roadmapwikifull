@@ -119,7 +119,8 @@ const RoadmapStepItem = ({
 							value={value}
 							onBlur={handleChangeTitle}
 							disabled={isDragging}
-							className={`w-full bg-transparent text-md sm:text-[18px] text-[#181818] border-2 border-transparent hover:border-primary-ultramarineBlue/20 focus:border-primary-ultramarineBlue focus:outline-none rounded-md pl-2 transition-all select-none delay-300`}
+							placeholder="Step title"
+							className={`w-full bg-transparent text-md sm:text-[18px] text-[#181818] border-2 border-transparent hover:border-primary-ultramarineBlue/20 focus:border-primary-ultramarineBlue focus:outline-none rounded-md pl-2 transition-all select-none`}
 							onChange={changeValue}
 						/>
 					</div>

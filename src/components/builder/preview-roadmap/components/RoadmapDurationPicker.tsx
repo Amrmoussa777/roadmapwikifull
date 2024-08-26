@@ -125,13 +125,17 @@ const RoadmapDurationPicker = ({
 							customStyles="my-4"
 						/>
 
-						<div className="flex-jb-c gap-2 [&>button]:w-full">
+						<div className="flex-jb-c gap-2 [&>button]:w-full [&>button]:h-[30px]">
 							<button
 								disabled={!duration.length}
 								type="submit"
 								className="relative overflow-hidden text-[#181818] font-medium hover:text-primary-ultramarineBlue transition duration-200 disabled:hover:text-[#181818]"
 							>
-								{loading ? <ButtonDotsLoader /> : "OK"}
+								{loading ? (
+									<ButtonDotsLoader customStyles="[&>div]:bg-primary-ultramarineBlue" />
+								) : (
+									"OK"
+								)}
 							</button>
 
 							<button

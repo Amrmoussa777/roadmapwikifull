@@ -72,7 +72,7 @@ export interface RoadmapType {
 	subscribersCount: number;
 	urlIdentifier: string;
 	price: {
-		currency: string;
+		currency: "USD" | "EUR" | "RUB";
 		amount: number;
 		perks: string[];
 	} | null;

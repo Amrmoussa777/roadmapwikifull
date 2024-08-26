@@ -119,7 +119,11 @@ const RoadmapTags = () => {
 					disabled={addTagLoading}
 					className="relative overflow-hidden min-w-[60px] w-[60px] md:min-w-[100px] md:w-[100px] text-sm md:text-[16px] font-medium h-full bg-primary-ultramarineBlue text-white rounded-md"
 				>
-					{addTagLoading ? <ButtonDotsLoader /> : "Add tag"}
+					{addTagLoading ? (
+						<ButtonDotsLoader customStyles="[&>div]:bg-white" />
+					) : (
+						"Add tag"
+					)}
 				</button>
 			</form>
 			{error ? (

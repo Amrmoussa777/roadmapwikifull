@@ -1,4 +1,3 @@
-import { ITarget } from "@/components/common/input/types";
 import { ReactNode } from "react";
 
 export type UserProfileTabType = {

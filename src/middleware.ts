@@ -20,7 +20,7 @@ export const config = {
 const protectedPaths = ["/auth"];
 
 export default async function handleAuthenticationMiddleware(req: NextRequest) {
-	const accessToken = req.cookies.get("accessToken")?.value;
+	const refreshToken = req.cookies.get("refreshToken")?.value;
 
 	/**
 	 * User object obtained by fetching user information using the access token.
@@ -28,7 +28,7 @@ export default async function handleAuthenticationMiddleware(req: NextRequest) {
 	 * @type {Object}
 	 */
 
-	const user = await getUser(accessToken);
+	const user = await getUser(refreshToken);
 
 	/**
 	 * Checks if the current request path is protected.
