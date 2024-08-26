@@ -4,4 +4,5 @@ export type PaymentTabItemType = {
 	href: string;
 	name: string;
 	icon: ReactNode;
+	extraPaths?: PaymentTabItemType[];
 };

@@ -1,6 +1,8 @@
 import PaymentTabItem from "@/components/payment/components/PaymentTabItem";
 import {
 	PAYMENT_HISTORY_ICON,
+	PAYMENT_INFORMATION_ICON,
+	PAYMENT_SCHEDULE_ICON,
 	PAYMENT_SETTINGS_ICON,
 } from "@public/icons/payment";
 import React from "react";
@@ -11,6 +13,18 @@ const PaymentTabs = () => {
 			href: "/payment/settings",
 			name: "Settings",
 			icon: PAYMENT_SETTINGS_ICON,
+			extraPaths: [
+				{
+					href: "/payment/settings/information",
+					name: "Information",
+					icon: PAYMENT_INFORMATION_ICON,
+				},
+				{
+					href: "/payment/settings/schedule",
+					name: "Schedule",
+					icon: PAYMENT_SCHEDULE_ICON,
+				},
+			],
 		},
 		{ href: "/payment/history", name: "History", icon: PAYMENT_HISTORY_ICON },
 	];

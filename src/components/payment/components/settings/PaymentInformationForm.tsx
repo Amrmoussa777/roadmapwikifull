@@ -69,7 +69,7 @@ const PaymentInformationForm = () => {
 						{currency.name}
 					</span>
 				}
-				customStyles="[&>div]:h-fit !col-span-2 sm:!col-span-1 [&>button>span>svg]:!text-[#ADAEB5]"
+				customStyles="[&>button]:min-h-[50px] [&>button]:h-[50px] [&>button]:!rounded-md [&>div]:h-fit !col-span-2 sm:!col-span-1 [&>button>span>svg]:!text-[#ADAEB5]"
 			>
 				{ROADMAP_PLAN_CURRENCY_ICONS.map(item => (
 					<button
