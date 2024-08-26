@@ -9,7 +9,7 @@ const page = () => {
 				Payment settings
 			</h2>
 
-			<h3 className="font-bold text-[20px] text-[#383838] font-semibold mt-[40px]">
+			<h3 className="text-[20px] text-[#383838] font-semibold mt-[40px]">
 				Set your information
 			</h3>
 

@@ -25,10 +25,7 @@ const UserProfilePayments = () => {
 
 			<ul className="w-full">
 				<li className="bg-[#F5F5F5] py-[20px] px-[24px]">
-					<Link
-						href={"/user/userId/payments"}
-						className="w-full flex-jb-c gap-2"
-					>
+					<Link href={"/payment/history"} className="w-full flex-jb-c gap-2">
 						<div className="flex items-center gap-2">
 							<span className="block text-[#79828B]">
 								{TRANSACTION_HISTORY_ICON}
@@ -49,10 +46,7 @@ const UserProfilePayments = () => {
 					</Link>
 				</li>
 				<li className="bg-[#F5F5F5] py-[20px] px-[24px]">
-					<Link
-						href={"/user/userId/payments"}
-						className="w-full flex-jb-c gap-2"
-					>
+					<Link href={"/payment/settings"} className="w-full flex-jb-c gap-2">
 						<div className="flex items-center gap-2">
 							<span className="block text-[#79828B]">{PAYMENTS_ICON}</span>
 							<div className="flex flex-col">
