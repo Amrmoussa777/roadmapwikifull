@@ -46,7 +46,7 @@ const LatestRoadmap = ({
 
 	return (
 		<>
-			<li className="h-fit flex justify-between flex-col bg-white rounded-[12px] p-[24px] mt-4 shadow-csm">
+			<li className="h-full flex justify-between flex-col bg-white rounded-[12px] p-[24px] mt-4 shadow-csm">
 				<div className="flex justify-between items-start h-full gap-2">
 					<div className="h-full flex flex-col justify-between gap-2">
 						<div
