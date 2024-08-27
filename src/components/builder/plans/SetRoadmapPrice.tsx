@@ -20,7 +20,7 @@ const SetRoadmapPrice = () => {
 	const { roadmap } = useAppSelector(state => state.createRoadmap);
 	const { price } = roadmap || {};
 	const { value: priceValue, changeValue: changePriceValue } = useInput(
-		price?.amount ? `${price?.amount}` : 0
+		price?.amount ? `${price?.amount}` : "0"
 	);
 	const { successToast } = useToast();
 

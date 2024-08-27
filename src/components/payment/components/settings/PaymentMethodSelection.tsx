@@ -13,7 +13,7 @@ const PaymentMethodSelection = () => {
 			<div className="flex-jb-c mb-[20px]">
 				<h3 className="font-semibold text-[18px] text-black">Payment method</h3>
 				<button
-					onClick={() => push(`/payment/settings/schedule`)}
+					onClick={() => push(`/payment/settings/information`)}
 					className="text-[#92929D] hover:text-black transition duration-200"
 				>
 					{EDIT_ICON}
