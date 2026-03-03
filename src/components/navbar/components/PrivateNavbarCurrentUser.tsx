@@ -17,7 +17,7 @@ const PrivateNavbarCurrentUser = () => {
 	const firstName = fullName?.split(" ")[0];
 	const { currentState: isUserButtonsVisible, toggle: toggleUserButtons } =
 		useToggle(false);
-	const pathname = usePathname();
+	const pathname = usePathname() ?? "";
 	const { push } = useRouter();
 	const { responsive } = useSizeScreen(768);
 

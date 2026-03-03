@@ -70,6 +70,7 @@ const UserImage = () => {
 				title="Upload image"
 				imageHeight={400}
 				handleSaveCover={handleSaveCover}
+				uploadBucket="avatars"
 			/>
 		</>
 	);

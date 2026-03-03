@@ -83,6 +83,7 @@ const Attachments = ({ stepId, attachments }: AttachmentsProps) => {
 							file={file}
 							removeSelectedFile={removeSelectedFile}
 							handleAttachment={handleAttachment}
+							uploadBucket="step-attachments"
 						/>
 					))}
 

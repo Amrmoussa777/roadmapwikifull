@@ -5,6 +5,7 @@ import React, { useEffect, useRef } from "react";
 interface FileUploadedItemProps {
 	file: File;
 	removeSelectedFile: (fileName: string) => void;
+	uploadBucket?: "avatars" | "covers" | "step-attachments" | "message-attachments";
 	handleAttachment: (
 		fileKey: string,
 		fileType: "IMAGE" | "VIDEO" | "FILE" | "AUDIO",
@@ -15,6 +16,7 @@ interface FileUploadedItemProps {
 const FileUploadedItem: React.FC<FileUploadedItemProps> = ({
 	file,
 	removeSelectedFile,
+	uploadBucket = "message-attachments",
 	handleAttachment,
 }) => {
 	const { renderPreviewFile } = useRenderPreviewFile();
@@ -28,7 +30,7 @@ const FileUploadedItem: React.FC<FileUploadedItemProps> = ({
 		try {
 			const { data: fileKey } = await fetchUploadFile(
 				"POST",
-				`media/upload`,
+				`media/upload?bucket=${uploadBucket}`,
 				formData
 			);
 			const fileType = file.type.includes("image")

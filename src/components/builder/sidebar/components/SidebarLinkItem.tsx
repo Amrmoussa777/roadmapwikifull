@@ -11,7 +11,7 @@ const SidebarLinkItem = ({
 	icon,
 	customStyles,
 }: SidebarLinkItemProps) => {
-	const pathname = usePathname();
+	const pathname = usePathname() ?? "";
 	const lastPathname = PathnameHelper.getLastPathname(pathname);
 	const hrefLastPathname = PathnameHelper.getLastPathname(href);
 	const active = lastPathname === hrefLastPathname;

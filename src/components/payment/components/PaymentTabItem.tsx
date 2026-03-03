@@ -12,7 +12,7 @@ const PaymentTabItem = ({
 	icon,
 	extraPaths,
 }: PaymentTabItemType) => {
-	const currentPathname = usePathname();
+	const currentPathname = usePathname() ?? "";
 
 	const isActive = currentPathname.includes(href);
 

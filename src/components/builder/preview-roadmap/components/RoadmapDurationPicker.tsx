@@ -18,7 +18,8 @@ const RoadmapDurationPicker = ({
 	defaultDuration: string;
 }) => {
 	const durationSplit = defaultDuration.split(" ");
-	const { roadmapId } = useParams();
+	const params = useParams<{ roadmapId?: string }>();
+	const roadmapId = params?.roadmapId;
 
 	const defaultDurationNumber = durationSplit[0];
 	const defaultDurationType = durationSplit[1];
@@ -39,6 +40,7 @@ const RoadmapDurationPicker = ({
 
 	const handleSubmitDuration = async (e: FormEvent) => {
 		e.preventDefault();
+		if (!roadmapId) return;
 
 		const updatedRoadmapStep: Record<string, string> = {};
 

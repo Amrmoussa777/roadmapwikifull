@@ -1,4 +1,4 @@
-import { clearCookies } from "@/services/clearCookies";
+import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { useState } from "react";
 
 export const useLogout = () => {
@@ -6,7 +6,8 @@ export const useLogout = () => {
 	const logout = async () => {
 		setLoading(true);
 
-		await clearCookies();
+		const supabase = createSupabaseBrowserClient();
+		await supabase.auth.signOut();
 
 		setTimeout(() => {
 			setLoading(false);

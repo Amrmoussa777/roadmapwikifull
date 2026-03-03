@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import { useAppSelector } from "@/redux/store";
 
 const PrivateNavbarLink = ({ href, icon, name }: PrivateNavbarLinkTypes) => {
-	const pathname = usePathname();
+	const pathname = usePathname() ?? "";
 	const { unseenMessages } = useAppSelector(state => state.conversation);
 
 	const isHome = href === "/" && pathname === "/";

@@ -14,7 +14,8 @@ import CustomizeRoadmapPlanFeatures from "@/components/builder/plans/CustomizeRo
 import { useToast } from "@/hooks/useToast";
 
 const SetRoadmapPrice = () => {
-	const { roadmapId } = useParams();
+	const params = useParams<{ roadmapId?: string }>();
+	const roadmapId = params?.roadmapId;
 	const { fetchData, loading } = useFetch();
 	const dispatch = useAppDispatch();
 	const { roadmap } = useAppSelector(state => state.createRoadmap);
@@ -35,6 +36,7 @@ const SetRoadmapPrice = () => {
 	};
 
 	const handleUpdateRoadmapData = async () => {
+		if (!roadmapId) return;
 		const newRoadmapData = {
 			amount: Number(priceValue) || 0,
 			currency: price?.currency || "USD",

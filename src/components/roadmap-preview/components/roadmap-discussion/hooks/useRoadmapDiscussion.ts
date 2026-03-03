@@ -11,13 +11,17 @@ export const useRoadmapDiscussion = () => {
 	const [pageNumber, setPageNumber] = useState(1);
 	const dispatch = useAppDispatch();
 
-	const { id } = useParams();
+	const params = useParams<{ id?: string }>();
+	const id = params?.id;
 
 	useEffect(() => {
-		dispatch(getRoadmapPosts({ roadmapId: id, pageNumber: 1, pageSize: 5 }));
+		if (id) {
+			dispatch(getRoadmapPosts({ roadmapId: id, pageNumber: 1, pageSize: 5 }));
+		}
 	}, [id]);
 
 	const handleMoreComments = () => {
+		if (!id) return;
 		setPageNumber(prev => prev + 1);
 
 		dispatch(

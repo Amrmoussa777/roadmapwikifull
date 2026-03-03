@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 import React from "react";
 
 const CreateNewRoadmapHeader = () => {
-	const pathname = usePathname();
+	const pathname = usePathname() ?? "";
 	const lastPathname = PathnameHelper.getLastPathname(pathname);
 
 	return (

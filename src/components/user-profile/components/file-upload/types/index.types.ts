@@ -6,6 +6,7 @@ export type FileUploaderProps = {
 	setSelectedFile: (file: File | null) => void;
 	toggleUploadModal: () => void;
 	handleSaveCover: (key: string) => void;
+	uploadBucket?: "avatars" | "covers" | "step-attachments" | "message-attachments";
 	ratio: string;
 	imageHeight?: number;
 };

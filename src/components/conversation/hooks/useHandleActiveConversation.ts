@@ -7,7 +7,8 @@ import { useParams, useRouter } from "next/navigation";
 import { useCallback, useContext, useEffect } from "react";
 
 export const useHandleActiveConversation = () => {
-	const { conversationId } = useParams();
+	const params = useParams<{ conversationId?: string }>();
+	const conversationId = params?.conversationId;
 	const dispatch = useAppDispatch();
 	const { fetchData: fetchConversation } = useFetch();
 	const { fetchData: fetchConversationMessages } = useFetch();

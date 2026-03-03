@@ -1,20 +1,18 @@
-import HandleApiRequests from "@/helpers/handleApiRequests";
-import { setCookies } from "@/services/setCookies";
+import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 
 export const login = async (formData: Record<string, string>) => {
 	try {
-		const data = await HandleApiRequests.handlePublicApiRequest({
-			method: "POST",
-			endpoint: `auth/signin`,
-			body: formData,
+		const supabase = createSupabaseBrowserClient();
+		const email = formData.email;
+		const password = formData.password;
+
+		const { error } = await supabase.auth.signInWithPassword({
+			email,
+			password,
 		});
 
-		await setCookies(data);
-
-		return { error: null };
+		return { error: error?.message ?? null };
 	} catch (error: any) {
-		const { message } = error.response.data;
-
-		return { error: message };
+		return { error: error?.message ?? "Login failed" };
 	}
 };

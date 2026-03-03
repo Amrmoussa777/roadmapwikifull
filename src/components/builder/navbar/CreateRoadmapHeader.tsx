@@ -26,7 +26,8 @@ const CreateRoadmapHeader = ({
 	sidebarMobile: boolean;
 	toggleSidebarMobile: () => void;
 }) => {
-	const { roadmapId } = useParams();
+	const params = useParams<{ roadmapId?: string }>();
+	const roadmapId = params?.roadmapId;
 	const { roadmap, isLoading } = useAppSelector(state => state.createRoadmap);
 	const { currentUser } = useContext(CurrentUserContext);
 	const { title, id, status } = roadmap || {};
@@ -39,6 +40,7 @@ const CreateRoadmapHeader = ({
 	const { fetchData, loading } = useFetch();
 
 	const publishRoadmap = async () => {
+		if (!roadmapId) return;
 		await fetchData("POST", `roadmap/${roadmapId}/publish`);
 		toggleShareModal();
 		dispatch(toggleRoadmapStatus());

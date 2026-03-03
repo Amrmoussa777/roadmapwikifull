@@ -31,11 +31,13 @@ export const useFetch = <B = any>(loadingDefault: boolean = false) => {
 		} catch (error: any) {
 			setLoading(false);
 
-			const message = error?.response?.data?.message || "An error occurred";
+			const rawMessage = error?.message ?? "An error occurred";
+			const messages = Array.isArray(rawMessage) ? rawMessage : [rawMessage];
+			const joined = messages.join(" - ");
 
-			setError(message.join(" - "));
-			errorToast(message.join(" - "));
-			throw { data: null, error: message };
+			setError(joined as any);
+			errorToast(joined);
+			throw { data: null, error: messages };
 		}
 	};
 

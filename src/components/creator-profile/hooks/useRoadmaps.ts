@@ -10,7 +10,8 @@ export const useRoadmaps = () => {
 	const [pageNumber, setPageNumber] = useState(1);
 	const [totalItems, setTotalItems] = useState(0);
 	const { loading, fetchData } = useFetch();
-	const { username } = useParams();
+	const params = useParams<{ username?: string }>();
+	const username = params?.username;
 
 	const handleGetCreatorRoadmaps = async (pageNumber: number) => {
 		const { data } = await fetchData(

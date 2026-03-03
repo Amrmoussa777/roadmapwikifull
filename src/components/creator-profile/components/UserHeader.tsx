@@ -21,7 +21,8 @@ import { useFetch } from "@/hooks/useFetch";
 
 const UserHeader = () => {
 	const dispatch = useAppDispatch();
-	const { username } = useParams();
+	const params = useParams<{ username?: string }>();
+	const username = params?.username;
 	const { isLoading, user } = useAppSelector(state => state.userProfile);
 	const { push } = useRouter();
 	const { currentUser } = useContext(CurrentUserContext);
@@ -33,7 +34,9 @@ const UserHeader = () => {
 	useEffect(() => {
 		if (!user && !isLoading) push("/");
 
-		dispatch(fetchUserByUsername(username));
+		if (username) {
+			dispatch(fetchUserByUsername(username));
+		}
 	}, [username]);
 
 	const handleSaveCover = async (key: string) => {
@@ -106,6 +109,7 @@ const UserHeader = () => {
 					handleSaveCover={handleSaveCover}
 					title="Upload cover"
 					imageHeight={148}
+					uploadBucket="covers"
 				/>
 			) : null}
 		</div>

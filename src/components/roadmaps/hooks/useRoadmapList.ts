@@ -25,7 +25,7 @@ const useRoadmapList = () => {
 	const [params, setParams] = useState("");
 	const initialized = useRef(false);
 	const dispatch = useAppDispatch();
-	const urlParams = useSearchParams();
+	const urlParams = useSearchParams() ?? new URLSearchParams();
 	const { responsive } = useSizeScreen(640);
 
 	const buildParamsString = (filterList: Record<string, string[]>) => {

@@ -6,7 +6,6 @@ import CheckCurrentUserProvider from "@/providers/CurrentUserContext";
 import Navbar from "@/components/navbar/components/Navbar";
 import { inter, outfit, poppins } from "@/app/fonts";
 import CreateRoadmapLayout from "@/components/builder/layout/CreateRoadmapLayout";
-import TokensProvider from "@/providers/TokensProvider";
 import ConversationLayout from "@/components/conversation/components/ConversationLayout";
 import SocketProvider from "@/providers/SocketProvider";
 
@@ -39,19 +38,17 @@ export default async function RootLayout({
 			<body
 				className={`${outfit.className} ${inter.variable} ${poppins.variable}`}
 			>
-				<TokensProvider>
-					<Toaster />
-					<ReduxProvider>
-						<CheckCurrentUserProvider>
-							<SocketProvider>
-								<CreateRoadmapLayout>
-									<Navbar />
-									<ConversationLayout>{children}</ConversationLayout>
-								</CreateRoadmapLayout>
-							</SocketProvider>
-						</CheckCurrentUserProvider>
-					</ReduxProvider>
-				</TokensProvider>
+				<Toaster />
+				<ReduxProvider>
+					<CheckCurrentUserProvider>
+						<SocketProvider>
+							<CreateRoadmapLayout>
+								<Navbar />
+								<ConversationLayout>{children}</ConversationLayout>
+							</CreateRoadmapLayout>
+						</SocketProvider>
+					</CheckCurrentUserProvider>
+				</ReduxProvider>
 			</body>
 		</html>
 	);

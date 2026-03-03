@@ -12,21 +12,23 @@ import { ChildrenType } from "@/providers/types/index.types";
 import { fetchRoadmapById } from "@/redux/slices/thunks/create-roadmap/fetchRoadmapById";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { GRID_ICON, LAYER_ICON } from "@public/icons/roadmapPreview";
-import { redirect, useParams, usePathname } from "next/navigation";
+import { useParams, usePathname, useRouter } from "next/navigation";
 import React, { useContext, useEffect, useState } from "react";
 
 const CreateRoadmapLayout = ({ children }: ChildrenType) => {
-	const pathname = usePathname();
-	const lastPathname = PathnameHelper.getLastPathname(pathname ?? "");
+	const pathname = usePathname() ?? "";
+	const lastPathname = PathnameHelper.getLastPathname(pathname);
 	const createNewRoadmapPaths = ["builder"];
 	const { error, roadmap } = useAppSelector(state => state.createRoadmap);
 	const { currentState: sidebarMobile, toggle: toggleSidebarMobile } =
 		useToggle(false);
 	const [mobileLayout, setMobileLayout] = useState("grid");
-	const { roadmapId } = useParams();
+	const params = useParams<{ roadmapId?: string }>();
+	const roadmapId = params?.roadmapId;
 	const dispatch = useAppDispatch();
 	const { responsive } = useSizeScreen(1024);
 	const { currentUser } = useContext(CurrentUserContext);
+	const router = useRouter();
 
 	useEffect(() => {
 		if (roadmapId) {
@@ -36,9 +38,15 @@ const CreateRoadmapLayout = ({ children }: ChildrenType) => {
 
 	useEffect(() => {
 		if (roadmap && currentUser && currentUser.id !== roadmap.userId) {
-			redirect("/builder");
+			router.replace("/builder");
 		}
-	}, [currentUser, roadmap]);
+	}, [currentUser, roadmap, router]);
+
+	useEffect(() => {
+		if (error) {
+			router.replace("/builder");
+		}
+	}, [error, router]);
 
 	if (
 		!pathname.includes("builder") ||
@@ -46,7 +54,7 @@ const CreateRoadmapLayout = ({ children }: ChildrenType) => {
 	)
 		return children;
 
-	if (error) return redirect("/builder");
+	if (error) return null;
 
 	return (
 		<div className="relative">

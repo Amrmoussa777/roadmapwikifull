@@ -15,8 +15,6 @@ import {
 } from "@/redux/slices/roadmaps/roadmapPreviewRepliesSlice";
 import { toggleCommentForm } from "@/redux/slices/roadmaps/roadmapPreviewPostsSlice";
 import RoadmapDiscussionReplyForm from "@/components/roadmap-preview/components/roadmap-discussion/components/RoadmapDiscussionReplyForm";
-import { getCookie } from "cookies-next";
-import axios from "axios";
 import HandleApiRequests from "@/helpers/handleApiRequests";
 import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import { useRouter } from "next/navigation";

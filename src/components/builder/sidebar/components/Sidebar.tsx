@@ -25,7 +25,7 @@ const Sidebar = ({
 }) => {
 	const { roadmap, isLoading } = useAppSelector(state => state.createRoadmap);
 	const { id } = roadmap || {};
-	const pathname = usePathname();
+	const pathname = usePathname() ?? "";
 
 	useEffect(() => {
 		toggleSidebarMobile();

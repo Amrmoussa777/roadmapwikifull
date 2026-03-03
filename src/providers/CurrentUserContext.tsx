@@ -1,18 +1,14 @@
 "use client";
 
-import { getUser } from "@/app/auth/services/getUser";
-import TokensHelper from "@/helpers/tokensHelper";
 import useClearReduxOnNavigation from "@/hooks/useClearReduxOnNavigation";
-import { useRefreshToken } from "@/hooks/useRefreshToken";
 import {
 	ChildrenType,
 	CurrentUserContextType,
 	CurrentUserType,
 } from "@/providers/types/index.types";
 import { useAppSelector } from "@/redux/store";
-import { fetchAnonymousToken } from "@/services/fetchAnonymousToken";
-import { setCookies } from "@/services/setCookies";
-import { redirect, usePathname } from "next/navigation";
+import { createSupabaseBrowserClient } from "@/lib/supabase/client";
+import { usePathname, useRouter } from "next/navigation";
 import React, { createContext, useEffect, useState } from "react";
 
 export const CurrentUserContext = createContext<CurrentUserContextType>({
@@ -28,32 +24,66 @@ const CurrentUserProvider = ({ children }: ChildrenType) => {
 	const [currentUser, setCurrentUser] = useState<
 		CurrentUserType | null | undefined
 	>(null);
-	const pathname = usePathname();
-	useRefreshToken();
+	const pathname = usePathname() ?? "";
+	const router = useRouter();
 
 	useEffect(() => {
+		const supabase = createSupabaseBrowserClient();
+
 		const fetchCurrentUser = async () => {
 			setCurrentUserLoading(true);
 
 			try {
-				const { accessToken: fetchedAccessToken, refreshToken } =
-					TokensHelper.getTokens();
+				const {
+					data: { user: authUser },
+				} = await supabase.auth.getUser();
 
-				let accessToken = fetchedAccessToken;
+				if (!authUser) {
+					// Optional: keep prior “anonymous token” behavior via Supabase anonymous sign-in.
+					try {
+						await supabase.auth.signInAnonymously();
+					} catch {
+						// If anonymous sign-in is disabled, just treat as logged out.
+					}
+				}
 
-				if (!refreshToken) {
+				// Fetch server-compatible user shape (profiles + role).
+				// We call the server helper via RSC for initial render, but on the client
+				// we re-fetch via Supabase directly to keep the context fresh.
+				const {
+					data: { user: refreshedUser },
+				} = await supabase.auth.getUser();
+
+				if (!refreshedUser) {
 					setCurrentUser(null);
-					setCurrentUserLoading(false);
 					return;
 				}
 
-				if (!accessToken) {
-					accessToken = await fetchAnonymousToken();
-					await setCookies({ accessToken });
+				const { data: profile } = await supabase
+					.from("profiles")
+					.select(
+						"id, role, image, cover, occupation, roadmaps_subscribers, full_name, user_name, description"
+					)
+					.eq("id", refreshedUser.id)
+					.single();
+
+				if (!profile) {
+					setCurrentUser(null);
+					return;
 				}
 
-				const user = await getUser(accessToken);
-				setCurrentUser(user);
+				setCurrentUser({
+					id: profile.id,
+					email: refreshedUser.email,
+					role: profile.role,
+					image: profile.image,
+					cover: profile.cover,
+					occupation: profile.occupation,
+					roadmapsSubscribers: profile.roadmaps_subscribers,
+					fullName: profile.full_name,
+					userName: profile.user_name,
+					description: profile.description,
+				});
 			} catch (error) {
 				console.error("Error fetching current user:", error);
 				setCurrentUser(null);
@@ -63,13 +93,30 @@ const CurrentUserProvider = ({ children }: ChildrenType) => {
 		};
 
 		fetchCurrentUser();
+
+		const {
+			data: { subscription },
+		} = supabase.auth.onAuthStateChange(async event => {
+			if (event === "SIGNED_OUT") {
+				setCurrentUser(null);
+				return;
+			}
+
+			if (event === "SIGNED_IN" || event === "USER_UPDATED") {
+				await fetchCurrentUser();
+			}
+		});
+
+		return () => {
+			subscription.unsubscribe();
+		};
 	}, []);
 
 	useEffect(() => {
 		if (pathname.includes("auth") && currentUser) {
-			redirect("/");
+			router.replace("/");
 		}
-	}, [pathname, currentUser]);
+	}, [pathname, currentUser, router]);
 
 	useEffect(() => {
 		if (

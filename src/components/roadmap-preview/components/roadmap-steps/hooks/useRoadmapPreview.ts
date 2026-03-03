@@ -7,7 +7,8 @@ import { useParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export const useRoadmapPreview = () => {
-	const { id } = useParams();
+	const params = useParams<{ id?: string }>();
+	const id = params?.id;
 	const dispatch = useAppDispatch();
 	const { error, loading, fetchData } = useFetch(true);
 	const { warningToast } = useToast();
@@ -21,6 +22,7 @@ export const useRoadmapPreview = () => {
 				return;
 			}
 
+			if (!id) return;
 			const { data: roadmap } = await fetchData("GET", `roadmap/${id}`);
 
 			dispatch(updateRoadmap(roadmap));

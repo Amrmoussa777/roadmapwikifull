@@ -15,13 +15,14 @@ const ConversationSidebar = dynamic(
 );
 
 const ConversationLayout = ({ children }: ChildrenType) => {
-	const pathname = usePathname();
+	const pathname = usePathname() ?? "";
 	const isConversationPage = /\/conversation/.test(pathname);
 	const { responsive } = useSizeScreen(768);
 	const { loading } = useAppSelector(
 		state => state.conversation.activeConversation
 	);
-	const { conversationId } = useParams();
+	const params = useParams<{ conversationId?: string }>();
+	const conversationId = params?.conversationId;
 
 	useHandleActiveConversation();
 
