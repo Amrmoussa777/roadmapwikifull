@@ -41,14 +41,13 @@ const RoadmapDescriptionStep = ({
 		};
 
 		setIsLoading(true);
-		console.log("newRoadmapData", newRoadmapData);
+;
 		const newRoadmap = await createRoadmap(newRoadmapData);
 		
 
 		setIsLoading(false);
-		console.log("newRoadmap", newRoadmap);
+
 		const { id } = newRoadmap;
-		console.log("id", id);
 		if (id) {
 			push(`/builder/${id}/steps`);
 		}

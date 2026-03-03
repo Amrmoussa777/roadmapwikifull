@@ -8,29 +8,7 @@ export const getUser = async (): Promise<CurrentUserType | null> => {
 			data: { user },
 		} = await supabase.auth.getUser();
 
-		// #region agent log
-		fetch(
-			"http://127.0.0.1:7631/ingest/afdd2453-b8a5-4a99-9acb-acecbe3f5a22",
-			{
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-					"X-Debug-Session-Id": "eaed99",
-				},
-				body: JSON.stringify({
-					sessionId: "eaed99",
-					runId: "initial",
-					hypothesisId: "B",
-					location: "src/app/auth/services/getUser.ts:7-10",
-					message: "getUser supabase auth user state",
-					data: {
-						hasUser: !!user,
-					},
-					timestamp: Date.now(),
-				}),
-			}
-		).catch(() => {});
-		// #endregion agent log
+		
 
 		if (!user) return null;
 
@@ -42,31 +20,7 @@ export const getUser = async (): Promise<CurrentUserType | null> => {
 			.eq("id", user.id)
 			.single();
 
-		// #region agent log
-		fetch(
-			"http://127.0.0.1:7631/ingest/afdd2453-b8a5-4a99-9acb-acecbe3f5a22",
-			{
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-					"X-Debug-Session-Id": "eaed99",
-				},
-				body: JSON.stringify({
-					sessionId: "eaed99",
-					runId: "initial",
-					hypothesisId: "C",
-					location: "src/app/auth/services/getUser.ts:12-20",
-					message: "getUser profile query state",
-					data: {
-						hasProfile: !!profile,
-						hasError: !!error,
-						role: profile?.role ?? null,
-					},
-					timestamp: Date.now(),
-				}),
-			}
-		).catch(() => {});
-		// #endregion agent log
+		
 
 		if (error || !profile) return null;
 		return {
