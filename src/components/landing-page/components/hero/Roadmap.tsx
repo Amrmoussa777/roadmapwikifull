@@ -34,11 +34,14 @@ const Roadmap = ({
 
 	return (
 		<>
-			<div
+			<motion.div
 				ref={roadmapRef}
-				className="relative w-11/12 lg:w-5/12 xl:w-6/12 max-w-[400px] mt-[20px] lg:mt-0"
+				initial={{ opacity: 0, x: 40 }}
+				animate={{ opacity: 1, x: 0 }}
+				transition={{ duration: 0.9, delay: 0.3, ease: "easeOut" }}
+				className="relative w-11/12 lg:w-5/12 xl:w-6/12 max-w-[400px] mt-[20px] lg:mt-0 animate-float"
 			>
-				<div className="w-full dotted-bg p-6 bg-white rounded-[22px] h-[650px] overflow-y-scroll hidden-scrollbar shadow-2xl pb-[12rem]">
+				<div className="w-full dotted-bg p-6 bg-white rounded-[22px] h-[650px] overflow-y-scroll hidden-scrollbar shadow-[0_8px_40px_rgba(0,0,0,0.06),0_1px_3px_rgba(0,0,0,0.04)] border border-black/[0.04] pb-[12rem]">
 					<motion.div
 						initial={{ opacity: 1 }}
 						animate={{ opacity: isVisible ? 1 : 0.3 }}
@@ -51,7 +54,7 @@ const Roadmap = ({
 								className="text-[12px] sm:text-[16px] h-[40px] flex items-center gap-2 text-white rounded-full font-medium py-2 px-4"
 							>
 								<span>{PARK_ICON}</span>
-								{flag} 🚀
+								{flag}
 							</h3>
 						</div>
 						<div className="line-dashed h-8 mx-auto" />
@@ -86,7 +89,7 @@ const Roadmap = ({
 						className="w-full"
 					/>
 				</div>
-			</div>
+			</motion.div>
 		</>
 	);
 };

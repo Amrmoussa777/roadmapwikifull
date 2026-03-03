@@ -56,7 +56,7 @@ const SuperRoadmapsSlider = () => {
 				</SwiperSlide>
 			</Swiper>
 
-			<div className="relative w-fit mx-auto flex-jc-c gap-3 text-[#171618] [&>button]:bg-white [&>button]:rounded-full [&>button]:w-[40px] [&>button]:h-[40px] [&>button]:flex-jc-c">
+			<div className="relative w-fit mx-auto flex-jc-c gap-3 text-[#171618] [&>button]:bg-white/90 [&>button]:backdrop-blur-sm [&>button]:rounded-full [&>button]:w-[42px] [&>button]:h-[42px] [&>button]:flex-jc-c [&>button]:shadow-[0_2px_12px_rgba(0,0,0,0.1)] [&>button]:transition-all [&>button]:duration-300 [&>button:hover]:shadow-[0_4px_20px_rgba(0,0,0,0.15)]">
 				<button
 					onClick={() => swiperRef.current?.slidePrev()}
 					className={`-rotate-90 ${activeIndex === 0 ? "" : "group"}`}

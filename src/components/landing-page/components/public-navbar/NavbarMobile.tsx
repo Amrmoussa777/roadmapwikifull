@@ -13,13 +13,13 @@ const NavbarMobile = ({
 }) => {
 	return (
 		<ul
-			className={`absolute left-0 top-[64px] flex md:hidden flex-col gap-4 w-full py-8 bg-white transition-all ${customStyles}`}
+			className={`absolute left-0 top-[72px] flex md:hidden flex-col gap-4 w-full py-8 bg-white/80 backdrop-blur-2xl border-b border-black/[0.04] transition-all ${customStyles}`}
 		>
 			{links.map(link => (
 				<NavbarMobileLinkItem key={link.href} {...link} />
 			))}
 
-			<HorizontalDivider height="h-[1px]" bgColor="bg-[#E4E6EC]" />
+			<HorizontalDivider height="h-[1px]" bgColor="bg-black/[0.06]" />
 
 			<NavbarButtons customStyles="flex flex-col md:hidden w-full px-8 text-center" />
 		</ul>

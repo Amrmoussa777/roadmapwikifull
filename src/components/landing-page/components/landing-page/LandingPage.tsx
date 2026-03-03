@@ -1,3 +1,5 @@
+"use client";
+
 import FAQ from "@/components/landing-page/components/faq/FAQ";
 import Footer from "@/components/landing-page/components/footer/Footer";
 import Hero from "@/components/landing-page/components/hero/Hero";
@@ -9,7 +11,7 @@ import Testimonials from "@/components/landing-page/components/testimonials/Test
 
 const LandingPage = () => {
 	return (
-		<main className="relative max-w-[1440px] mx-auto">
+		<main className="relative max-w-[1440px] mx-auto overflow-x-hidden bg-[#FAFBFC]">
 			<Hero />
 			<SuperRoadmaps />
 			<MostViralCreators />

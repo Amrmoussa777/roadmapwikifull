@@ -6,14 +6,58 @@ import Roadmap from "@/components/landing-page/components/hero/Roadmap";
 import { roadmapList } from "@/components/landing-page/data/roadmapList";
 import { useHero } from "@/components/landing-page/hooks/useHero";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 const Hero = () => {
 	const { activeRoadmapIndex, roadmapRef } = useHero();
 
 	return (
-		<section className="relative px-6 lg:px-[4.5rem] py-[2rem] flex-jc-c lg:gap-12 xl:gap-24 flex-col lg:flex-row z-10">
-			<div className="w-full lg:w-6/12 grid text-center lg:text-start">
+		<section className="relative px-6 lg:px-[4.5rem] pt-[7rem] pb-[3rem] flex-jc-c lg:gap-12 xl:gap-24 flex-col lg:flex-row z-10 overflow-hidden">
+			<div className="absolute inset-0 -z-10">
+				<div
+					className="absolute inset-0 opacity-[0.35]"
+					style={{
+						backgroundImage:
+							"radial-gradient(circle at 1px 1px, #E0E0E0 0.5px, transparent 0)",
+						backgroundSize: "28px 28px",
+					}}
+				/>
+				<div
+					className="absolute top-[-15%] right-[-10%] w-[500px] h-[500px] rounded-full animate-pulse-glow"
+					style={{
+						background:
+							"radial-gradient(circle, rgba(80,108,240,0.08) 0%, transparent 70%)",
+					}}
+				/>
+				<div
+					className="absolute bottom-[-5%] left-[-8%] w-[400px] h-[400px] rounded-full animate-pulse-glow"
+					style={{
+						background:
+							"radial-gradient(circle, rgba(124,92,252,0.06) 0%, transparent 70%)",
+						animationDelay: "2s",
+					}}
+				/>
+			</div>
+
+			<motion.div
+				initial={{ opacity: 0, y: 30 }}
+				animate={{ opacity: 1, y: 0 }}
+				transition={{ duration: 0.8, ease: "easeOut" }}
+				className="w-full lg:w-6/12 grid text-center lg:text-start"
+			>
 				<div className="relative">
+					<motion.div
+						initial={{ opacity: 0, scale: 0.95 }}
+						animate={{ opacity: 1, scale: 1 }}
+						transition={{ duration: 0.5, delay: 0.1 }}
+						className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#506CF0]/15 bg-[#506CF0]/[0.04] mb-6"
+					>
+						<span className="w-2 h-2 rounded-full bg-[#506CF0] animate-pulse" />
+						<span className="text-[13px] font-inter text-[#506CF0] font-medium">
+							Trusted by top learners worldwide
+						</span>
+					</motion.div>
+
 					<h1 className="relative text-[24px] sm:text-[48px] font-extrabold text-[#171618]">
 						Your ultimate 🚀
 						<br /> Roadmap <br className="hidden lg:block" /> To{" "}
@@ -63,43 +107,48 @@ const Hero = () => {
 						</div>
 					</h1>
 				</div>
-				<p className="text-[#171618] font-inter font-normal text-[14px] sm:text-[18px] leading-[27px] lg:mt-[45px]">
-					Explore a Collection of Expert-Crafted Roadmaps: Each Pathway Designed
-					by Industry Leaders, Loved by a Vast Community of Learners, and
-					carefully curated to meet your unique
-					<span className="font-semibold"> Goals and Ambitions 💪</span>
-				</p>
 
-				<div className="flex items-center justify-center lg:justify-start gap-4 lg:gap-2 xl:gap-6 mt-[40px] md:mt-[40px]">
+				<motion.p
+					initial={{ opacity: 0, y: 20 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+					className="text-[#6B7280] font-inter font-normal text-[14px] sm:text-[18px] leading-[27px] lg:mt-[45px]"
+				>
+					Discover expert-crafted roadmaps designed by industry leaders. Each
+					pathway guides you step-by-step, loved by thousands of learners, and
+					tailored to help you reach your
+					<span className="font-semibold text-[#111]">
+						{" "}
+						goals with clarity
+					</span>
+				</motion.p>
+
+				<motion.div
+					initial={{ opacity: 0, y: 20 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+					className="flex items-center justify-center lg:justify-start gap-4 lg:gap-3 xl:gap-5 mt-[40px] md:mt-[40px]"
+				>
 					<Link
 						href={"/builder"}
-						className="w-full sm:w-[160px] md:w-[208px] h-[42px] md:h-[56px] flex-jc-c text-[14px] md:text-[16px] text-white font-inter font-semibold bg-primary-ultramarineBlue hover:bg-white hover:text-primary-ultramarineBlue border-2 border-transparent hover:border-primary-ultramarineBlue rounded-[10px] duration-200 transition"
+						className="w-full sm:w-[180px] md:w-[210px] h-[44px] md:h-[52px] flex-jc-c text-[14px] md:text-[15px] text-white font-inter font-semibold bg-gradient-to-r from-[#506CF0] to-[#7C5CFC] hover:shadow-[0_4px_24px_rgba(80,108,240,0.35)] rounded-full duration-300 transition-all"
 					>
 						Create Roadmap
 					</Link>
 					<Link
 						href={`/roadmap/${roadmapList[activeRoadmapIndex].id}`}
-						className="w-full sm:w-[160px] md:w-[208px] h-[42px] md:h-[56px] group flex-jc-c gap-2 text-[14px] md:text-[16px] text-[#191718] font-inter font-semibold bg-background border-2 border-[#ACB5B7] rounded-[10px]"
+						className="w-full sm:w-[180px] md:w-[210px] h-[44px] md:h-[52px] group flex-jc-c gap-2 text-[14px] md:text-[15px] text-[#3D3D3D] font-inter font-semibold border border-[#E0E0E0] hover:border-[#506CF0]/30 bg-white hover:bg-[#506CF0]/[0.03] rounded-full transition-all duration-300"
 					>
 						<span className="w-full h-full flex-jc-c gap-2 hover:translate-x-[2px] transform transition duration-200">
 							{PLAY_ICON} Watch demo
 						</span>
 					</Link>
-				</div>
-			</div>
+				</motion.div>
+			</motion.div>
 
 			<Roadmap
 				roadmap={roadmapList[activeRoadmapIndex]}
 				roadmapRef={roadmapRef}
-			/>
-
-			<div
-				style={{
-					background:
-						"linear-gradient(90deg, #A990FF 0%, #57CFEF 50%, #7FEA96 100%)",
-					opacity: "8%",
-				}}
-				className="absolute w-full h-[95%] bottom-0 left-0 -z-10 blur-2xl"
 			/>
 		</section>
 	);
