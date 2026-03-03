@@ -1,4 +1,5 @@
-import { ROADMAP_ICONS, RoadmapIconType } from "@/config/roadmapIcons";
+import { ROADMAP_ICONS } from "@/config/roadmapIcons";
+import { ROADMAP_ICONS_ENUM } from "@/enum/roadmapIconsEnum";
 import { useOnClickOutside } from "@/hooks/useOnClickOutside";
 import useToggle from "@/hooks/useToggle";
 import { updateDraftRoadmap } from "@/redux/slices/create-roadmap/createRoadmapSlice";
@@ -16,19 +17,21 @@ const RoadmapSelectIcon = () => {
 	useOnClickOutside(hideOptions, [buttonRef, divRef]);
 
 	const { draftRoadmap } = useAppSelector(state => state.createRoadmap);
-	const { icon } = draftRoadmap;
+	const { iconName } = draftRoadmap;
 
 	const dispatch = useAppDispatch();
 
-	const handleChangeIcon = (icon: RoadmapIconType) => {
-		dispatch(updateDraftRoadmap({ ...draftRoadmap, icon }));
+	const handleChangeIcon = (name: ROADMAP_ICONS_ENUM) => {
+		dispatch(updateDraftRoadmap({ ...draftRoadmap, iconName: name }));
 	};
 
 	useEffect(() => {
 		if (isOptionsHidden) {
 			hideOptions();
 		}
-	}, [icon]);
+	}, [iconName]);
+
+	const selectedIcon = ROADMAP_ICONS.find(item => item.name === iconName);
 
 	return (
 		<div className="w-full relative mb-8">
@@ -44,10 +47,12 @@ const RoadmapSelectIcon = () => {
 						style={{ backgroundColor: "" }}
 						className="w-[25px] sm:w-[32px] h-[25px] sm:h-[32px] flex-jc-c rounded-lg text-primary-ultramarineBlue"
 					>
-						{icon ? icon.icon : "-"}
+						{selectedIcon ? selectedIcon.icon : "-"}
 					</span>
 
-					<span>{icon ? icon.name?.toString().replace("_", " ") : "-"}</span>
+					<span>
+						{iconName ? iconName.toString().replace("_", " ") : "-"}
+					</span>
 				</span>
 
 				<span
@@ -68,7 +73,7 @@ const RoadmapSelectIcon = () => {
 						<button
 							type="button"
 							key={item.name}
-							onClick={() => handleChangeIcon({ ...item })}
+							onClick={() => handleChangeIcon(item.name)}
 							className="flex items-center gap-2 !px-4 sm:gap-2 !text-[16px] sm:text-[18px]"
 						>
 							<span

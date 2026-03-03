@@ -33,23 +33,21 @@ const RoadmapDescriptionStep = ({
 	}, [description]);
 
 	const handleCreateRoadmap = async () => {
-		const iconKey = draftRoadmap.icon ? draftRoadmap.icon.name : null;
-
 		const newRoadmapData = {
 			title: draftRoadmap.title,
 			duration: "1 week",
-			category: iconKey,
+			category: draftRoadmap.iconName,
 			description,
 		};
 
 		setIsLoading(true);
-
+;
 		const newRoadmap = await createRoadmap(newRoadmapData);
+		
 
 		setIsLoading(false);
 
 		const { id } = newRoadmap;
-
 		if (id) {
 			push(`/builder/${id}/steps`);
 		}

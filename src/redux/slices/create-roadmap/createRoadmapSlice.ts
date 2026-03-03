@@ -12,7 +12,7 @@ const initialState: CreateRoadmapSliceStateType = {
 	draftRoadmap: {
 		title: "",
 		description: "",
-		icon: null,
+		iconName: null,
 	},
 	activeRoadmapStepId: "",
 };
@@ -22,12 +22,12 @@ const createRoadmapSlice = createSlice({
 	name: "createRoadmap",
 	reducers: {
 		updateDraftRoadmap: (state, action) => {
-			const { title, description, icon } = action.payload;
+			const { title, description, iconName } = action.payload;
 
 			state.draftRoadmap = {
 				title,
 				description,
-				icon,
+				iconName,
 			};
 		},
 		expandRoadmapStep: (state, action) => {

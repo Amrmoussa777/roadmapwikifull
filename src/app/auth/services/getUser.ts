@@ -7,6 +7,9 @@ export const getUser = async (): Promise<CurrentUserType | null> => {
 		const {
 			data: { user },
 		} = await supabase.auth.getUser();
+
+		
+
 		if (!user) return null;
 
 		const { data: profile, error } = await supabase
@@ -16,7 +19,9 @@ export const getUser = async (): Promise<CurrentUserType | null> => {
 			)
 			.eq("id", user.id)
 			.single();
+
 		
+
 		if (error || !profile) return null;
 		return {
 			id: profile.id,

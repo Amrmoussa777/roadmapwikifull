@@ -1,4 +1,4 @@
-import { RoadmapIconType } from "@/config/roadmapIcons";
+import { ROADMAP_ICONS_ENUM } from "@/enum/roadmapIconsEnum";
 import {
 	RoadmapStepVerificationType,
 	RoadmapType,
@@ -13,7 +13,7 @@ export type CreateRoadmapSliceStateType = {
 	draftRoadmap: {
 		title: string;
 		description: string;
-		icon: null | RoadmapIconType;
+		iconName: ROADMAP_ICONS_ENUM | null;
 	};
 
 	activeRoadmapStepId: string;

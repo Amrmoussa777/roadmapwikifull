@@ -146,7 +146,7 @@ class HandleApiRequests {
 					.from("roadmaps")
 					.select(
 						`id, description, category, created_at, user_id, title, duration, flag, primary_color, secondary_color, cover, subscribers_count, url_identifier, status,
-             user:profiles(id, role, image, cover, occupation, roadmaps_subscribers, full_name, user_name, description),
+             user:profiles!roadmaps_user_id_fkey(id, role, image, cover, occupation, roadmaps_subscribers, full_name, user_name, description),
              price:roadmap_prices(amount, currency, perks),
              steps:roadmap_steps(id),
              tags:roadmap_tags(id, name, color)`
@@ -214,7 +214,7 @@ class HandleApiRequests {
 					.from("roadmaps")
 					.select(
 						`id, description, category, created_at, user_id, title, duration, flag, primary_color, secondary_color, cover, subscribers_count, url_identifier, status,
-             user:profiles(id, role, image, cover, occupation, roadmaps_subscribers, full_name, user_name, description),
+             user:profiles!roadmaps_user_id_fkey(id, role, image, cover, occupation, roadmaps_subscribers, full_name, user_name, description),
              price:roadmap_prices(amount, currency, perks),
              steps:roadmap_steps(id),
              tags:roadmap_tags(id, name, color)`
@@ -246,7 +246,7 @@ class HandleApiRequests {
 					.from("roadmaps")
 					.select(
 						`id, description, category, created_at, user_id, title, duration, flag, primary_color, secondary_color, cover, subscribers_count, url_identifier, status,
-             user:profiles(id, role, image, cover, occupation, roadmaps_subscribers, full_name, user_name, description),
+             user:profiles!roadmaps_user_id_fkey(id, role, image, cover, occupation, roadmaps_subscribers, full_name, user_name, description),
              price:roadmap_prices(amount, currency, perks),
              steps:roadmap_steps(id),
              tags:roadmap_tags(id, name, color)`
@@ -291,7 +291,7 @@ class HandleApiRequests {
 					.insert(insertData)
 					.select(
 						`id, description, category, created_at, user_id, title, duration, flag, primary_color, secondary_color, cover, subscribers_count, url_identifier, status,
-             user:profiles(id, role, image, cover, occupation, roadmaps_subscribers, full_name, user_name, description),
+             user:profiles!roadmaps_user_id_fkey(id, role, image, cover, occupation, roadmaps_subscribers, full_name, user_name, description),
              price:roadmap_prices(amount, currency, perks),
              steps:roadmap_steps(id),
              tags:roadmap_tags(id, name, color)`
@@ -407,7 +407,7 @@ class HandleApiRequests {
 						.from("roadmaps")
 						.select(
 							`id, description, category, created_at, user_id, title, duration, flag, primary_color, secondary_color, cover, subscribers_count, url_identifier, status,
-               user:profiles(id, role, image, cover, occupation, roadmaps_subscribers, full_name, user_name, description),
+               user:profiles!roadmaps_user_id_fkey(id, role, image, cover, occupation, roadmaps_subscribers, full_name, user_name, description),
                price:roadmap_prices(amount, currency, perks),
                steps:roadmap_steps(id, title, duration, description, order,
                  tags:step_tags(id, name, color, roadmap_step_id),
