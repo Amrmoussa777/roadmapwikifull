@@ -62,6 +62,6 @@ export default async function handleAuthenticationMiddleware(req: NextRequest) {
 		loginUrl.searchParams.set("redirectPath", pathname);
 		return NextResponse.redirect(loginUrl);
 	}
-	console.log("pathname", pathname)
+	console.log("pathname", pathname);
 	return res;
 }

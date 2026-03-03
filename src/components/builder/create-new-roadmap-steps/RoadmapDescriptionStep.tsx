@@ -33,12 +33,10 @@ const RoadmapDescriptionStep = ({
 	}, [description]);
 
 	const handleCreateRoadmap = async () => {
-		const iconKey = draftRoadmap.icon ? draftRoadmap.icon.name : null;
-
 		const newRoadmapData = {
 			title: draftRoadmap.title,
 			duration: "1 week",
-			category: iconKey,
+			category: draftRoadmap.iconName,
 			description,
 		};
 
