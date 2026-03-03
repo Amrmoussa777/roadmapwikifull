@@ -1,0 +1,145 @@
+"use client";
+
+import ButtonDotsLoader from "@/components/common/button/ButtonDotsLoader";
+import UserProfileEditButton from "@/components/common/button/UserProfileEditButton";
+import UserProfileSaveButton from "@/components/common/button/UserProfileSaveButton";
+import HorizontalDivider from "@/components/common/divider/components/HorizontalDivider";
+import NumberStats from "@/components/common/states/NumberStats";
+import UserLinksLoader from "@/components/user-profile/components/loading/UserLinksLoader";
+import useUserExperiences from "@/components/user-profile/hooks/useUserExperiences";
+import { CROSS_ICON } from "@public/icons/roadmapSteps";
+import React from "react";
+
+const UserExperiences = () => {
+	const {
+		isEditEnabled,
+		toggleEdit,
+		isAdding,
+		toggleIsAdding,
+		experienceTitle,
+		changeExperienceTitle,
+		experienceDescription,
+		changeExperienceDescription,
+		experienceTitleError,
+		experienceDescriptionError,
+		handleAddExperience,
+		handleDeleteExperience,
+		setExperienceLoading,
+		isLoading,
+		experiences,
+	} = useUserExperiences();
+
+	if (isLoading) return <UserLinksLoader />;
+
+	return (
+		<div id="experiences" className="bg-white sm:rounded-[12px] p-[18px]">
+			<div className="flex-jb-c mb-4">
+				<h3 className="font-inter font-semibold text-[18px] text-[#202020]">
+					Experience
+				</h3>
+
+				<UserProfileEditButton
+					isEditEnabled={isEditEnabled}
+					toggleEdit={toggleEdit}
+				/>
+			</div>
+
+			{experiences?.length ? (
+				<ul className="font-inter">
+					{experiences.map((item, i) => (
+						<li key={item.id}>
+							<div className="flex-jb-c mb-4">
+								<h3 className="font-medium">{item.title}</h3>
+								{isEditEnabled ? (
+									<button
+										type="button"
+										onClick={() => handleDeleteExperience(item.id)}
+										className="w-[30px] h-[30px] flex-jc-c rounded-md text-[#666666] bg-[#F5F5F5] hover:shadow-md transition duration-200 border hover:border-primary-ultramarineBlue"
+									>
+										{CROSS_ICON}
+									</button>
+								) : null}
+							</div>
+							<p className="text-[#79828B]">{item.description}</p>
+
+							{i + 1 < experiences.length ? (
+								<HorizontalDivider
+									height="h-[1px]"
+									bgColor="bg-[#D8D8D8]"
+									customStyles="my-4"
+								/>
+							) : null}
+						</li>
+					))}
+				</ul>
+			) : (
+				<NumberStats
+					text="No experience yet"
+					customStyles="!text-[14px] text-start"
+				/>
+			)}
+
+			<form onSubmit={handleAddExperience}>
+				{isAdding ? (
+					<div className="mt-4">
+						<div className="grid">
+							<input
+								className={`w-full h-[40px] px-2 block font-inter font-medium text-[#383838] text-[16px] border focus:border-primary-ultramarineBlue outline-none rounded-[5px] transition duration-200`}
+								placeholder="Title"
+								type="text"
+								value={experienceTitle}
+								onChange={changeExperienceTitle}
+								disabled={!isAdding}
+							/>
+							{experienceTitleError ? (
+								<p className="text-red-500 text-xs mt-1">
+									{experienceTitleError}
+								</p>
+							) : null}
+
+							<textarea
+								className={`w-full h-[100px] p-2 mt-2 font-inter font-medium text-[#383838] text-[16px] border focus:border-primary-ultramarineBlue outline-none resize-none hidden-scrollbar rounded-[5px]`}
+								value={experienceDescription}
+								onChange={changeExperienceDescription}
+								disabled={!isAdding}
+								placeholder="Description"
+							/>
+							{experienceDescriptionError ? (
+								<p className="text-red-500 text-xs mt-1">
+									{experienceDescriptionError}
+								</p>
+							) : null}
+						</div>
+					</div>
+				) : null}
+
+				{isEditEnabled ? (
+					<button
+						type="submit"
+						disabled={setExperienceLoading}
+						className="relative overflow-hidden font-inter font-semibold text-[14px] w-[140px] h-[34px] mt-4 py-[6px] rounded-[5px] bg-primary-ultramarineBlue text-white hover:bg-white hover:text-primary-ultramarineBlue border border-transparent hover:border-primary-ultramarineBlue hover:shadow-md disabled:bg-primary-ultramarineBlue/90 disabled:hover:shadow-none transition duration-200"
+					>
+						{setExperienceLoading ? (
+							<ButtonDotsLoader customStyles="[&>div]:bg-white" />
+						) : isAdding ? (
+							"Save experience"
+						) : (
+							"Add experience"
+						)}
+					</button>
+				) : null}
+			</form>
+
+			{isEditEnabled ? (
+				<UserProfileSaveButton
+					handleCancel={() => {
+						toggleEdit();
+						isAdding ? toggleIsAdding() : null;
+					}}
+				/>
+			) : null}
+		</div>
+	);
+};
+
+export default UserExperiences;

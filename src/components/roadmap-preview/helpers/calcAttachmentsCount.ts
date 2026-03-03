@@ -1,0 +1,29 @@
+import { RoadmapStepAttachmentType } from "@/redux/slices/roadmaps/types/roadmap-preview-slice-types";
+
+export const calcAttachmentsCount = (
+	attachments: RoadmapStepAttachmentType[]
+) => {
+	const initialAttachments = {
+		images: { count: 0 },
+		videos: { count: 0 },
+		files: { count: 0 },
+	};
+
+	const newOrderedAttachments = { ...initialAttachments };
+
+	attachments.forEach(attachment => {
+		if (attachment.type.includes("IMAGE")) {
+			newOrderedAttachments.images.count += 1;
+		} else if (attachment.type.includes("VIDEO")) {
+			newOrderedAttachments.videos.count += 1;
+		} else {
+			newOrderedAttachments.files.count += 1;
+		}
+	});
+
+	const attachmentsCountList = Object.entries(newOrderedAttachments)
+		.filter(([type, { count }]) => count > 0)
+		.map(([type, { count }]) => ({ type, count }));
+
+	return attachmentsCountList;
+};

@@ -1,0 +1,62 @@
+import { useFetch } from "@/hooks/useFetch";
+import { updateRoadmapStepData } from "@/redux/slices/create-roadmap/createRoadmapSlice";
+import { useAppDispatch } from "@/redux/store";
+import dynamic from "next/dynamic";
+import React, { useState } from "react";
+
+const Editor = dynamic(
+	() => import("@/components/common/Editor/components/Editor")
+);
+
+const RoadmapStepDescription = ({
+	defaultDescription,
+	stepId,
+	title,
+	duration,
+}: {
+	defaultDescription: string;
+	stepId: string;
+	title: string;
+	duration: string;
+}) => {
+	const [description, setDescription] = useState<string>(defaultDescription);
+	const dispatch = useAppDispatch();
+	const { fetchData } = useFetch();
+
+	const updateDescription = async () => {
+		if (description === defaultDescription) return;
+
+		const updatedRoadmapStep: Record<string, string> = {};
+
+		if (title) {
+			updatedRoadmapStep.title = title;
+		}
+
+		if (description) {
+			updatedRoadmapStep.description = description;
+		}
+
+		if (duration) {
+			updatedRoadmapStep.duration = duration;
+		}
+
+		await fetchData("PATCH", `roadmap/step/${stepId}`, updatedRoadmapStep)
+			.then(() =>
+				dispatch(updateRoadmapStepData({ stepId, newData: { description } }))
+			)
+			.catch(() => setDescription(defaultDescription));
+	};
+
+	return (
+		<div>
+			<Editor
+				value={description}
+				changeValue={setDescription}
+				onBlur={updateDescription}
+				customStyles="[&>div>div>.ql-editor]:!h-[200px]"
+			/>
+		</div>
+	);
+};
+
+export default RoadmapStepDescription;

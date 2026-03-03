@@ -1,74 +1,246 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Outfit&display=swap");
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 @layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
-    --radius: 0.5rem;
-  }
+	:root {
+		--background: 0 0% 100%;
+		--foreground: 222.2 84% 4.9%;
+		--card: 0 0% 100%;
+		--card-foreground: 222.2 84% 4.9%;
+		--popover: 0 0% 100%;
+		--popover-foreground: 222.2 84% 4.9%;
+		--primary: 221.2 83.2% 53.3%;
+		--primary-foreground: 210 40% 98%;
+		--secondary: 210 40% 96.1%;
+		--secondary-foreground: 222.2 47.4% 11.2%;
+		--muted: 210 40% 96.1%;
+		--muted-foreground: 215.4 16.3% 46.9%;
+		--accent: 210 40% 96.1%;
+		--accent-foreground: 222.2 47.4% 11.2%;
+		--destructive: 0 84.2% 60.2%;
+		--destructive-foreground: 210 40% 98%;
+		--border: 214.3 31.8% 91.4%;
+		--input: 214.3 31.8% 91.4%;
+		--ring: 221.2 83.2% 53.3%;
+		--radius: 0.5rem;
+	}
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 48%;
-  }
-}
+	html {
+		scroll-behavior: smooth;
+		-webkit-overflow-scrolling: touch;
+	}
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+	* {
+		@apply border-border;
+	}
+	body {
+		@apply bg-[#F8F9FA] text-foreground;
+		scroll-behavior: smooth;
+		-webkit-overflow-scrolling: touch;
+	}
+	p {
+		@apply text-sm font-normal leading-[140%];
+	}
+	button {
+		@apply font-semibold outline-none;
+	}
+	::placeholder {
+		@apply text-lg font-normal;
+	}
+	input:-webkit-autofill,
+	input:-webkit-autofill:hover,
+	input:-webkit-autofill:focus,
+	input:-webkit-autofill:active {
+		-webkit-background-clip: text;
+		transition: background-color 5000s ease-in-out 0s;
+		box-shadow: inset 0 0 20px 20px transparent;
+	}
+	.checkbox {
+		@apply w-6 h-6 rounded-md flex justify-center items-center outline-none;
+	}
 }
 
 @layer utilities {
-  /* Chrome, Safari and Opera */
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
+	/* Chrome, Safari and Opera */
+	.hidden-scrollbar::-webkit-scrollbar {
+		display: none;
+	}
 
-  .no-scrollbar {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-  }
+	.message-list-container {
+		display: flex;
+		flex-direction: column;
+		overflow-y: auto;
+		scroll-behavior: smooth;
+		height: 100%;
+	}
+
+	.last-date-container {
+		flex-shrink: 0;
+	}
+
+	.message-list {
+		display: flex;
+		flex-direction: column-reverse;
+		flex-grow: 1;
+	}
+
+	.hidden-scrollbar {
+		-ms-overflow-style: none; /* IE and Edge */
+		scrollbar-width: none; /* Firefox */
+	}
+
+	input[type="number"] {
+		@apply [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none;
+	}
+
+	.grid-background {
+		background-image: radial-gradient(
+			rgba(169, 167, 167, 0.232) 2px,
+			transparent 1px
+		);
+		background-size: 30px 30px;
+		background-position: 0 0, 15px 15px;
+	}
+
+	.roadmap-dashed {
+		background-image: linear-gradient(
+			to bottom,
+			transparent 50%,
+			rgba(64, 61, 61, 0.232) 50%
+		);
+		background-size: 2px 8px;
+		background-repeat: repeat-y;
+	}
+
+	.dotted-bg {
+		background-image: radial-gradient(
+			hsla(0, 1%, 66%, 0.232) 2px,
+			transparent 0
+		);
+		background-size: 30px 30px;
+		background-position: 0 0, 15px 15px;
+	}
+
+	.line-dashed {
+		width: 1.6px;
+		background-image: linear-gradient(
+			transparent 40%,
+			rgba(64, 61, 61, 0.232) 0%
+		);
+		background-position: center;
+		background-size: 2px 8px;
+		background-repeat: repeat-y;
+	}
+
+	.flex-jc-c {
+		@apply flex justify-center items-center;
+	}
+	.flex-jb-c {
+		@apply flex justify-between items-center;
+	}
+	.flex-je-c {
+		@apply flex justify-evenly items-center;
+	}
+	.flex-ic-c {
+		@apply flex items-center;
+	}
+
+	button:disabled {
+		@apply opacity-70;
+	}
 }
+
+@layer components {
+	.vote-btn.voted svg {
+		@apply text-[#F4392B];
+	}
+
+	.vote-btn.voted svg path {
+		@apply fill-[#F4392B];
+	}
+
+	.section-header {
+		padding: 0 8px;
+	}
+
+	.section-header h2 {
+		@apply text-[20px] md:text-[40px] font-bold text-center leading-[62px] text-white;
+	}
+
+	.section-header p {
+		@apply text-[12px] md:text-[16px] font-inter font-normal text-center leading-[24px] text-white max-w-[742px] mx-auto;
+	}
+
+	.roadmap-info-select {
+		@apply w-full h-[55px] min-h-[55px] mt-1 border border-[#E0E0E0] rounded-xl p-4 justify-between gap-2 text-[18px] text-black font-normal bg-white outline-none focus:border-primary-ultramarineBlue transition duration-200;
+	}
+
+	.create-new-roadmap-input {
+		@apply w-full h-[55px] outline-none placeholder:text-[18px] md:placeholder:text-[24px] text-[18px] md:text-[24px] bg-white rounded-[12px] px-4 border border-[#E0E0E0] focus:border-primary-ultramarineBlue hover:border-primary-ultramarineBlue/60 transition duration-200 placeholder:font-normal placeholder:text-[#92929D] text-[#202020];
+	}
+
+	.monetization-statistics-filters-drop-button {
+		@apply w-full !h-[37px] !min-h-[37px] flex-jb-c roadmap-info-select m-0 border-none text-[12px] md:text-[14px] text-[#696969] hover:bg-primary-ultramarineBlue/10 rounded-none gap-1;
+	}
+}
+
+/* Editor */
+
+.ql-toolbar {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 0 !important;
+	background-color: #f6f6f6 !important;
+	padding: 5px !important;
+	margin: 10px;
+}
+
+.ql-tooltip {
+	left: 14.487px !important;
+}
+
+.ql-container {
+	border: 0 !important;
+	height: 200px;
+}
+
+.ql-editor::-webkit-scrollbar {
+	width: 0;
+	background: transparent;
+}
+
+.quill {
+	&.hide-toolbar {
+		.ql-toolbar {
+			display: none !important;
+		}
+	}
+}
+
+.rs-slider-progress-bar {
+	@apply !h-[6px] !bg-primary-ultramarineBlue;
+}
+
+.rs-slider-handle::before {
+	@apply !w-[20px] !h-[20px] !border-white !border-[3px] !bg-primary-ultramarineBlue;
+}
+
+.rs-slider-handle {
+	@apply !top-[-7px];
+}
+
+.rs-slider-tooltip {
+	display: none;
+}
+
+/* .rs-slider div:nth-child(2) .rs-slider-tooltip {
+	left: -15.85px !important;
+	display: none;
+}
+
+.rs-slider div:nth-child(3) .rs-slider-tooltip {
+	left: -15.85px !important;
+	display: none;
+} */

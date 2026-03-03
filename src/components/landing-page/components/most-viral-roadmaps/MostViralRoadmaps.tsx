@@ -1,0 +1,33 @@
+import MostViralRoadmapItem from "@/components/landing-page/components/most-viral-roadmaps/MostViralRoadmapItem";
+import { ARROW_ICON } from "@public/icons/roadmapSteps";
+import React from "react";
+
+const MostViralRoadmaps = () => {
+	return (
+		<section className="bg-[#F8F9FA] px-6 lg:px-[4.5rem] py-[4.5rem]">
+			<div className="section-header [&>*]:!text-[#171618]">
+				<h2>Most Viral Roadmaps</h2>
+				<p>
+					<span className="font-semibold">Don't Miss Out on Success: </span>{" "}
+					Explore Our Most Viral Roadmaps and subscribe to expert-curated
+					pathways to achieve your goals.
+				</p>
+			</div>
+
+			<ul className="max-w-[880px] mx-auto mt-16">
+				{Array.from(Array(6)).map((_, index) => (
+					<MostViralRoadmapItem key={index} />
+				))}
+			</ul>
+
+			<button className="flex-jc-c mx-auto mt-12 text-[#506CF0] font-inter font-medium text-[16px] group">
+				View More{" "}
+				<span className="[&>svg]:rotate-90 group-hover:translate-x-1 transform transition duration-200">
+					{ARROW_ICON}
+				</span>
+			</button>
+		</section>
+	);
+};
+
+export default MostViralRoadmaps;

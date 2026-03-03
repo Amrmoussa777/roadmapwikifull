@@ -1,0 +1,27 @@
+.form_label {
+	color: rgb(45, 45, 45);
+	font-weight: 900 !important;
+	padding: 0 !important;
+}
+
+.editor {
+	position: relative;
+	margin: 8px 0;
+}
+
+.quill {
+	display: flex;
+	flex-direction: column-reverse;
+	height: 100%;
+	border: 1px solid #0000001f;
+	border-radius: 8px;
+}
+
+.ql-toolbar {
+	order: 2;
+}
+
+.ql-container {
+	order: 1;
+	flex-grow: 1;
+}

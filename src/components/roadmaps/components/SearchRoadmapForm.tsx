@@ -1,0 +1,154 @@
+"use client";
+
+import VerticalDivider from "@/components/common/divider/components/VerticalDivider";
+import useInput from "@/components/common/input/hooks/useInput";
+import { ITarget } from "@/components/common/input/types";
+import { useOnClickOutside } from "@/hooks/useOnClickOutside";
+import { useSizeScreen } from "@/hooks/useSizeScreen";
+import useToggle from "@/hooks/useToggle";
+import {
+	changeSearchType,
+	changeSearchValue,
+} from "@/redux/slices/roadmapList/roadmapListSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
+import { ARROW_ICON } from "@public/icons/roadmapSteps";
+import { ROADMAP_ICON, SEARCH_ICON } from "@public/icons/roadmaps";
+import { AnimatePresence, motion } from "framer-motion";
+import React, { FormEvent, useEffect, useRef } from "react";
+
+const SearchRoadmapForm = () => {
+	const { currentState: isOptionsVisible, toggle: hideOptions } =
+		useToggle(false);
+	const { responsive } = useSizeScreen(640);
+	const { value, changeValue, reset } = useInput("");
+
+	const dispatch = useAppDispatch();
+	const { searchType, filterList, searchValue } = useAppSelector(
+		state => state.roadmapList
+	);
+
+	const handleChangeSearchType = (newSearchType: "roadmaps" | "creators") => {
+		dispatch(changeSearchType(newSearchType));
+
+		hideOptions();
+	};
+
+	const handleSearchSubmit = (e: FormEvent) => {
+		e.preventDefault();
+
+		dispatch(changeSearchValue(value));
+	};
+
+	const handleChangeValue = (e: ITarget | string) => {
+		const newValue = typeof e === "string" ? e : e.target.value;
+
+		changeValue(e);
+
+		if (!newValue && searchValue?.length) {
+			dispatch(changeSearchValue(newValue));
+		}
+	};
+
+	useEffect(() => {
+		if (responsive && isOptionsVisible) {
+			hideOptions();
+		}
+	}, [responsive]);
+
+	useEffect(() => {
+		if (Object.values(filterList).length) {
+			reset();
+		}
+	}, [filterList]);
+
+	const buttonRef = useRef<HTMLButtonElement>(null);
+	const divRef = useRef<HTMLDivElement>(null);
+
+	useOnClickOutside(hideOptions, [buttonRef, divRef]);
+
+	return (
+		<form
+			onSubmit={handleSearchSubmit}
+			className="w-full h-[60px] sm:h-[80px] flex items-center mt-[20px] shadow-[0_8px_30px_rgb(0,0,0,0.12)] rounded-[16px] p-[12px] sm:p-[20px] border border-transparent focus-within:border-primary-ultramarineBlue focus-within:shadow-[5px_5px_0px_0px_rgba(80,108,240),0_8px_30px_rgb(0,0,0,0.12)] transition duration-200"
+		>
+			<div className="flex items-center gap-4 w-full sm:w-2/4">
+				<span className="text-[#C4C4C4]">{ROADMAP_ICON}</span>
+				<input
+					type="text"
+					placeholder={`${
+						searchType === "roadmaps"
+							? responsive
+								? "Search for roadmap"
+								: "Enter field name you want roadmap about"
+							: responsive
+							? "Search for creator"
+							: "Enter creator name you want roadmap about"
+					}`}
+					value={value}
+					onChange={handleChangeValue}
+					autoFocus
+					className="w-full h-[50px] sm:h-[70px] outline-none text-[16px] font-poppins placeholder:font-poppins placeholder:text-[16px]"
+				/>
+			</div>
+
+			<VerticalDivider
+				width="w-[1px]"
+				bgColor="bg-[#EDEFF5]"
+				customStyles="hidden sm:block"
+			/>
+
+			<div className="relative sm:w-2/4 flex-jb-c">
+				<button
+					id="roadmapDuration"
+					type="button"
+					onClick={hideOptions}
+					ref={buttonRef}
+					className="w-fit roadmap-info-select capitalize font-poppins text-[16px] border-none sm:text-[18px] text-[#383838] hidden sm:flex-jb-c"
+				>
+					{searchType}
+					<span
+						className={`!text-[#3F3F3F] [&>svg]:transition-all ${
+							isOptionsVisible ? "[&>svg]:rotate-0" : "[&>svg]:rotate-180"
+						}`}
+					>
+						{ARROW_ICON}
+					</span>
+				</button>
+
+				<AnimatePresence>
+					{isOptionsVisible ? (
+						<motion.div
+							initial={{ y: -10, opacity: 0 }}
+							animate={{ y: 0, opacity: 1 }}
+							exit={{ y: -10, opacity: 0 }}
+							transition={{ duration: 0.1 }}
+							ref={divRef}
+							className="absolute top-[60px] bg-white rounded-xl shadow-xl"
+						>
+							<button
+								type="button"
+								onClick={() => handleChangeSearchType("roadmaps")}
+								className="roadmap-info-select mt-0 rounded-none rounded-t-xl hover:bg-[#F6F6F6] font-poppins text-[16px] border-none sm:text-[18px] text-[#383838]"
+							>
+								Roadmaps
+							</button>
+							<button
+								type="button"
+								onClick={() => handleChangeSearchType("creators")}
+								className="roadmap-info-select hover:bg-[#F6F6F6] rounded-none rounded-b-xl font-poppins text-[16px] border-none sm:text-[18px] text-[#383838]"
+							>
+								Creators
+							</button>
+						</motion.div>
+					) : null}
+				</AnimatePresence>
+
+				<button className="w-[38px] sm:w-[48px] h-[38px] sm:h-[48px] flex-jc-c bg-[#F6F6F6] text-[#383838] rounded-full">
+					{SEARCH_ICON}
+				</button>
+			</div>
+		</form>
+	);
+};
+
+export default SearchRoadmapForm;

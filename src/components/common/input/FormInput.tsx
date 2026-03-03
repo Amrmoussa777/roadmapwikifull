@@ -1,0 +1,64 @@
+"use client";
+
+import React from "react";
+import { IFormInput } from "./types";
+
+const FormInput = ({
+	type,
+	label,
+	placeholder,
+	customStyles = "",
+	required,
+	name,
+	autoFocus,
+	handleChangeValue,
+	value,
+	inputRef,
+	icon,
+	onBlur,
+	validationError,
+}: IFormInput) => {
+	return (
+		<div className={`${customStyles}`}>
+			{label ? (
+				<label
+					htmlFor={name}
+					className="text-[14px] font-poppins text-[#666666] font-normal"
+				>{`${label}${required ? "*" : ""}`}</label>
+			) : null}
+
+			{type === "textarea" ? (
+				<textarea
+					value={value}
+					onChange={handleChangeValue}
+					name={name}
+					autoFocus={autoFocus}
+					placeholder={placeholder}
+					onBlur={onBlur}
+					className={`w-full h-[172px] min-h-[172px] border border-[#E0E0E0] mt-1 rounded-md p-4 justify-between gap-2 sm:text-xl font-normal bg-white outline-none focus:border-primary-ultramarineBlue resize-none ${customStyles}`}
+				/>
+			) : (
+				<input
+					ref={inputRef}
+					type={type}
+					className={`w-full h-[50px] mt-1 border border-[#E0E0E0] rounded-md p-4 justify-between gap-2 sm:text-xl font-normal bg-white outline-none focus:border-primary-ultramarineBlue ${customStyles}`}
+					value={value}
+					onChange={handleChangeValue}
+					name={name}
+					autoFocus={autoFocus}
+					placeholder={placeholder}
+					id={name}
+					onBlur={onBlur}
+				/>
+			)}
+
+			{validationError ? (
+				<p className="text-red-500 text-xs mt-1">{validationError}</p>
+			) : null}
+
+			{icon}
+		</div>
+	);
+};
+
+export default FormInput;
