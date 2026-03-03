@@ -7,7 +7,7 @@ const NavbarLinkItem = ({ name, href }: NavbarLinkItemType) => {
 		<li className="py-[5px] lg:py-[10px] px-[7px] lg:px-[14px]">
 			<Link
 				href={href}
-				className="font-inter font-medium text-[15.5px] text-[#171618]"
+				className="font-inter font-medium text-[15px] text-[#5A5A5A] hover:text-[#111] transition-colors duration-200"
 			>
 				{name}
 			</Link>

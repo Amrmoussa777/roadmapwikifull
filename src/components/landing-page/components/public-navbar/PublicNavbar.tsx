@@ -3,7 +3,7 @@
 import NavbarButtons from "@/components/landing-page/components/public-navbar/NavbarButtons";
 import NavbarLinks from "@/components/landing-page/components/public-navbar/NavbarLinks";
 import RoadmapLogo from "@/components/landing-page/components/public-navbar/RoadmapLogo";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NavbarMobile from "@/components/landing-page/components/public-navbar/NavbarMobile";
 import useToggle from "@/hooks/useToggle";
 import MenuButton from "@/components/landing-page/components/public-navbar/MenuButton";
@@ -19,13 +19,26 @@ const PublicNavbar = () => {
 	const { currentState: isMenuOpen, toggle: toggleMobileNavbar } =
 		useToggle(false);
 	const pathname = usePathname() ?? "";
+	const [scrolled, setScrolled] = useState(false);
+
+	useEffect(() => {
+		const handleScroll = () => setScrolled(window.scrollY > 20);
+		window.addEventListener("scroll", handleScroll);
+		return () => window.removeEventListener("scroll", handleScroll);
+	}, []);
 
 	if (pathname.includes("builder")) return;
 	if (pathname.includes("auth")) return;
 
 	return (
-		<div className="relative bg-white border-b border-[#E0E0E0] w-full">
-			<nav className="relative max-w-[1440px] h-[64px] flex-jb-c mx-auto p-6 lg:px-8 bg-white z-50">
+		<div
+			className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+				scrolled
+					? "bg-white/70 backdrop-blur-2xl border-b border-black/[0.04] shadow-[0_1px_20px_rgba(0,0,0,0.04)]"
+					: "bg-white/40 backdrop-blur-md"
+			}`}
+		>
+			<nav className="relative max-w-[1440px] h-[72px] flex-jb-c mx-auto px-6 lg:px-8">
 				<RoadmapLogo />
 				<NavbarLinks links={navbarLinks} />
 				<NavbarButtons customStyles="hidden md:block" />
@@ -40,7 +53,7 @@ const PublicNavbar = () => {
 				links={navbarLinks}
 				customStyles={`transition-all duration-300 ${
 					isMenuOpen
-						? "!top-[64px] opacity-1 z-20"
+						? "!top-[72px] opacity-1 z-20"
 						: "!top-[-400px] opacity-0 z-0"
 				}`}
 			/>

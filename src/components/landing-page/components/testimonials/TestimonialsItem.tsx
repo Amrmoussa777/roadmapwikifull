@@ -31,7 +31,7 @@ const TestimonialsItem = ({
 		>
 			<div
 				onClick={() => setActive(1)}
-				className={`relative w-[180px] md:w-[225px] lg:w-[325px] rounded-[22px] border border-[#E7E8F1] shadow-xl -rotate-6 overflow-hidden bg-white transition-all ${
+				className={`relative w-[180px] md:w-[225px] lg:w-[325px] rounded-2xl border border-black/[0.06] shadow-[0_4px_30px_rgba(0,0,0,0.06)] -rotate-6 overflow-hidden bg-white transition-all hover:shadow-[0_8px_40px_rgba(80,108,240,0.1)] ${
 					active === 1 ? "z-10" : "z-0"
 				}`}
 			>
@@ -45,25 +45,25 @@ const TestimonialsItem = ({
 					/>
 
 					<div>
-						<h3 className="text-[16px] lg:text-[18px] font-bold text-black">
+						<h3 className="text-[16px] lg:text-[18px] font-bold text-[#111]">
 							{firstTestimonial.user.name}
 						</h3>
-						<p className="font-inter text-[12px] lg:text-[16px] font-normal text-block">
+						<p className="font-inter text-[12px] lg:text-[16px] font-normal text-[#9CA3AF]">
 							{firstTestimonial.user.job}
 						</p>
 					</div>
 				</div>
 
 				<div className="px-3 md:px-6 bg-white pt-2 md:pt-4 lg:pt-8 py-8 lg:py-16">
-					<h3 className="text-[14px] lg:text-[22px] font-sans font-bold text-[#170F49] text-center">
+					<h3 className="text-[14px] lg:text-[22px] font-sans font-bold text-[#111] text-center">
 						{firstTestimonial.heading}
 					</h3>
-					<p className="text-[12px] lg:text-[16px] text-center text-[#6F6C90] font-inter mt-4">
+					<p className="text-[12px] lg:text-[16px] text-center text-[#6B7280] font-inter mt-4">
 						{firstTestimonial.comment}
 					</p>
 				</div>
 
-				<div className="absolute w-[170px] h-[450px] bg-primary-ultramarineBlue top-[-300px] lg:top-[-350px] right-[-80px] md:right-[-70px] lg:right-0 -rotate-45" />
+				<div className="absolute w-[170px] h-[450px] bg-gradient-to-br from-[#506CF0] to-[#7C5CFC] top-[-300px] lg:top-[-350px] right-[-80px] md:right-[-70px] lg:right-0 -rotate-45" />
 			</div>
 
 			<div
@@ -72,8 +72,14 @@ const TestimonialsItem = ({
 					active === 2 ? "z-10" : "z-0"
 				}`}
 			>
-				<div className="relative w-[180px] md:w-[225px] lg:w-[325px] rounded-[22px] shadow-xl rotate-6 overflow-hidden">
-					<div className="flex justify-start gap-2 lg:gap-6 px-3 md:px-3 lg:px-6 py-6 md:py-6 lg:py-12 bg-primary-ultramarineBlue">
+				<div className="relative w-[180px] md:w-[225px] lg:w-[325px] rounded-2xl shadow-[0_4px_30px_rgba(0,0,0,0.06)] rotate-6 overflow-hidden hover:shadow-[0_8px_40px_rgba(80,108,240,0.1)]">
+					<div
+						className="flex justify-start gap-2 lg:gap-6 px-3 md:px-3 lg:px-6 py-6 md:py-6 lg:py-12"
+						style={{
+							background:
+								"linear-gradient(135deg, #506CF0 0%, #7C5CFC 100%)",
+						}}
+					>
 						<Image
 							src={secondTestimonial.user.image}
 							width={100}
@@ -86,17 +92,17 @@ const TestimonialsItem = ({
 							<h3 className="text-[16px] lg:text-[18px] font-bold text-white">
 								{secondTestimonial.user.name}
 							</h3>
-							<p className="font-inter text-[12px] lg:text-[16px] font-normal text-white">
+							<p className="font-inter text-[12px] lg:text-[16px] font-normal text-white/80">
 								{secondTestimonial.user.job}
 							</p>
 						</div>
 					</div>
 
 					<div className="px-3 md:px-6 bg-white pt-2 md:pt-4 lg:pt-8 py-8 lg:py-16">
-						<h3 className="text-[14px] lg:text-[22px] font-sans font-bold text-[#170F49] text-center">
+						<h3 className="text-[14px] lg:text-[22px] font-sans font-bold text-[#111] text-center">
 							{secondTestimonial.heading}
 						</h3>
-						<p className="text-[12px] lg:text-[16px] text-center text-[#6F6C90] font-inter mt-4">
+						<p className="text-[12px] lg:text-[16px] text-center text-[#6B7280] font-inter mt-4">
 							{secondTestimonial.comment}
 						</p>
 					</div>
