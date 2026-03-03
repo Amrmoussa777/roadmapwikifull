@@ -6,12 +6,12 @@ const getPostReplies = async ({
 	pageNumber,
 	pageSize,
 }: getPostRepliesArgs) => {
-	const data = HandleApiRequests.handleApiRequest({
+	const comments = await HandleApiRequests.handleApiRequest({
 		method: "GET",
 		endpoint: `posts/${postId}/comments?page=${pageNumber}&pageSize=${pageSize}`,
 	});
 
-	return data;
+	return { comments };
 };
 
 export { getPostReplies };

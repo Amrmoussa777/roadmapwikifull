@@ -18,7 +18,7 @@ const navbarLinks = [
 const PublicNavbar = () => {
 	const { currentState: isMenuOpen, toggle: toggleMobileNavbar } =
 		useToggle(false);
-	const pathname = usePathname();
+	const pathname = usePathname() ?? "";
 
 	if (pathname.includes("builder")) return;
 	if (pathname.includes("auth")) return;

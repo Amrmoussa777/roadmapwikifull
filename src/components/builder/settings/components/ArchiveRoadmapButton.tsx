@@ -4,11 +4,13 @@ import { useParams, useRouter } from "next/navigation";
 import React from "react";
 
 const ArchiveRoadmapButton = () => {
-	const { roadmapId } = useParams();
+	const params = useParams<{ roadmapId?: string }>();
+	const roadmapId = params?.roadmapId;
 	const { fetchData, loading } = useFetch();
 	const { push } = useRouter();
 
 	const handleDeleteRoadmap = async () => {
+		if (!roadmapId) return;
 		await fetchData("POST", `roadmap/${roadmapId}/archive`).then(() => {
 			push("/builder");
 		});

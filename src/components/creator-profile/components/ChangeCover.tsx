@@ -11,6 +11,7 @@ const ChangeCover = ({
 	uploadModal,
 	toggleUploadModal,
 	handleSaveCover,
+	uploadBucket,
 	ratio,
 	title,
 	imageHeight,
@@ -18,6 +19,7 @@ const ChangeCover = ({
 	uploadModal: boolean;
 	toggleUploadModal: () => void;
 	handleSaveCover: (key: string) => void;
+	uploadBucket?: "avatars" | "covers" | "step-attachments" | "message-attachments";
 	ratio: string;
 	title: string;
 	imageHeight?: number;
@@ -37,6 +39,7 @@ const ChangeCover = ({
 					setSelectedFile={setSelectedFile}
 					toggleUploadModal={toggleUploadModal}
 					handleSaveCover={handleSaveCover}
+					uploadBucket={uploadBucket}
 					ratio={ratio}
 					imageHeight={imageHeight}
 				/>

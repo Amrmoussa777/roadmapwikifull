@@ -1,5 +1,5 @@
-import { getUser } from "@/app/auth/services/getUser";
 import { NextRequest, NextResponse } from "next/server";
+import { createServerClient } from "@supabase/ssr";
 
 /**
  * Configuration object for the middleware.
@@ -12,39 +12,56 @@ export const config = {
 	matcher: ["/((?!api|.*\\..*).*)"],
 };
 
-/**
- * An array of protected paths that require user authentication.
- *
- * @type {string[]}
- */
-const protectedPaths = ["/auth"];
-
 export default async function handleAuthenticationMiddleware(req: NextRequest) {
-	const refreshToken = req.cookies.get("refreshToken")?.value;
+	let res = NextResponse.next({
+		request: {
+			headers: req.headers,
+		},
+	});
 
-	/**
-	 * User object obtained by fetching user information using the access token.
-	 *
-	 * @type {Object}
-	 */
+	const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+	const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-	const user = await getUser(refreshToken);
+	if (!url || !anonKey) return res;
 
-	/**
-	 * Checks if the current request path is protected.
-	 *
-	 * @type {boolean}
-	 */
+	const supabase = createServerClient(url, anonKey, {
+		cookies: {
+			getAll() {
+				return req.cookies.getAll();
+			},
+			setAll(cookiesToSet) {
+				cookiesToSet.forEach(({ name, value, options }) => {
+					res.cookies.set(name, value, options);
+				});
+			},
+		},
+	});
 
-	const isProtectedPath = protectedPaths.some(route =>
-		req.nextUrl.pathname.startsWith(route)
-	);
+	// Refresh session cookies if needed.
+	const {
+		data: { user },
+	} = await supabase.auth.getUser();
 
-	if (user && !isProtectedPath) {
-		return NextResponse.next();
-	}
+	const pathname = req.nextUrl.pathname;
 
-	if (user && isProtectedPath) {
+	const authPages = pathname.startsWith("/auth");
+	const protectedPaths = [
+		"/builder",
+		"/conversation",
+		"/payment",
+		"/monetization",
+	];
+	const isProtected = protectedPaths.some(p => pathname.startsWith(p));
+
+	if (user && authPages) {
 		return NextResponse.redirect(new URL("/", req.nextUrl));
 	}
+
+	if (!user && isProtected) {
+		const loginUrl = new URL("/auth/login", req.nextUrl);
+		loginUrl.searchParams.set("redirectPath", pathname);
+		return NextResponse.redirect(loginUrl);
+	}
+	console.log("pathname", pathname)
+	return res;
 }

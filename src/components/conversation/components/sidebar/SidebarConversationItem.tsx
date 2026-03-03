@@ -13,7 +13,8 @@ const SidebarConversationItem = ({
 }: {
 	conversation: ConversationTypes;
 }) => {
-	const { conversationId: paramId } = useParams();
+	const params = useParams<{ conversationId?: string }>();
+	const paramId = params?.conversationId;
 	const { push } = useRouter();
 	const { id, users, messages } = conversation;
 	const { currentUser } = useContext(CurrentUserContext);

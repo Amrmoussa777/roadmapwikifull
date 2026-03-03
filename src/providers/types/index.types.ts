@@ -24,8 +24,8 @@ export type CurrentUserCount = {
 
 export type CurrentUserType = {
 	id: string;
-	email: string;
-	role: string;
+	email?: string | null;
+	role: "USER" | "CREATOR" | string;
 	image: string;
 	cover: string;
 	occupation: string;
@@ -33,12 +33,13 @@ export type CurrentUserType = {
 	fullName: string;
 	userName: string;
 	description: string;
-	socialMedia: CurrentUserSocialMedia[];
-	experiences: CurrentUserExperience[];
-	_count: CurrentUserCount;
-	stats: Record<string, number>;
-	tips: { tip: string; message: string }[];
-	onboardingSteps: { key: string; step: string; message: string }[];
+	// These are optional in the Supabase migration. Populate as needed.
+	socialMedia?: CurrentUserSocialMedia[];
+	experiences?: CurrentUserExperience[];
+	_count?: CurrentUserCount;
+	stats?: Record<string, number>;
+	tips?: { tip: string; message: string }[];
+	onboardingSteps?: { key: string; step: string; message: string }[];
 };
 
 export type CurrentUserContextType = {

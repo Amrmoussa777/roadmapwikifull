@@ -16,6 +16,7 @@ const FileUploader = ({
 	setSelectedFile,
 	toggleUploadModal,
 	handleSaveCover,
+	uploadBucket = "covers",
 	ratio,
 	imageHeight,
 }: FileUploaderProps) => {
@@ -32,7 +33,11 @@ const FileUploader = ({
 		let formData = new FormData();
 		formData.append("file", selectedFile);
 
-		await fetchData("POST", `media/upload`, formData).then(
+		await fetchData(
+			"POST",
+			`media/upload?bucket=${uploadBucket}`,
+			formData
+		).then(
 			async ({ data: key }) => {
 				setUpdatingLoading(true);
 				handleSaveCover(key);

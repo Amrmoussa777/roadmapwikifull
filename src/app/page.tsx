@@ -1,6 +1,5 @@
 import { getUser } from "@/app/auth/services/getUser";
 import FullPageLoader from "@/components/common/loader/FullPageLoader";
-import { cookies } from "next/headers";
 import React, { Suspense, lazy } from "react";
 
 const CreatorHome = lazy(
@@ -14,11 +13,8 @@ const LandingPage = lazy(
 );
 
 export default async function Home() {
-	const cookieStore = cookies();
-	const accessToken = cookieStore.get("accessToken")?.value;
-
-	const currentUser = await getUser(accessToken);
-
+	const currentUser = await getUser();
+	console.log("currentUser2333", currentUser)
 	return (
 		<Suspense fallback={<FullPageLoader />}>
 			{currentUser ? (

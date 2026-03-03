@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 const useClearReduxOnNavigation = () => {
 	const excludedPaths = ["conversation"];
 
-	const pathname = usePathname();
+	const pathname = usePathname() ?? "";
 	const dispatch = useDispatch();
 
 	useEffect(() => {

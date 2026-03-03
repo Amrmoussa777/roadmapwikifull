@@ -17,7 +17,8 @@ const RoadmapStyleButtonCheckbox = ({
 	keyColor: keyof Colors;
 	handleChangeColor: (keyColor: keyof Colors, newColor: string) => void;
 }) => {
-	const { roadmapId } = useParams();
+	const params = useParams<{ roadmapId?: string }>();
+	const roadmapId = params?.roadmapId;
 
 	const dispatch = useAppDispatch();
 
@@ -26,6 +27,7 @@ const RoadmapStyleButtonCheckbox = ({
 	const handleUpdateRoadmapStyles = async (
 		newRoadmapStyles: Record<string, string>
 	) => {
+		if (!roadmapId) return;
 		await fetchData("PATCH", `roadmap/${roadmapId}`, newRoadmapStyles);
 		dispatch(updateRoadmapData(newRoadmapStyles));
 	};

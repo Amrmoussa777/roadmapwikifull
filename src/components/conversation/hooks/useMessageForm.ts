@@ -64,7 +64,7 @@ export const useMessageForm = () => {
 		formData.append("file", newAudioFile);
 		const { data: key } = await fetchUploadFile(
 			"POST",
-			"media/upload",
+			"media/upload?bucket=message-attachments",
 			formData
 		);
 

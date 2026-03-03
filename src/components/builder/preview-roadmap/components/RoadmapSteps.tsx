@@ -24,10 +24,12 @@ const RoadmapSteps = () => {
 	);
 	const { handleReOrderRoadmapSteps } = useRoadmapSteps();
 	const dispatch = useAppDispatch();
-	const { roadmapId } = useParams();
+	const params = useParams<{ roadmapId?: string }>();
+	const roadmapId = params?.roadmapId;
 	const [isDragging, setIsDragging] = useState(false);
 
 	const handleAddRoadmapStep = async () => {
+		if (!roadmapId) return;
 		dispatch(
 			addRoadmapStep({
 				roadmapId,

@@ -4,7 +4,7 @@ import Steps from "@/components/builder/create-new-roadmap-steps/Steps";
 
 const page = () => {
 	return (
-		<div className="relative w-screen h-screen dotted-bg overflow-x-hidden">
+		<div className="relative w-screen h-screen bg-red-500 overflow-x-hidden">
 			<CreateNewRoadmapHeader />
 
 			<div className="h-[calc(100%-82px)] flex flex-col justify-center px-4 lg:px-12">

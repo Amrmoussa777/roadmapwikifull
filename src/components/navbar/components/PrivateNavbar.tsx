@@ -19,7 +19,7 @@ const PrivateNavbar = () => {
 
 	const { responsive } = useSizeScreen(768);
 
-	const pathname = usePathname();
+	const pathname = usePathname() ?? "";
 
 	useEffect(() => {
 		if (isMenuOpen && responsive) {

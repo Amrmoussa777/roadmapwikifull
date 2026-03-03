@@ -8,7 +8,8 @@ import { useParams } from "next/navigation";
 import React, { ReactNode, useState } from "react";
 
 const RoadmapInfoSelectItems = () => {
-	const { roadmapId } = useParams();
+	const params = useParams<{ roadmapId?: string }>();
+	const roadmapId = params?.roadmapId;
 
 	const { roadmap } = useAppSelector(state => state.createRoadmap);
 	const { duration: defaultDuration, category: defaultCategoryName } =
@@ -26,6 +27,7 @@ const RoadmapInfoSelectItems = () => {
 	> | null>(defaultIcon || null);
 
 	const handleSubmitIcon = async (newIcon: RoadmapIconType) => {
+		if (!roadmapId) return;
 		const updatedRoadmapStep = { icon: newIcon.name };
 
 		await fetchData("PATCH", `roadmap/${roadmapId}`, updatedRoadmapStep);

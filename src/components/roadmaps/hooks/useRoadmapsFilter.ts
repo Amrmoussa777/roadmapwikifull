@@ -20,7 +20,7 @@ import PathnameHelper from "@/helpers/pathname.helper";
 const useRoadmapsFilter = () => {
 	const dispatch = useAppDispatch();
 	const { searchType } = useAppSelector(state => state.roadmapList);
-	const urlParams = useSearchParams();
+	const urlParams = useSearchParams() ?? new URLSearchParams();
 	const [searchTypeList, setSearchTypeList] =
 		useState<FilterListItem[]>(searchTypeListData);
 	const [roadmapCategoryList, setRoadmapCategoryList] =

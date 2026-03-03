@@ -6,8 +6,6 @@ import { UP_VOTE_ICON } from "@public/icons/roadmapPreview";
 import { MENU_ICON } from "@public/icons/roadmapSteps";
 import { RoadmapPostReplyPostType } from "@/components/roadmap-preview/components/roadmap-discussion/types/roadmap-discussion-post-replies.types";
 import { UNKNOWN_USER_ICON } from "@public/icons/userProfile";
-import { getCookie } from "cookies-next";
-import axios from "axios";
 import moment from "moment";
 import { CurrentUserContext } from "@/providers/CurrentUserContext";
 import { useRouter } from "next/navigation";

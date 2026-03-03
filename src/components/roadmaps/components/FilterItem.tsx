@@ -22,7 +22,7 @@ const FilterItem = ({
 	multi,
 	isShowMore,
 }: FilterItemProps) => {
-	const urlParams = useSearchParams();
+	const urlParams = useSearchParams() ?? new URLSearchParams();
 
 	const handleChangeFilterItemList = (
 		list: FilterListItem[],
