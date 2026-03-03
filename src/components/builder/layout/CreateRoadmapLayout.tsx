@@ -37,16 +37,11 @@ const CreateRoadmapLayout = ({ children }: ChildrenType) => {
 	}, [lastPathname]);
 
 	useEffect(() => {
-		if (roadmap && currentUser && currentUser.id !== roadmap.userId) {
-			router.replace("/builder");
-		}
-	}, [currentUser, roadmap, router]);
-
-	useEffect(() => {
 		if (error) {
-			router.replace("/builder");
+			// Keep the user on the current page and surface the error in UI/debug tools
+			console.error("CreateRoadmapLayout error:", error);
 		}
-	}, [error, router]);
+	}, [error]);
 
 	if (
 		!pathname.includes("builder") ||
