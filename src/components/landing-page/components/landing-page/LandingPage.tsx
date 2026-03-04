@@ -13,9 +13,9 @@ const LandingPage = () => {
 	return (
 		<main className="relative max-w-[1440px] mx-auto overflow-x-hidden bg-[#FAFBFC]">
 			<Hero />
-			<SuperRoadmaps />
-			<MostViralCreators />
 			<MostViralRoadmaps />
+			<MostViralCreators />
+			<SuperRoadmaps />
 			<Testimonials />
 			<FAQ />
 			<NewEraHere />

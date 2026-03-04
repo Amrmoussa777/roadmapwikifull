@@ -136,7 +136,7 @@ const Hero = () => {
 						Create Roadmap
 					</Link>
 					<Link
-						href={`/roadmap/${roadmapList[activeRoadmapIndex].id}`}
+						href="/roadmap/a1a00000-0003-4000-8000-000000000001"
 						className="w-full sm:w-[180px] md:w-[210px] h-[44px] md:h-[52px] group flex-jc-c gap-2 text-[14px] md:text-[15px] text-[#3D3D3D] font-inter font-semibold border border-[#E0E0E0] hover:border-[#506CF0]/30 bg-white hover:bg-[#506CF0]/[0.03] rounded-full transition-all duration-300"
 					>
 						<span className="w-full h-full flex-jc-c gap-2 hover:translate-x-[2px] transform transition duration-200">

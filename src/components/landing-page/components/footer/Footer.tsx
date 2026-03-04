@@ -132,7 +132,7 @@ const Footer = () => {
 						<a href="https://dribbble.com/" target="_blank">
 							{DRIBBLE_ICON}
 						</a>
-						<a href="https://www.linkedin.com/" target="_blank">
+						<a href="https://www.linkedin.com/company/103868297/" target="_blank">
 							{IN_ICON}
 						</a>
 					</div>
