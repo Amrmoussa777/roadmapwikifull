@@ -1,82 +1,67 @@
 "use client";
 
-import React, { useRef, useState } from "react";
-import SuperRoadmapsImage from "@public/super-roadmaps.svg";
-import { ARROW_ICON } from "@public/icons/roadmapSteps";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
-import { Swiper as SwiperType } from "swiper/types";
 import Image from "@/components/common/image/CustomImage";
+import { ARROW_ICON } from "@public/icons/roadmapSteps";
+import superRoadmapsImage from "@public/super-roadmaps.svg";
+import React, { useRef, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper as SwiperType } from "swiper/types";
+import "swiper/css";
+
+const slides = [superRoadmapsImage, superRoadmapsImage, superRoadmapsImage];
 
 const SuperRoadmapsSlider = () => {
 	const [activeIndex, setActiveIndex] = useState(0);
 	const swiperRef = useRef<null | SwiperType>(null);
+	const lastIndex = slides.length - 1;
 
 	return (
 		<div className="w-full">
 			<Swiper
 				slidesPerView={1}
-				pagination={{
-					type: "fraction",
-				}}
-				navigation={true}
-				modules={[Navigation]}
-				onActiveIndexChange={e => setActiveIndex(e.realIndex)}
+				spaceBetween={24}
+				onActiveIndexChange={swiper => setActiveIndex(swiper.realIndex)}
 				onSwiper={swiper => {
 					swiperRef.current = swiper;
 				}}
-				className="w-full [&>div>div>img]:w-[calc(100%-4rem)] [&>div>div>img]:mx-auto"
+				className="w-full"
 			>
-				<SwiperSlide>
-					<Image
-						src={SuperRoadmapsImage}
-						width={600}
-						height={600}
-						alt=""
-						className="w-full"
-					/>
-				</SwiperSlide>
-				<SwiperSlide>
-					<Image
-						src={SuperRoadmapsImage}
-						width={600}
-						height={600}
-						alt=""
-						className="md:w-full"
-					/>
-				</SwiperSlide>
-				<SwiperSlide>
-					<Image
-						src={SuperRoadmapsImage}
-						width={600}
-						height={600}
-						alt=""
-						className="md:w-full"
-					/>
-				</SwiperSlide>
+				{slides.map((slide, index) => (
+					<SwiperSlide key={index}>
+						<div className="rounded-[28px] border border-white/35 bg-white/15 p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.35)] backdrop-blur-xl md:p-5">
+							<Image
+								src={slide}
+								width={1305}
+								height={819}
+								alt={`Roadmap screen ${index + 1} of ${slides.length}`}
+								className="h-auto w-full rounded-[20px]"
+							/>
+						</div>
+					</SwiperSlide>
+				))}
 			</Swiper>
 
-			<div className="relative w-fit mx-auto flex-jc-c gap-3 text-[#171618] [&>button]:bg-white/90 [&>button]:backdrop-blur-sm [&>button]:rounded-full [&>button]:w-[42px] [&>button]:h-[42px] [&>button]:flex-jc-c [&>button]:shadow-[0_2px_12px_rgba(0,0,0,0.1)] [&>button]:transition-all [&>button]:duration-300 [&>button:hover]:shadow-[0_4px_20px_rgba(0,0,0,0.15)]">
+			<div className="relative mx-auto mt-6 flex w-fit items-center justify-center gap-3 text-[#171618]">
 				<button
+					type="button"
+					aria-label="Previous slide"
 					onClick={() => swiperRef.current?.slidePrev()}
-					className={`-rotate-90 ${activeIndex === 0 ? "" : "group"}`}
 					disabled={activeIndex === 0}
+					className="flex h-[44px] w-[44px] -rotate-90 items-center justify-center rounded-full border border-white/60 bg-white/80 shadow-[0_4px_16px_rgba(0,0,0,0.12)] backdrop-blur-md transition-all duration-300 hover:bg-white disabled:opacity-40"
 				>
-					<span className="group-hover:-translate-y-[2px] duration-200 transition">
-						{ARROW_ICON}
-					</span>
+					{ARROW_ICON}
 				</button>
 				<button
+					type="button"
+					aria-label="Next slide"
 					onClick={() => swiperRef.current?.slideNext()}
-					className={`rotate-90 ${activeIndex === 2 ? "" : "group"}`}
-					disabled={activeIndex === 2}
+					disabled={activeIndex === lastIndex}
+					className="flex h-[44px] w-[44px] rotate-90 items-center justify-center rounded-full border border-white/60 bg-white/80 shadow-[0_4px_16px_rgba(0,0,0,0.12)] backdrop-blur-md transition-all duration-300 hover:bg-white disabled:opacity-40"
 				>
-					<span className="group-hover:-translate-y-[2px] duration-200 transition">
-						{ARROW_ICON}
-					</span>
+					{ARROW_ICON}
 				</button>
-				<span className="absolute right-[-45px] text-white font-inter font-normal text-[14px]">
-					{activeIndex + 1} of 3
+				<span className="absolute right-[-56px] font-inter text-[14px] font-normal text-white">
+					{activeIndex + 1} of {slides.length}
 				</span>
 			</div>
 		</div>

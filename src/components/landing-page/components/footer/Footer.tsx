@@ -1,146 +1,95 @@
 "use client";
 
-import {
-	DRIBBLE_ICON,
-	IG_ICON,
-	IN_ICON,
-	PLAY_ICON,
-} from "@public/icons/landingPage";
-import React, { useRef } from "react";
-import footerTopIcon from "@public/footer-top.svg";
-import statusImage from "@public/hero-status.svg";
-import Image from "@/components/common/image/CustomImage";
 import RoadmapLogo from "@/components/landing-page/components/public-navbar/RoadmapLogo";
-import Link from "next/link";
 import { motion, useInView } from "framer-motion";
+import Link from "next/link";
+import React, { useRef } from "react";
+
+const exploreLinks = [
+	{ href: "/roadmaps", label: "Roadmaps" },
+	{ href: "/how-it-works", label: "How it works" },
+	{ href: "/our-mission", label: "Our mission" },
+	{ href: "/auth/register", label: "Create an account" },
+];
 
 const Footer = () => {
 	const ref = useRef(null);
-	const isInView = useInView(ref, { once: true, margin: "-100px" });
+	const isInView = useInView(ref, { once: true, margin: "-80px" });
 
 	return (
-		<footer ref={ref} className="relative px-6 lg:px-[4.5rem] pt-[2rem] overflow-hidden bg-white">
-			<div
-				className="absolute inset-0 opacity-[0.2]"
-				style={{
-					backgroundImage:
-						"radial-gradient(circle at 1px 1px, #E8E8E8 0.5px, transparent 0)",
-					backgroundSize: "24px 24px",
-				}}
-			/>
-
+		<footer ref={ref} className="relative px-6 pb-8 pt-8 lg:px-[4.5rem]">
 			<motion.div
-				initial={{ opacity: 0, y: 30 }}
+				initial={{ opacity: 0, y: 24 }}
 				animate={isInView ? { opacity: 1, y: 0 } : {}}
-				transition={{ duration: 0.7, ease: "easeOut" }}
-				className="relative z-10 w-full py-[4rem] md:py-[8rem] rounded-[32px] overflow-hidden"
-				style={{
-					background:
-						"linear-gradient(135deg, #506CF0 0%, #6C3AED 50%, #7C5CFC 100%)",
-				}}
+				transition={{ duration: 0.6, ease: "easeOut" }}
+				className="relative overflow-hidden rounded-[32px] border border-white/30 px-6 py-14 text-center shadow-[0_16px_50px_rgba(80,108,240,0.18)] md:px-12 md:py-16"
 			>
 				<div
-					className="absolute inset-0 opacity-[0.06]"
+					className="absolute inset-0"
 					style={{
-						backgroundImage:
-							"radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
-						backgroundSize: "32px 32px",
+						background:
+							"linear-gradient(135deg, rgba(80,108,240,0.92) 0%, rgba(108,58,237,0.88) 55%, rgba(124,92,252,0.9) 100%)",
 					}}
 				/>
+				<div className="absolute inset-0 bg-white/10 backdrop-blur-xl" />
+				<div
+					className="absolute -left-16 top-[-40px] h-48 w-48 rounded-full bg-white/25 blur-3xl"
+					aria-hidden
+				/>
+				<div
+					className="absolute bottom-[-50px] right-[-20px] h-56 w-56 rounded-full bg-[#C4B5FD]/40 blur-3xl"
+					aria-hidden
+				/>
 
-				<h3 className="relative z-10 font-extrabold text-[22px] md:text-[32px] lg:text-[52px] text-white text-center">
-					Start Your Journey Now
-				</h3>
-				<p className="relative z-10 text-white/60 font-inter text-[14px] md:text-[16px] text-center max-w-[440px] mx-auto mt-3">
-					Join thousands of learners already transforming their careers with expert-crafted roadmaps.
-				</p>
-
-				<div className="relative z-10 flex items-center justify-center gap-4 xl:gap-5 mt-[30px] md:mt-[36px]">
-					<Link
-						href={"/auth/register"}
-						className="w-[148px] md:w-[200px] h-[44px] md:h-[52px] flex-jc-c text-[14px] md:text-[15px] text-[#506CF0] font-inter font-semibold bg-white rounded-full hover:shadow-[0_4px_20px_rgba(255,255,255,0.3)] transition-all duration-300"
-					>
-						Create Roadmap
-					</Link>
-					<Link
-						href={`/roadmap/28c6c08b-30cd-4717-8fd0-a47baa4c40fa`}
-						className="w-[148px] md:w-[200px] h-[44px] md:h-[52px] flex-jc-c gap-2 text-[14px] md:text-[15px] text-white font-inter font-semibold border border-white/20 hover:border-white/40 hover:bg-white/[0.08] rounded-full transition-all duration-300"
-					>
-						<span className="w-full h-full flex-jc-c gap-2 hover:translate-x-[2px] transform transition duration-200">
-							{PLAY_ICON} Watch demo
-						</span>
-					</Link>
+				<div className="relative z-10 mx-auto max-w-[640px]">
+					<h2 className="text-[28px] font-extrabold text-white md:text-[44px]">
+						Open the library, or publish a path.
+					</h2>
+					<p className="mx-auto mt-4 max-w-[460px] font-inter text-[15px] leading-[24px] text-white/80 md:text-[16px]">
+						Browse published roadmaps without an account. Publishing one
+						starts after you sign up.
+					</p>
+					<div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+						<Link
+							href="/roadmaps"
+							className="flex h-[48px] w-full items-center justify-center rounded-full bg-white px-6 font-inter text-[15px] font-semibold text-[#506CF0] sm:w-auto"
+						>
+							Browse roadmaps
+						</Link>
+						<Link
+							href="/auth/register"
+							className="flex h-[48px] w-full items-center justify-center rounded-full border border-white/40 bg-white/15 px-6 font-inter text-[15px] font-semibold text-white backdrop-blur-xl sm:w-auto"
+						>
+							Create an account
+						</Link>
+					</div>
 				</div>
-
-				<Image
-					src={footerTopIcon}
-					width={112}
-					height={112}
-					alt="footer-top-icon"
-					className="absolute w-[90px] md:w-[112px] top-[-30px] right-[50px]"
-				/>
-
-				<Image
-					src={statusImage}
-					width={400}
-					height={112}
-					alt="footer-status"
-					className="absolute w-[300px] md:w-[600px] bottom-[-10px] xl:bottom-[20px] right-[-150px] opacity-40"
-				/>
 			</motion.div>
 
-			<div className="relative z-10 w-full md:h-[371.82px] p-6 md:p-12 bg-[#FAFBFC] mt-[3rem] rounded-t-[32px] border border-black/[0.04]">
-				<div className="flex flex-col md:flex-row gap-8 md:gap-24">
-					<div className="w-[200px]">
-						<RoadmapLogo />
-					</div>
-					<div className="flex gap-6 md:gap-10">
-						<div className="flex flex-col font-inter font-medium text-[15px] text-[#5A5A5A] [&>a]:py-1 [&>a:hover]:text-[#506CF0] [&>a]:transition-colors [&>a]:duration-200">
-							<h3 className="font-inter font-bold text-[17px] text-[#111] mb-5">
-								Explore
-							</h3>
-							<Link href="/roadmaps">Roadmaps</Link>
-							<Link href="/how-it-works">How it works</Link>
-							<Link href="/our-mission">Our mission</Link>
-							<Link href="/builder">Create</Link>
-						</div>
-
-						<div className="flex flex-col font-inter font-medium text-[15px] text-[#5A5A5A] [&>a]:py-1 [&>a:hover]:text-[#506CF0] [&>a]:transition-colors [&>a]:duration-200">
-							<h3 className="font-inter font-bold text-[17px] text-[#111] mb-5">
-								Company
-							</h3>
-							<Link href="/about">About us</Link>
-							<Link href="/careers">Careers</Link>
-							<Link href="/contact">Contact</Link>
-						</div>
-
-						<div className="flex flex-col font-inter font-medium text-[15px] text-[#5A5A5A] [&>a]:py-1 [&>a:hover]:text-[#506CF0] [&>a]:transition-colors [&>a]:duration-200">
-							<h3 className="font-inter font-bold text-[17px] text-[#111] mb-5">
-								Legal
-							</h3>
-							<Link href="/terms">Terms of Service</Link>
-							<Link href="/privacy">Privacy Policy</Link>
-						</div>
-					</div>
+			<div className="mt-6 rounded-[28px] border border-white/70 bg-white/50 px-6 py-8 shadow-[0_10px_40px_rgba(31,41,80,0.06),inset_0_1px_0_rgba(255,255,255,0.75)] backdrop-blur-xl md:px-10 md:py-10">
+				<div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
+					<RoadmapLogo />
+					<nav aria-label="Footer">
+						<h3 className="font-inter text-[13px] font-semibold uppercase tracking-[0.12em] text-[#6B7280]">
+							Explore
+						</h3>
+						<ul className="mt-4 space-y-2">
+							{exploreLinks.map(link => (
+								<li key={link.href}>
+									<Link
+										href={link.href}
+										className="font-inter text-[15px] font-medium text-[#3D3D3D] transition-colors duration-200 hover:text-[#506CF0]"
+									>
+										{link.label}
+									</Link>
+								</li>
+							))}
+						</ul>
+					</nav>
 				</div>
-
-				<div className="w-full flex-ic-c flex-col md:flex-row gap-6 md:gap-24 mt-6">
-					<div className="w-fit md:w-[200px] flex-ic-c gap-2 [&>a]:w-[40px] [&>a]:h-[40px] [&>a]:flex-jc-c [&>a]:rounded-full [&>a]:border [&>a]:border-black/[0.06] text-[#5A5A5A] [&>a:hover]:shadow-[0_2px_12px_rgba(80,108,240,0.12)] [&>a:hover]:border-[#506CF0]/20 [&>a:hover]:text-[#506CF0] [&>a]:duration-300 [&>a]:transition-all">
-						<a href="https://www.instagram.com/" target="_blank">
-							{IG_ICON}
-						</a>
-						<a href="https://dribbble.com/" target="_blank">
-							{DRIBBLE_ICON}
-						</a>
-						<a href="https://www.linkedin.com/company/103868297/" target="_blank">
-							{IN_ICON}
-						</a>
-					</div>
-
-					<p className="text-[#9CA3AF] font-inter font-normal text-[14px]">
-						&copy; Roadmap. 2026 &mdash; All rights reserved.
-					</p>
-				</div>
+				<p className="mt-8 font-inter text-[14px] text-[#9CA3AF]">
+					&copy; Roadmap. 2026
+				</p>
 			</div>
 		</footer>
 	);

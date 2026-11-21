@@ -10,7 +10,7 @@ const steps = [
 		number: "01",
 		title: "Discover a Roadmap",
 		description:
-			"Browse our library of expert-crafted roadmaps across dozens of topics — from web development and data science to design and career growth.",
+			"Open the public library and read a published roadmap before you subscribe.",
 		gradient: "from-[#506CF0] to-[#6C8BF7]",
 	},
 	{
@@ -240,8 +240,8 @@ const HowItWorksPage = () => {
 						Ready to Start?
 					</h2>
 					<p className="text-[14px] md:text-[16px] font-inter font-normal text-white/70 leading-[24px] mx-auto mt-4">
-						Join thousands of learners who are already following expert roadmaps
-						to reach their goals faster.
+						Browse published roadmaps, or create an account and publish one of
+						your own.
 					</p>
 
 					<div className="flex items-center justify-center gap-4 mt-8">

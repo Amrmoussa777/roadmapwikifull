@@ -32,10 +32,10 @@ const PublicNavbar = () => {
 
 	return (
 		<div
-			className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+			className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-500 ${
 				scrolled
-					? "bg-white/70 backdrop-blur-2xl border-b border-black/[0.04] shadow-[0_1px_20px_rgba(0,0,0,0.04)]"
-					: "bg-white/40 backdrop-blur-md"
+					? "border-white/70 bg-white/55 shadow-[0_8px_32px_rgba(80,108,240,0.08)] backdrop-blur-2xl"
+					: "border-white/40 bg-white/35 backdrop-blur-xl"
 			}`}
 		>
 			<nav className="relative max-w-[1440px] h-[72px] flex-jb-c mx-auto px-6 lg:px-8">

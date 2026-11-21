@@ -12,7 +12,17 @@ import { getUser } from "@/app/auth/services/getUser";
 
 export const metadata: Metadata = {
 	title: "Roadmap",
-	description: "Ultimate roadmap to achieve your goals",
+	description:
+		"Publish and follow structured learning paths. Each roadmap is an ordered set of steps, with resources, discussion, and a price set by the creator.",
+	metadataBase: new URL("https://roadmapwiki.com"),
+	openGraph: {
+		title: "Roadmap",
+		description:
+			"Publish and follow structured learning paths. Each roadmap is an ordered set of steps, with resources, discussion, and a price set by the creator.",
+		url: "https://roadmapwiki.com",
+		siteName: "Roadmap",
+		type: "website",
+	},
 	icons: {
 		icon: [
 			{

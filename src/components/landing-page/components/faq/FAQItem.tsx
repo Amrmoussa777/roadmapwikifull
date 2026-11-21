@@ -17,10 +17,10 @@ const FAQItem = ({ data, activeAnswer, setActiveAnswer }: FAQItemProps) => {
 	};
 
 	return (
-		<li className="w-full bg-white rounded-xl border border-black/[0.05] shadow-[0_1px_6px_rgba(0,0,0,0.03)] mb-3 overflow-hidden hover:shadow-[0_2px_14px_rgba(80,108,240,0.06)] hover:border-[#506CF0]/10 transition-all duration-300">
+		<li className="mb-3 w-full overflow-hidden rounded-2xl border border-white/70 bg-white/50 shadow-[0_8px_28px_rgba(31,41,80,0.06),inset_0_1px_0_rgba(255,255,255,0.75)] backdrop-blur-xl transition-all duration-300 hover:border-[#506CF0]/20">
 			<button
 				onClick={handleToggleAnswer}
-				className="w-full h-[56px] flex-jb-c px-[21px] font-inter text-[16px] text-[#111] font-semibold"
+				className="flex min-h-[56px] w-full items-center justify-between gap-4 px-[21px] py-3 text-left font-inter text-[16px] font-semibold text-[#111]"
 			>
 				<h3>{questionName}</h3>
 				<span
