@@ -32,7 +32,7 @@ const PublicNavbar = () => {
 
 	return (
 		<div
-			className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-500 ${
+			className={`glass-surface fixed top-0 left-0 right-0 z-50 border-b transition-all duration-500 ${
 				scrolled
 					? "border-white/70 bg-white/55 shadow-[0_8px_32px_rgba(80,108,240,0.08)] backdrop-blur-2xl"
 					: "border-white/40 bg-white/35 backdrop-blur-xl"

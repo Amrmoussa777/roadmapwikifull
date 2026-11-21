@@ -1,6 +1,6 @@
 "use client";
 
-import GlassCard from "@/components/landing-page/components/glass/GlassCard";
+import SurfaceCard from "@/components/landing-page/components/surface/SurfaceCard";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import React, { useRef } from "react";
@@ -32,43 +32,11 @@ const steps = [
 	},
 ];
 
-const capabilities = [
-	{
-		title: "Ordered steps",
-		description: "A roadmap is a sequence, with a duration on each step.",
-	},
-	{
-		title: "Attachments",
-		description: "A step can include files the learner opens while working.",
-	},
-	{
-		title: "Verification links",
-		description: "A creator can attach a link that checks a step.",
-	},
-	{
-		title: "Discussion",
-		description: "Posts and replies live on the roadmap, next to the steps.",
-	},
-	{
-		title: "Creator price",
-		description: "The creator sets the amount and currency. Zero is free.",
-	},
-	{
-		title: "Profiles",
-		description: "Each roadmap belongs to a creator profile you can open.",
-	},
-];
-
 const ProductSections = () => {
 	const stepsRef = useRef(null);
 	const pathsRef = useRef(null);
-	const capabilitiesRef = useRef(null);
 	const stepsInView = useInView(stepsRef, { once: true, margin: "-80px" });
 	const pathsInView = useInView(pathsRef, { once: true, margin: "-80px" });
-	const capabilitiesInView = useInView(capabilitiesRef, {
-		once: true,
-		margin: "-80px",
-	});
 
 	return (
 		<>
@@ -96,8 +64,8 @@ const ProductSections = () => {
 							animate={stepsInView ? { opacity: 1, y: 0 } : {}}
 							transition={{ duration: 0.5, delay: 0.08 * index }}
 						>
-							<GlassCard className="h-full p-6 md:p-8">
-								<span className="font-inter text-[13px] font-semibold tracking-[0.12em] text-[#506CF0]">
+							<SurfaceCard className="h-full p-6 md:p-8">
+								<span className="font-inter text-[13px] font-semibold tracking-[0.12em] text-[#4A62E0]">
 									{step.number}
 								</span>
 								<h3 className="mt-3 text-[22px] font-bold text-[#171618]">
@@ -106,7 +74,7 @@ const ProductSections = () => {
 								<p className="mt-2 font-inter text-[15px] leading-[24px] text-[#6B7280]">
 									{step.description}
 								</p>
-							</GlassCard>
+							</SurfaceCard>
 						</motion.li>
 					))}
 				</ol>
@@ -119,8 +87,8 @@ const ProductSections = () => {
 						animate={pathsInView ? { opacity: 1, y: 0 } : {}}
 						transition={{ duration: 0.55 }}
 					>
-						<GlassCard className="h-full p-7 md:p-9">
-							<p className="font-inter text-[12px] font-semibold uppercase tracking-[0.14em] text-[#506CF0]">
+						<SurfaceCard className="h-full p-7 md:p-9">
+							<p className="font-inter text-[12px] font-semibold uppercase tracking-[0.14em] text-[#4A62E0]">
 								Learn
 							</p>
 							<h2 className="mt-3 text-[28px] font-bold text-[#171618]">
@@ -134,11 +102,11 @@ const ProductSections = () => {
 							</ul>
 							<Link
 								href="/roadmaps"
-								className="mt-8 inline-flex h-[48px] items-center rounded-full bg-gradient-to-r from-[#506CF0] to-[#7C5CFC] px-6 font-inter text-[15px] font-semibold text-white"
+								className="mt-8 inline-flex h-[48px] items-center rounded-full bg-gradient-to-r from-[#4A62E0] to-[#6D4AEF] px-6 font-inter text-[15px] font-semibold text-white"
 							>
 								Open the library
 							</Link>
-						</GlassCard>
+						</SurfaceCard>
 					</motion.div>
 
 					<motion.div
@@ -146,8 +114,8 @@ const ProductSections = () => {
 						animate={pathsInView ? { opacity: 1, y: 0 } : {}}
 						transition={{ duration: 0.55, delay: 0.1 }}
 					>
-						<GlassCard className="h-full p-7 md:p-9">
-							<p className="font-inter text-[12px] font-semibold uppercase tracking-[0.14em] text-[#7C5CFC]">
+						<SurfaceCard className="h-full p-7 md:p-9">
+							<p className="font-inter text-[12px] font-semibold uppercase tracking-[0.14em] text-[#6D4AEF]">
 								Create
 							</p>
 							<h2 className="mt-3 text-[28px] font-bold text-[#171618]">
@@ -161,49 +129,13 @@ const ProductSections = () => {
 							</ul>
 							<Link
 								href="/auth/register"
-								className="mt-8 inline-flex h-[48px] items-center rounded-full border border-white/80 bg-white/60 px-6 font-inter text-[15px] font-semibold text-[#171618] backdrop-blur-xl"
+								className="mt-8 inline-flex h-[48px] items-center rounded-full border border-[#E6E9F2] bg-white px-6 font-inter text-[15px] font-semibold text-[#171618]"
 							>
 								Create an account
 							</Link>
-						</GlassCard>
+						</SurfaceCard>
 					</motion.div>
 				</div>
-			</section>
-
-			<section
-				ref={capabilitiesRef}
-				className="px-6 py-16 lg:px-[4.5rem] lg:py-24"
-			>
-				<motion.div
-					initial={{ opacity: 0, y: 24 }}
-					animate={capabilitiesInView ? { opacity: 1, y: 0 } : {}}
-					transition={{ duration: 0.6 }}
-					className="mx-auto max-w-[720px] text-center"
-				>
-					<h2 className="text-[32px] font-bold leading-tight text-[#171618] md:text-[44px]">
-						What a published roadmap includes
-					</h2>
-				</motion.div>
-
-				<ul className="mx-auto mt-12 grid max-w-[1080px] gap-4 sm:grid-cols-2 lg:grid-cols-3">
-					{capabilities.map((item, index) => (
-						<motion.li
-							key={item.title}
-							initial={{ opacity: 0, y: 16 }}
-							animate={capabilitiesInView ? { opacity: 1, y: 0 } : {}}
-							transition={{ duration: 0.45, delay: 0.06 * index }}
-						>
-							<GlassCard className="h-full p-6">
-								<h3 className="text-[18px] font-bold text-[#171618]">
-									{item.title}
-								</h3>
-								<p className="mt-2 font-inter text-[14px] leading-[22px] text-[#6B7280]">
-									{item.description}
-								</p>
-							</GlassCard>
-						</motion.li>
-					))}
-				</ul>
 			</section>
 		</>
 	);

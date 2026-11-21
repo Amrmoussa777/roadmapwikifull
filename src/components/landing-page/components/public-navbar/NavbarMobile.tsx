@@ -13,7 +13,7 @@ const NavbarMobile = ({
 }) => {
 	return (
 		<ul
-			className={`absolute left-0 top-[72px] flex md:hidden w-full flex-col gap-4 border-b border-white/70 bg-white/60 py-8 shadow-[0_16px_40px_rgba(80,108,240,0.08)] backdrop-blur-2xl transition-all ${customStyles}`}
+			className={`glass-surface absolute left-0 top-[72px] flex md:hidden w-full flex-col gap-4 border-b border-white/70 bg-white/60 py-8 shadow-[0_16px_40px_rgba(80,108,240,0.08)] backdrop-blur-2xl transition-all ${customStyles}`}
 		>
 			{links.map(link => (
 				<NavbarMobileLinkItem key={link.href} {...link} />

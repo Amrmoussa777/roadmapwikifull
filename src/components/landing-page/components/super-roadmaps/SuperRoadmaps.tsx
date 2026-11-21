@@ -30,7 +30,7 @@ const SuperRoadmaps = () => {
 				/>
 				<div className="absolute -left-16 top-10 h-56 w-56 rounded-full bg-white/20 blur-3xl" />
 				<div className="absolute -right-10 bottom-0 h-64 w-64 rounded-full bg-[#C4B5FD]/40 blur-3xl" />
-				<div className="absolute right-16 top-16 h-20 w-20 rotate-12 rounded-3xl border border-white/30 bg-white/10 backdrop-blur-md" />
+				<div className="absolute right-16 top-16 h-20 w-20 rotate-12 rounded-3xl border border-white/30 bg-white/10" />
 
 				<motion.div
 					initial={{ opacity: 0, y: 24 }}

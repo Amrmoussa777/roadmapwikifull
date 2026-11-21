@@ -28,7 +28,7 @@ const SuperRoadmapsSlider = () => {
 			>
 				{slides.map((slide, index) => (
 					<SwiperSlide key={index}>
-						<div className="rounded-[28px] border border-white/35 bg-white/15 p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.35)] backdrop-blur-xl md:p-5">
+						<div className="rounded-[28px] border border-white/35 bg-white/15 p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.35)] md:p-5">
 							<Image
 								src={slide}
 								width={1305}
@@ -47,7 +47,7 @@ const SuperRoadmapsSlider = () => {
 					aria-label="Previous slide"
 					onClick={() => swiperRef.current?.slidePrev()}
 					disabled={activeIndex === 0}
-					className="flex h-[44px] w-[44px] -rotate-90 items-center justify-center rounded-full border border-white/60 bg-white/80 shadow-[0_4px_16px_rgba(0,0,0,0.12)] backdrop-blur-md transition-all duration-300 hover:bg-white disabled:opacity-40"
+					className="flex h-[44px] w-[44px] -rotate-90 items-center justify-center rounded-full border border-white/60 bg-white shadow-[0_4px_16px_rgba(0,0,0,0.12)] transition-all duration-300 hover:bg-white disabled:opacity-40"
 				>
 					{ARROW_ICON}
 				</button>
@@ -56,7 +56,7 @@ const SuperRoadmapsSlider = () => {
 					aria-label="Next slide"
 					onClick={() => swiperRef.current?.slideNext()}
 					disabled={activeIndex === lastIndex}
-					className="flex h-[44px] w-[44px] rotate-90 items-center justify-center rounded-full border border-white/60 bg-white/80 shadow-[0_4px_16px_rgba(0,0,0,0.12)] backdrop-blur-md transition-all duration-300 hover:bg-white disabled:opacity-40"
+					className="flex h-[44px] w-[44px] rotate-90 items-center justify-center rounded-full border border-white/60 bg-white shadow-[0_4px_16px_rgba(0,0,0,0.12)] transition-all duration-300 hover:bg-white disabled:opacity-40"
 				>
 					{ARROW_ICON}
 				</button>

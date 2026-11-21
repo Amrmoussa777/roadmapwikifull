@@ -49,7 +49,7 @@ export const heroRoadmaps: HeroRoadmap[] = [
 	{
 		id: "c6f1878f-fcb3-4068-99e7-33eb6c5742c1",
 		title: "Lose Weight Effectively",
-		primaryColor: "#FF9900",
+		primaryColor: "#C2410C",
 		steps: [
 			step("f3809aa2-fb9b-4fc3-b047-546f71d3c222", "Set Realistic Goals", "7 days"),
 			step("2db3b3dc-2d07-4291-9132-e0d769af1ec3", "Start a Food Journal", "14 days"),

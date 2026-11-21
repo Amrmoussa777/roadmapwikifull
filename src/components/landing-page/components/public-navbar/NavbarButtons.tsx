@@ -12,7 +12,7 @@ const NavbarButtons = ({ customStyles }: { customStyles?: string }) => {
 			</Link>
 			<Link
 				href="/auth/register"
-				className="py-[10px] px-[22px] font-inter font-semibold text-[15px] text-white bg-gradient-to-r from-[#506CF0] to-[#7C5CFC] rounded-full hover:shadow-[0_4px_20px_rgba(80,108,240,0.35)] transition-all duration-300"
+				className="py-[10px] px-[22px] font-inter font-semibold text-[15px] text-white bg-gradient-to-r from-[#4A62E0] to-[#6D4AEF] rounded-full hover:shadow-[0_4px_20px_rgba(80,108,240,0.35)] transition-all duration-300"
 			>
 				Get started
 			</Link>

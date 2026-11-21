@@ -31,7 +31,7 @@ const Footer = () => {
 							"linear-gradient(135deg, rgba(80,108,240,0.92) 0%, rgba(108,58,237,0.88) 55%, rgba(124,92,252,0.9) 100%)",
 					}}
 				/>
-				<div className="absolute inset-0 bg-white/10 backdrop-blur-xl" />
+				<div className="glass-overlay absolute inset-0 bg-white/10 backdrop-blur-xl" />
 				<div
 					className="absolute -left-16 top-[-40px] h-48 w-48 rounded-full bg-white/25 blur-3xl"
 					aria-hidden
@@ -52,13 +52,13 @@ const Footer = () => {
 					<div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
 						<Link
 							href="/roadmaps"
-							className="flex h-[48px] w-full items-center justify-center rounded-full bg-white px-6 font-inter text-[15px] font-semibold text-[#506CF0] sm:w-auto"
+							className="flex h-[48px] w-full items-center justify-center rounded-full bg-white px-6 font-inter text-[15px] font-semibold text-[#4A62E0] sm:w-auto"
 						>
 							Browse roadmaps
 						</Link>
 						<Link
 							href="/auth/register"
-							className="flex h-[48px] w-full items-center justify-center rounded-full border border-white/40 bg-white/15 px-6 font-inter text-[15px] font-semibold text-white backdrop-blur-xl sm:w-auto"
+							className="flex h-[48px] w-full items-center justify-center rounded-full border border-white/40 bg-white/15 px-6 font-inter text-[15px] font-semibold text-white sm:w-auto"
 						>
 							Create an account
 						</Link>
@@ -66,7 +66,7 @@ const Footer = () => {
 				</div>
 			</motion.div>
 
-			<div className="mt-6 rounded-[28px] border border-white/70 bg-white/50 px-6 py-8 shadow-[0_10px_40px_rgba(31,41,80,0.06),inset_0_1px_0_rgba(255,255,255,0.75)] backdrop-blur-xl md:px-10 md:py-10">
+			<div className="mt-6 rounded-[28px] border border-[#E6E9F2] bg-white px-6 py-8 shadow-[0_10px_40px_rgba(31,41,80,0.06)] md:px-10 md:py-10">
 				<div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
 					<RoadmapLogo />
 					<nav aria-label="Footer">
@@ -87,7 +87,7 @@ const Footer = () => {
 						</ul>
 					</nav>
 				</div>
-				<p className="mt-8 font-inter text-[14px] text-[#9CA3AF]">
+				<p className="mt-8 font-inter text-[14px] text-[#6B7280]">
 					&copy; Roadmap. 2026
 				</p>
 			</div>
