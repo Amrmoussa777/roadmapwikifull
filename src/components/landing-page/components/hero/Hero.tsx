@@ -123,7 +123,7 @@ const Hero = () => {
 				/>
 			</div>
 
-			<div id="library" className="relative z-10">
+			<div id="library" className="relative z-20">
 				<SearchRoadmapForm />
 			</div>
 

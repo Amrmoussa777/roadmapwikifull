@@ -69,7 +69,7 @@ const SearchRoadmapForm = () => {
 	return (
 		<form
 			onSubmit={handleSearchSubmit}
-			className="w-full h-[60px] sm:h-[80px] flex items-center mt-[20px] rounded-[16px] border border-transparent bg-white p-[12px] shadow-[0_8px_30px_rgb(0,0,0,0.12)] focus-within:border-primary-ultramarineBlue focus-within:shadow-[5px_5px_0px_0px_rgba(80,108,240),0_8px_30px_rgb(0,0,0,0.12)] transition duration-200 sm:p-[20px]"
+			className="relative z-20 flex h-[60px] w-full items-center overflow-visible mt-[20px] rounded-[16px] border border-transparent bg-white p-[12px] shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition duration-200 focus-within:border-primary-ultramarineBlue focus-within:shadow-[5px_5px_0px_0px_rgba(80,108,240),0_8px_30px_rgb(0,0,0,0.12)] sm:h-[80px] sm:p-[20px]"
 		>
 			<div className="flex items-center gap-4 w-full sm:w-2/4">
 				<span className="text-[#C4C4C4]">{ROADMAP_ICON}</span>
@@ -123,7 +123,7 @@ const SearchRoadmapForm = () => {
 							exit={{ y: -10, opacity: 0 }}
 							transition={{ duration: 0.1 }}
 							ref={divRef}
-							className="absolute top-[60px] bg-white rounded-xl shadow-xl"
+							className="absolute top-[60px] z-30 overflow-visible rounded-xl bg-white shadow-xl"
 						>
 							<button
 								type="button"
