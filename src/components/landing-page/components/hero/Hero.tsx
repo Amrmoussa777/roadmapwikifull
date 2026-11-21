@@ -64,7 +64,7 @@ const Hero = () => {
 					</div>
 
 					<h1 className="mt-6 max-w-[640px] text-[36px] font-extrabold leading-[1.08] text-[#171618] sm:text-[56px]">
-						Your clear roadmap to
+						Your proven roadmap to
 						<span className="relative block h-[1.25em] overflow-hidden text-[0.8em] xl:text-[0.9em]">
 							<span className="sr-only">{activeRoadmap.title}</span>
 							{heroRoadmaps.map((roadmap, index) => {
