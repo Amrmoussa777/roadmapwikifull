@@ -3,7 +3,6 @@
 import FAQ from "@/components/landing-page/components/faq/FAQ";
 import Footer from "@/components/landing-page/components/footer/Footer";
 import Hero from "@/components/landing-page/components/hero/Hero";
-import ProductSections from "@/components/landing-page/components/product/ProductSections";
 import SuperRoadmaps from "@/components/landing-page/components/super-roadmaps/SuperRoadmaps";
 import { MotionConfig } from "framer-motion";
 
@@ -21,7 +20,6 @@ const LandingPage = () => {
 				<div className="relative z-10 mx-auto max-w-[1440px]">
 					<Hero />
 					<SuperRoadmaps />
-					<ProductSections />
 					<FAQ />
 					<Footer />
 				</div>

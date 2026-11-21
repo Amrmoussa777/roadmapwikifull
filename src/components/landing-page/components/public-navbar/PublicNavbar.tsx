@@ -15,6 +15,8 @@ const navbarLinks = [
 	{ href: "/our-mission", name: "Our mission" },
 ];
 
+const pagesWithHeroUnderNavbar = ["/", "/how-it-works", "/our-mission"];
+
 const PublicNavbar = () => {
 	const { currentState: isMenuOpen, toggle: toggleMobileNavbar } =
 		useToggle(false);
@@ -31,33 +33,38 @@ const PublicNavbar = () => {
 	if (pathname.includes("auth")) return;
 
 	return (
-		<div
-			className={`glass-surface fixed top-0 left-0 right-0 z-50 border-b transition-all duration-500 ${
-				scrolled
-					? "border-white/70 bg-white/55 shadow-[0_8px_32px_rgba(80,108,240,0.08)] backdrop-blur-2xl"
-					: "border-white/40 bg-white/35 backdrop-blur-xl"
-			}`}
-		>
-			<nav className="relative max-w-[1440px] h-[72px] flex-jb-c mx-auto px-6 lg:px-8">
-				<RoadmapLogo />
-				<NavbarLinks links={navbarLinks} />
-				<NavbarButtons customStyles="hidden md:block" />
-
-				<MenuButton
-					isMenuOpen={isMenuOpen}
-					setIsMenuOpen={toggleMobileNavbar}
-				/>
-			</nav>
-
-			<NavbarMobile
-				links={navbarLinks}
-				customStyles={`transition-all duration-300 ${
-					isMenuOpen
-						? "!top-[72px] opacity-1 z-20"
-						: "!top-[-400px] opacity-0 z-0"
+		<>
+			{!pagesWithHeroUnderNavbar.includes(pathname) && (
+				<div aria-hidden className="h-[72px]" />
+			)}
+			<div
+				className={`glass-surface fixed top-0 left-0 right-0 z-50 border-b transition-all duration-500 ${
+					scrolled
+						? "border-white/70 bg-white/55 shadow-[0_8px_32px_rgba(80,108,240,0.08)] backdrop-blur-2xl"
+						: "border-white/40 bg-white/35 backdrop-blur-xl"
 				}`}
-			/>
-		</div>
+			>
+				<nav className="relative max-w-[1440px] h-[72px] flex-jb-c mx-auto px-6 lg:px-8">
+					<RoadmapLogo />
+					<NavbarLinks links={navbarLinks} />
+					<NavbarButtons customStyles="hidden md:block" />
+
+					<MenuButton
+						isMenuOpen={isMenuOpen}
+						setIsMenuOpen={toggleMobileNavbar}
+					/>
+				</nav>
+
+				<NavbarMobile
+					links={navbarLinks}
+					customStyles={`transition-all duration-300 ${
+						isMenuOpen
+							? "!top-[72px] opacity-1 z-20"
+							: "!top-[-400px] opacity-0 z-0"
+					}`}
+				/>
+			</div>
+		</>
 	);
 };
 

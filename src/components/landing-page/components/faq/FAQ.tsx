@@ -16,7 +16,7 @@ const FAQList: FAQItemType[] = [
 		id: "2",
 		questionName: "How do I start?",
 		answer:
-			"Create an account, then open the roadmaps library. Subscribing happens on the roadmap page.",
+			"Search the library on this page. Subscribing happens on the roadmap page, after you create an account.",
 	},
 	{
 		id: "3",

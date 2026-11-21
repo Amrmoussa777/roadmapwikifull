@@ -42,6 +42,8 @@ const HeroRoadmap = ({
 				if (!event.currentTarget.contains(event.relatedTarget)) onFocusChange(false);
 			}}
 		>
+			<div className="relative h-[280px]">
+			<div className="h-full overflow-hidden">
 			<div className="relative h-[620px]">
 				{roadmaps.map((roadmap, index) => {
 					const isActive = index === activeIndex;
@@ -82,6 +84,11 @@ const HeroRoadmap = ({
 					);
 				})}
 			</div>
+			</div>
+			<div
+				aria-hidden
+				className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#F4F6FB] to-transparent"
+			/>
 
 			<Image
 				src={chairImage}
@@ -91,7 +98,7 @@ const HeroRoadmap = ({
 				className="absolute -left-6 top-6 z-10 hidden w-[84px] sm:block"
 			/>
 
-			<div className="absolute bottom-4 left-1/2 z-10 w-[108%] -translate-x-1/2">
+			<div className="absolute bottom-2 left-1/2 z-10 w-[108%] -translate-x-1/2">
 				<Image
 					src={statusImage}
 					width={520}
@@ -100,6 +107,7 @@ const HeroRoadmap = ({
 					alt="In progress, not started, and completed"
 					className="w-full"
 				/>
+			</div>
 			</div>
 		</motion.div>
 	);

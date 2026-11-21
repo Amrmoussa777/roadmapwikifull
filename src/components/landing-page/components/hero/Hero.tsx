@@ -8,9 +8,12 @@ import {
 	getHeroSlot,
 	useHeroRotation,
 } from "@/components/landing-page/hooks/useHeroRotation";
+import RoadmapList from "@/components/roadmaps/components/RoadmapList";
+import RoadmapsFilter from "@/components/roadmaps/components/RoadmapsFilter";
+import SearchRoadmapForm from "@/components/roadmaps/components/SearchRoadmapForm";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import React from "react";
+import React, { Suspense } from "react";
 
 const titleOffset: Record<HeroSlot, string> = {
 	active: "0%",
@@ -25,7 +28,7 @@ const Hero = () => {
 	const activeRoadmap = heroRoadmaps[activeIndex];
 
 	return (
-		<section className="relative px-6 pb-8 pt-[8rem] lg:px-[4.5rem] lg:pb-20">
+		<section className="relative px-6 pb-8 pt-[6.5rem] lg:px-[4.5rem]">
 			<div
 				className="pointer-events-none absolute inset-y-0 left-1/2 w-screen -translate-x-1/2 overflow-hidden"
 				aria-hidden
@@ -47,7 +50,7 @@ const Hero = () => {
 				<div className="absolute bottom-0 right-0 h-[380px] w-[380px] rounded-full bg-[#506CF0]/25 blur-3xl" />
 			</div>
 
-			<div className="relative z-10 grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+			<div className="relative z-10 grid items-start gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
 				<motion.div
 					initial={{ opacity: 0, y: 24 }}
 					animate={{ opacity: 1, y: 0 }}
@@ -118,6 +121,19 @@ const Hero = () => {
 					onHoverChange={setIsHovered}
 					onFocusChange={setIsFocused}
 				/>
+			</div>
+
+			<div id="library" className="relative z-10">
+				<SearchRoadmapForm />
+			</div>
+
+			<div className="relative z-10 mt-4 rounded-[28px] border border-[#E6E9F2] bg-white p-6">
+				<div className="flex">
+					<Suspense>
+						<RoadmapsFilter />
+						<RoadmapList />
+					</Suspense>
+				</div>
 			</div>
 		</section>
 	);
